@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NTPrintEngine.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="printSettings" Type="System.Drawing.Printing.PageSettings" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="printerSettings" Type="System.Drawing.Printing.PrinterSettings" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="printFontSettings" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

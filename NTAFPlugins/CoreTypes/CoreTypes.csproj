@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC6EFC8E-7458-450B-9DAA-348DE4C5A59A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NewTerra</RootNamespace>
+    <AssemblyName>CoreTypes</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Program Build\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TemplateBuilder|AnyCPU' ">
+    <OutputPath>bin\TemplateBuilder\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Program Build\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TemplateBuilder|x86' ">
+    <OutputPath>bin\x86\TemplateBuilder\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TemplateBuilder|x64' ">
+    <OutputPath>bin\x64\TemplateBuilder\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Online|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Online\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Online|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Online\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Online|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Online\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Archetype\ArchetypeTypeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Archetype\ArchetypeTypeEditor.Designer.cs">
+      <DependentUpon>ArchetypeTypeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Archetype\Archetype.cs" />
+    <None Include="CrewUnit.cs" />
+    <Compile Include="BaseUnit\BaseUnit Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseUnit\BaseUnit Editor.Designer.cs">
+      <DependentUpon>BaseUnit Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseUnit\BaseUnit Tree.cs" />
+    <Compile Include="BaseUnit\BaseUnit.cs" />
+    <Compile Include="BaseUnit\BaseUnits.cs" />
+    <Compile Include="BaseUnit\SelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseUnit\SelectorForm.designer.cs">
+      <DependentUpon>SelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Item\Item.cs" />
+    <Compile Include="Permissions\SkillPermission.cs" />
+    <Compile Include="Permissions\WeaponPermission.cs" />
+    <Compile Include="Permissions\PermissionExtras.cs" />
+    <Compile Include="Permissions\PsyPermission.cs" />
+    <Compile Include="Item\ItemEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\ItemEditor.Designer.cs">
+      <DependentUpon>ItemEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Permissions\PermEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Permissions\PermEditor.Designer.cs">
+      <DependentUpon>PermEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Permissions\WSPPermission.cs" />
+    <Compile Include="Psy\PsyEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Psy\PsyEditor.Designer.cs">
+      <DependentUpon>PsyEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skill\SkillEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skill\SkillEditor.Designer.cs">
+      <DependentUpon>SkillEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Weapon\WeaponEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Weapon\WeaponEditor.Designer.cs">
+      <DependentUpon>WeaponEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Psy\Psy.cs" />
+    <Compile Include="Races\Race.cs">
+    </Compile>
+    <Compile Include="Races\RaceEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Races\RaceEditor.designer.cs">
+      <DependentUpon>RaceEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skill\Skill.cs" />
+    <Compile Include="Weapon\Weapon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Archetype\ArchetypeTypeEditor.resx">
+      <DependentUpon>ArchetypeTypeEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Item\ItemEditor.resx">
+      <DependentUpon>ItemEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="BaseUnit\BaseUnit Editor.resx">
+      <DependentUpon>BaseUnit Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseUnit\SelectorForm.resx">
+      <DependentUpon>SelectorForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Permissions\PermEditor.resx">
+      <DependentUpon>PermEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Psy\PsyEditor.resx">
+      <DependentUpon>PsyEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Skill\SkillEditor.resx">
+      <DependentUpon>SkillEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="Races\RaceEditor.resx">
+      <DependentUpon>RaceEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Weapon\WeaponEditor.resx">
+      <DependentUpon>WeaponEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NTAF.Core\NTAF.Core.csproj">
+      <Project>{108f5fa9-cabb-42b3-ab25-417320a22c4a}</Project>
+      <Name>NTAF.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NTAF.PlugInFramework\NTAF.PlugInFramework.csproj">
+      <Project>{C7AEB060-AA1C-4DF0-82F2-65ACFD614F3B}</Project>
+      <Name>NTAF.PlugInFramework</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NTAF.PrintEngine\NTAF.PrintEngine.csproj">
+      <Project>{A6B76C5C-1CC1-4029-A9ED-313290352C80}</Project>
+      <Name>NTAF.PrintEngine</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

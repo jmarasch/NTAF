@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NewTerra.ObjectClasses.Archetype" Collapsed="true">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEAIAAgAAAAAIECFgAAIAAAAQCBgAIAIAAAARAAMEiA=</HashCode>
+      <FileName>Archetype\Archetype.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.ArchetypeCollector" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Archetype\Archetype.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.ArchetypeTree" Collapsed="true">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Archetype\Archetype.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.ArchetypeEditor" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgIAwAACAAMAAAACCAAAGiAAAABACAhEAAAgAAAAA=</HashCode>
+      <FileName>Archetype\ArchetypeTypeEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.PermEditor" Collapsed="true">
+    <Position X="9.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQoZAyQQCAANBAACCCAIAGiAAAABACAoGAIAgAAAAA=</HashCode>
+      <FileName>Permissions\PermEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.PsyPermission" Collapsed="true">
+    <Position X="5.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAgAAAJAIAAFgAAIAAAkAAAAAIAAAAAARAAEAiA=</HashCode>
+      <FileName>Permissions\PsyPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.PsyPermissionCollector" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\PsyPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.PsyPermissionTree" Collapsed="true">
+    <Position X="28" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\PsyPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.SkillPermission" Collapsed="true">
+    <Position X="9.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAgAAAJAIAAFgAAIAAAkAAAAAIAAAAAARAAEAiA=</HashCode>
+      <FileName>Permissions\SkillPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.SkillPermissionCollector" Collapsed="true">
+    <Position X="14.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\SkillPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.SkillPermissionTree" Collapsed="true">
+    <Position X="30.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\SkillPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.WeaponPermission" Collapsed="true">
+    <Position X="7.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAgAAAJAIAAFgAAIAAAkAAAAAIAAAAAARAAEAiA=</HashCode>
+      <FileName>Permissions\WeaponPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.WeaponPermissionCollector" Collapsed="true">
+    <Position X="12" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\WeaponPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.WeaponPermissionTree" Collapsed="true">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\WeaponPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.Psy" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>igAYQgoAAFggKAGFwEAICRgAAAYgAIBEEAACRAAEEiA=</HashCode>
+      <FileName>Psy\Psy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.PsyCollector" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Psy\Psy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.PsyTree" Collapsed="true">
+    <Position X="21.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Psy\Psy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.PsyEditor" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IIAgIIQAACEAEBQAACSBAAGiAAAABACgiEAIAgAAAAA=</HashCode>
+      <FileName>Psy\PsyEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.Race" Collapsed="true">
+    <Position X="12" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIAQgAAAAAJACFgAAIAAAAAEAgAIAAAAAAAAAEBiA=</HashCode>
+      <FileName>Races\Race.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.RaceCollector" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Races\Race.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.RaceTree" Collapsed="true">
+    <Position X="23.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Races\Race.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.RaceEditor" Collapsed="true">
+    <Position X="5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgIAQAACAAMAAAACCAAAGiAAAABACAhEAABgAAAAA=</HashCode>
+      <FileName>Races\RaceEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.Weapon" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iUYogSgEABAgKEQFwIEIABgAgAQAgIAMIAAQxAAVAiA=</HashCode>
+      <FileName>Weapon\Weapon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.WeaponCollector" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Weapon\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.WeaponTree" Collapsed="true">
+    <Position X="25.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Weapon\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.ObjectClasses.WeaponEditor" Collapsed="true">
+    <Position X="7.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgIAQAACEAEBQAASSAAAGiAAAkhQCAjkAIAgAAAAg=</HashCode>
+      <FileName>Weapon\WeaponEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.Permissions.WSPPermission" Collapsed="true">
+    <Position X="7.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAIBAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Permissions\WSPPermission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewTerra.PlugInFramework.ObjectClassBase" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NewTerra.DataCore.Permission" Collapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NewTerra.PlugInFramework.OCCBase" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NewTerra.PlugInFramework.OCEditorBase" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NewTerra.PlugInFramework.OCTreeNodeBase" Collapsed="true">
+    <Position X="23.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

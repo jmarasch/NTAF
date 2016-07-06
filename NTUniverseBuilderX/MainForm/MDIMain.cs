@@ -63,7 +63,6 @@ namespace NTAF.UniverseBuilder.WinGui {
         private void PasteToolStripMenuItem_Click( object sender, EventArgs e ) {
             FileVisualizer activeData = ( FileVisualizer )this.ActiveMdiChild;
             activeData.pasteData();
-            
             //this.MdiChildren;
         }
 

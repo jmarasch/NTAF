@@ -345,7 +345,7 @@ namespace NTAF.Core {
         #region constructos
         public NTData() {
             //create a new empty datafile
-           // _DataFiles.Add( new NTDataFile() );
+           _DataFiles.Add( new NTDataFile() );
         }
 
         public NTData( string FileToLoad ) {

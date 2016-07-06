@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NTAF.Data</name>
+    </assembly>
+    <members>
+        <member name="M:NTAF.Core.CopyClip.UTF8ByteArrayToString(System.Byte[])">
+            <summary>
+            To convert a Byte Array of Unicode values (UTF-8 encoded) to a complete String.
+            </summary>
+            <param name="characters">Unicode Byte Array to be converted to String</param>
+            <returns>String converted from Unicode Byte Array</returns>
+        </member>
+        <member name="M:NTAF.Core.CopyClip.StringToUTF8ByteArray(System.String)">
+            <summary>
+            Converts the String to UTF8 Byte array and is used in De serialization
+            </summary>
+            <param name="pXmlString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTAF.Core.NTData.updateOrphaning(NTAF.Core.INTId,NTAF.Core.NTDataFile@)">
+            <summary>
+            Adds the orphaned object to the orphaned list if it doesn't exist
+            </summary>
+            <param name="orphanedObjRef">Object that was orphaned</param>
+            <param name="orphaned">A reset bool return flips current true => false or false => true</param>
+            <returns>the object that was passed in but returns it from the linked orphan list</returns>
+        </member>
+        <member name="F:NTAF.Core.NTDataFile.filePassword">
+            <summary>
+            stored encrypted password
+            </summary>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.FullFileName">
+            <summary>
+            Gets or sets the full path to the file
+            "C:\blah\blah\blah.NTD"
+            </summary>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.FileName">
+            <summary>
+            Gets the file name with no path
+            </summary>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.FileDir">
+            <summary>
+            Gets the full path to the file but doesn't include the file name
+            </summary>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.IDPreFix">
+            <summary>
+            Gets or Sets the 4 digit Alpha Numeric identifier for the data file\n
+            Note:strings longer than 4 chars are cut off after the 4th so\n
+            "ABCDE" will turn in to "ABCD"
+            </summary>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.FileLocked">
+            <summary>
+            Returns true of the file is locked
+            </summary>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.FilePassword">
+            <summary>
+            Sets the file password if the file is not currently locked
+            or takes a clear type string, encrypts it and stores it in the file
+            </summary>
+            <exception cref="T:NTAF.Core.FileLockedException">FileLockedException - if the file is locked</exception>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.LockFile">
+            <summary>
+            locks the file if a password has been set
+            </summary>
+            <exception cref="T:System.Exception">standard plain exception thrown</exception>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.UnLockFile(System.String)">
+            <summary>
+            will unlock this file if passed password matched stored password
+            </summary>
+            <param name="cleartypePassword">un-encrypted password string used to lock the file</param>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.Drop(NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            Drops a piece of data from the collection. Basically just selects the correct drop method.
+            </summary>
+            <param name="toDrop">Object must have the ObjectClassBase interface</param>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.updateOrphaning(NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            Adds the orphaned object to the orphaned list if it doesn't exist
+            </summary>
+            <param name="orphanedObjRef">Object that was orphaned</param>
+            <param name="orphaned">A reset bool return flips current true => false or false => true</param>
+            <returns>the object that was passed in but returns it from the linked orphan list</returns>
+        </member>
+    </members>
+</doc>

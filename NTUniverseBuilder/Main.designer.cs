@@ -31,7 +31,6 @@ namespace NTAF.UniverseBuilder.WinGui {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.UpdateProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.UpdateProgressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -169,7 +168,6 @@ namespace NTAF.UniverseBuilder.WinGui {
             // 
             this.statusStrip1.AllowItemReorder = true;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
             this.UpdateProgressBar,
             this.UpdateProgressLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 540);
@@ -177,12 +175,6 @@ namespace NTAF.UniverseBuilder.WinGui {
             this.statusStrip1.Size = new System.Drawing.Size(782, 20);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 15);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // UpdateProgressBar
             // 
@@ -529,6 +521,7 @@ namespace NTAF.UniverseBuilder.WinGui {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Red;
             this.ClientSize = new System.Drawing.Size(782, 560);
             this.Controls.Add(this.tableLayoutPanel2);
             this.DoubleBuffered = true;
@@ -601,7 +594,6 @@ namespace NTAF.UniverseBuilder.WinGui {
         private System.Windows.Forms.ToolStripMenuItem tXTFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cVSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excellWorkBookToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

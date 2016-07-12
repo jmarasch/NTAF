@@ -1182,34 +1182,170 @@ namespace NTAF.Core {
                 }
             }
 
-            //foreach (ZipEntry file in zipFile.Entries) {
-            //    if (Update != null)
-            //        Update(new UpdateProgressEventArgs(String.Format("Loading {0}", Path.GetFileName(file.FileName)), "Loading", Path.GetFileName(file.FileName), currentCount++, max));
+            //should the file come equipped with a password lock the file from editing until a password is used to unlock it
+            if (filePassword != String.Empty)
+                LockFile();
 
-            //    Boolean
-            //            gotIt = false;
+            if (Updated != null)
+                Updated();
 
-            //    Object
-            //        RetreivedObject = null;
+            actions.ClearLog();
 
-            //    ZipEntryStream = new MemoryStream();
+            DataChanged = false;
+            Properties.Settings.Default.Loading = false;
+        }
 
-            //    zipFile[file.FileName].Extract(ZipEntryStream);
+        public void Load3() {
+            //throw new NotImplementedException();
+            Properties.Settings.Default.Loading = true;
 
-            //    foreach (Type typ in types) {
-            //        try {
-            //            ReadObject(out RetreivedObject, ZipEntryStream, typ);
-            //        }
-            //        catch { }
-            //        if (RetreivedObject is ObjectClassBase) {
-            //            Add((ObjectClassBase)RetreivedObject);
-            //            gotIt = true;
-            //            break;
-            //        }
-            //    }
-            //    if (!gotIt)
-            //        UnlodableObjects.Add(file.FileName);
-            //}
+            if (Updating != null)
+                Updating(new UpdaterEventArgs(5));
+
+            //if the file goes in for decryption set this to true in the finally we will use it to test
+            //if we should delete the temporary file
+            Boolean
+                FileNeededDecrypt = false;
+
+            NTDataFile //Create a temporary space to de-serialize the file information to
+                dataSet = null;
+
+            ZipFile
+                zipFile = null;// new ZipFile( FullFileName );
+
+            String
+                tmpFolder = System.IO.Path.GetTempPath() + "NewTerra";
+
+            MemoryStream
+                ZipStream = null,
+                ZipEntryStream = new MemoryStream();
+
+            //check if the container wrapper is encrypted
+            if (Update != null)
+                Update(new UpdateProgressEventArgs("Opening File...", "Opening", FullFileName, 2, 6));
+
+            try {
+                zipFile = new ZipFile(FullFileName);
+            }
+            catch (ZipException) {
+                if (Update != null)
+                    Update(new UpdateProgressEventArgs("File is protected...", "Opening", FullFileName, 3, 6));
+
+                //run the file through the de-cryptor
+                ZipStream = Security.StreamCrypt(new FileStream(FullFileName, FileMode.Open), Security.CryptAction.decrypt);
+                ZipStream.Position = 0;
+                zipFile = ZipFile.Read(ZipStream);
+            }
+
+            //if zip file is still null throw an unloadable error
+            if (zipFile == null) {
+                if (Updated != null)
+                    Updated();
+                throw new FileLoadException("Could not load file", FullFileName);
+            }
+
+            if (Update != null)
+                Update(new UpdateProgressEventArgs("Unpacking File this may take a while...", "Inflating", FullFileName, 3, 6));
+
+            try {
+                Object[]
+                    objArr;
+
+                zipFile["Requirements.xml"].Extract(ZipEntryStream);
+
+                ReadObject(out objArr, ZipEntryStream, typeof(SerializableVersion[]));
+
+                String[]
+                    msgList = new String[0];
+
+                List<SerializableVersion>
+                    versionCheck = new List<SerializableVersion>((SerializableVersion[])objArr);
+
+                //check for required plugins if any are found missing or an incompatible version throw an error load message
+                if (!checkForRequiredPlugins(versionCheck.ToArray(), out msgList)) {
+                    String
+                        bigMsg = "";
+                    foreach (string str in msgList) {
+                        bigMsg += str + "\n\n";
+                    }
+                    throw new FileLoadException(bigMsg, this.FileName);
+                }
+            }
+            catch { }
+
+            Object
+                tmpObj;
+
+            ZipEntryStream = new MemoryStream();
+
+            zipFile[Path.GetFileNameWithoutExtension(FileName) + ".xml"].Extract(ZipEntryStream);
+
+            ReadObject(out tmpObj, ZipEntryStream, typeof(NTDataFile));
+
+            if (tmpObj is NTDataFile)
+                dataSet = (NTDataFile)tmpObj;
+
+            if (Update != null)
+                Update(new UpdateProgressEventArgs("File inflated finding objects...", "Hunting", FullFileName, 4, 6));
+
+            if (dataSet != null) {
+                filePassword = dataSet.filePassword;
+                DataFileName = dataSet.DataFileName;
+                IDPreFix = dataSet.IDPreFix;
+            }
+            List<String>
+                UnlodableObjects = new List<String>();
+
+            int
+                max = 6 + zipFile.Entries.Count - 1,
+                currentCount = 5;
+
+            if (Update != null)
+                Update(new UpdateProgressEventArgs("Loading objects...", "Loading objects", FullFileName, currentCount++, max));
+
+            //List<object> objects = new List<object>();
+
+
+            //===============================start new memory loading section===========================//
+
+
+            Type[] types = PluginEngine.GetSerailPlugins();
+
+            List<ZipEntry> filesToLoad = new List<ZipEntry>(zipFile.Entries);
+
+            foreach (OCCBase occp in PluginEngine.GetOCCPlugInsByLayer()) {
+                if (types.Contains(occp.CollectionType)) { //makesure the type were trying load cam be deserialized by checking against the approved desrialization list.
+                    string typeName = occp.CollectionType.Name;
+                    ZipEntry[] currentFiles = filesToLoad.Where(ze => ze.FileName.Split('/')[0] == typeName).ToArray();
+                    foreach (ZipEntry file in currentFiles) {
+                        ZipEntryStream = new MemoryStream();
+                        Object RetreivedObject = null;
+
+                        if (Update != null)
+                            Update(new UpdateProgressEventArgs(String.Format("Loading {0}", Path.GetFileName(file.FileName)), "Loading", Path.GetFileName(file.FileName), currentCount++, max));
+
+                        zipFile[file.FileName].Extract(ZipEntryStream);
+
+                        ReadObject(out RetreivedObject, ZipEntryStream, occp.CollectionType);
+
+                        if (RetreivedObject is ObjectClassBase) {
+                            Add((ObjectClassBase)RetreivedObject);
+
+                            ((ObjectClassBase)RetreivedObject).Link(this);
+                        }
+
+                        filesToLoad.Remove(file);
+                    }
+                }
+            }
+
+            if (filesToLoad.Count > 0) {
+                UnlodableObjects.AddRange(from file in filesToLoad select file.FileName);
+            } 
+
+            //collectiontype.name
+            
+            //PluginEngine.MAX_OBJECT_LAYER
 
             //should the file come equipped with a password lock the file from editing until a password is used to unlock it
             if (filePassword != String.Empty)

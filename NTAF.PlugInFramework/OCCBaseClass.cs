@@ -31,7 +31,7 @@ namespace NTAF.PlugInFramework {
         public event NTEventHandler<ItemChangedArgs>  CollectionUpdated;
 
         /// <summary>
-        /// Override Required is level is above 0 or root
+        /// Override Required if level is above 0 or root
         /// Returns the layerd level of this object collection
         /// </summary>
         public virtual Byte objectLayer {

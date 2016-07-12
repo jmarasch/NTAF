@@ -32,6 +32,7 @@ namespace UniverseBuilderSingle {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusFileLock = new System.Windows.Forms.ToolStripStatusLabel();
             this.UpdateProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.UpdateProgressLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -208,6 +209,7 @@ namespace UniverseBuilderSingle {
             // 
             this.statusStrip1.AllowItemReorder = true;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusFileLock,
             this.UpdateProgressBar1,
             this.UpdateProgressLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 540);
@@ -215,6 +217,14 @@ namespace UniverseBuilderSingle {
             this.statusStrip1.Size = new System.Drawing.Size(782, 20);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusFileLock
+            // 
+            this.toolStripStatusFileLock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.toolStripStatusFileLock.Name = "toolStripStatusFileLock";
+            this.toolStripStatusFileLock.Size = new System.Drawing.Size(76, 15);
+            this.toolStripStatusFileLock.Text = "<UnLocked>";
+            this.toolStripStatusFileLock.Click += new System.EventHandler(this.lockFileToolStripMenuItem_Click);
             // 
             // UpdateProgressBar1
             // 
@@ -982,6 +992,7 @@ namespace UniverseBuilderSingle {
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar UpdateProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel UpdateProgressLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusFileLock;
     }
 }
 

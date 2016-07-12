@@ -24,6 +24,7 @@ namespace UniverseBuilderSingle {
             _PrintEngine = null;
 
         public Main() {
+
             InitializeComponent();
 
             BuildMenu();
@@ -47,7 +48,14 @@ namespace UniverseBuilderSingle {
         }
 
         void DataFile_LockStatusChange() {
-            lockFileToolStripMenuItem.Checked = DataFile.FileLocked;
+            //lockFileToolStripMenuItem.Checked = DataFile.FileLocked;
+            if (DataFile.FileLocked) {
+                toolStripStatusFileLock.Text = "<Locked>";
+                toolStripStatusFileLock.BackColor = System.Drawing.Color.Red;
+            }else {
+                toolStripStatusFileLock.Text = "<UnLocked>";
+                toolStripStatusFileLock.BackColor = System.Drawing.Color.Green;
+            }
             //todo: make labe to replace this control
             //FileLockIndicator.Checked = DataFile.FileLocked;
         }
@@ -90,10 +98,21 @@ namespace UniverseBuilderSingle {
         }
 
         void bgw_DoWork( object sender, DoWorkEventArgs e ) {
-            //DataFile.Load(); //30 seconds to open and link 200ish items
-            DataFile.Load2(); //11 seconds to open and link 200ish items
-            //data could be linked on demand for example when you edit an object is find references to that object and links at that time.
-            DataFile.LinkData();
+  
+            DateTime fileloadStart = DateTime.Now;
+
+            //DataFile.Load(); //00:00:20.8476186 to open and link 200ish items
+            //DataFile.LinkData();
+
+            //DataFile.Load2(); //00:00:08.1744501 to open and link 200ish items
+            //DataFile.LinkData();
+            
+            //todo:: the only way its going to get faster is if linking is done on demand when an object is used
+            DataFile.Load3(); //00:00:08.2179888 to open and link 200ish items
+            DateTime fileloadFinish = DateTime.Now;
+            Console.WriteLine(String.Format("Load Method 1:{0}", (fileloadFinish - fileloadStart)));
+             //data could be linked on demand for example when you edit an object is find references to that object and links at that time.
+
         }
 
         void DataFile_Updating( UpdaterEventArgs args ) {

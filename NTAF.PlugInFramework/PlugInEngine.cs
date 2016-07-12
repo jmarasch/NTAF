@@ -162,6 +162,17 @@ namespace NTAF.PlugInFramework {
 
         }
 
+        ///// <summary>
+        ///// Returns all plugin types that are marked as Serializable
+        ///// </summary>
+        ///// <returns>Serializable class types</returns>
+        //public static Type[] GetSerailPlugins(int LayerLevel) {
+        //    GetSerailPlugins().Where<Type>()
+
+        //    return ApprovedPlugins.ToArray();
+
+        //}
+
         /// <summary>
         /// Scans through all loaded assemblies and returns NTTreeNode Plugins        
         /// </summary>
@@ -237,6 +248,15 @@ namespace NTAF.PlugInFramework {
 
             return ApprovedPlugins.ConvertAll<OCCBase>( delegate( Type t ) { return Activator.CreateInstance( t ) as OCCBase; } ).ToArray();
         }
+
+        /// <summary>
+        /// Scans through all loaded assemblies and returns Class Collector Plugins in order by layer level stating at 0.       
+        /// </summary>
+        /// <returns>Array of loaded OCCBase inheritied classes</returns>
+        public static OCCBase[] GetOCCPlugInsByLayer() {
+            return GetOCCPlugIns().OrderBy(occ => occ.objectLayer).ToArray();
+        }
+        //
 
         /// <summary>
         /// Scans through all loaded assemblies and returns Object Class Plugins        

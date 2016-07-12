@@ -612,7 +612,7 @@
         </member>
         <member name="P:NTAF.PlugInFramework.OCCBase.objectLayer">
             <summary>
-            Override Required is level is above 0 or root
+            Override Required if level is above 0 or root
             Returns the layerd level of this object collection
             </summary>
         </member>
@@ -1010,6 +1010,12 @@
         <member name="M:NTAF.PlugInFramework.PluginEngine.GetOCCPlugIns">
             <summary>
             Scans through all loaded assemblies and returns Class Collector Plugins        
+            </summary>
+            <returns>Array of loaded OCCBase inheritied classes</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.GetOCCPlugInsByLayer">
+            <summary>
+            Scans through all loaded assemblies and returns Class Collector Plugins in order by layer level stating at 0.       
             </summary>
             <returns>Array of loaded OCCBase inheritied classes</returns>
         </member>

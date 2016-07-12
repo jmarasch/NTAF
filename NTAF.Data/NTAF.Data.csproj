@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CopyClip.cs" />
+    <Compile Include="NTData-old.cs" />
     <Compile Include="NTData.cs" />
     <Compile Include="NTDataFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

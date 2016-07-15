@@ -296,7 +296,7 @@ namespace UniverseBuilderSingle {
         }
 
         //=============================menu stuff=============================//
-
+     #region Menu stuff
         const Keys PreViewObjectKey = Keys.Control | Keys.Shift | Keys.P;
         const Keys EditObjectKey = Keys.Control | Keys.Shift | Keys.E;
         const Keys DeleteObjectKey = Keys.Delete;
@@ -796,7 +796,7 @@ namespace UniverseBuilderSingle {
                 MessageBox.Show("Password not set", "File not locked...", MessageBoxButtons.OK); return;
             }
         }
-
+    #endregion
 
     }
 }

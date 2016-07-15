@@ -8,7 +8,8 @@
     <AssemblyName>NTAF.Controls</AssemblyName>
     <OutputType>Library</OutputType>
     <RootNamespace>NTAF</RootNamespace>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -19,6 +20,7 @@
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -29,13 +31,20 @@
     <DebugType>pdbonly</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataViewer\DataViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataViewer\DataViewItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
@@ -45,6 +54,20 @@
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
       <SubType>Component</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTAF.Core\NTAF.Core.csproj">
+      <Project>{108f5fa9-cabb-42b3-ab25-417320a22c4a}</Project>
+      <Name>NTAF.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTAF.Data\NTAF.Data.csproj">
+      <Project>{6eeb1a69-55de-4f0d-9a2d-c727a301a060}</Project>
+      <Name>NTAF.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTAF.PlugInFramework\NTAF.PlugInFramework.csproj">
+      <Project>{c7aeb060-aa1c-4df0-82f2-65acfd614f3b}</Project>
+      <Name>NTAF.PlugInFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

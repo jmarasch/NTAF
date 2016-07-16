@@ -568,7 +568,7 @@ namespace NTAF.Core {
 
                 DataChanged = true;
 
-                if ( !NTAF.Core.Properties.Settings.Default.PerformingAction )
+                if ( NTAF.Core.Properties.Settings.Default.PerformingAction )
                     actions.AddUndoableOpp( UndoActionKeyWords.Add, toAdd );
             }
             catch ( Exception ex ) { throw ex; }
@@ -1544,17 +1544,30 @@ namespace NTAF.Core {
         public void getTreeNodes( TreeNodeCollection treeObject, ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu ) {
             i_RootMenu = RootMenu;
             i_NodeMenu = NodeMenu;
-            getTreeNodes( treeObject );
+
+            DataNode rootNode = new DataNode(this.FileName);
+
+            treeObject.Add(new TreeNode(this.FileName));
+
+            //todo add file name as a root object
+            getTreeNodes( rootNode );
+            //getTreeNodes(treeObject);
+            treeObject.Clear();
+            treeObject.Add(rootNode);
         }
 
-        public void getTreeNodes(TreeNodeCollection treeObject) {
-            treeObject.Clear();
+        //public void getTreeNodes(TreeNodeCollection treeObject) {
+        public void getTreeNodes(TreeNode treeObject) {
+            treeObject.Nodes.Clear();
+            //treeObject.Clear();
 
             List<OCTreeNodeBase>
                 i_TreeNodePlugins = new List<OCTreeNodeBase>( PluginEngine.GetTreePlugIns() );
 
             //private List<OCCBase>
             //i_OCCPlugins = new List<OCCBase>( PluginEngine.GetOCCPlugIns() );
+
+            //todo querry the collectors for each tree node to get what can be displayed so were not just fumbling around trying to figure it out one at a time over and ovr again
 
             foreach ( OCTreeNodeBase treeNodePlug in i_TreeNodePlugins ) {
                 foreach ( OCCBase occ in Collectors ) {
@@ -1567,7 +1580,8 @@ namespace NTAF.Core {
                 //treeNodePlug.Update += new NTEventHandler<UpdateProgressEventArgs>( treePlugIn_BranchUpdate );
                 treeNodePlug.SetMenus( i_RootMenu, i_NodeMenu );
 
-                treeObject.Add( treeNodePlug.MainBranch() );
+                treeObject.Nodes.Add( treeNodePlug.MainBranch() );
+                //treeObject.Add( treeNodePlug.MainBranch() );
                 //treeNodePlug.GrowBranch();
             }
         }

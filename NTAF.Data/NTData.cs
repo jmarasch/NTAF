@@ -267,7 +267,8 @@ namespace NTAF.Core {
                             loadingFile.Updated += new NTEventHandler( updated );
 
                             //load the data from the file
-                            loadingFile.Load();
+                            //loadingFile.Load();
+                            loadingFile.Load3();
 
                             //add the file to the data pool
                             this._DataFiles.Add( loadingFile );

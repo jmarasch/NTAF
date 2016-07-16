@@ -17,6 +17,7 @@ namespace UniverseBuilderSingle {
         BackgroundWorker
             bgw = new BackgroundWorker();
 
+        //todo have orphans managed in data file, need to make sure they dont get saved out to the file
         TreeNode
             Orphans = new TreeNode( "Orpahned Objects" );
 
@@ -142,7 +143,7 @@ namespace UniverseBuilderSingle {
         private void DataView_AfterSelect( object sender, TreeViewEventArgs e ) {
             //clear last selection of nodes
             comboBox1.Items.Clear();
-
+            if (DataView.SelectedNode is DataNode) return;
             if ( !( DataView.SelectedNode is OCCNode ) & !( DataView.SelectedNode is OCNode ) &
                 !( DataView.SelectedNode is OrphanNode ) & DataView.SelectedNode != Orphans ) {
                 //basic node that should contain nodes of OCCNodes

@@ -1,0 +1,12 @@
+﻿            this.Data.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.Data_NodeMouseDoubleClick );
+            this.Data.MouseClick += new System.Windows.Forms.MouseEventHandler( this.NTDataTreeView_MouseClick );
+            this.Data.AfterSelect += new System.Windows.Forms.TreeViewEventHandler( this.Data_AfterSelect );
+            this.Data.KeyUp += new System.Windows.Forms.KeyEventHandler( this.Data_KeyUp );
+
+            this.NTObjectEditingMenu.Opening += new System.ComponentModel.CancelEventHandler( this.NTObjectEditingMenu_Opening );
+
+
+            this.importToolStripMenuItem.Click += new System.EventHandler( this.importToolStripMenuItem_Click );
+
+
+            this.AboutNode.Paint += new System.Windows.Forms.PaintEventHandler( this.AboutNode_Paint );

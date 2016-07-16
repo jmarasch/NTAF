@@ -204,6 +204,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="TreeView Classes\OrphanRootNode.cs" />
+    <Compile Include="TreeView Classes\DataNode.cs" />
     <Compile Include="TreeView Classes\OCCNode.cs" />
     <Compile Include="TreeView Classes\OCNode.cs" />
     <Compile Include="TreeView Classes\OrphanNode.cs" />

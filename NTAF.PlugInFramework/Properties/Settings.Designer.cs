@@ -46,5 +46,89 @@ namespace NTAF.PlugInFramework.Properties {
                 this["Updating"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImageDataNodeUnlocked {
+            get {
+                return ((string)(this["ImageDataNodeUnlocked"]));
+            }
+            set {
+                this["ImageDataNodeUnlocked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImageDataNodeLocked {
+            get {
+                return ((string)(this["ImageDataNodeLocked"]));
+            }
+            set {
+                this["ImageDataNodeLocked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImageOCCNodeClosed {
+            get {
+                return ((string)(this["ImageOCCNodeClosed"]));
+            }
+            set {
+                this["ImageOCCNodeClosed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImageOCCNodeOpen {
+            get {
+                return ((string)(this["ImageOCCNodeOpen"]));
+            }
+            set {
+                this["ImageOCNode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImageOCNode {
+            get {
+                return ((string)(this["ImageOCNode"]));
+            }
+            set {
+                this["ImageOCNode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImageOrphanCollectorNode {
+            get {
+                return ((string)(this["ImageOrphanCollectorNode"]));
+            }
+            set {
+                this["ImageOrphanCollectorNode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImageOrphanNode {
+            get {
+                return ((string)(this["ImageOrphanNode"]));
+            }
+            set {
+                this["ImageOrphanNode"] = value;
+            }
+        }
     }
 }

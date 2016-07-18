@@ -17,18 +17,38 @@ namespace UniverseBuilderSingle {
         BackgroundWorker
             bgw = new BackgroundWorker();
 
-        //todo have orphans managed in data file, need to make sure they dont get saved out to the file
-        TreeNode
-            Orphans = new TreeNode( "Orpahned Objects" );
+        //todo have orphans managed in data file, need to make sure they don't get saved out to the file
+        //TreeNode
+        //    Orphans = new TreeNode( "Orphaned Objects" );
 
         PrintEngine 
             _PrintEngine = null;
+
+        ImageList TreeIcons = new ImageList();
 
         public Main() {
 
             InitializeComponent();
 
             BuildMenu();
+            
+            //TreeIcons.Images.Add("databaseLocked", Properties.Resources.database_Locked);
+            //TreeIcons.Images.Add("databaseUnLocked", Properties.Resources.database_UnLocked);
+            //TreeIcons.Images.Add("Folder", Properties.Resources.Folder);
+            //TreeIcons.Images.Add("FolderOpen", Properties.Resources.Folder_Open);
+            //TreeIcons.Images.Add("FileClass", Properties.Resources.File_Class);
+            //TreeIcons.Images.Add("FolderQuestion", Properties.Resources.Folder_Question);
+            //TreeIcons.Images.Add("FileQuestion", Properties.Resources.File_Question);
+
+            //NTAF.PlugInFramework.Properties.Settings.Default.ImageDataNodeLocked = "databaseLocked";
+            //NTAF.PlugInFramework.Properties.Settings.Default.ImageDataNodeUnlocked = "databaseUnLocked";
+            //NTAF.PlugInFramework.Properties.Settings.Default.ImageOCCNodeClosed = "Folder";
+            //NTAF.PlugInFramework.Properties.Settings.Default.ImageOCCNodeOpen = "FolderOpen";
+            //NTAF.PlugInFramework.Properties.Settings.Default.ImageOCNode = "File_Class";
+            //NTAF.PlugInFramework.Properties.Settings.Default.ImageOrphanCollectorNode = "FolderQuestion";
+            //NTAF.PlugInFramework.Properties.Settings.Default.ImageOrphanNode = "FileQuestion";
+
+            //DataView.ImageList = TreeIcons;
 
             //bgw.RunWorkerAsync();
 
@@ -42,7 +62,7 @@ namespace UniverseBuilderSingle {
 
             bgw.WorkerSupportsCancellation = true;
 
-            DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>( DataFile_EventOrphansChanged );
+            //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>( DataFile_EventOrphansChanged );
 
             DataFile.LockStatusChange += new NTEventHandler( DataFile_LockStatusChange );
             //DataFile = new NTDataFile(
@@ -61,28 +81,29 @@ namespace UniverseBuilderSingle {
             //FileLockIndicator.Checked = DataFile.FileLocked;
         }
 
-        void DataFile_EventOrphansChanged( ItemChangedArgs args ) {
-            if ( args.Action == ArgAction.Add ) {
-                Orphans.Nodes.Insert( args.Index, new OrphanNode( ( ObjectClassBase )args.Item ) );
-            }
+        //todo move this to data file to manage nodes
+        //void DataFile_EventOrphansChanged( ItemChangedArgs args ) {
+        //    if ( args.Action == ArgAction.Add ) {
+        //        Orphans.Nodes.Insert( args.Index, new OrphanNode( ( ObjectClassBase )args.Item ) );
+        //    }
 
-            if ( args.Action == ArgAction.Remove ) {
-                foreach ( OrphanNode OrpNode in Orphans.Nodes )
-                    if ( OrpNode.ObjectClass == args.Item ) {
-                        OrpNode.Remove();
-                        break;
-                    }
-            }
-        }
+        //    if ( args.Action == ArgAction.Remove ) {
+        //        foreach ( OrphanNode OrpNode in Orphans.Nodes )
+        //            if ( OrpNode.ObjectClass == args.Item ) {
+        //                OrpNode.Remove();
+        //                break;
+        //            }
+        //    }
+        //}
 
         void bgw_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e ) {
             UpdateProgressLabel1.Text = "Ready...";
             UpdateProgressBar1.Value = 0;
 
 
-
-            DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip );
-            DataView.Nodes.Add( Orphans );
+            //todo create orphan tree menu
+            DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip );
+            //DataView.Nodes.Add( Orphans );
 
             UpdateProgressBar1.Visible = false;
 
@@ -145,7 +166,7 @@ namespace UniverseBuilderSingle {
             comboBox1.Items.Clear();
             if (DataView.SelectedNode is DataNode) return;
             if ( !( DataView.SelectedNode is OCCNode ) & !( DataView.SelectedNode is OCNode ) &
-                !( DataView.SelectedNode is OrphanNode ) & DataView.SelectedNode != Orphans ) {
+                !( DataView.SelectedNode is OrphanNode ) & !(DataView.SelectedNode is OrphanCollectorNode) ) {
                 //basic node that should contain nodes of OCCNodes
                 foreach ( OCCNode occn in DataView.SelectedNode.Nodes ) {
                     foreach ( OCNode ocn in occn.Nodes ) {
@@ -159,7 +180,10 @@ namespace UniverseBuilderSingle {
                 }
             }
             if ( DataView.SelectedNode is OCNode ) {
-                comboBox1.Items.Add( ( ( OCNode )DataView.SelectedNode ).ObjectClass );
+                comboBox1.Items.Add(((OCNode)DataView.SelectedNode).ObjectClass);
+            }
+            if(DataView.SelectedNode is OrphanNode) {
+                comboBox1.Items.Add(((OrphanNode)DataView.SelectedNode).ObjectClass);
             }
 
             if ( comboBox1.Items.Count >= 1 )
@@ -316,6 +340,13 @@ namespace UniverseBuilderSingle {
         ToolStripMenuItem newObjectToolStripMenuItem;
         ToolStripMenuItem clearObjectsToolStripMenuItem;
 
+        ContextMenuStrip OrphanRootMenuStrip;
+        ToolStripMenuItem OrphanPurgeMenuItem;
+
+        ContextMenuStrip OrphanMenuStrip;
+        ToolStripMenuItem moveOprphanToCollectorMenuItem;
+        ToolStripMenuItem findOrphanReferencesMenuItem;
+
         void BuildMenu() {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
 
@@ -357,6 +388,27 @@ namespace UniverseBuilderSingle {
             clearObjectsToolStripMenuItem.Text = "&Clear All Objects";
             clearObjectsToolStripMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
 
+            moveOprphanToCollectorMenuItem = new ToolStripMenuItem();
+            moveOprphanToCollectorMenuItem.Name = "moveOprphanToCollectorMenuItem";
+            //moveOprphanToCollectorMenuItem.ShortcutKeys = ClearObjectKey;
+            moveOprphanToCollectorMenuItem.Text = "Recreate orphan";
+            //todo create click event
+            //moveOprphanToCollectorMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
+
+            findOrphanReferencesMenuItem = new ToolStripMenuItem();
+            findOrphanReferencesMenuItem.Name = "findOrphanReferencesMenuItem";
+            //findOrphanReferencesMenuItem.ShortcutKeys = ClearObjectKey;
+            findOrphanReferencesMenuItem.Text = "Find Orphan References";
+            //todo create click event
+            //findOrphanReferencesMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
+
+            OrphanPurgeMenuItem = new ToolStripMenuItem();
+            OrphanPurgeMenuItem.Name = "OrphanPurgeMenuItem";
+            //OrphanPurgeMenuItem.ShortcutKeys = ClearObjectKey;
+            OrphanPurgeMenuItem.Text = "Purge All Orphans";
+            //todo create click event
+            //OrphanPurgeMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
+
             OCMenuStrip = new ContextMenuStrip();
             OCMenuStrip.Items.AddRange(new ToolStripItem[]{
                 previewObjectToolStripMenuItem,
@@ -371,433 +423,453 @@ namespace UniverseBuilderSingle {
                 clearObjectsToolStripMenuItem});
             OCCMenuStrip.Name = "OCCMenuStrip";
 
+            OrphanRootMenuStrip = new ContextMenuStrip();
+            OrphanRootMenuStrip.Items.AddRange(new ToolStripItem[] {
+                OrphanPurgeMenuItem
+            });
 
+            //todo add orphan menu here
+            OrphanMenuStrip = new ContextMenuStrip();
+            OrphanMenuStrip.Items.AddRange(new ToolStripItem[] {
+                moveOprphanToCollectorMenuItem,
+                findOrphanReferencesMenuItem });
+            OrphanMenuStrip.Name = "OrphanMenuStrip";
         }
 
-        void editObjectToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                OCEditorBase ed = null;
-                Type editType = ((OCNode)DataView.SelectedNode).ObjectClass.MyType();
-                foreach (OCEditorBase tmpEd in PE.GetEditorPlugIns()) {
-                    if (tmpEd.IEdit(editType)) {
-                        ed = tmpEd; break;
+            #region MenuClick Events
+                void editObjectToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        OCEditorBase ed = null;
+                        Type editType = ((OCNode)DataView.SelectedNode).ObjectClass.MyType();
+                        foreach (OCEditorBase tmpEd in PE.GetEditorPlugIns()) {
+                            if (tmpEd.IEdit(editType)) {
+                                ed = tmpEd; break;
+                            }
+                        }
+
+                        List<string>
+                            IDs = new List<string>(DataFile.IDs);
+
+                        //todo make better
+                        if (ed == null)
+                            throw new Exception(
+                                "I couldnt find an editor to go with this Object type," + Environment.NewLine +
+                                "Please makesure that the plugin creator also created a GUI editor for this object.");
+
+                        ed.Collectors = DataFile.Collectors;
+
+                        ed.MyObject = ((OCNode)DataView.SelectedNode).ObjectClass;
+
+                        switch (ed.RunEditor(EditorMode.Edit)) {
+                            case EditorExitCode.OK:
+                                DataFile.Edit(((OCNode)DataView.SelectedNode).ObjectClass, ed.MyObject);
+                                break;
+                            case EditorExitCode.Cancel:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    catch (Exception ex) {
+                        //todo need exception msg box
                     }
                 }
 
-                List<string>
-                    IDs = new List<string>(DataFile.IDs);
+                private void copyObjectToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        if (DataView.SelectedNode is OCNode)
+                            CopyClip.CopyToClipboard(((OCNode)DataView.SelectedNode).ObjectClass);
+                    }
+                    catch (Exception ex) {
+                        //todo need exception msg box
 
-                //todo make better
-                if (ed == null)
-                    throw new Exception(
-                        "I couldnt find an editor to go with this Object type," + Environment.NewLine +
-                        "Please makesure that the plugin creator also created a GUI editor for this object.");
-
-                ed.Collectors = DataFile.Collectors;
-
-                ed.MyObject = ((OCNode)DataView.SelectedNode).ObjectClass;
-
-                switch (ed.RunEditor(EditorMode.Edit)) {
-                    case EditorExitCode.OK:
-                        DataFile.Edit(((OCNode)DataView.SelectedNode).ObjectClass, ed.MyObject);
-                        break;
-                    case EditorExitCode.Cancel:
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
-            }
-        }
-
-        private void copyObjectToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                if (DataView.SelectedNode is OCNode)
-                    CopyClip.CopyToClipboard(((OCNode)DataView.SelectedNode).ObjectClass);
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
-
-            }
-        }
-
-        private void clearObjectsToolStripMenuItem_Click(object sender, EventArgs e) {
-            //todo
-        }
-
-        private void newObjectToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                OCEditorBase ed = null;
-                Type editType = ((OCCNode)DataView.SelectedNode).Collector.CollectionType;
-                foreach (OCEditorBase tmpEd in PE.GetEditorPlugIns()) {
-                    if (tmpEd.IEdit(editType)) {
-                        ed = tmpEd; break;
                     }
                 }
 
-                List<string>
-                IDs = new List<string>(DataFile.IDs);
+                private void clearObjectsToolStripMenuItem_Click(object sender, EventArgs e) {
+                    //todo
+                }
 
-                //todo make better
-                if (ed == null)
-                    throw new Exception(
-                        "I couldnt find an editor to go with this Object type," + Environment.NewLine +
-                        "Please makesure that the plugin creator also created a GUI editor for this object.");
+                private void newObjectToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        OCEditorBase ed = null;
+                        Type editType = ((OCCNode)DataView.SelectedNode).Collector.CollectionType;
+                        foreach (OCEditorBase tmpEd in PE.GetEditorPlugIns()) {
+                            if (tmpEd.IEdit(editType)) {
+                                ed = tmpEd; break;
+                            }
+                        }
 
-                ed.Collectors = DataFile.Collectors;
+                        List<string>
+                        IDs = new List<string>(DataFile.IDs);
 
-                ed.MyObject = (ObjectClassBase)Activator.CreateInstance(editType);
+                        //todo make better
+                        if (ed == null)
+                            throw new Exception(
+                                "I couldnt find an editor to go with this Object type," + Environment.NewLine +
+                                "Please makesure that the plugin creator also created a GUI editor for this object.");
 
-                ed.MyObject.ID = DataFile.GenerateIDCode();
+                        ed.Collectors = DataFile.Collectors;
 
-                //ed.MyObject.myOwner = DataFile;
+                        ed.MyObject = (ObjectClassBase)Activator.CreateInstance(editType);
 
-                switch (ed.RunEditor(EditorMode.New)) {
-                    case EditorExitCode.OK:
+                        ed.MyObject.ID = DataFile.GenerateIDCode();
+
                         //ed.MyObject.myOwner = DataFile;
 
-                        DataFile.Add(ed.MyObject);
-                        break;
-                    case EditorExitCode.Cancel:
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
+                        switch (ed.RunEditor(EditorMode.New)) {
+                            case EditorExitCode.OK:
+                                //ed.MyObject.myOwner = DataFile;
 
-            }
-        }
+                                DataFile.Add(ed.MyObject);
+                                break;
+                            case EditorExitCode.Cancel:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    catch (Exception ex) {
+                        //todo need exception msg box
 
-        private void deleteObjectToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (DataView.SelectedNode is OCNode)
-                DataFile.Drop(((OCNode)DataView.SelectedNode).ObjectClass);
-        }
-
-        private void previewObjectToolStripMenuItem_Click(object sender, EventArgs e) {
-            ObjectPreview objpre = null;
-            if (DataView.SelectedNode is OCNode) {
-                ObjectClassBase obj = ((OCNode)DataView.SelectedNode).ObjectClass;
-
-                if (obj != null) {
-                    objpre = new ObjectPreview(obj);
-                    objpre.ShowDialog();
-                }
-            }
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                DataFile.Save();
-                Title = DataFile.FileName;
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
-
-            }
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                DataFile.SaveAs();
-                Title = DataFile.FileName;
-
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
-
-            }
-        }
-
-        private void newToolStripMenuItem_Click(object sender, EventArgs e) {
-
-            try {
-                //does the curent data need to be saved?
-                if (CheckForSave()) {
-                    //action not canceled flush the current node list
-                    DataView.Nodes.Clear();
-                    Orphans.Nodes.Clear();
-                    //create a new reference
-                    DataFile = new NTDataFile();
-
-                    DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
-                    DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
-                    DataFile.Updated += new NTEventHandler(DataFile_Updated);
-                    DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>(DataFile_EventOrphansChanged);
-                    DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
-
-                    //load the nodes
-                    DataFile.getTreeNodes(DataView.Nodes, OCCMenuStrip, OCMenuStrip);
-                    DataView.Nodes.Add(Orphans);
-                    //change the file title
-                    Title = DataFile.FileName;
-                }
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
-
-            }
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                if (CheckForSave()) {
-                    OpenFileDialog OFD = new OpenFileDialog();
-                    OFD.Filter = "NewTerra Dat Files (*.ntx)|*.ntx";
-                    OFD.SupportMultiDottedExtensions = true;
-                    OFD.Multiselect = false;
-                    if (OFD.ShowDialog() == DialogResult.OK) {
-                        Orphans.Nodes.Clear();
-                        DataView.Nodes.Clear();
-                        DataFile = new NTDataFile(OFD.FileName);
-
-                        DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
-                        DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
-                        DataFile.Updated += new NTEventHandler(DataFile_Updated);
-                        DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>(DataFile_EventOrphansChanged);
-                        DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
-
-                        //DataFile.Load();
-                        bgw.RunWorkerAsync();
-
-                        Title = DataFile.FileName;
-                        //DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip );
                     }
                 }
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
 
-            }
-        }
-
-        private void DataView_MouseClick(object sender, MouseEventArgs e) {
-            try {
-                if (e.Button == MouseButtons.Right)
-                    DataView.SelectedNode = DataView.GetNodeAt(e.Location);
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
-            }
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
-            Application.Exit();
-        }
-
-        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                setUpPrint();
-                PrintPreviewDialog pPreview = _PrintEngine.ShowPreview();
-                pPreview.ShowDialog();
-            }
-            catch (Exception ex) {
-
-            }
-        }
-
-        private void printToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                PrintDialog pDialog = _PrintEngine.ShowPrintDialog();
-                setUpPrint();
-                if (pDialog.ShowDialog() == DialogResult.OK) {
-                    NTAF.PrintEngine.Properties.Settings.Default.printerSettings = pDialog.PrinterSettings;
-                    _PrintEngine.Print();
-                    NTAF.PrintEngine.Properties.Settings.Default.Save();
+                private void deleteObjectToolStripMenuItem_Click(object sender, EventArgs e) {
+                    if (DataView.SelectedNode is OCNode)
+                        DataFile.Drop(((OCNode)DataView.SelectedNode).ObjectClass);
                 }
-            }
-            catch (Exception ex) {
 
-            }
-        }
+                private void previewObjectToolStripMenuItem_Click(object sender, EventArgs e) {
+                    ObjectPreview objpre = null;
+                    if (DataView.SelectedNode is OCNode) {
+                        ObjectClassBase obj = ((OCNode)DataView.SelectedNode).ObjectClass;
 
-        private void PageSettingsMenuItem_Click(object sender, EventArgs e) {
-            try {
-                setUpPrint();
-                PageSetupDialog myEngineSettings = _PrintEngine.ShowPageSettings();
-
-                if (myEngineSettings.ShowDialog() == DialogResult.OK) {
-                    NTAF.PrintEngine.Properties.Settings.Default.printSettings = myEngineSettings.PageSettings;
-                    NTAF.PrintEngine.Properties.Settings.Default.Save();
+                        if (obj != null) {
+                            objpre = new ObjectPreview(obj);
+                            objpre.ShowDialog();
+                        }
+                    }
                 }
-            }
-            catch (Exception ex) {
 
-            }
-        }
-
-        private void PrintSettingsMenuItem_Click(object sender, EventArgs e) {
-            try {
-                setUpPrint();
-                FontDialog myPrintFontSettings = _PrintEngine.ShowFontDialog();
-
-                if (myPrintFontSettings.ShowDialog() == DialogResult.OK) {
-                    _PrintEngine.PrintFont = myPrintFontSettings.Font;
-                    NTAF.PrintEngine.Properties.Settings.Default.printFontSettings = myPrintFontSettings.Font;
-                    NTAF.PrintEngine.Properties.Settings.Default.Save();
-                }
-            }
-            catch (Exception ex) {
-
-            }
-        }
-
-        private void undoToolStripMenuItem_Click(object sender, EventArgs e) {
-            try { DataFile.DoUndo(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-        private void redoToolStripMenuItem_Click(object sender, EventArgs e) {
-            try { DataFile.DoRedo(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-        private void cutToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                if (DataView.SelectedNode is OCNode) {
-                    CopyClip.CopyToClipboard(((OCNode)DataView.SelectedNode).ObjectClass);
-                    DataFile.Drop(((OCNode)DataView.SelectedNode).ObjectClass);
-                }
-            }
-            catch (Exception ex) {
-                //todo need exeception msg box
-
-            }
-        }
-
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                CopyClip.CopyFromClipboard(DataFile);
-            }
-            catch (Exception ex) {
-                //todo need exception msg box
-            }
-        }
-
-        private void customizeToolStripMenuItem_Click(object sender, EventArgs e) {
-
-        }
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e) {
-
-        }
-
-        private void contentsToolStripMenuItem_Click(object sender, EventArgs e) {
-
-        }
-
-        private void indexToolStripMenuItem_Click(object sender, EventArgs e) {
-
-        }
-
-        private void searchToolStripMenuItem_Click(object sender, EventArgs e) {
-
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
-            AboutBox1 abx = new AboutBox1();
-            abx.ShowDialog();
-        }
-
-        private void currentlyLoadedPluginsToolStripMenuItem_Click(object sender, EventArgs e) {
-            LoadedModuleBox lmbx = new LoadedModuleBox();
-            lmbx.ShowDialog();
-        }
-
-        private void purgeFileToolStripMenuItem_Click(object sender, EventArgs e) {
-            DataFile.PurgeFile();
-        }
-
-        private void ExportTXTFile(object sender, EventArgs e) {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Export to .txt file...";
-            sfd.Filter = "Text file (*.txt)|*.txt";
-            sfd.AddExtension = true;
-            sfd.OverwritePrompt = true;
-
-            if (sfd.ShowDialog() == DialogResult.OK) {
-                DataFile.ExportToTXT(sfd.FileName);
-            }
-        }
-
-        private void ExportCSVFile(object sender, EventArgs e) {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Export to .csv file...";
-            sfd.Filter = "Comma Separated Values file (*.csv)|*.csv";
-            sfd.AddExtension = true;
-            sfd.OverwritePrompt = true;
-
-            if (sfd.ShowDialog() == DialogResult.OK) {
-                DataFile.ExportToCSV(sfd.FileName);
-            }
-        }
-
-        private void lockFileToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (DataFile.FileLocked) {
-                try { DataFile.UnLockFile(InputBox.Show("Please enter the files password", "Password Protected...", true)); }
-                catch (InvalidPasswordException ex) { MessageBox.Show("Incorrect Password"); }
-                catch (Exception ex) { /*todo need exception msg box*/ }
-            }
-            else {
-                bool exitCode = false;
-                while (!exitCode) {
+                private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
                     try {
-                        DataFile.LockFile();
-                        exitCode = true;
+                        DataFile.Save();
+                        Title = DataFile.FileName;
                     }
-                    catch (NullPasswordException) {
-                        String Password =
-                            InputBox.Show("Please enter a password for the file", "Enter New Password...", true);
+                    catch (Exception ex) {
+                        //todo need exception msg box
 
-                        //if the user didnt enter anything exit the function
-                        if (Password == "") {
-                            MessageBox.Show("Password not set", "File not locked...", MessageBoxButtons.OK); return;
+                    }
+                }
+
+                private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        DataFile.SaveAs();
+                        Title = DataFile.FileName;
+
+                    }
+                    catch (Exception ex) {
+                        //todo need exception msg box
+
+                    }
+                }
+
+                private void newToolStripMenuItem_Click(object sender, EventArgs e) {
+
+                    try {
+                        //does the current data need to be saved?
+                        if (CheckForSave()) {
+                            //action not canceled flush the current node list
+                            DataView.Nodes.Clear();
+
+                            //todo orphan nodes are being moved to the data file, this wont be needed
+                            //Orphans.Nodes.Clear();
+                            //create a new reference
+                            DataFile = new NTDataFile();
+
+                            DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
+                            DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
+                            DataFile.Updated += new NTEventHandler(DataFile_Updated);
+
+                            //todo move to data file management
+                            //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>(DataFile_EventOrphansChanged);
+
+                            DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
+
+                            //load the nodes
+                            DataFile.getTreeNodes(DataView.Nodes, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                            //todo orphans are being moved to data file management
+                            //DataView.Nodes.Add(Orphans);
+                            //change the file title
+                            Title = DataFile.FileName;
                         }
+                    }
+                    catch (Exception ex) {
+                        //todo need exception message box
 
-                        //get a matching password from the user
-                        String PasswordConf =
-                            InputBox.Show("Please confirm the password for the file", "Confirm New Password...", true);
+                    }
+                }
 
-                        if (Password.CompareTo(PasswordConf) != 0) {
-                            MessageBox.Show("Passwords don't match", "Could Not Confirm New Password...", MessageBoxButtons.OK);
+                private void openToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        if (CheckForSave()) {
+                            OpenFileDialog OFD = new OpenFileDialog();
+                            OFD.Filter = "NewTerra Data Files (*.ntx)|*.ntx";
+                            OFD.SupportMultiDottedExtensions = true;
+                            OFD.Multiselect = false;
+                            if (OFD.ShowDialog() == DialogResult.OK) {
+
+                                //todo this is moving to the data file shouldn't be needed
+                                //Orphans.Nodes.Clear();
+                                DataView.Nodes.Clear();
+                                DataFile = new NTDataFile(OFD.FileName);
+
+                                DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
+                                DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
+                                DataFile.Updated += new NTEventHandler(DataFile_Updated);
+                                //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>(DataFile_EventOrphansChanged);
+                                DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
+
+                                //DataFile.Load();
+                                bgw.RunWorkerAsync();
+
+                                Title = DataFile.FileName;
+                                //DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip );
+                            }
                         }
-                        else {
-                            DataFile.FilePassword = Password;
+                    }
+                    catch (Exception ex) {
+                        //todo need exception message box
+
+                    }
+                }
+
+                private void DataView_MouseClick(object sender, MouseEventArgs e) {
+                    try {
+                        if (e.Button == MouseButtons.Right)
+                            DataView.SelectedNode = DataView.GetNodeAt(e.Location);
+                    }
+                    catch (Exception ex) {
+                        //todo need exception msg box
+                    }
+                }
+
+                private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+                    Application.Exit();
+                }
+
+                private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        setUpPrint();
+                        PrintPreviewDialog pPreview = _PrintEngine.ShowPreview();
+                        pPreview.ShowDialog();
+                    }
+                    catch (Exception ex) {
+
+                    }
+                }
+
+                private void printToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        PrintDialog pDialog = _PrintEngine.ShowPrintDialog();
+                        setUpPrint();
+                        if (pDialog.ShowDialog() == DialogResult.OK) {
+                            NTAF.PrintEngine.Properties.Settings.Default.printerSettings = pDialog.PrinterSettings;
+                            _PrintEngine.Print();
+                            NTAF.PrintEngine.Properties.Settings.Default.Save();
+                        }
+                    }
+                    catch (Exception ex) {
+
+                    }
+                }
+
+                private void PageSettingsMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        setUpPrint();
+                        PageSetupDialog myEngineSettings = _PrintEngine.ShowPageSettings();
+
+                        if (myEngineSettings.ShowDialog() == DialogResult.OK) {
+                            NTAF.PrintEngine.Properties.Settings.Default.printSettings = myEngineSettings.PageSettings;
+                            NTAF.PrintEngine.Properties.Settings.Default.Save();
+                        }
+                    }
+                    catch (Exception ex) {
+
+                    }
+                }
+
+                private void PrintSettingsMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        setUpPrint();
+                        FontDialog myPrintFontSettings = _PrintEngine.ShowFontDialog();
+
+                        if (myPrintFontSettings.ShowDialog() == DialogResult.OK) {
+                            _PrintEngine.PrintFont = myPrintFontSettings.Font;
+                            NTAF.PrintEngine.Properties.Settings.Default.printFontSettings = myPrintFontSettings.Font;
+                            NTAF.PrintEngine.Properties.Settings.Default.Save();
+                        }
+                    }
+                    catch (Exception ex) {
+
+                    }
+                }
+
+                private void undoToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try { DataFile.DoUndo(); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                }
+
+                private void redoToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try { DataFile.DoRedo(); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                }
+
+                private void cutToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        if (DataView.SelectedNode is OCNode) {
+                            CopyClip.CopyToClipboard(((OCNode)DataView.SelectedNode).ObjectClass);
+                            DataFile.Drop(((OCNode)DataView.SelectedNode).ObjectClass);
+                        }
+                    }
+                    catch (Exception ex) {
+                        //todo need exception msg box
+
+                    }
+                }
+
+                private void pasteToolStripMenuItem_Click(object sender, EventArgs e) {
+                    try {
+                        CopyClip.CopyFromClipboard(DataFile);
+                    }
+                    catch (Exception ex) {
+                        //todo need exception msg box
+                    }
+                }
+
+                private void customizeToolStripMenuItem_Click(object sender, EventArgs e) {
+
+                }
+
+                private void optionsToolStripMenuItem_Click(object sender, EventArgs e) {
+
+                }
+
+                private void contentsToolStripMenuItem_Click(object sender, EventArgs e) {
+
+                }
+
+                private void indexToolStripMenuItem_Click(object sender, EventArgs e) {
+
+                }
+
+                private void searchToolStripMenuItem_Click(object sender, EventArgs e) {
+
+                }
+
+                private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
+                    AboutBox1 abx = new AboutBox1();
+                    abx.ShowDialog();
+                }
+
+                private void currentlyLoadedPluginsToolStripMenuItem_Click(object sender, EventArgs e) {
+                    LoadedModuleBox lmbx = new LoadedModuleBox();
+                    lmbx.ShowDialog();
+                }
+
+                private void purgeFileToolStripMenuItem_Click(object sender, EventArgs e) {
+                    DataFile.PurgeFile();
+                }
+
+                private void ExportTXTFile(object sender, EventArgs e) {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Title = "Export to .txt file...";
+                    sfd.Filter = "Text file (*.txt)|*.txt";
+                    sfd.AddExtension = true;
+                    sfd.OverwritePrompt = true;
+
+                    if (sfd.ShowDialog() == DialogResult.OK) {
+                        DataFile.ExportToTXT(sfd.FileName);
+                    }
+                }
+
+                private void ExportCSVFile(object sender, EventArgs e) {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Title = "Export to .csv file...";
+                    sfd.Filter = "Comma Separated Values file (*.csv)|*.csv";
+                    sfd.AddExtension = true;
+                    sfd.OverwritePrompt = true;
+
+                    if (sfd.ShowDialog() == DialogResult.OK) {
+                        DataFile.ExportToCSV(sfd.FileName);
+                    }
+                }
+
+                private void lockFileToolStripMenuItem_Click(object sender, EventArgs e) {
+                    if (DataFile.FileLocked) {
+                        try { DataFile.UnLockFile(InputBox.Show("Please enter the files password", "Password Protected...", true)); }
+                        catch (InvalidPasswordException ex) { MessageBox.Show("Incorrect Password"); }
+                        catch (Exception ex) { /*todo need exception msg box*/ }
+                    }
+                    else {
+                        bool exitCode = false;
+                        while (!exitCode) {
+                            try {
+                                DataFile.LockFile();
+                                exitCode = true;
+                            }
+                            catch (NullPasswordException) {
+                                String Password =
+                                    InputBox.Show("Please enter a password for the file", "Enter New Password...", true);
+
+                                //if the user didnt enter anything exit the function
+                                if (Password == "") {
+                                    MessageBox.Show("Password not set", "File not locked...", MessageBoxButtons.OK); return;
+                                }
+
+                                //get a matching password from the user
+                                String PasswordConf =
+                                    InputBox.Show("Please confirm the password for the file", "Confirm New Password...", true);
+
+                                if (Password.CompareTo(PasswordConf) != 0) {
+                                    MessageBox.Show("Passwords don't match", "Could Not Confirm New Password...", MessageBoxButtons.OK);
+                                }
+                                else {
+                                    DataFile.FilePassword = Password;
+                                }
+                            }
                         }
                     }
                 }
-            }
-        }
 
-        private void setPasswordToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
-                String Password =
-                            InputBox.Show("Please enter a password for the file", "Enter New Password...", true);
+                private void setPasswordToolStripMenuItem_Click(object sender, EventArgs e) {
+                try {
+                    String Password =
+                                InputBox.Show("Please enter a password for the file", "Enter New Password...", true);
 
-                //if the user didnt enter anything exit the function
-                if (Password == "") {
+                    //if the user didnt enter anything exit the function
+                    if (Password == "") {
+                        MessageBox.Show("Password not set", "File not locked...", MessageBoxButtons.OK); return;
+                    }
+
+                    //get a matching password from the user
+                    String PasswordConf =
+                                InputBox.Show("Please confirm the password for the file", "Confirm New Password...", true);
+
+                    if (Password.CompareTo(PasswordConf) != 0) {
+                        MessageBox.Show("Passwords don't match", "Could Not Confirm New Password...", MessageBoxButtons.OK);
+                    }
+                    else {
+                        DataFile.FilePassword = Password;
+                    }
+                }
+                catch (FileLockedException) {
                     MessageBox.Show("Password not set", "File not locked...", MessageBoxButtons.OK); return;
                 }
-
-                //get a matching password from the user
-                String PasswordConf =
-                            InputBox.Show("Please confirm the password for the file", "Confirm New Password...", true);
-
-                if (Password.CompareTo(PasswordConf) != 0) {
-                    MessageBox.Show("Passwords don't match", "Could Not Confirm New Password...", MessageBoxButtons.OK);
-                }
-                else {
-                    DataFile.FilePassword = Password;
-                }
-            }
-            catch (FileLockedException) {
-                MessageBox.Show("Password not set", "File not locked...", MessageBoxButtons.OK); return;
-            }
-        }
-    #endregion
+            } 
+            #endregion
+        #endregion
 
     }
 }

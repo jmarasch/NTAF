@@ -892,11 +892,11 @@
         <member name="T:NTAF.PlugInFramework.OCTreeNodeBase">
             <summary>
             The Object Class Tree Node Base provides the ability to create a TreeVew
-            plugin class for the NTTreView Control.
+            plug-in class for the NTTreView Control.
             
             The only required override is CollectionType
             
-            This class will require an apropriate OCCBase class to read and write to
+            This class will require an appropriate OCCBase class to read and write to
             </summary>
         </member>
         <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Updating">
@@ -914,7 +914,7 @@
             trigered when update compleetes
             </summary>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.SetMenus(System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.SetMenus(System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">
             <summary>
             Use this to set the optional context menues for when a node is right clicked
             </summary>
@@ -923,7 +923,7 @@
         </member>
         <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.MainBranch">
             <summary>
-            Creates and returns the main branch and all of its leaflings from the objects in the collector.
+            Creates and returns the collection node "branch" and all of its ObectClass nodes "leaflings" from the objects in the collector.
             </summary>
             <returns>A root node for the NTTreeView control</returns>
             <exception cref="T:System.Exception">Thrown when the ObjectClassCollector has not been set</exception>
@@ -936,8 +936,17 @@
         </member>
         <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.GrowBranch">
             <summary>
-            Internally creates a main branch to return to the tree
+            Internally creates a main "branch" of sub nodes "Leafs" or sub collectors to return to the tree
             </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.PopulateNode(NTAF.PlugInFramework.OCCBase,System.Int32,System.Int32@)">
+            <summary>
+            populates collector node with object-class items
+            </summary>
+            <param name="occ">Collector with the objects</param>
+            <param name="InCount"></param>
+            <param name="OutCount"></param>
+            <returns></returns>
         </member>
         <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.i_ObjectCollector_CollectionUpdated(NTAF.Core.ItemChangedArgs)">
             <summary>
@@ -1290,6 +1299,22 @@
             <param name="a">Subject A</param>
             <param name="b">Subject B</param>
             <returns>True if a <!--<--> b</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
         </member>
     </members>
 </doc>

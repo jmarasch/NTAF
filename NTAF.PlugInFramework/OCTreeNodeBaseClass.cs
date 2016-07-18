@@ -7,17 +7,19 @@ using System.Drawing;
 namespace NTAF.PlugInFramework {
     /// <summary>
     /// The Object Class Tree Node Base provides the ability to create a TreeVew
-    /// plugin class for the NTTreView Control.
+    /// plug-in class for the NTTreView Control.
     /// 
     /// The only required override is CollectionType
     /// 
-    /// This class will require an apropriate OCCBase class to read and write to
+    /// This class will require an appropriate OCCBase class to read and write to
     /// </summary>
     public class OCTreeNodeBase {
 
         ContextMenuStrip 
             i_RootMenu,
-            i_NodeMenu;
+            i_NodeMenu,
+            i_OrphanedRootMenu,
+            i_OrphanMenu;
 
         List<OCCBase>
             i_ObjectCollector = new List<OCCBase>();
@@ -52,13 +54,15 @@ namespace NTAF.PlugInFramework {
         /// </summary>
         /// <param name="RootMenu"></param>
         /// <param name="NodeMenu"></param>
-        public void SetMenus( ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu ) {
+        public void SetMenus( ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu,ContextMenuStrip OrphanRootMenu, ContextMenuStrip OrphanMenu ) {
             i_RootMenu = RootMenu;
             i_NodeMenu = NodeMenu;
+            i_OrphanedRootMenu = OrphanRootMenu;
+            i_OrphanMenu = OrphanMenu;
         }
 
         /// <summary>
-        /// Creates and returns the main branch and all of its leaflings from the objects in the collector.
+        /// Creates and returns the collection node "branch" and all of its ObectClass nodes "leaflings" from the objects in the collector.
         /// </summary>
         /// <returns>A root node for the NTTreeView control</returns>
         /// <exception cref="Exception">Thrown when the ObjectClassCollector has not been set</exception>
@@ -71,6 +75,7 @@ namespace NTAF.PlugInFramework {
             if ( i_Branch.Nodes.Count <= 0 )
                 GrowBranch();
 
+            //checks to see if it has sub nodes if its not a collection of subnodes it will add the collectors opperation menus
             if ( i_ObjectCollector.Count == 1 && i_RootMenu != null )
                 i_Branch.ContextMenuStrip = i_RootMenu;
             else
@@ -160,10 +165,10 @@ namespace NTAF.PlugInFramework {
         }
 
         /// <summary>
-        /// Internally creates a main branch to return to the tree
+        /// Internally creates a main "branch" of sub nodes "Leafs" or sub collectors to return to the tree
         /// </summary>
         public virtual void GrowBranch() {
-            //cleanout anything that the main branch may have in it 
+            //clean out anything that the main branch may have in it 
             i_Branch.Nodes.Clear();
 
             //todo if this is null try to find a suitable collector if at all possible ill have to check code to find out
@@ -171,7 +176,7 @@ namespace NTAF.PlugInFramework {
 
             if ( i_ObjectCollector.Count == 0 ) {
                 i_Branch = new TreeNode( "Collector Error: no collector has been assigned to node" );
-                //throw new NullReferenceException( "An object collector hasnot ben assigned to the branch" );
+                //throw new NullReferenceException( "An object collector has not been assigned to the branch" );
                 return;
             }
 
@@ -180,17 +185,14 @@ namespace NTAF.PlugInFramework {
 
             int
                 currentCount = i_ObjectCollector.Count;
-
+            //if the count is more than 1 creates a sub tree structure
             if ( i_ObjectCollector.Count >= 2 ) {
                 i_Branch = new TreeNode();
                 foreach ( OCCBase occ in i_ObjectCollector ) {
                     OCCNode
                         SubRoot = new OCCNode(  );
 
-                    //SubRoot.Text = occ.CollectionName;
                     SubRoot.Collector = occ;
-
-                    //SubRoot.Tag = Activator.CreateInstance( occ.CollectionType );
 
                     SubRoot.Nodes.AddRange( PopulateNode( occ, currentCount, out currentCount ) );
 
@@ -200,19 +202,26 @@ namespace NTAF.PlugInFramework {
                     i_Branch.Nodes.Add( SubRoot );
                 }
             }
-            else {
+            else { //not more than 1 collector get all sub nodes
                 i_Branch = new OCCNode();
                 i_Branch.Nodes.AddRange( PopulateNode( i_ObjectCollector[0], currentCount, out currentCount ) );
                 ((OCCNode)i_Branch).Collector = i_ObjectCollector[0];
-                //i_Branch.Tag = Activator.CreateInstance( i_ObjectCollector[0].CollectionType );
+                
             }
 
             i_Branch.Text = TreeName;
-            //i_Branch = new TreeNode( TreeName );
+            //todo add image for collection branch here
             if ( Updated != null )
                 Updated();
         }
-        
+
+        /// <summary>
+        /// populates collector node with object-class items
+        /// </summary>
+        /// <param name="occ">Collector with the objects</param>
+        /// <param name="InCount"></param>
+        /// <param name="OutCount"></param>
+        /// <returns></returns>
         private TreeNode[] PopulateNode( OCCBase occ, int InCount, out int OutCount ) {
             List<TreeNode>
                 retVal = new List<TreeNode>();
@@ -225,6 +234,8 @@ namespace NTAF.PlugInFramework {
                     newNode = new OCNode();
                 
                 newNode.NodeFont = SystemFonts.DefaultFont;
+                
+                //todo add image for object here
 
                 //if it knows what menus to assign do it here
                 if ( i_NodeMenu != null )
@@ -244,7 +255,6 @@ namespace NTAF.PlugInFramework {
             OutCount = InCount;
             return retVal.ToArray();
         }
-
 
 
         /// <summary>

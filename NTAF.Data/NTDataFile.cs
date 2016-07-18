@@ -28,7 +28,9 @@ namespace NTAF.Core {
 
         ContextMenuStrip 
             i_RootMenu,
-            i_NodeMenu;
+            i_NodeMenu,
+            i_OrphanRootMenu,
+            i_OrphansMenu;
 
         private List<OCCBase>
             i_OCCPlugins = new List<OCCBase>( PluginEngine.GetOCCPlugIns() );
@@ -54,8 +56,8 @@ namespace NTAF.Core {
 
         OperationLogger actions = new OperationLogger();
 
-        private List<ObjectClassBase>
-            orphanedObjects = new List<ObjectClassBase>();
+        //private List<ObjectClassBase>
+        //    orphanedObjects = new List<ObjectClassBase>();
         #endregion
 
         #region Deligates
@@ -63,11 +65,14 @@ namespace NTAF.Core {
         #endregion
 
         #region Events
+
         public event NTEventHandler EventDataStateChanged;
         public event NTEventHandler<ItemChangedArgs> EventOrphansChanged;
-        #endregion
+
+        #endregion Events
 
         #region Constructors
+
         public NTDataFile() {
             IDPreFix = "NULL";
         }
@@ -164,7 +169,7 @@ namespace NTAF.Core {
 
         [XmlIgnore()]
         public ObjectClassBase[] Orphans {
-            get { return orphanedObjects.ToArray(); }
+            get { return i_Orphans.ToArray(); }
         }
 
         [XmlIgnore()]
@@ -367,7 +372,7 @@ namespace NTAF.Core {
             return retval;
         }
         
-        #endregion
+        #endregion Properties
 
         #region File security
         public event NTEventHandler LockStatusChange;
@@ -521,7 +526,7 @@ namespace NTAF.Core {
                     tmpOCC = GetCollector( toDrop );
 
                 if ( tmpOCC == null )
-                    throw new InvalidOperationException( "Could not find that type among the plugins" );
+                    throw new InvalidOperationException( "Could not find that type among the plug-ins" );
 
                 //todo this sux make better
                 if ( !tmpOCC.Exists( toDrop ) )
@@ -638,56 +643,67 @@ namespace NTAF.Core {
                 
         }
 
-        private void MoveToOrphanList( ObjectClassBase Item, OCCBase OCC ) {
-            //find the proper insertain point and put the now oprhaned object in the list
-            if ( i_Orphans.Count > 0 ) {
-                for ( int i = 0; i <= i_Orphans.Count - 1; i++ ) {
-                    if ( Item.Name.CompareTo( i_Orphans[i].Name ) < 0 ) {
-                        i_Orphans.Insert( i, Item ); break;
-                    }
-                }
-                if ( !i_Orphans.Contains( Item ) )
-                    i_Orphans.Add( Item );
-            }
-            else {
-                i_Orphans.Add( Item );
-            }
-
-            if ( OCC != null )
-                OCC.DropObject( Item );
-
-            if ( EventOrphansChanged != null )
-                EventOrphansChanged( new ItemChangedArgs( i_Orphans.IndexOf( Item ), Item, ArgAction.Add ) );
-        }
-
-        private void RemoveFromOrphanList( ObjectClassBase Item ) {
-            int index = i_Orphans.IndexOf( Item );
-
-            i_Orphans.Remove( Item );
-
-            if ( EventOrphansChanged != null )
-                EventOrphansChanged( new ItemChangedArgs( index, Item, ArgAction.Remove ) );
-        }
 
         private bool CheckForReferences( ObjectClassBase Item ) {
             byte objLayer = 0;
 
+            //todo agin use linq to just grab the right collector
             //figure out the objects level
-            foreach ( OCCBase colector in Collectors )
-                if ( colector.CollectionType == Item.CollectionType )
-                    objLayer = colector.objectLayer;
+            OCCBase colector = Collectors.Where(c => c.CollectionType == Item.CollectionType).First();
+            //foreach ( OCCBase colector in Collectors )
+            //    if ( colector.CollectionType == Item.CollectionType )
+            objLayer = colector.objectLayer;
 
-            for ( int i = objLayer + 1; i <= PluginEngine.MAX_OBJECT_LAYER; ++i )
-                foreach ( OCCBase occ in Collectors )
-                    if ( occ.objectLayer == i )
-                        foreach ( ObjectClassBase obj in occ )
-                            if ( obj.CheckForReferences( Item ) )
-                                return true;
+            foreach (OCCBase occ in Collectors.Where(c => c.objectLayer > colector.objectLayer))
+                //if (occ.Objects.Where(o => ((ObjectClassBase)o).CheckForReferences(Item) == true).Count() > 0)
+                //    return true;
+                foreach (ObjectClassBase obj in occ)
+                    if (obj.CheckForReferences(Item))
+                        return true;
+            
+            //old method
+            //for ( int i = objLayer + 1; i <= PluginEngine.MAX_OBJECT_LAYER; ++i )
+            //    foreach ( OCCBase occ in Collectors )
+            //        if ( occ.objectLayer == i )
+            //            foreach ( ObjectClassBase obj in occ )
+            //                if ( obj.CheckForReferences( Item ) )
+            //                    return true;
             return false;
         }
 
         void NTDataFile_EventMyDataChanged() {
             //todo throw new NotImplementedException();
+        }
+
+        private void MoveToOrphanList(ObjectClassBase Item, OCCBase OCC) {
+            //find the proper insertain point and put the now oprhaned object in the list
+            if (i_Orphans.Count > 0) {
+                for (int i = 0; i <= i_Orphans.Count - 1; i++) {
+                    if (Item.Name.CompareTo(i_Orphans[i].Name) < 0) {
+                        i_Orphans.Insert(i, Item); break;
+                    }
+                }
+                if (!i_Orphans.Contains(Item))
+                    i_Orphans.Add(Item);
+            }
+            else {
+                i_Orphans.Add(Item);
+            }
+
+            if (OCC != null)
+                OCC.DropObject(Item);
+
+            if (EventOrphansChanged != null)
+                EventOrphansChanged(new ItemChangedArgs(i_Orphans.IndexOf(Item), Item, ArgAction.Add));
+        }
+
+        private void RemoveFromOrphanList(ObjectClassBase Item) {
+            int index = i_Orphans.IndexOf(Item);
+
+            i_Orphans.Remove(Item);
+
+            if (EventOrphansChanged != null)
+                EventOrphansChanged(new ItemChangedArgs(index, Item, ArgAction.Remove));
         }
 
         public void AddOrphan( ObjectClassBase OrphanedObject ) {
@@ -698,14 +714,20 @@ namespace NTAF.Core {
 
         public void DropOrphan( ObjectClassBase OrphanedObject ) {
             if ( OrphanExists( OrphanedObject ) )
-                orphanedObjects.Remove( OrphanedObject );
+                i_Orphans.Remove( OrphanedObject );
         }
 
-        public Boolean OrphanExists( ObjectClassBase OrphanedObject ) { return orphanedObjects.Contains( OrphanedObject ); }
+        public Boolean OrphanExists(ObjectClassBase OrphanedObject) {
+            return i_Orphans.Contains(OrphanedObject);
+        }
 
-        public void ClearOrphans() { orphanedObjects.Clear(); }
+        public void ClearOrphans() {
+            i_Orphans.Clear();
+        }
 
-        public void AddOrpahns( ObjectClassBase[] NewOrphans ) { orphanedObjects.AddRange( NewOrphans ); }
+        public void AddOrpahns( ObjectClassBase[] NewOrphans ) {
+            i_Orphans.AddRange( NewOrphans );
+        }
 
         /// <summary>
         /// Adds the orphaned object to the orphaned list if it doesn't exist
@@ -1196,6 +1218,12 @@ namespace NTAF.Core {
             Properties.Settings.Default.Loading = false;
         }
 
+        public void Load4() {
+            //todo lite load load all xml at once do no linking may have to check for orphans, need a swith in object base class for fully loaded, if not link at that time
+            //would be hard as we would have to search all files for references and update accordingly...
+            throw new NotImplementedException("Feature not yet activated");
+        }
+
         public void Save() {
             //throw new NotImplementedException();
             try {
@@ -1540,51 +1568,116 @@ namespace NTAF.Core {
                 FS.Close();
             }
         }
+        
+        #region TreeNode Generation Methods
 
-        public void getTreeNodes( TreeNodeCollection treeObject, ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu ) {
+        /// <summary>
+        /// Gets tree-nodes and assigns menus to them
+        /// </summary>
+        /// <param name="treeObject">Tree control node collection</param>
+        /// <param name="RootMenu">Menu for Collector nodes</param>
+        /// <param name="NodeMenu">Menu for Object note</param>
+        /// <param name="OrphanRootMenu">"Menu for the root of the orphaned objects"</param>
+        /// <param name="OrphanMenu">Menu for Orphaned nodes</param>
+        public void getTreeNodes(TreeNodeCollection treeObject, ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu, ContextMenuStrip OrphanRootMenu, ContextMenuStrip OrphanMenu) {
             i_RootMenu = RootMenu;
             i_NodeMenu = NodeMenu;
+            i_OrphanRootMenu= OrphanRootMenu;
+            i_OrphansMenu = OrphanMenu;
 
             DataNode rootNode = new DataNode(this.FileName);
 
             treeObject.Add(new TreeNode(this.FileName));
 
             //todo add file name as a root object
-            getTreeNodes( rootNode );
+            getTreeNodes(rootNode);
             //getTreeNodes(treeObject);
             treeObject.Clear();
             treeObject.Add(rootNode);
         }
 
-        //public void getTreeNodes(TreeNodeCollection treeObject) {
+        /// <summary>
+        /// Gets tree-nodes without assigning menus
+        /// </summary>
+        /// <param name="treeObject">Tree node that all nodes will be added to</param>
         public void getTreeNodes(TreeNode treeObject) {
             treeObject.Nodes.Clear();
             //treeObject.Clear();
 
             List<OCTreeNodeBase>
-                i_TreeNodePlugins = new List<OCTreeNodeBase>( PluginEngine.GetTreePlugIns() );
+                i_TreeNodePlugins = new List<OCTreeNodeBase>(PluginEngine.GetTreePlugIns());
 
             //private List<OCCBase>
             //i_OCCPlugins = new List<OCCBase>( PluginEngine.GetOCCPlugIns() );
 
-            //todo querry the collectors for each tree node to get what can be displayed so were not just fumbling around trying to figure it out one at a time over and ovr again
+            //todo COMPLEETED query the collectors for each tree node to get what can be displayed so were not just fumbling around trying to figure it out one at a time over and ovr again
 
-            foreach ( OCTreeNodeBase treeNodePlug in i_TreeNodePlugins ) {
-                foreach ( OCCBase occ in Collectors ) {
-                    if ( treeNodePlug.CanDisplay( occ.CollectionType ) )
-                        treeNodePlug.AttachOCC( occ );
+            foreach (OCTreeNodeBase treeNodePlug in i_TreeNodePlugins) {
+                foreach (OCCBase occ in Collectors.Where(c => treeNodePlug.CanDisplay(c.CollectionType))) {
+                    //if ( treeNodePlug.CanDisplay( occ.CollectionType ) )
+                    treeNodePlug.AttachOCC(occ);
                 }
 
                 //treeNodePlug.Updating += new NTEventHandler<UpdaterEventArgs>( treePlugIn_BranchUpdating );
                 //treeNodePlug.Updated += new NTEventHandler( treePlugIn_BranchUpdated );
                 //treeNodePlug.Update += new NTEventHandler<UpdateProgressEventArgs>( treePlugIn_BranchUpdate );
-                treeNodePlug.SetMenus( i_RootMenu, i_NodeMenu );
+                treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu, i_OrphanRootMenu, i_OrphansMenu);
 
-                treeObject.Nodes.Add( treeNodePlug.MainBranch() );
+                //populate the node with collectors tree-nodes or object nodes
+                treeObject.Nodes.Add(treeNodePlug.MainBranch());
+                
                 //treeObject.Add( treeNodePlug.MainBranch() );
                 //treeNodePlug.GrowBranch();
             }
+
+            //todo finally add orphan nodes here
+            int
+                currentCount = i_Orphans.Count;
+            OrphanCollectorNode orphanNodes = new OrphanCollectorNode( PopulateNodeOrphans(currentCount, out currentCount));
+
+            orphanNodes.ContextMenuStrip = i_OrphanRootMenu;
+            //todo need to add the orphan list to an update method
+            treeObject.Nodes.Add(orphanNodes);
+            //if the orphans branch has less than 1 item don't show it
+            //todo make it an option to show empty orphan branch
+            //if(orphanNodes.Count()<= 0)orphanNodes.?
         }
+
+        private OrphanNode[] PopulateNodeOrphans(int InCount, out int OutCount) {
+            List<OrphanNode>
+                retVal = new List<OrphanNode>();
+
+            foreach (ObjectClassBase obj in i_Orphans) {
+                //NTTreeNode
+                //        newNode = new NTTreeNode();
+
+                OrphanNode
+                    newNode = new OrphanNode();
+
+                newNode.NodeFont = SystemFonts.DefaultFont;
+
+                //todo add image for object here
+
+                //if it knows what menus to assign do it here
+                if (i_OrphansMenu != null)
+                    //if ( obj is INTName ) 
+                    newNode.ContextMenuStrip = i_OrphansMenu;
+
+                //add the object to the node for back checking later
+                newNode.ObjectClass = obj;
+
+                //finally add the sub node to the main node
+                retVal.Add(newNode);
+
+                //need to ignore an update at this time maybe can work it back in later
+                //if (Update != null)
+                //    Update(new UpdateProgressEventArgs("Updating Orphaned Leaves", "Updated",
+                //        newNode.Text, InCount++, i_Orphans.Count));
+            }
+            OutCount = InCount;
+            return retVal.ToArray();
+        }
+        #endregion TreeNode Generation Methods
 
         public void getDisplayData(ListViewGroupCollection groupCollection) { }
 
@@ -1596,6 +1689,7 @@ namespace NTAF.Core {
                 Boolean ObjRefHasRef = false;
                 foreach ( OCCBase occ in Collectors ) {
                     if ( ObjRefHasRef ) break;
+                    //todo query with linq
                     foreach ( ObjectClassBase obj in occ )
                         if ( ( ObjRefHasRef = obj.CheckForReferences( ObjRef ) ) )
                             break;
@@ -1704,7 +1798,7 @@ namespace NTAF.Core {
             //null check
             if ( obj == null )
                 return retVal;
-            //use linq to return just what you want instead of constanyl iterating over the data
+            //todo use LINQ to return just what you want instead of constantly iterating over the data
             
             foreach ( OCCBase occ in Collectors ) {
                 try {

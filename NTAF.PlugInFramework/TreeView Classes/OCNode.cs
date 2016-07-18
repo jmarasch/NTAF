@@ -8,6 +8,10 @@ namespace NTAF.PlugInFramework {
     public class OCNode : TreeNode {
         ObjectClassBase i_ObjectClass = null;
 
+        public OCNode() {
+            this.ImageKey = Properties.Settings.Default.ImageOCNode;
+        }
+
         public ObjectClassBase ObjectClass {
             get { return i_ObjectClass; }
             set {

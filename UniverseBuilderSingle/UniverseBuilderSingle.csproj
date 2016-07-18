@@ -130,9 +130,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\database.png" />
+    <None Include="Resources\database-Error.png" />
+    <None Include="Resources\database-icon.png" />
+    <None Include="Resources\database-Locked.png" />
+    <None Include="Resources\database-UnLocked.png" />
     <Content Include="Resources\effekt1.jpg" />
     <Content Include="Resources\effekt2.jpg" />
+    <None Include="Resources\File-Exclimation.png" />
+    <None Include="Resources\File-Question.png" />
     <Content Include="Resources\File.ico" />
+    <None Include="Resources\File.png" />
+    <None Include="Resources\Folder.png" />
+    <None Include="Resources\Folder-Closed-Exclimation.png" />
+    <None Include="Resources\Folder-Closed-Question.png" />
+    <None Include="Resources\Folder-Locked.png" />
+    <None Include="Resources\Folder-Open.png" />
+    <None Include="Resources\Folder-Open-Exclimation.png" />
+    <None Include="Resources\Folder-Open-Locked.png" />
+    <None Include="Resources\Folder-Open-Question.png" />
+    <None Include="Resources\Folder-Open-UnLocked.png" />
+    <None Include="Resources\Folder-Question.png" />
+    <None Include="Resources\Folder-UnLocked.png" />
     <Content Include="Resources\Galaxy-AboutScreen.jpg" />
     <Content Include="Resources\Galaxy.jpg" />
     <Content Include="Resources\locked.bmp" />

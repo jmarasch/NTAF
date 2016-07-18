@@ -8,12 +8,12 @@ namespace NTAF.PlugInFramework {
     public class OrphanNode : TreeNode {
         ObjectClassBase i_ObjectClass = null;
 
-        public OrphanNode(ObjectClassBase Item)
+        public OrphanNode()
             : base() {
 
             base.ForeColor = System.Drawing.Color.Red;
+            this.ImageKey = Properties.Settings.Default.ImageOrphanNode;
 
-            ObjectClass = Item;
         }
 
         public ObjectClassBase ObjectClass {

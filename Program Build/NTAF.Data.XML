@@ -92,5 +92,37 @@
             <param name="orphaned">A reset bool return flips current true => false or false => true</param>
             <returns>the object that was passed in but returns it from the linked orphan list</returns>
         </member>
+        <member name="M:NTAF.Core.NTDataFile.getTreeNodes(System.Windows.Forms.TreeNodeCollection,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">
+            <summary>
+            Gets tree-nodes and assigns menus to them
+            </summary>
+            <param name="treeObject">Tree control node collection</param>
+            <param name="RootMenu">Menu for Collector nodes</param>
+            <param name="NodeMenu">Menu for Object note</param>
+            <param name="OrphanRootMenu">"Menu for the root of the orphaned objects"</param>
+            <param name="OrphanMenu">Menu for Orphaned nodes</param>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.getTreeNodes(System.Windows.Forms.TreeNode)">
+            <summary>
+            Gets tree-nodes without assigning menus
+            </summary>
+            <param name="treeObject">Tree node that all nodes will be added to</param>
+        </member>
+        <member name="T:NTAF.Data.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:NTAF.Data.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:NTAF.Data.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
     </members>
 </doc>

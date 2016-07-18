@@ -54,7 +54,8 @@ namespace NTAF.UniverseBuilder.WinGui {
 
         void DataFile_EventOrphansChanged( ItemChangedArgs args ) {
             if ( args.Action == ArgAction.Add ) {
-                Orphans.Nodes.Insert( args.Index, new OrphanNode( ( ObjectClassBase )args.Item ) );
+                //todo remove all this to data file?
+                //Orphans.Nodes.Insert( args.Index, new OrphanNode( ( ObjectClassBase )args.Item ) );
             }
 
             if ( args.Action == ArgAction.Remove ) {
@@ -72,7 +73,7 @@ namespace NTAF.UniverseBuilder.WinGui {
 
 
 
-            DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip );
+           // DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip , OrphanMenu);
             DataView.Nodes.Add( Orphans );
 
             UpdateProgressBar.Visible = false;

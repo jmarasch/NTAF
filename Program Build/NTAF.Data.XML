@@ -89,7 +89,6 @@
             Adds the orphaned object to the orphaned list if it doesn't exist
             </summary>
             <param name="orphanedObjRef">Object that was orphaned</param>
-            <param name="orphaned">A reset bool return flips current true => false or false => true</param>
             <returns>the object that was passed in but returns it from the linked orphan list</returns>
         </member>
         <member name="M:NTAF.Core.NTDataFile.getTreeNodes(System.Windows.Forms.TreeNodeCollection,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">

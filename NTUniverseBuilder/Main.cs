@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using NTAF.Core;
 using NTAF.PlugInFramework;
+using NTAF.PlugInFramework.OrphanControls;
 using NTAF.PrintEngine;
 using System.Collections.Generic;
 
@@ -16,8 +17,8 @@ namespace NTAF.UniverseBuilder.WinGui {
         BackgroundWorker
             bgw = new BackgroundWorker();
 
-        TreeNode
-            Orphans = new TreeNode( "Orpahned Objects" );
+        //TreeNode
+        //    Orphans = new TreeNode( "Orpahned Objects" );
 
         NTAF.PrintEngine.PrintEngine 
             _PrintEngine = null;
@@ -41,7 +42,7 @@ namespace NTAF.UniverseBuilder.WinGui {
 
             bgw.WorkerSupportsCancellation = true;
 
-            DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>( DataFile_EventOrphansChanged );
+            //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>( DataFile_EventOrphansChanged );
 
             DataFile.LockStatusChange += new NTEventHandler( DataFile_LockStatusChange );
             //DataFile = new NTDataFile(
@@ -52,20 +53,20 @@ namespace NTAF.UniverseBuilder.WinGui {
             //FileLockIndicator.Checked = DataFile.FileLocked;
         }
 
-        void DataFile_EventOrphansChanged( ItemChangedArgs args ) {
-            if ( args.Action == ArgAction.Add ) {
-                //todo remove all this to data file?
-                //Orphans.Nodes.Insert( args.Index, new OrphanNode( ( ObjectClassBase )args.Item ) );
-            }
+        //void DataFile_EventOrphansChanged( ItemChangedArgs args ) {
+        //    if ( args.Action == ArgAction.Add ) {
+        //        //todo remove all this to data file?
+        //        //Orphans.Nodes.Insert( args.Index, new OrphanNode( ( ObjectClassBase )args.Item ) );
+        //    }
 
-            if ( args.Action == ArgAction.Remove ) {
-                foreach ( OrphanNode OrpNode in Orphans.Nodes )
-                    if ( OrpNode.ObjectClass == args.Item ) {
-                        OrpNode.Remove();
-                        break;
-                    }
-            }
-        }
+        //    if ( args.Action == ArgAction.Remove ) {
+        //        foreach ( OrphanNode OrpNode in Orphans.Nodes )
+        //            if ( OrpNode.ObjectClass == args.Item ) {
+        //                OrpNode.Remove();
+        //                break;
+        //            }
+        //    }
+        //}
 
         void bgw_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e ) {
             UpdateProgressLabel.Text = "Ready...";
@@ -74,7 +75,7 @@ namespace NTAF.UniverseBuilder.WinGui {
 
 
            // DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip , OrphanMenu);
-            DataView.Nodes.Add( Orphans );
+            //DataView.Nodes.Add( Orphans );
 
             UpdateProgressBar.Visible = false;
 
@@ -124,7 +125,7 @@ namespace NTAF.UniverseBuilder.WinGui {
             comboBox1.Items.Clear();
 
             if ( !( DataView.SelectedNode is OCCNode ) & !( DataView.SelectedNode is OCNode ) &
-                !( DataView.SelectedNode is OrphanNode ) & DataView.SelectedNode != Orphans ) {
+                 !(DataView.SelectedNode is Orphan) ) {
                 //basic node that should contain nodes of OCCNodes
                 foreach ( OCCNode occn in DataView.SelectedNode.Nodes ) {
                     foreach ( OCNode ocn in occn.Nodes ) {

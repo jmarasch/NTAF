@@ -10,6 +10,7 @@ using NTAF.PlugInFramework;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Linq;
+using NTAF.PlugInFramework.OrphanControls;
 
 namespace NTAF.Core {
     [Serializable()]//, XmlInclude(typeof(KeyVal<String,Version>))]
@@ -35,9 +36,13 @@ namespace NTAF.Core {
         private List<OCCBase>
             i_OCCPlugins = new List<OCCBase>( PluginEngine.GetOCCPlugIns() );
 
+        //private List<ObjectClassBase>
+        //    i_Orphans = new List<ObjectClassBase>();
 
-        private List<ObjectClassBase>
-            i_Orphans = new List<ObjectClassBase>();
+        private OrphanCollector
+            orphanCollector = new PlugInFramework.OrphanControls.OrphanCollector();
+
+        OrphanTree orphanTree = new OrphanTree();
 
         //private List<String>
         //    I_RequirePlugins = new List<string>();
@@ -169,7 +174,7 @@ namespace NTAF.Core {
 
         [XmlIgnore()]
         public ObjectClassBase[] Orphans {
-            get { return i_Orphans.ToArray(); }
+            get { return (ObjectClassBase[])orphanCollector.Objects.ToArray(); }
         }
 
         [XmlIgnore()]
@@ -640,34 +645,20 @@ namespace NTAF.Core {
                     if ( occ.objectLayer == i )
                         foreach ( ObjectClassBase obj in occ )
                             obj.ReplaceReferences( toEdit, NewValues );
-                
         }
-
 
         private bool CheckForReferences( ObjectClassBase Item ) {
             byte objLayer = 0;
-
-            //todo agin use linq to just grab the right collector
+            
             //figure out the objects level
             OCCBase colector = Collectors.Where(c => c.CollectionType == Item.CollectionType).First();
-            //foreach ( OCCBase colector in Collectors )
-            //    if ( colector.CollectionType == Item.CollectionType )
             objLayer = colector.objectLayer;
 
             foreach (OCCBase occ in Collectors.Where(c => c.objectLayer > colector.objectLayer))
-                //if (occ.Objects.Where(o => ((ObjectClassBase)o).CheckForReferences(Item) == true).Count() > 0)
-                //    return true;
                 foreach (ObjectClassBase obj in occ)
                     if (obj.CheckForReferences(Item))
                         return true;
             
-            //old method
-            //for ( int i = objLayer + 1; i <= PluginEngine.MAX_OBJECT_LAYER; ++i )
-            //    foreach ( OCCBase occ in Collectors )
-            //        if ( occ.objectLayer == i )
-            //            foreach ( ObjectClassBase obj in occ )
-            //                if ( obj.CheckForReferences( Item ) )
-            //                    return true;
             return false;
         }
 
@@ -676,68 +667,65 @@ namespace NTAF.Core {
         }
 
         private void MoveToOrphanList(ObjectClassBase Item, OCCBase OCC) {
-            //find the proper insertain point and put the now oprhaned object in the list
-            if (i_Orphans.Count > 0) {
-                for (int i = 0; i <= i_Orphans.Count - 1; i++) {
-                    if (Item.Name.CompareTo(i_Orphans[i].Name) < 0) {
-                        i_Orphans.Insert(i, Item); break;
-                    }
-                }
-                if (!i_Orphans.Contains(Item))
-                    i_Orphans.Add(Item);
-            }
-            else {
-                i_Orphans.Add(Item);
-            }
+            //find the proper insertion point and put the now orphaned object in the list
+            //if (orphanCollector.Count > 0) {
+            //    for (int i = 0; i <= orphanCollector.Count - 1; i++) {
+            //        if (Item.Name.CompareTo(orphanCollector[i].Name) < 0) {
+            //            orphanCollector. Insert(i, Item); break;
+            //        }
+            //    }
+            //    if (!orphanCollector.Exists(Item))
+            //        orphanCollector.AddObject(Item);
+            //}
+            //else {
+                orphanCollector.AddObject(Item);
+            //}
 
             if (OCC != null)
                 OCC.DropObject(Item);
 
             if (EventOrphansChanged != null)
-                EventOrphansChanged(new ItemChangedArgs(i_Orphans.IndexOf(Item), Item, ArgAction.Add));
+                EventOrphansChanged(new ItemChangedArgs(orphanCollector.FindIndex(Item), Item, ArgAction.Add));
         }
 
         private void RemoveFromOrphanList(ObjectClassBase Item) {
-            int index = i_Orphans.IndexOf(Item);
+            int index = orphanCollector.FindIndex(Item);
 
-            i_Orphans.Remove(Item);
+            orphanCollector.DropObject(Item);
 
             if (EventOrphansChanged != null)
                 EventOrphansChanged(new ItemChangedArgs(index, Item, ArgAction.Remove));
         }
 
         public void AddOrphan( ObjectClassBase OrphanedObject ) {
-            if ( !OrphanExists( OrphanedObject ) )
+            if ( !orphanCollector.Exists( OrphanedObject ) )
                 MoveToOrphanList( OrphanedObject, null );
                 //orphanedObjects.Add( OrphanedObject );
         }
 
         public void DropOrphan( ObjectClassBase OrphanedObject ) {
-            if ( OrphanExists( OrphanedObject ) )
-                i_Orphans.Remove( OrphanedObject );
-        }
-
-        public Boolean OrphanExists(ObjectClassBase OrphanedObject) {
-            return i_Orphans.Contains(OrphanedObject);
+            if (orphanCollector.Exists(OrphanedObject))
+                orphanCollector.DropObject(OrphanedObject);
         }
 
         public void ClearOrphans() {
-            i_Orphans.Clear();
+            orphanCollector.Clear();
         }
 
         public void AddOrpahns( ObjectClassBase[] NewOrphans ) {
-            i_Orphans.AddRange( NewOrphans );
+            foreach (ObjectClassBase orphan in NewOrphans) {
+                AddOrphan(orphan);
+            }
         }
 
         /// <summary>
         /// Adds the orphaned object to the orphaned list if it doesn't exist
         /// </summary>
         /// <param name="orphanedObjRef">Object that was orphaned</param>
-        /// <param name="orphaned">A reset bool return flips current true => false or false => true</param>
         /// <returns>the object that was passed in but returns it from the linked orphan list</returns>
         internal ObjectClassBase updateOrphaning( ObjectClassBase orphanedObjRef ) {
             //find out if obj exists in orphaned list
-            if ( !OrphanExists( orphanedObjRef ) ) {
+            if ( !orphanCollector.Exists( orphanedObjRef ) ) {
                 //doesn't exist make sure it has no owner info
                 if ( orphanedObjRef is IOwner )
                     ( ( IOwner )orphanedObjRef ).myOwner = null;
@@ -1163,16 +1151,14 @@ namespace NTAF.Core {
 
             //List<object> objects = new List<object>();
 
-
             //===============================start new memory loading section===========================//
-
 
             Type[] types = PluginEngine.GetSerailPlugins();
 
             List<ZipEntry> filesToLoad = new List<ZipEntry>(zipFile.Entries);
 
             foreach (OCCBase occp in PluginEngine.GetOCCPlugInsByLayer()) {
-                if (types.Contains(occp.CollectionType)) { //makesure the type were trying load cam be deserialized by checking against the approved desrialization list.
+                if (types.Contains(occp.CollectionType)) { //make sure the type were trying load cam be deserialized by checking against the approved deserialization list.
                     string typeName = occp.CollectionType.Name;
                     ZipEntry[] currentFiles = filesToLoad.Where(ze => ze.FileName.Split('/')[0] == typeName).ToArray();
                     foreach (ZipEntry file in currentFiles) {
@@ -1587,7 +1573,7 @@ namespace NTAF.Core {
 
             DataNode rootNode = new DataNode(this.FileName);
 
-            treeObject.Add(new TreeNode(this.FileName));
+            //treeObject.Add(new TreeNode(this.FileName));
 
             //todo add file name as a root object
             getTreeNodes(rootNode);
@@ -1618,65 +1604,61 @@ namespace NTAF.Core {
                     treeNodePlug.AttachOCC(occ);
                 }
 
-                //treeNodePlug.Updating += new NTEventHandler<UpdaterEventArgs>( treePlugIn_BranchUpdating );
-                //treeNodePlug.Updated += new NTEventHandler( treePlugIn_BranchUpdated );
-                //treeNodePlug.Update += new NTEventHandler<UpdateProgressEventArgs>( treePlugIn_BranchUpdate );
-                treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu, i_OrphanRootMenu, i_OrphansMenu);
+                treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu);
 
                 //populate the node with collectors tree-nodes or object nodes
                 treeObject.Nodes.Add(treeNodePlug.MainBranch());
-                
-                //treeObject.Add( treeNodePlug.MainBranch() );
-                //treeNodePlug.GrowBranch();
             }
 
             //todo finally add orphan nodes here
             int
-                currentCount = i_Orphans.Count;
-            OrphanCollectorNode orphanNodes = new OrphanCollectorNode( PopulateNodeOrphans(currentCount, out currentCount));
+                currentCount = orphanCollector.Count;
 
-            orphanNodes.ContextMenuStrip = i_OrphanRootMenu;
+            orphanTree.AttachOCC(orphanCollector);
+            orphanTree.SetMenus(i_OrphanRootMenu, i_OrphansMenu);
+
+            treeObject.Nodes.Add(orphanTree.MainBranch());
+
             //todo need to add the orphan list to an update method
-            treeObject.Nodes.Add(orphanNodes);
             //if the orphans branch has less than 1 item don't show it
             //todo make it an option to show empty orphan branch
             //if(orphanNodes.Count()<= 0)orphanNodes.?
         }
 
-        private OrphanNode[] PopulateNodeOrphans(int InCount, out int OutCount) {
-            List<OrphanNode>
-                retVal = new List<OrphanNode>();
+        //private OrphanNode[] PopulateNodeOrphans(int InCount, out int OutCount) {
+        //    List<OrphanNode>
+        //        retVal = new List<OrphanNode>();
 
-            foreach (ObjectClassBase obj in i_Orphans) {
-                //NTTreeNode
-                //        newNode = new NTTreeNode();
+        //    foreach (ObjectClassBase obj in i_Orphans) {
+        //        //NTTreeNode
+        //        //        newNode = new NTTreeNode();
 
-                OrphanNode
-                    newNode = new OrphanNode();
+        //        OrphanNode
+        //            newNode = new OrphanNode();
 
-                newNode.NodeFont = SystemFonts.DefaultFont;
+        //        newNode.NodeFont = SystemFonts.DefaultFont;
 
-                //todo add image for object here
+        //        //todo add image for object here
 
-                //if it knows what menus to assign do it here
-                if (i_OrphansMenu != null)
-                    //if ( obj is INTName ) 
-                    newNode.ContextMenuStrip = i_OrphansMenu;
+        //        //if it knows what menus to assign do it here
+        //        if (i_OrphansMenu != null)
+        //            //if ( obj is INTName ) 
+        //            newNode.ContextMenuStrip = i_OrphansMenu;
 
-                //add the object to the node for back checking later
-                newNode.ObjectClass = obj;
+        //        //add the object to the node for back checking later
+        //        newNode.ObjectClass = obj;
 
-                //finally add the sub node to the main node
-                retVal.Add(newNode);
+        //        //finally add the sub node to the main node
+        //        retVal.Add(newNode);
 
-                //need to ignore an update at this time maybe can work it back in later
-                //if (Update != null)
-                //    Update(new UpdateProgressEventArgs("Updating Orphaned Leaves", "Updated",
-                //        newNode.Text, InCount++, i_Orphans.Count));
-            }
-            OutCount = InCount;
-            return retVal.ToArray();
-        }
+        //        //need to ignore an update at this time maybe can work it back in later
+        //        //if (Update != null)
+        //        //    Update(new UpdateProgressEventArgs("Updating Orphaned Leaves", "Updated",
+        //        //        newNode.Text, InCount++, i_Orphans.Count));
+        //    }
+        //    OutCount = InCount;
+        //    return retVal.ToArray();
+        //}
         #endregion TreeNode Generation Methods
 
         public void getDisplayData(ListViewGroupCollection groupCollection) { }
@@ -1685,7 +1667,7 @@ namespace NTAF.Core {
 
             List<ObjectClassBase> purgeList = new List<ObjectClassBase>();
 
-            foreach ( ObjectClassBase ObjRef in i_Orphans ) {
+            foreach ( ObjectClassBase ObjRef in orphanCollector ) {
                 Boolean ObjRefHasRef = false;
                 foreach ( OCCBase occ in Collectors ) {
                     if ( ObjRefHasRef ) break;
@@ -1757,7 +1739,7 @@ namespace NTAF.Core {
 
         public void LinkData() {
             try {
-                i_Orphans.Clear();
+                orphanCollector.Clear();
 
                 //List<OCCBase>
                 //    occs = new List<OCCBase>( LoadedCollectors() );
@@ -1766,27 +1748,26 @@ namespace NTAF.Core {
 
                 int current = 0;
 
-                for ( Byte i = 0; i <= PluginEngine.MAX_OBJECT_LAYER; i++ ) {
-                    foreach ( OCCBase occ in Collectors.Where(ol => ol.objectLayer == i ) ) {
-                        //if ( occ.objectLayer == i ) {//to do watch this once higher level IObject class plug-ins are created
-                            foreach ( ObjectClassBase obj in occ.Objects ) {
-                                
-                                current++;
+                for (Byte i = 0; i <= PluginEngine.MAX_OBJECT_LAYER; i++) {
+                    foreach (OCCBase occ in Collectors.Where(ol => ol.objectLayer == i)) {
+                        foreach (ObjectClassBase obj in occ.Objects) {
+                            current++;
 
-                                if ( Update != null )
-                                    Update( new UpdateProgressEventArgs( String.Format( "Linking Object {0}", obj.Name ), "Linking", obj.Name, current, AllData.Length+1 ) );
-                                
-                                obj.Link( this );
-                            }
-                        //}
+                            if (Update != null)
+                                Update(new UpdateProgressEventArgs(String.Format("Linking Object {0}", obj.Name), "Linking", obj.Name, current, AllData.Length + 1));
+
+                            obj.Link(this);
+                        }
                     }
                 }
 
-                if ( Updated != null )
+                Updated?.Invoke();
 
-                    Updated();
+                //if ( Updated != null )
 
-                i_Orphans.Sort();
+                //    Updated();
+
+                //i_Orphans.Sort();
             }
             catch { throw; }
         }
@@ -1800,7 +1781,7 @@ namespace NTAF.Core {
                 return retVal;
             //todo use LINQ to return just what you want instead of constantly iterating over the data
             
-            foreach ( OCCBase occ in Collectors ) {
+            foreach ( OCCBase occ in Collectors.Where(c => obj.GetType() == c.CollectionType )) {
                 try {
                     retVal = occ[obj];
                     if ( retVal != null )
@@ -1823,14 +1804,14 @@ namespace NTAF.Core {
             //object could not be found
             if ( retVal == null ) {
                 //search the orphan list make sure its not being added twice
-                if ( !i_Orphans.Contains( obj ) ) {
+                if ( !orphanCollector.Exists( obj ) ) {
                     //doesn't exist add it
                     MoveToOrphanList( obj, null );
                     //i_Orphans.Add( obj );
                 }
 
                 //retrieve the orphan from the orphan list
-                retVal = i_Orphans[i_Orphans.IndexOf( obj )];
+                retVal = orphanCollector[obj];
             }
 
             return retVal;

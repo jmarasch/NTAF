@@ -29,9 +29,9 @@ namespace NTAF.PlugInFramework {
             _Name;
 
         /// <summary>
-        /// Gets or sets the objects Unque ID. All ids need to consist of a 4 alpha numeric prefix
+        /// Gets or sets the objects Unique ID. All ids need to consist of a 4 alpha numeric prefix
         /// controlled by its file data prefix id and typically an 8 Hex ID the prefix/id
-        /// is used to makesure that even if two items should ever share the same id in different files
+        /// is used to make sure that even if two items should ever share the same id in different files
         /// they will never be cross confused due to the prefix.
         /// <example>
         /// BSDS54D457A6
@@ -110,7 +110,7 @@ namespace NTAF.PlugInFramework {
         //todo need to find a way to make this work
         /// <summary>
         /// Clears all the basic events this object could have, you must override
-        /// is baseic operation if you plan on adding cusom events, when overriding
+        /// is basic operation if you plan on adding custom events, when overriding
         /// this method you should call base.clearMyEvents() prior to any event clearing
         /// your method will do.
         /// </summary>
@@ -122,7 +122,7 @@ namespace NTAF.PlugInFramework {
         int IComparable.CompareTo( object obj ) {
             ObjectClassBase chk = ( ObjectClassBase )obj;
 
-            //return string compair
+            //return string compare
             //asc
             return String.Compare( this.Name, chk.Name );
 
@@ -132,7 +132,7 @@ namespace NTAF.PlugInFramework {
         /// Gets a string of root basic details about the object.
         /// Override this method and first call base.aboutMe and then
         /// add your extra field information. This method is important
-        /// in that if print is unavalable, this will typically get called
+        /// in that if print is unavailable, this will typically get called
         /// in its place.
         /// </summary>
         [XmlIgnore( ), Browsable( false )]
@@ -157,7 +157,7 @@ namespace NTAF.PlugInFramework {
         /// or what ever state that would not be good or the object do a
         /// throw new ValidationExecption("this is whats wrong");
         /// </summary>
-        /// <exception cref="ValidationException">Sends back informaton on whats
+        /// <exception cref="ValidationException">Sends back information on whats
         /// wrong with the object</exception>
         public virtual void Valid() {
 
@@ -172,14 +172,14 @@ namespace NTAF.PlugInFramework {
         }
 
         /// <summary>
-        /// Needs to be overriden if you want the object to print anything
+        /// Needs to be overridden if you want the object to print anything
         /// see NewTerra Print Framework documentation for details
         /// </summary>
         /// <param name="element"></param>
         public virtual void Print( PrintElement element ) { }
 
         /// <summary>
-        /// copys all read/write fields from one object to this one
+        /// copies all read/write fields from one object to this one
         /// </summary>
         /// <param name="members">The object thats having its properties copied</param>
         public void CopyMembers( Object members ) {
@@ -263,7 +263,7 @@ namespace NTAF.PlugInFramework {
         /// checks to see if this object is of testing type
         /// </summary>
         /// <param name="obj">Object to test</param>
-        /// <returns>true if they match false if the dont match</returns>
+        /// <returns>true if they match false if the don't match</returns>
         public virtual bool IsOfType( object obj ) {
             throw new NotImplementedException( );
         }
@@ -272,7 +272,7 @@ namespace NTAF.PlugInFramework {
         /// checks to see if this object is of testing type
         /// </summary>
         /// <param name="T">Type to test</param>
-        /// <returns>true if they match false if the dont match</returns>
+        /// <returns>true if they match false if the don't match</returns>
         public virtual bool IsOfType( Type T ) {
             throw new NotImplementedException( );
         }
@@ -284,7 +284,7 @@ namespace NTAF.PlugInFramework {
         public virtual Type MyType() { return this.GetType(); }
 
         /// <summary>
-        /// not implimented not used, may be used in the future
+        /// not implemented not used, may be used in the future
         /// </summary>
         /// <param name="toSerial"></param>
         /// <param name="tempPath"></param>
@@ -294,7 +294,7 @@ namespace NTAF.PlugInFramework {
         }
         
         /// <summary>
-        /// not implimented not used, may be used in the future
+        /// not implemented not used, may be used in the future
         /// </summary>
         /// <param name="PathOfSavedObject"></param>
         /// <returns></returns>

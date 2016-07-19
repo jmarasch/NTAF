@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using NTAF.Core;
 using NTAF.PlugInFramework;
+using NTAF.PlugInFramework.OrphanControls;
 using NTAF.PrintEngine;
 using System.Collections.Generic;
 using PE = NTAF.PlugInFramework.PluginEngine;
@@ -161,32 +162,29 @@ namespace UniverseBuilderSingle {
             }
         }
 
-        private void DataView_AfterSelect( object sender, TreeViewEventArgs e ) {
+        private void DataView_AfterSelect(object sender, TreeViewEventArgs e) {
             //clear last selection of nodes
             comboBox1.Items.Clear();
-            if (DataView.SelectedNode is DataNode) return;
-            if ( !( DataView.SelectedNode is OCCNode ) & !( DataView.SelectedNode is OCNode ) &
-                !( DataView.SelectedNode is OrphanNode ) & !(DataView.SelectedNode is OrphanCollectorNode) ) {
+            Type t = DataView.SelectedNode.GetType();
+            if (!(DataView.SelectedNode is OCCNode) & !(DataView.SelectedNode is OCNode) &
+                 !(DataView.SelectedNode is Orphan) & !(DataView.SelectedNode is DataNode)) {
                 //basic node that should contain nodes of OCCNodes
-                foreach ( OCCNode occn in DataView.SelectedNode.Nodes ) {
-                    foreach ( OCNode ocn in occn.Nodes ) {
-                        comboBox1.Items.Add( ocn.ObjectClass );
+                foreach (OCCNode occn in DataView.SelectedNode.Nodes) {
+                    foreach (OCNode ocn in occn.Nodes) {
+                        comboBox1.Items.Add(ocn.ObjectClass);
                     }
                 }
             }
-            if ( DataView.SelectedNode is OCCNode ) {
-                foreach ( OCNode ocn in DataView.SelectedNode.Nodes ) {
-                    comboBox1.Items.Add( ocn.ObjectClass );
+            if (DataView.SelectedNode is OCCNode) {
+                foreach (OCNode ocn in DataView.SelectedNode.Nodes) {
+                    comboBox1.Items.Add(ocn.ObjectClass);
                 }
             }
-            if ( DataView.SelectedNode is OCNode ) {
+            if (DataView.SelectedNode is OCNode) {
                 comboBox1.Items.Add(((OCNode)DataView.SelectedNode).ObjectClass);
             }
-            if(DataView.SelectedNode is OrphanNode) {
-                comboBox1.Items.Add(((OrphanNode)DataView.SelectedNode).ObjectClass);
-            }
 
-            if ( comboBox1.Items.Count >= 1 )
+            if (comboBox1.Items.Count >= 1)
                 comboBox1.SelectedIndex = 0;
             else {
                 comboBox1.Items.Clear();

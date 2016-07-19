@@ -305,7 +305,7 @@ namespace NTAF.ObjectClasses {
 
     }
 
-    [TreeNodePlugIn( "Archetypes Tree", "Archietypes", "0.0.0.0", typeof( Archetype ) )]
+    [TreeNodePlugIn( "Archetypes Tree", "Archetypes", "0.0.0.0", typeof( Archetype ) )]
     public class ArchetypeTree : OCTreeNodeBase{
         //public override Type CollectionType {
         //    get {

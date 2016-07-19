@@ -441,9 +441,9 @@
         </member>
         <member name="P:NTAF.PlugInFramework.ObjectClassBase.ID">
             <summary>
-            Gets or sets the objects Unque ID. All ids need to consist of a 4 alpha numeric prefix
+            Gets or sets the objects Unique ID. All ids need to consist of a 4 alpha numeric prefix
             controlled by its file data prefix id and typically an 8 Hex ID the prefix/id
-            is used to makesure that even if two items should ever share the same id in different files
+            is used to make sure that even if two items should ever share the same id in different files
             they will never be cross confused due to the prefix.
             <example>
             BSDS54D457A6
@@ -480,7 +480,7 @@
         <member name="M:NTAF.PlugInFramework.ObjectClassBase.clearMyEvents">
             <summary>
             Clears all the basic events this object could have, you must override
-            is baseic operation if you plan on adding cusom events, when overriding
+            is basic operation if you plan on adding custom events, when overriding
             this method you should call base.clearMyEvents() prior to any event clearing
             your method will do.
             </summary>
@@ -490,7 +490,7 @@
             Gets a string of root basic details about the object.
             Override this method and first call base.aboutMe and then
             add your extra field information. This method is important
-            in that if print is unavalable, this will typically get called
+            in that if print is unavailable, this will typically get called
             in its place.
             </summary>
         </member>
@@ -502,19 +502,19 @@
             or what ever state that would not be good or the object do a
             throw new ValidationExecption("this is whats wrong");
             </summary>
-            <exception cref="T:NTAF.Core.ValidationException">Sends back informaton on whats
+            <exception cref="T:NTAF.Core.ValidationException">Sends back information on whats
             wrong with the object</exception>
         </member>
         <member name="M:NTAF.PlugInFramework.ObjectClassBase.Print(NTAF.PrintEngine.PrintElement)">
             <summary>
-            Needs to be overriden if you want the object to print anything
+            Needs to be overridden if you want the object to print anything
             see NewTerra Print Framework documentation for details
             </summary>
             <param name="element"></param>
         </member>
         <member name="M:NTAF.PlugInFramework.ObjectClassBase.CopyMembers(System.Object)">
             <summary>
-            copys all read/write fields from one object to this one
+            copies all read/write fields from one object to this one
             </summary>
             <param name="members">The object thats having its properties copied</param>
         </member>
@@ -559,14 +559,14 @@
             checks to see if this object is of testing type
             </summary>
             <param name="obj">Object to test</param>
-            <returns>true if they match false if the dont match</returns>
+            <returns>true if they match false if the don't match</returns>
         </member>
         <member name="M:NTAF.PlugInFramework.ObjectClassBase.IsOfType(System.Type)">
             <summary>
             checks to see if this object is of testing type
             </summary>
             <param name="T">Type to test</param>
-            <returns>true if they match false if the dont match</returns>
+            <returns>true if they match false if the don't match</returns>
         </member>
         <member name="M:NTAF.PlugInFramework.ObjectClassBase.MyType">
             <summary>
@@ -576,7 +576,7 @@
         </member>
         <member name="M:NTAF.PlugInFramework.ObjectClassBase.Serialize(System.Object,System.String)">
             <summary>
-            not implimented not used, may be used in the future
+            not implemented not used, may be used in the future
             </summary>
             <param name="toSerial"></param>
             <param name="tempPath"></param>
@@ -584,7 +584,7 @@
         </member>
         <member name="M:NTAF.PlugInFramework.ObjectClassBase.Deserialize(System.String)">
             <summary>
-            not implimented not used, may be used in the future
+            not implemented not used, may be used in the future
             </summary>
             <param name="PathOfSavedObject"></param>
             <returns></returns>
@@ -889,6 +889,20 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:NTAF.PlugInFramework.OrphanControls.OrphanCollector.IsOfType(System.Object)">
+            <summary>
+            Checks a passed in obj and determines if it matches the type of this collector
+            </summary>
+            <param name="obj">Type of the class to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OrphanControls.OrphanCollector.IsOfType(System.Type)">
+            <summary>
+            Checks a passed in obj and determines if it matches the type of this collector
+            </summary>
+            <param name="T">Type of the class to check</param>
+            <returns>true/false</returns>
+        </member>
         <member name="T:NTAF.PlugInFramework.OCTreeNodeBase">
             <summary>
             The Object Class Tree Node Base provides the ability to create a TreeVew
@@ -914,7 +928,7 @@
             trigered when update compleetes
             </summary>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.SetMenus(System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.SetMenus(System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">
             <summary>
             Use this to set the optional context menues for when a node is right clicked
             </summary>

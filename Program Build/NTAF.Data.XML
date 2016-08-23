@@ -84,6 +84,12 @@
             </summary>
             <param name="toDrop">Object must have the ObjectClassBase interface</param>
         </member>
+        <member name="M:NTAF.Core.NTDataFile.DropOrphan(NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            removes object from orphaning collector
+            </summary>
+            <param name="OrphanedObject"></param>
+        </member>
         <member name="M:NTAF.Core.NTDataFile.updateOrphaning(NTAF.PlugInFramework.ObjectClassBase)">
             <summary>
             Adds the orphaned object to the orphaned list if it doesn't exist

@@ -475,8 +475,9 @@ namespace NTAF.Core {
                         Drop( ( ObjectClassBase )action.Data );
                         break;
                     case UndoActionKeyWords.Drop:
-                        //Drop needs to re add the removed item
+                        //Drop needs to re add the removed item and remove from orphan list
                         Add( ( ObjectClassBase )action.Data );
+                        DropOrphan((ObjectClassBase)action.Data);
                         break;
                     case UndoActionKeyWords.Edit:
                         //edit needs to un-edit
@@ -548,7 +549,7 @@ namespace NTAF.Core {
                 }
                     DataChanged = true;
 
-                    if ( !NTAF.Core.Properties.Settings.Default.PerformingAction )
+                    if ( !NTAF.Core.Properties.Settings.Default.PerformingAction & !Properties.Settings.Default.Loading)
                         actions.AddUndoableOpp( UndoActionKeyWords.Drop, toDrop );
                 
             }
@@ -578,7 +579,7 @@ namespace NTAF.Core {
 
                 DataChanged = true;
 
-                if ( NTAF.Core.Properties.Settings.Default.PerformingAction )
+                if ( !NTAF.Core.Properties.Settings.Default.PerformingAction & !Properties.Settings.Default.Loading)
                     actions.AddUndoableOpp( UndoActionKeyWords.Add, toAdd );
             }
             catch ( Exception ex ) { throw ex; }
@@ -703,6 +704,10 @@ namespace NTAF.Core {
                 //orphanedObjects.Add( OrphanedObject );
         }
 
+        /// <summary>
+        /// removes object from orphaning collector
+        /// </summary>
+        /// <param name="OrphanedObject"></param>
         public void DropOrphan( ObjectClassBase OrphanedObject ) {
             if (orphanCollector.Exists(OrphanedObject))
                 orphanCollector.DropObject(OrphanedObject);

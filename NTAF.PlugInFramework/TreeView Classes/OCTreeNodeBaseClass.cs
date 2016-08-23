@@ -267,6 +267,10 @@ namespace NTAF.PlugInFramework {
                 if ( i_NodeMenu != null )
                     newNode.ContextMenuStrip = i_NodeMenu;
 
+                newNode.NodeFont = SystemFonts.DefaultFont;
+                newNode.ForeColor = this.ColorFontLeaf;
+                newNode.BackColor = this.ColorBackgroundLeaf;
+
                 //add the object to the node for back checking later
                 newNode.ObjectClass = (ObjectClassBase)args.Item;
 

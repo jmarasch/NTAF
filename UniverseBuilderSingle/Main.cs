@@ -78,7 +78,7 @@ namespace UniverseBuilderSingle {
                 toolStripStatusFileLock.Text = "<UnLocked>";
                 toolStripStatusFileLock.BackColor = System.Drawing.Color.Green;
             }
-            //todo: make labe to replace this control
+            //todo: make label to replace this control
             //FileLockIndicator.Checked = DataFile.FileLocked;
         }
 

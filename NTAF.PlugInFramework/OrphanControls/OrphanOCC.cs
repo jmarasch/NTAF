@@ -36,5 +36,6 @@ namespace NTAF.PlugInFramework.OrphanControls {
             return T.IsSubclassOf(typeof(ObjectClassBase)) || T == typeof(ObjectClassBase);
             //return T.IsSubclassOf(CollectionType.GetGenericTypeDefinition());
         }
+
     }
 }

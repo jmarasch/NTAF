@@ -367,7 +367,7 @@ namespace UniverseBuilderSingle {
             deleteObjectToolStripMenuItem.Click += new EventHandler(deleteObjectToolStripMenuItem_Click);
 
             copyObjectToolStripMenuItem = new ToolStripMenuItem();
-            copyObjectToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyObjectToolStripMenuItem.Image")));
+            //copyObjectToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyObjectToolStripMenuItem.Image")));
             copyObjectToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             copyObjectToolStripMenuItem.Name = "copyObjectToolStripMenuItem";
             copyObjectToolStripMenuItem.ShortcutKeys = CopyObjectKey;

@@ -212,6 +212,11 @@
     <Compile Include="Psy\PsyEditor.Designer.cs">
       <DependentUpon>PsyEditor.cs</DependentUpon>
     </Compile>
+    <None Include="RangedWeapons\RangedWeapon.cs" />
+    <None Include="RangedWeapons\RangedWeaponAmmo.cs" />
+    <None Include="RangedWeapons\RangedWeaponCollectors.cs" />
+    <None Include="RangedWeapons\RangedWeaponFrame.cs" />
+    <None Include="RangedWeapons\RangedWeaponTree.cs" />
     <Compile Include="Skill\SkillEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +312,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Armor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

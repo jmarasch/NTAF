@@ -240,106 +240,106 @@ namespace NTAF.Core {
             return null;
         }
 
-        #region file operations
-        public Collection<string> Load( FileInfo file ) {
+            #region file operations
+            public Collection<string> Load( FileInfo file ) {
 
-            List<FileInfo> loadfile = new List<FileInfo>();
-            loadfile.Add( file );
-            Collection<string> retVal = Load( loadfile.ToArray() );
+                List<FileInfo> loadfile = new List<FileInfo>();
+                loadfile.Add( file );
+                Collection<string> retVal = Load( loadfile.ToArray() );
 
-            return retVal;
-        }
+                return retVal;
+            }
 
-        public Collection<string> Load( FileInfo[] files ) {
+            public Collection<string> Load( FileInfo[] files ) {
 
-            Collection<string> unloadables = new Collection<string>();
-            NTDataFile loadingFile = null;
-            //lock for threading
-            lock ( this ) {
-                foreach ( FileInfo file in files ) {
-                    if ( !( LoadedFiles.ToList().Contains( file.Name ) ) ) {
-                        try {
-                            //todo create unloadable file exception holds file name or path and reason cant be loaded
-                            loadingFile = new NTDataFile( file.FullName );
+                Collection<string> unloadables = new Collection<string>();
+                NTDataFile loadingFile = null;
+                //lock for threading
+                lock ( this ) {
+                    foreach ( FileInfo file in files ) {
+                        if ( !( LoadedFiles.ToList().Contains( file.Name ) ) ) {
+                            try {
+                                //todo create unloadable file exception holds file name or path and reason cant be loaded
+                                loadingFile = new NTDataFile( file.FullName );
 
-                            loadingFile.Updating += new NTEventHandler<UpdaterEventArgs>( updating );
-                            loadingFile.Update += new NTEventHandler<UpdateProgressEventArgs>( update );
-                            loadingFile.Updated += new NTEventHandler( updated );
+                                loadingFile.Updating += new NTEventHandler<UpdaterEventArgs>( updating );
+                                loadingFile.Update += new NTEventHandler<UpdateProgressEventArgs>( update );
+                                loadingFile.Updated += new NTEventHandler( updated );
 
-                            //load the data from the file
-                            //loadingFile.Load();
-                            loadingFile.Load3();
+                                //load the data from the file
+                                //loadingFile.Load();
+                                loadingFile.Load3();
 
-                            //add the file to the data pool
-                            this._DataFiles.Add( loadingFile );
+                                //add the file to the data pool
+                                this._DataFiles.Add( loadingFile );
 
-                            ////not needed? data it self didn't change
-                            //if ( EventDataChanged != null )
-                            //    EventDataChanged();
+                                ////not needed? data it self didn't change
+                                //if ( EventDataChanged != null )
+                                //    EventDataChanged();
+                            }
+                            //if a file is unloadable add it to the list file names that get returned unable to load
+                            catch ( Exception ex ) {
+                                unloadables.Add( file.FullName + "\ncould not be loaded for the following reason(s)\n" + ex.Message );
+                            }
                         }
-                        //if a file is unloadable add it to the list file names that get returned unable to load
-                        catch ( Exception ex ) {
-                            unloadables.Add( file.FullName + "\ncould not be loaded for the following reason(s)\n" + ex.Message );
-                        }
+                        //file cannot be loaded twice list it as unloadable
+                        else { unloadables.Add( file.FullName + "\nIs already loaded and cannot be loaded more than once." ); }
                     }
-                    //file cannot be loaded twice list it as unloadable
-                    else { unloadables.Add( file.FullName + "\nIs already loaded and cannot be loaded more than once." ); }
-                }
-                ////link all the data across all open files and retrieve the orphaned objects
-                //OrphanedLeaves = LinkData();
-            }//end locking
+                    ////link all the data across all open files and retrieve the orphaned objects
+                    //OrphanedLeaves = LinkData();
+                }//end locking
 
-            //notify the host program that data files have been loaded or added to the mix
-            if ( EventFileAdded != null )
-                EventFileAdded();
+                //notify the host program that data files have been loaded or added to the mix
+                if ( EventFileAdded != null )
+                    EventFileAdded();
 
-            //return the list of any files that could not be loaded
-            return unloadables;
-        }
+                //return the list of any files that could not be loaded
+                return unloadables;
+            }
 
-        public void NewFile( string path, string iDpreFix, string DataSetName ) {
-            NTDataFile newFile = new NTDataFile( path, iDpreFix, DataSetName );
-            newFile.DataChanged = true;
+            public void NewFile( string path, string iDpreFix, string DataSetName ) {
+                NTDataFile newFile = new NTDataFile( path, iDpreFix, DataSetName );
+                newFile.DataChanged = true;
 
-            newFile.EventDataStateChanged += new NTEventHandler( newFile_EventDataStateChanged );
-            newFile.Updating+=new NTEventHandler<UpdaterEventArgs>(updating);
-            newFile.Update+=new NTEventHandler<UpdateProgressEventArgs>(update);
-            newFile.Updated+=new NTEventHandler(updated);
+                newFile.EventDataStateChanged += new NTEventHandler( newFile_EventDataStateChanged );
+                newFile.Updating+=new NTEventHandler<UpdaterEventArgs>(updating);
+                newFile.Update+=new NTEventHandler<UpdateProgressEventArgs>(update);
+                newFile.Updated+=new NTEventHandler(updated);
 
-            _DataFiles.Add( newFile );
+                _DataFiles.Add( newFile );
 
-            if(EventFileAdded !=null)
-                EventFileAdded();
+                if(EventFileAdded !=null)
+                    EventFileAdded();
 
-            newFile.Save();
+                newFile.Save();
 
-        }
+            }
 
-        void newFile_EventDataStateChanged() {
-            //may need to setup some fashion of sectional Linking here
-        }
+            void newFile_EventDataStateChanged() {
+                //may need to setup some fashion of sectional Linking here
+            }
 
-        public List<string> SaveAll() {
-            List<string> unsaveableFiles = new List<string>();
+            public List<string> SaveAll() {
+                List<string> unsaveableFiles = new List<string>();
 
-            foreach ( NTDataFile NTDF in _DataFiles )
-                try {
-                    NTDF.Save();
-                }
-                catch ( NTFileExecption SFEX ) { unsaveableFiles.Add( SFEX.FileName ); }
-                catch ( Exception ex ) { throw ex; }
+                foreach ( NTDataFile NTDF in _DataFiles )
+                    try {
+                        NTDF.Save();
+                    }
+                    catch ( NTFileExecption SFEX ) { unsaveableFiles.Add( SFEX.FileName ); }
+                    catch ( Exception ex ) { throw ex; }
 
-            return unsaveableFiles;
-        }
+                return unsaveableFiles;
+            }
 
-        public void CloseFile( NTDataFile file ) {
-            _DataFiles.Remove( file );
+            public void CloseFile( NTDataFile file ) {
+                _DataFiles.Remove( file );
 
-            if ( EventDataChanged != null )
-                EventDataChanged();
-        }
+                if ( EventDataChanged != null )
+                    EventDataChanged();
+            }
 
-        #endregion
+            #endregion
 
         #endregion
 

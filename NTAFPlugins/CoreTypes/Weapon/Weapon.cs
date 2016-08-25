@@ -11,10 +11,13 @@ using NTAF.PrintEngine;
 
 
 namespace NTAF.ObjectClasses {
+    /*todo: modify this for hand to hand, create new classification for ranged weapons, you will need
+     *  to be able to define frame types, ammo types, and then build stock weapons from those types
+     * 
+     */ 
 
     [ObjectClassPlugIn( "Weapon", "0.0.0.0" ), Serializable(), XmlInclude( typeof( WeaponPermission ) )]
     public class Weapon : ObjectClassBase, IRequiresPermission {
-
         private string _Description, _Range, _Special;
         private WeaponPermission _RequiresPermission;
         private sbyte _MvsP, _MvsA, _SIOR, _SvMod;

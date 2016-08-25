@@ -38,8 +38,7 @@ namespace NTAF.PlugInFramework {
         /// BSDS is the id prefix and 54D457A6 is the id inside the file
         /// </example>
         /// </summary>
-        [XmlAttribute( ), Category( TagCategory.ID ),
-        Description( TagDef.ID )]
+        [XmlAttribute( ), Category( TagCategory.ID ), Description( TagDef.ID )]
         public string ID {
             get { return _ID; }
             set { _ID = value; }
@@ -48,8 +47,7 @@ namespace NTAF.PlugInFramework {
         /// <summary>
         /// Gets the objects prefix identifier, see ID for more information
         /// </summary>
-        [XmlIgnore( ), Category( TagCategory.ID ),
-        Description( TagDef.IDPreFix )]
+        [XmlIgnore( ), Category( TagCategory.ID ), Description( TagDef.IDPreFix )]
         public string IDPreFix {
             get { return _ID.Substring( 0, 4 ); }
         }
@@ -62,8 +60,7 @@ namespace NTAF.PlugInFramework {
         /// <summary>
         /// Gets or sets the name of the object
         /// </summary>
-        [XmlAttribute( ), Category( TagCategory.ID ),
-        Description( TagDef.Name )]
+        [XmlAttribute( ), Category( TagCategory.ID ), Description( TagDef.Name )]
         public string Name {
             get { return _Name; }
             set {
@@ -232,6 +229,8 @@ namespace NTAF.PlugInFramework {
         /// <param name="Item">Object were looking for references for</param>
         /// <returns>True if a reference exists, False if no reference is found</returns>
         public virtual bool CheckForReferences( ObjectClassBase Item ) { return false; }
+
+        //todo: create method or property that will report on what kind of reference types are used by this object
 
         /// <summary>
         /// Gets the name of the class based on the ObjectClassPlugIn attribute

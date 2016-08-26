@@ -10,6 +10,8 @@ using NTAF.PlugInFramework;
 using System.Windows.Forms;
 using System.Drawing;
 
+#pragma warning disable 1591
+
 namespace NTAF.Core {
     public class NTData: IUpdateProgress, ILink {
 
@@ -343,7 +345,7 @@ namespace NTAF.Core {
 
         #endregion
 
-        #region constructos
+        #region constructors
         public NTData() {
             //create a new empty datafile
            _DataFiles.Add( new NTDataFile() );

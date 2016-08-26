@@ -28,8 +28,9 @@ namespace UniverseBuilderSingle {
         ImageList TreeIcons = new ImageList();
 
         public Main() {
-
             InitializeComponent();
+
+            Text = "ProtoGears Universe Builder";
 
             BuildMenu();
             
@@ -82,28 +83,13 @@ namespace UniverseBuilderSingle {
             //FileLockIndicator.Checked = DataFile.FileLocked;
         }
 
-        //todo move this to data file to manage nodes
-        //void DataFile_EventOrphansChanged( ItemChangedArgs args ) {
-        //    if ( args.Action == ArgAction.Add ) {
-        //        Orphans.Nodes.Insert( args.Index, new OrphanNode( ( ObjectClassBase )args.Item ) );
-        //    }
-
-        //    if ( args.Action == ArgAction.Remove ) {
-        //        foreach ( OrphanNode OrpNode in Orphans.Nodes )
-        //            if ( OrpNode.ObjectClass == args.Item ) {
-        //                OrpNode.Remove();
-        //                break;
-        //            }
-        //    }
-        //}
-
         void bgw_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e ) {
             UpdateProgressLabel1.Text = "Ready...";
             UpdateProgressBar1.Value = 0;
 
 
             //todo create orphan tree menu
-            DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip );
+            DataFile.getTreeNodes( DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip );
             //DataView.Nodes.Add( Orphans );
 
             UpdateProgressBar1.Visible = false;
@@ -152,15 +138,15 @@ namespace UniverseBuilderSingle {
 
         }
 
-        private String Title {
-            get { return this.Text; }
-            set {
-                if ( value == "" | value == null )
-                    this.Text = "New Terra Universe Builder - New Data File";
-                else
-                    this.Text = "New Terra Universe Builder - " + value;
-            }
-        }
+        //private String Title {
+        //    get { return this.Text; }
+        //    set {
+        //        if ( value == "" | value == null )
+        //            this.Text = "New Terra Universe Builder - New Data File";
+        //        else
+        //            this.Text = "New Terra Universe Builder - " + value;
+        //    }
+        //}
 
         private void DataView_AfterSelect(object sender, TreeViewEventArgs e) {
             //clear last selection of nodes
@@ -327,6 +313,10 @@ namespace UniverseBuilderSingle {
         const Keys NewObjectKey = Keys.Control | Keys.Shift | Keys.N;
         const Keys ClearObjectKey = Keys.Control | Keys.Shift | Keys.D;
 
+        ContextMenuStrip FileNodeMenuStrip;
+        ToolStripMenuItem closeFileMenuItem;
+        ToolStripMenuItem saveFileMenuItem;
+        ToolStripMenuItem reloadFileMenuItem;
 
         ContextMenuStrip OCMenuStrip;
         ToolStripMenuItem previewObjectToolStripMenuItem;
@@ -407,6 +397,22 @@ namespace UniverseBuilderSingle {
             //todo create click event
             //OrphanPurgeMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
 
+            closeFileMenuItem = new ToolStripMenuItem(
+                "Close File",
+                null,
+                null,
+                "closeFileMenuItem");
+            saveFileMenuItem = new ToolStripMenuItem(
+                "Save File",
+                null,
+                null,
+                "saveFileMenuItem");
+            reloadFileMenuItem = new ToolStripMenuItem(
+                "Reload File",
+                null,
+                null,
+                "reloadFileMenuItem");
+
             OCMenuStrip = new ContextMenuStrip();
             OCMenuStrip.Items.AddRange(new ToolStripItem[]{
                 previewObjectToolStripMenuItem,
@@ -425,6 +431,7 @@ namespace UniverseBuilderSingle {
             OrphanRootMenuStrip.Items.AddRange(new ToolStripItem[] {
                 OrphanPurgeMenuItem
             });
+            OrphanRootMenuStrip.Name = "OrphanRootMenuStrip";
 
             //todo add orphan menu here
             OrphanMenuStrip = new ContextMenuStrip();
@@ -432,6 +439,14 @@ namespace UniverseBuilderSingle {
                 moveOprphanToCollectorMenuItem,
                 findOrphanReferencesMenuItem });
             OrphanMenuStrip.Name = "OrphanMenuStrip";
+
+            FileNodeMenuStrip = new ContextMenuStrip();
+            FileNodeMenuStrip.Items.AddRange(new ToolStripItem[] {
+                closeFileMenuItem,
+                saveFileMenuItem,
+                reloadFileMenuItem
+            });
+            FileNodeMenuStrip.Name = "FileNodeMenuStrip";
         }
 
             #region MenuClick Events
@@ -553,7 +568,7 @@ namespace UniverseBuilderSingle {
                 private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
                     try {
                         DataFile.Save();
-                        Title = DataFile.FileName;
+                        //Title = DataFile.FileName;
                     }
                     catch (Exception ex) {
                         //todo need exception msg box
@@ -564,7 +579,7 @@ namespace UniverseBuilderSingle {
                 private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
                     try {
                         DataFile.SaveAs();
-                        Title = DataFile.FileName;
+                        //Title = DataFile.FileName;
 
                     }
                     catch (Exception ex) {
@@ -596,11 +611,11 @@ namespace UniverseBuilderSingle {
                             DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
 
                             //load the nodes
-                            DataFile.getTreeNodes(DataView.Nodes, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                            DataFile.getTreeNodes(DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
                             //todo orphans are being moved to data file management
                             //DataView.Nodes.Add(Orphans);
                             //change the file title
-                            Title = DataFile.FileName;
+                            //Title = DataFile.FileName;
                         }
                     }
                     catch (Exception ex) {
@@ -632,7 +647,7 @@ namespace UniverseBuilderSingle {
                                 //DataFile.Load();
                                 bgw.RunWorkerAsync();
 
-                                Title = DataFile.FileName;
+                                //Title = DataFile.FileName;
                                 //DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip );
                             }
                         }

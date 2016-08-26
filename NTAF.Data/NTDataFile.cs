@@ -28,6 +28,7 @@ namespace NTAF.Core {
         #region fields
 
         ContextMenuStrip 
+            i_FileMenu,
             i_RootMenu,
             i_NodeMenu,
             i_OrphanRootMenu,
@@ -1570,13 +1571,15 @@ namespace NTAF.Core {
         /// <param name="NodeMenu">Menu for Object note</param>
         /// <param name="OrphanRootMenu">"Menu for the root of the orphaned objects"</param>
         /// <param name="OrphanMenu">Menu for Orphaned nodes</param>
-        public void getTreeNodes(TreeNodeCollection treeObject, ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu, ContextMenuStrip OrphanRootMenu, ContextMenuStrip OrphanMenu) {
+        public void getTreeNodes(TreeNodeCollection treeObject, ContextMenuStrip FileMenu, ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu, ContextMenuStrip OrphanRootMenu, ContextMenuStrip OrphanMenu) {
+            i_FileMenu = FileMenu;
             i_RootMenu = RootMenu;
             i_NodeMenu = NodeMenu;
             i_OrphanRootMenu= OrphanRootMenu;
             i_OrphansMenu = OrphanMenu;
 
             DataNode rootNode = new DataNode(this.FileName);
+            rootNode.ContextMenuStrip = i_FileMenu;
 
             //treeObject.Add(new TreeNode(this.FileName));
 

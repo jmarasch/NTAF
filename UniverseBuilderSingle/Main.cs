@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 using System.Windows.Forms;
 using NTAF.Core;
 using NTAF.PlugInFramework;
@@ -8,12 +9,29 @@ using NTAF.PlugInFramework.OrphanControls;
 using NTAF.PrintEngine;
 using System.Collections.Generic;
 using PE = NTAF.PlugInFramework.PluginEngine;
+using System.Linq;
+
+//
+/*
+todo: save functions for multi lodaed files
+todo: display file nodes different when data has changed
+todo: copy and paste from one file to another
+todo:
+todo:
+todo:
+todo:
+todo:
+todo:
+todo:
+todo:
+todo:
+*/
 
 namespace UniverseBuilderSingle {
 
     public partial class Main : Form {
-        NTDataFile
-            DataFile = new NTDataFile();
+        //NTDataFile
+        //    DataFile = new NTDataFile();
 
         List<NTDataFile>
             DataFiles = new List<NTDataFile>(),
@@ -32,6 +50,28 @@ namespace UniverseBuilderSingle {
             _PrintEngine = null;
 
         ImageList TreeIcons = new ImageList();
+
+        private NTDataFile DataFile {
+        get {
+            try {
+                TreeNode selectedNode = DataView.SelectedNode;
+
+                do {
+                    selectedNode = selectedNode.Parent;
+                } while (selectedNode.Parent != null);
+
+                string datafileName = selectedNode.Text;
+
+                NTDataFile retVal = DataFiles.First(df => df.FileName == datafileName);
+
+                return retVal;
+
+                } catch (Exception ex) {
+                    return null;
+                }
+            }
+            
+        }
 
         public Main() {
             InitializeComponent();
@@ -75,7 +115,7 @@ namespace UniverseBuilderSingle {
 
             //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>( DataFile_EventOrphansChanged );
 
-            DataFile.LockStatusChange += new NTEventHandler( DataFile_LockStatusChange );
+            //DataFile.LockStatusChange += new NTEventHandler( DataFile_LockStatusChange );
             //DataFile = new NTDataFile(
         }
 
@@ -100,6 +140,7 @@ namespace UniverseBuilderSingle {
 
             foreach (NTDataFile dataFile in LoadCache) {
                 dataFile.getTreeNodes(DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                DataFiles.Add(dataFile);
             }
             LoadCache.Clear();
             UpdateProgressBar1.Visible = false;
@@ -205,6 +246,7 @@ namespace UniverseBuilderSingle {
         }
 
         private bool CheckForSave() {
+            if (DataFile == null) return true;
             if ( DataFile.DataChanged ) {
                 switch ( MessageBox.Show( String.Format( "{0} has changed since it was opened would you like to save it now?", DataFile.FileName ), "Save file?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1 ) ) {
                     case DialogResult.Yes:
@@ -612,19 +654,20 @@ namespace UniverseBuilderSingle {
                             //todo orphan nodes are being moved to the data file, this wont be needed
                             //Orphans.Nodes.Clear();
                             //create a new reference
-                            DataFile = new NTDataFile();
+                            
+                            //DataFile = new NTDataFile();
 
-                            DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
-                            DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
-                            DataFile.Updated += new NTEventHandler(DataFile_Updated);
+                            //DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
+                            //DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
+                            //DataFile.Updated += new NTEventHandler(DataFile_Updated);
 
                             //todo move to data file management
                             //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>(DataFile_EventOrphansChanged);
 
-                            DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
+                            //DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
 
                             //load the nodes
-                            DataFile.getTreeNodes(DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                            //DataFile.getTreeNodes(DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
                             //todo orphans are being moved to data file management
                             //DataView.Nodes.Add(Orphans);
                             //change the file title

@@ -15,6 +15,12 @@ namespace UniverseBuilderSingle {
         NTDataFile
             DataFile = new NTDataFile();
 
+        List<NTDataFile>
+            DataFiles = new List<NTDataFile>(),
+            LoadCache = new List<NTDataFile>();
+
+        //TreeNode rootNode = new TreeNode("OpenDataFiles");
+
         BackgroundWorker
             bgw = new BackgroundWorker();
 
@@ -33,6 +39,9 @@ namespace UniverseBuilderSingle {
             Text = "ProtoGears Universe Builder";
 
             BuildMenu();
+
+
+            //DataView.Nodes.Add(rootNode);
             
             //TreeIcons.Images.Add("databaseLocked", Properties.Resources.database_Locked);
             //TreeIcons.Images.Add("databaseUnLocked", Properties.Resources.database_UnLocked);
@@ -88,10 +97,11 @@ namespace UniverseBuilderSingle {
             UpdateProgressBar1.Value = 0;
 
 
-            //todo create orphan tree menu
-            DataFile.getTreeNodes( DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip );
-            //DataView.Nodes.Add( Orphans );
 
+            foreach (NTDataFile dataFile in LoadCache) {
+                dataFile.getTreeNodes(DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+            }
+            LoadCache.Clear();
             UpdateProgressBar1.Visible = false;
 
         }
@@ -108,21 +118,24 @@ namespace UniverseBuilderSingle {
 
         void bgw_DoWork( object sender, DoWorkEventArgs e ) {
   
-            DateTime fileloadStart = DateTime.Now;
 
             //DataFile.Load(); //00:00:20.8476186 to open and link 200ish items
             //DataFile.LinkData();
 
             //DataFile.Load2(); //00:00:08.1744501 to open and link 200ish items
             //DataFile.LinkData();
-            
-            //todo:: the only way its going to get faster is if linking is done on demand when an object is used
-            DataFile.Load3(); //00:00:08.2179888 to open and link 200ish items
-            DateTime fileloadFinish = DateTime.Now;
-            Console.WriteLine(String.Format("Load Method 1:{0}", (fileloadFinish - fileloadStart)));
-             //data could be linked on demand for example when you edit an object is find references to that object and links at that time.
 
-        }
+            //todo:: the only way its going to get faster is if linking is done on demand when an object is used
+            foreach (NTDataFile dataFile in LoadCache) {
+                    DateTime fileloadStart = DateTime.Now;
+                    dataFile.Load3();
+                    DateTime fileloadFinish = DateTime.Now;
+                    Console.WriteLine(String.Format("Load Method 1:{0}", (fileloadFinish - fileloadStart)));
+                }
+            //DataFile.Load3(); //00:00:08.2179888 to open and link 200ish items
+            //data could be linked on demand for example when you edit an object is find references to that object and links at that time.
+
+            }
 
         void DataFile_Updating( UpdaterEventArgs args ) {
             //UpdateProgressBar.Value = 0;
@@ -626,31 +639,51 @@ namespace UniverseBuilderSingle {
 
                 private void openToolStripMenuItem_Click(object sender, EventArgs e) {
                     try {
-                        if (CheckForSave()) {
+                        if (CheckForSave()){
                             OpenFileDialog OFD = new OpenFileDialog();
                             OFD.Filter = "NewTerra Data Files (*.ntx)|*.ntx";
                             OFD.SupportMultiDottedExtensions = true;
                             OFD.Multiselect = false;
-                            if (OFD.ShowDialog() == DialogResult.OK) {
+                            if (OFD.ShowDialog() == DialogResult.OK){
+                                //DataView.Nodes.Clear();
+                                NTDataFile fileToLoad = new NTDataFile(OFD.FileName);
 
-                                //todo this is moving to the data file shouldn't be needed
-                                //Orphans.Nodes.Clear();
-                                DataView.Nodes.Clear();
-                                DataFile = new NTDataFile(OFD.FileName);
+                                fileToLoad.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
+                                fileToLoad.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
+                                fileToLoad.Updated += new NTEventHandler(DataFile_Updated);
+                                fileToLoad.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
 
-                                DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
-                                DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
-                                DataFile.Updated += new NTEventHandler(DataFile_Updated);
-                                //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>(DataFile_EventOrphansChanged);
-                                DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
+                                LoadCache.Add(fileToLoad);
 
-                                //DataFile.Load();
                                 bgw.RunWorkerAsync();
-
-                                //Title = DataFile.FileName;
-                                //DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip );
                             }
                         }
+
+                        //if (CheckForSave()) {
+                        //            OpenFileDialog OFD = new OpenFileDialog();
+                        //            OFD.Filter = "NewTerra Data Files (*.ntx)|*.ntx";
+                        //            OFD.SupportMultiDottedExtensions = true;
+                        //            OFD.Multiselect = false;
+                        //            if (OFD.ShowDialog() == DialogResult.OK) {
+
+                        //                //todo this is moving to the data file shouldn't be needed
+                        //                //Orphans.Nodes.Clear();
+                        //                DataView.Nodes.Clear();
+                        //                DataFile = new NTDataFile(OFD.FileName);
+
+                        //                DataFile.Updating += new NTEventHandler<UpdaterEventArgs>(DataFile_Updating);
+                        //                DataFile.Update += new NTEventHandler<UpdateProgressEventArgs>(DataFile_Update);
+                        //                DataFile.Updated += new NTEventHandler(DataFile_Updated);
+                        //                //DataFile.EventOrphansChanged += new NTEventHandler<ItemChangedArgs>(DataFile_EventOrphansChanged);
+                        //                DataFile.LockStatusChange += new NTEventHandler(DataFile_LockStatusChange);
+
+                        //                //DataFile.Load();
+                        //                bgw.RunWorkerAsync();
+
+                        //                //Title = DataFile.FileName;
+                        //                //DataFile.getTreeNodes( DataView.Nodes, OCCMenuStrip, OCMenuStrip );
+                        //            }
+                        //        }
                     }
                     catch (Exception ex) {
                         //todo need exception message box

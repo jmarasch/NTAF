@@ -1586,7 +1586,7 @@ namespace NTAF.Core {
             //todo add file name as a root object
             getTreeNodes(rootNode);
             //getTreeNodes(treeObject);
-            treeObject.Clear();
+            //treeObject.Clear();
             treeObject.Add(rootNode);
         }
 

@@ -282,7 +282,7 @@ namespace UniverseBuilderSingle {
             this.newToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
             this.newToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem1.Text = "&New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -292,14 +292,14 @@ namespace UniverseBuilderSingle {
             this.openToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
             this.openToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem1.Text = "&Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
             // 
             // saveToolStripMenuItem1
             // 
@@ -307,14 +307,14 @@ namespace UniverseBuilderSingle {
             this.saveToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
             this.saveToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem1.Text = "&Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem1
             // 
             this.saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
-            this.saveAsToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem1.Text = "Save &As";
             this.saveAsToolStripMenuItem1.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -324,27 +324,27 @@ namespace UniverseBuilderSingle {
             this.tXTFileToolStripMenuItem1,
             this.cSVFileToolStripMenuItem});
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.exportToolStripMenuItem1.Text = "Export";
             // 
             // tXTFileToolStripMenuItem1
             // 
             this.tXTFileToolStripMenuItem1.Name = "tXTFileToolStripMenuItem1";
-            this.tXTFileToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
+            this.tXTFileToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.tXTFileToolStripMenuItem1.Text = "TXT File";
             this.tXTFileToolStripMenuItem1.Click += new System.EventHandler(this.ExportTXTFile);
             // 
             // cSVFileToolStripMenuItem
             // 
             this.cSVFileToolStripMenuItem.Name = "cSVFileToolStripMenuItem";
-            this.cSVFileToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.cSVFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cSVFileToolStripMenuItem.Text = "CSV File";
             this.cSVFileToolStripMenuItem.Click += new System.EventHandler(this.ExportCSVFile);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
             // 
             // printToolStripMenuItem1
             // 
@@ -352,7 +352,7 @@ namespace UniverseBuilderSingle {
             this.printToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printToolStripMenuItem1.Name = "printToolStripMenuItem1";
             this.printToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.printToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.printToolStripMenuItem1.Text = "&Print";
             this.printToolStripMenuItem1.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
@@ -361,33 +361,33 @@ namespace UniverseBuilderSingle {
             this.printPreviewToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem1.Image")));
             this.printPreviewToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPreviewToolStripMenuItem1.Name = "printPreviewToolStripMenuItem1";
-            this.printPreviewToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.printPreviewToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.printPreviewToolStripMenuItem1.Text = "Print Pre&view";
             this.printPreviewToolStripMenuItem1.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
             // 
             // pageSettingsToolStripMenuItem
             // 
             this.pageSettingsToolStripMenuItem.Name = "pageSettingsToolStripMenuItem";
-            this.pageSettingsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.pageSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pageSettingsToolStripMenuItem.Text = "PageSettings";
             this.pageSettingsToolStripMenuItem.Click += new System.EventHandler(this.PageSettingsMenuItem_Click);
             // 
             // printSettingsToolStripMenuItem
             // 
             this.printSettingsToolStripMenuItem.Name = "printSettingsToolStripMenuItem";
-            this.printSettingsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.printSettingsToolStripMenuItem.Text = "PrintSettings";
             this.printSettingsToolStripMenuItem.Click += new System.EventHandler(this.PrintSettingsMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem1.Text = "E&xit";
             // 
             // editToolStripMenuItem1
@@ -407,28 +407,28 @@ namespace UniverseBuilderSingle {
             // undoToolStripMenuItem1
             // 
             this.undoToolStripMenuItem1.Name = "undoToolStripMenuItem1";
-            this.undoToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.undoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.undoToolStripMenuItem1.Text = "&Undo";
             this.undoToolStripMenuItem1.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // redoToolStripMenuItem1
             // 
             this.redoToolStripMenuItem1.Name = "redoToolStripMenuItem1";
-            this.redoToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.redoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.redoToolStripMenuItem1.Text = "&Redo";
             this.redoToolStripMenuItem1.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(100, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(149, 6);
             // 
             // cutToolStripMenuItem1
             // 
             this.cutToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem1.Image")));
             this.cutToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem1.Name = "cutToolStripMenuItem1";
-            this.cutToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.cutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.cutToolStripMenuItem1.Text = "Cu&t";
             this.cutToolStripMenuItem1.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
@@ -437,7 +437,7 @@ namespace UniverseBuilderSingle {
             this.copyToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem1.Image")));
             this.copyToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
-            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.copyToolStripMenuItem1.Text = "&Copy";
             this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyObjectToolStripMenuItem_Click);
             // 
@@ -446,14 +446,14 @@ namespace UniverseBuilderSingle {
             this.pasteToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem1.Image")));
             this.pasteToolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem1.Name = "pasteToolStripMenuItem1";
-            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.pasteToolStripMenuItem1.Text = "&Paste";
             this.pasteToolStripMenuItem1.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(100, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(149, 6);
             // 
             // toolsToolStripMenuItem1
             // 
@@ -469,21 +469,21 @@ namespace UniverseBuilderSingle {
             // customizeToolStripMenuItem1
             // 
             this.customizeToolStripMenuItem1.Name = "customizeToolStripMenuItem1";
-            this.customizeToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.customizeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.customizeToolStripMenuItem1.Text = "&Customize";
             this.customizeToolStripMenuItem1.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem1
             // 
             this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
-            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.optionsToolStripMenuItem1.Text = "&Options";
             this.optionsToolStripMenuItem1.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // purgeFileToolStripMenuItem1
             // 
             this.purgeFileToolStripMenuItem1.Name = "purgeFileToolStripMenuItem1";
-            this.purgeFileToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.purgeFileToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.purgeFileToolStripMenuItem1.Text = "Purge File...";
             this.purgeFileToolStripMenuItem1.Click += new System.EventHandler(this.purgeFileToolStripMenuItem_Click);
             // 
@@ -493,7 +493,7 @@ namespace UniverseBuilderSingle {
             this.editLockToolStripMenuItem,
             this.setChabgePasswordToolStripMenuItem});
             this.securityToolStripMenuItem1.Name = "securityToolStripMenuItem1";
-            this.securityToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.securityToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.securityToolStripMenuItem1.Text = "Security";
             // 
             // editLockToolStripMenuItem

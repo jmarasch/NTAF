@@ -77,7 +77,9 @@
             </Grid.ColumnDefinitions>
             <TreeView x:Name="DataView" Grid.Column="0"/>
             <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="5" Background="#FFBCBCBC"/>
+            
             <Custom:PropertyGrid x:Name="PropertyViewer" Grid.Column="2"/>
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2"/>
         </Grid>
     </Grid>
 </RibbonWindow>

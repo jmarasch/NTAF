@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using NTAF.Core;
 using System.Drawing;
+using System.Windows.Controls;
+using wpfc = System.Windows.Controls;
 
 namespace NTAF.PlugInFramework {
     /// <summary>
@@ -15,15 +17,24 @@ namespace NTAF.PlugInFramework {
     /// </summary>
     public class OCTreeNodeBase {
 
-        ContextMenuStrip
+        Object
             i_RootMenu,
-            i_NodeMenu;
+            i_NodeMenu,
+            i_Branch;
+
+
+        //ContextMenuStrip
+        //    i_RootMenu,
+        //    i_NodeMenu;
 
         List<OCCBase>
             i_ObjectCollector = new List<OCCBase>();
 
-        TreeNode
-            i_Branch = new OCCNode();
+        
+
+
+        //TreeNode
+        //    i_Branch = new OCCNode();
 
         #region events
 
@@ -49,11 +60,9 @@ namespace NTAF.PlugInFramework {
         /// </summary>
         /// <param name="RootMenu"></param>
         /// <param name="NodeMenu"></param>
-        public void SetMenus( ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu) {//,ContextMenuStrip OrphanRootMenu, ContextMenuStrip OrphanMenu ) {
+        public void SetMenus( object RootMenu, object NodeMenu) {
             i_RootMenu = RootMenu;
             i_NodeMenu = NodeMenu;
-            //i_OrphanedRootMenu = OrphanRootMenu;
-            //i_OrphanMenu = OrphanMenu;
         }
 
         /// <summary>
@@ -61,79 +70,44 @@ namespace NTAF.PlugInFramework {
         /// </summary>
         /// <returns>A root node for the NTTreeView control</returns>
         /// <exception cref="Exception">Thrown when the ObjectClassCollector has not been set</exception>
-        public TreeNode MainBranch() {
+        public Object MainBranch(ObjectStyle style) {
+            switch (style) {
+                case ObjectStyle.WPF:
+                    i_Branch = new TreeViewItem();
 
-            if ( i_ObjectCollector.Count <= 0 )
-                throw new Exception( "ObjectCalssCollector(s) has(have) not been set" );
-            //todo add a check to verify if it has multiple occs to verrify their internal counts and grow as neccisarry
+                    if (i_ObjectCollector.Count <= 0)
+                        throw new Exception("ObjectCalssCollector(s) has(have) not been set");
+                    //todo add a check to verify if it has multiple occs to verrify their internal counts and grow as neccisarry
 
-            if ( i_Branch.Nodes.Count <= 0 )
-                GrowBranch();
+                    if (((TreeViewItem)i_Branch).Items.Count <= 0)
+                        GrowBranch();
 
-            //checks to see if it has sub nodes if its not a collection of subnodes it will add the collectors opperation menus
-            if ( i_ObjectCollector.Count == 1 && i_RootMenu != null )
-                i_Branch.ContextMenuStrip = i_RootMenu;
-            else
-                i_Branch.ContextMenuStrip = null;
+                    //checks to see if it has sub nodes if its not a collection of subnodes it will add the collectors opperation menus
+                    if (i_ObjectCollector.Count == 1 && i_RootMenu != null)
+                        ((TreeViewItem)i_Branch).ContextMenu = (wpfc.ContextMenu)i_RootMenu;
+                    else
+                        ((TreeViewItem)i_Branch).ContextMenu = null;
+                    break;
+                case ObjectStyle.Forms:
+                    i_Branch = new TreeNode();
 
+                    if (i_ObjectCollector.Count <= 0)
+                        throw new Exception("ObjectCalssCollector(s) has(have) not been set");
+                    //todo add a check to verify if it has multiple occs to verrify their internal counts and grow as neccisarry
+
+                    if (((TreeNode)i_Branch).Nodes.Count <= 0)
+                        GrowBranch();
+
+                    //checks to see if it has sub nodes if its not a collection of subnodes it will add the collectors opperation menus
+                    if (i_ObjectCollector.Count == 1 && i_RootMenu != null)
+                        ((TreeNode)i_Branch).ContextMenuStrip = (ContextMenuStrip)i_RootMenu;
+                    else
+                        ((TreeNode)i_Branch).ContextMenuStrip = null;
+
+                    break;
+                }
             return i_Branch;
         }
-
-        ///// <summary>
-        ///// Gets all the leaves for this treenode branch object
-        ///// </summary>
-        //public NTTreeNode[] Leaves {
-        //    get {
-        //        if ( i_Branch.Nodes.Count <= 0 || !VerrifyLeaves( i_Branch.Nodes ) )
-        //            GrowBranch();
-
-        //        List<NTTreeNode>
-        //            retVal = new List<NTTreeNode>();
-
-        //        foreach ( TreeNode tn in i_Branch.Nodes ) {
-        //            retVal.Add( TreeNodeUpsacler( tn ) );
-        //        }
-
-        //        return retVal.ToArray();
-        //    }
-        //}
-
-        ///// <summary>
-        ///// verrifies all leaves in the branch
-        ///// </summary>
-        ///// <param name="treeNodeCollection">Collection to check</param>
-        ///// <returns>false if a descrepency is found</returns>
-        //private bool VerrifyLeaves( TreeNodeCollection treeNodeCollection ) {
-        //    Boolean
-        //        retVal = true;
-
-        //    if ( i_Branch.Nodes.Count >= 0 ) {
-        //        if ( retVal )
-        //            retVal = i_Branch.Nodes.Count == i_ObjectCollector.Count;
-        //        if ( retVal ) {
-        //            List<Object>
-        //                objs = new List<object>( i_ObjectCollector.Objects );
-
-        //            foreach ( TreeNode tn in i_Branch.Nodes ) {
-        //                if ( tn is NTTreeNode && retVal )
-        //                    retVal = objs.Contains( ( ( NTTreeNode )tn ).NodeValue );
-        //            }
-        //        }
-        //    }
-        //    return retVal;
-        //}
-
-        ///// <summary>
-        ///// transmutes a standard tree node to a NTTreeNode minus the containing object
-        ///// </summary>
-        ///// <param name="TN">Treenode to upscale</param>
-        ///// <returns>Upscaled NTTreeNode</returns>
-        //private NTTreeNode TreeNodeUpsacler( TreeNode TN ) {
-        //    if ( TN is NTTreeNode )
-        //        return ( NTTreeNode )TN;
-        //    else
-        //        return new NTTreeNode( TN.Text );
-        //}
 
         /// <summary>
         /// Attaches a collector to this object so it can create the branch and leaves
@@ -162,16 +136,27 @@ namespace NTAF.PlugInFramework {
         /// <summary>
         /// Internally creates a main "branch" of sub nodes "Leafs" or sub collectors to return to the tree
         /// </summary>
-        public virtual void GrowBranch() {
+        public virtual void GrowBranch(ObjectStyle style) {
             //clean out anything that the main branch may have in it 
-            i_Branch.Nodes.Clear();
+            switch (style) {
+                case ObjectStyle.WPF:
+                    ((TreeViewItem)i_Branch).Items.Clear();
+                    break;
+                case ObjectStyle.Forms:
+                    ((TreeNode)i_Branch).Nodes.Clear();
+                    break;
+                }
 
             //todo if this is null try to find a suitable collector if at all possible ill have to check code to find out
-
-
             if ( i_ObjectCollector.Count == 0 ) {
-                i_Branch = new TreeNode( "Collector Error: no collector has been assigned to node" );
-                //throw new NullReferenceException( "An object collector has not been assigned to the branch" );
+                switch (style) {
+                    case ObjectStyle.WPF:
+                        i_Branch = new TreeViewItem { Header = "Collector Error: no collector has been assigned to node" };
+                        break;
+                    case ObjectStyle.Forms:
+                        i_Branch = new TreeNode("Collector Error: no collector has been assigned to node");
+                        break;
+                    }
                 return;
             }
 
@@ -182,7 +167,6 @@ namespace NTAF.PlugInFramework {
                 currentCount = i_ObjectCollector.Count;
             //if the count is more than 1 creates a sub tree structure
             if ( i_ObjectCollector.Count >= 2 ) {
-                i_Branch = new TreeNode();
                 foreach ( OCCBase occ in i_ObjectCollector ) {
                     OCCNode
                         SubRoot = new OCCNode(  );
@@ -359,30 +343,6 @@ namespace NTAF.PlugInFramework {
             }
         }
 
-        ///// <summary>
-        ///// checks a type to see if it matches the set type
-        ///// </summary>
-        ///// <param name="T">Type to check</param>
-        ///// <returns>true if the types match</returns>
-        //public bool IsOfType( Type T ) {
-        //    return T == CollectionType;
-        //}
-
-        ///// <summary>
-        ///// checks a type to see if it matches the set type
-        ///// </summary>
-        ///// <param name="O">Type to check</param>
-        ///// <returns>true if the types match</returns>
-        //public bool IsOfType( Object O ) {
-        //    return typeof( Object ) == CollectionType;
-        //}
-
-        ///// <summary>
-        ///// Requires override for the class to work properly
-        ///// Returns the collection type that this branch displays
-        ///// </summary>
-        //public virtual Type CollectionType { get { return typeof( Object ); } }
-
         public bool CanDisplay( Type thisType ) {
             Object[]
                 atts = this.GetType().GetCustomAttributes( typeof( TreeNodePlugIn ), true );
@@ -411,5 +371,9 @@ namespace NTAF.PlugInFramework {
         public Color ColorFontLeaf { get; set; }
         public Color ColorBackgroundBranch { get; set; }
         public Color ColorBackgroundLeaf { get; set; }
+    }
+    public enum ObjectStyle {
+        WPF,
+        Forms
     }
 }

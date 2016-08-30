@@ -74,27 +74,28 @@ namespace ProtoGears_World_Builder {
             bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
             bgw.WorkerReportsProgress = true;
             bgw.WorkerSupportsCancellation = true;
-            
-            //TreeViewItem
-            //    root = new TreeViewItem { Header="Root" },
-            //    child1 = new TreeViewItem{ Header = "Child1" },
-            //    child2 = new TreeViewItem { Header = "Child2" },
-            //    child3 = new TreeViewItem { Header = "Child3" },
-            //    child4 = new TreeViewItem { Header = "Child4" };
 
-            //root.Items.Add(child1);
-            //root.Items.Add(child2);
-            //root.Items.Add(child3);
-            //root.Items.Add(child4);
+            TreeViewItem
+                root = new TreeViewItem { Header = "Root" };
+            TreeNode
+                child1 = new TreeNode { Text = "Child1" },
+                child2 = new TreeNode { Text = "Child2" },
+                child3 = new TreeNode { Text = "Child3" },
+                child4 = new TreeNode { Text = "Child4" };
 
-            //DataView.Items.Add(root);
-        }
+            root.Items.Add(child1);
+            root.Items.Add(child2);
+            child2.Nodes.Add(child3);
+            root.Items.Add(child4);
+
+            DataView.Items.Add(root);
+            }
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             //UpdateProgressLabel1.Text = "Ready...";
             //UpdateProgressBar1.Value = 0;
 
             foreach (NTDataFile dataFile in LoadCache) {
-                //dataFile.getTreeNodes(DataView.Nodes, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                dataFile.getTreeNodes(DataView.Items, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
                 DataFiles.Add(dataFile);
             }
             LoadCache.Clear();
@@ -139,6 +140,8 @@ namespace ProtoGears_World_Builder {
         }
 
         private void DataView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+
+            var a = DataView.SelectedItem;
             //lblDescription.Content = ((TreeViewItem)DataView.SelectedItem).Header.ToString();
         }
 

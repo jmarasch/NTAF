@@ -107,16 +107,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPG\Main\WpfPropertyGrid.Themes\WpfPropertyGrid.Themes.csproj">
-      <Project>{dd5c7e14-01cc-44fc-81bc-5c6cf6bb2ad9}</Project>
-      <Name>WpfPropertyGrid.Themes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WPG\Main\WpfPropertyGrid\WpfPropertyGrid.csproj">
-      <Project>{5a48b67f-1e7e-4ed6-a201-f6cc8e7e6788}</Project>
-      <Name>WpfPropertyGrid</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\1353183085_save.png" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\copy.png" />

@@ -218,7 +218,7 @@ namespace UniverseBuilderSingle {
             comboBox1.Items.Clear();
             Type t = DataView.SelectedNode.GetType();
             if (!(DataView.SelectedNode is OCCNode) & !(DataView.SelectedNode is OCNode) &
-                 !(DataView.SelectedNode is Orphan) & !(DataView.SelectedNode is DataNode)) {
+                 !(DataView.SelectedNode is Orphan) & !(DataView.SelectedNode is NTDataNode)) {
                 //basic node that should contain nodes of OCCNodes
                 foreach (OCCNode occn in DataView.SelectedNode.Nodes) {
                     foreach (OCNode ocn in occn.Nodes) {
@@ -235,7 +235,7 @@ namespace UniverseBuilderSingle {
                 comboBox1.Items.Add(((OCNode)DataView.SelectedNode).ObjectClass);
             }
 
-            if(DataView.SelectedNode is DataNode) {
+            if(DataView.SelectedNode is NTDataNode) {
                 if (DataFile.FileLocked) {
                     editLockToolStripMenuItem.Text = "UnLock File";
                 }else {

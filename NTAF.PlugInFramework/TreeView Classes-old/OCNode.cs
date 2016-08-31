@@ -5,22 +5,13 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace NTAF.PlugInFramework {
-    /// <summary>
-    /// Object Class Node
-    /// </summary>
-    public class OCNode : NTTreeNode {
+    public class OCNode : TreeNode {
         ObjectClassBase i_ObjectClass = null;
 
-        /// <summary>
-        /// todo
-        /// </summary>
         public OCNode() {
-            //this.MyIcon = Properties.Settings.Default.ImageOCNode;
+            this.ImageKey = Properties.Settings.Default.ImageOCNode;
         }
 
-        /// <summary>
-        /// todo
-        /// </summary>
         public ObjectClassBase ObjectClass {
             get { return i_ObjectClass; }
             set {
@@ -34,12 +25,8 @@ namespace NTAF.PlugInFramework {
             }
         }
 
-        /// <summary>
-        /// todo
-        /// </summary>
-        /// <param name="args"></param>
         void i_ObjectClass_EventNameChanged( NTAF.Core.NameChangeArgs args ) {
-            Text = i_ObjectClass.Name;
+            this.Text = i_ObjectClass.Name;
         }
     }
 }

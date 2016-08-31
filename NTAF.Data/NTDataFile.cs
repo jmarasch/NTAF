@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 using Ionic.Zip;
 using NTAF.Core;
 using NTAF.PlugInFramework;
-using System.Windows.Forms;
+using System.Windows.Controls;
 using System.Drawing;
 using System.Linq;
 using NTAF.PlugInFramework.OrphanControls;
@@ -27,7 +27,7 @@ namespace NTAF.Core {
 
         #region fields
 
-        ContextMenuStrip
+        ContextMenu
             i_FileMenu,
             i_RootMenu,
             i_NodeMenu,
@@ -1212,21 +1212,22 @@ namespace NTAF.Core {
 
         public void SaveAs() {
             try {
-                SaveFileDialog SFD = new SaveFileDialog();
-                SFD.Filter = "NewTerra Dat Files (*.ntx)|*.ntx|All files (*.*)|*.*";
-                SFD.SupportMultiDottedExtensions = true;
-                if (SFD.ShowDialog() == DialogResult.OK) {
-                    if (IDPreFix.ToUpper() == "NULL" || IDPreFix.ToUpper() == "") {
-                        String tmpPreFix = InputBox.Show("Please Enter a 4 digit alpha-numeric Identifier for this data set", "Data Pre-Fix");
-                        if (tmpPreFix != "") {
-                            foreach (ObjectClassBase ocb in AllData)
-                                ocb.ID = ocb.ID.Replace(IDPreFix, tmpPreFix);
-                            IDPreFix = tmpPreFix;
-                            }
-                        }
-                    this.FullFileName = SFD.FileName;
-                    SaveFile();
-                    }
+                //todo: wtf calling a form in a class library?!?!
+                //SaveFileDialog SFD = new SaveFileDialog();
+                //SFD.Filter = "NewTerra Dat Files (*.ntx)|*.ntx|All files (*.*)|*.*";
+                //SFD.SupportMultiDottedExtensions = true;
+                //if (SFD.ShowDialog() == DialogResult.OK) {
+                //    if (IDPreFix.ToUpper() == "NULL" || IDPreFix.ToUpper() == "") {
+                //        String tmpPreFix = InputBox.Show("Please Enter a 4 digit alpha-numeric Identifier for this data set", "Data Pre-Fix");
+                //        if (tmpPreFix != "") {
+                //            foreach (ObjectClassBase ocb in AllData)
+                //                ocb.ID = ocb.ID.Replace(IDPreFix, tmpPreFix);
+                //            IDPreFix = tmpPreFix;
+                //            }
+                //        }
+                //    this.FullFileName = SFD.FileName;
+                //    SaveFile();
+                //  }
                 } catch { throw; }
             }
 
@@ -1293,8 +1294,9 @@ namespace NTAF.Core {
 
                             } catch (Exception ExInternal) {
                             if (ExInternal.Message.Contains("already exists")) {
-                                MessageBox.Show(Path.GetFileNameWithoutExtension(file) +
-                                    " is sharing a duplicate name, please correct this error and re-save the file");
+                                //todo: again... with the dialog wtf?!?!
+                                //MessageBox.Show(Path.GetFileNameWithoutExtension(file) +
+                                //    " is sharing a duplicate name, please correct this error and re-save the file");
                                 } else
                                 throw;
                             }
@@ -1524,19 +1526,20 @@ namespace NTAF.Core {
         /// Gets tree-nodes and assigns menus to them
         /// </summary>
         /// <param name="treeObject">Tree control node collection</param>
+        /// <param name="FileMenu">Tree control node collection</param>
         /// <param name="RootMenu">Menu for Collector nodes</param>
         /// <param name="NodeMenu">Menu for Object note</param>
         /// <param name="OrphanRootMenu">"Menu for the root of the orphaned objects"</param>
         /// <param name="OrphanMenu">Menu for Orphaned nodes</param>
-        public void getTreeNodes(TreeNodeCollection treeObject, ContextMenuStrip FileMenu, ContextMenuStrip RootMenu, ContextMenuStrip NodeMenu, ContextMenuStrip OrphanRootMenu, ContextMenuStrip OrphanMenu) {
+        public void getTreeNodes(ItemCollection treeObject, ContextMenu FileMenu, ContextMenu RootMenu, ContextMenu NodeMenu, ContextMenu OrphanRootMenu, ContextMenu OrphanMenu) {
             i_FileMenu = FileMenu;
             i_RootMenu = RootMenu;
             i_NodeMenu = NodeMenu;
             i_OrphanRootMenu = OrphanRootMenu;
             i_OrphansMenu = OrphanMenu;
 
-            DataNode rootNode = new DataNode(this.FileName);
-            rootNode.ContextMenuStrip = i_FileMenu;
+            NTDataNode rootNode = new NTDataNode(this.FileName);
+            rootNode.ContextMenu = i_FileMenu;
 
             //treeObject.Add(new TreeNode(this.FileName));
 
@@ -1551,8 +1554,8 @@ namespace NTAF.Core {
         /// Gets tree-nodes without assigning menus
         /// </summary>
         /// <param name="treeObject">Tree node that all nodes will be added to</param>
-        public void getTreeNodes(TreeNode treeObject) {
-            treeObject.Nodes.Clear();
+        public void getTreeNodes(TreeViewItem treeObject) {
+            treeObject.Items.Clear();
             //treeObject.Clear();
 
             List<OCTreeNodeBase>
@@ -1572,7 +1575,7 @@ namespace NTAF.Core {
                 treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu);
 
                 //populate the node with collectors tree-nodes or object nodes
-                treeObject.Nodes.Add(treeNodePlug.MainBranch());
+                treeObject.Items.Add(treeNodePlug.MainBranch());
                 }
 
             //todo finally add orphan nodes here
@@ -1582,7 +1585,7 @@ namespace NTAF.Core {
             orphanTree.AttachOCC(orphanCollector);
             orphanTree.SetMenus(i_OrphanRootMenu, i_OrphansMenu);
 
-            treeObject.Nodes.Add(orphanTree.MainBranch());
+            treeObject.Items.Add(orphanTree.MainBranch());
 
             //todo need to add the orphan list to an update method
             //if the orphans branch has less than 1 item don't show it
@@ -1626,7 +1629,7 @@ namespace NTAF.Core {
         //}
         #endregion TreeNode Generation Methods
 
-        public void getDisplayData(ListViewGroupCollection groupCollection) { }
+        //public void getDisplayData(ListViewGroupCollection groupCollection) { }
 
         public void PurgeFile() {
 

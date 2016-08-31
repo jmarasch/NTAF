@@ -124,6 +124,32 @@
     <Resource Include="Images\save.png" />
     <Resource Include="Images\undo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTAF.Core\NTAF.Core.csproj">
+      <Project>{108f5fa9-cabb-42b3-ab25-417320a22c4a}</Project>
+      <Name>NTAF.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTAF.Data\NTAF.Data.csproj">
+      <Project>{6eeb1a69-55de-4f0d-9a2d-c727a301a060}</Project>
+      <Name>NTAF.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTAF.PlugInFramework\NTAF.PlugInFramework.csproj">
+      <Project>{c7aeb060-aa1c-4df0-82f2-65acfd614f3b}</Project>
+      <Name>NTAF.PlugInFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTAF.PrintEngine\NTAF.PrintEngine.csproj">
+      <Project>{a6b76c5c-1cc1-4029-a9ed-313290352c80}</Project>
+      <Name>NTAF.PrintEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPG-master\Main\WpfPropertyGrid.Themes\WpfPropertyGrid.Themes.csproj">
+      <Project>{dd5c7e14-01cc-44fc-81bc-5c6cf6bb2ad9}</Project>
+      <Name>WpfPropertyGrid.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPG-master\Main\WpfPropertyGrid\WpfPropertyGrid.csproj">
+      <Project>{5a48b67f-1e7e-4ed6-a201-f6cc8e7e6788}</Project>
+      <Name>WpfPropertyGrid</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

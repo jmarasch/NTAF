@@ -2,22 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
+using System.Windows.Controls;
+//using System.Windows.Forms;
 using System.Threading.Tasks;
 
 namespace NTAF.PlugInFramework {
-    public class DataNode : TreeNode {
-        public DataNode(string FileName) : base(FileName) {}
-        public DataNode(string FileName, string imageKey) {
-            base.Text = FileName;
+    /// <summary>
+    /// todo
+    /// </summary>
+    public class NTDataNode : NTTreeNode {
+        /// <summary>
+        /// todo
+        /// </summary>
+        /// <param name="FileName"></param>
+        public NTDataNode(string FileName) : base() { Name = FileName; }
+        /// <summary>
+        /// todo
+        /// </summary>
+        /// <param name="FileName"></param>
+        /// <param name="imageKey"></param>
+        public NTDataNode(string FileName, string imageKey) {
+            Text = FileName;
             
-            this.ImageKey = Properties.Settings.Default.ImageDataNodeUnlocked;
+            //MyIcon = Properties.Settings.Default.ImageDataNodeUnlocked;
 
         }
-            //this.ImageKey = Properties.Resources.database_icon;
-
-//            mFileNode.ImageKey = CacheShellIcon(mFile.FullName)
-//mFileNode.SelectedImageKey = mFileNode.ImageKey & "-open"
-        
     }
 }

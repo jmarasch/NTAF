@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Ribbon;
-using System.Windows.Forms;
 using NTAF.Core;
 using NTAF.PlugInFramework;
 using NTAF.PlugInFramework.OrphanControls;
@@ -29,15 +28,15 @@ namespace ProtoGears_World_Builder {
 
         #region Menu stuff
 
-        private const Keys PreViewObjectKey = Keys.Control | Keys.Shift | Keys.P;
-        private const Keys EditObjectKey = Keys.Control | Keys.Shift | Keys.E;
-        private const Keys DeleteObjectKey = Keys.Delete;
-        private const Keys CopyObjectKey = Keys.Control | Keys.Shift | Keys.C;
-        private const Keys NewObjectKey = Keys.Control | Keys.Shift | Keys.N;
-        private const Keys ClearObjectKey = Keys.Control | Keys.Shift | Keys.D;
+        //private const Keys PreViewObjectKey = Keys.Control | Keys.Shift | Keys.P;
+        //private const Keys EditObjectKey = Keys.Control | Keys.Shift | Keys.E;
+        //private const Keys DeleteObjectKey = Keys.Delete;
+        //private const Keys CopyObjectKey = Keys.Control | Keys.Shift | Keys.C;
+        //private const Keys NewObjectKey = Keys.Control | Keys.Shift | Keys.N;
+        //private const Keys ClearObjectKey = Keys.Control | Keys.Shift | Keys.D;
 
-        private ContextMenuStrip FileNodeMenuStrip;
-        private ToolStripMenuItem 
+        private ContextMenu FileNodeMenuStrip;
+        private MenuItem 
             closeFileMenuItem,
             saveFileMenuItem,
             reloadFileMenuItem,
@@ -47,102 +46,94 @@ namespace ProtoGears_World_Builder {
             securityToolStripMenuItem1,
             purgeFileToolStripMenuItem1;
 
-        private ContextMenuStrip OCMenuStrip;
-        private ToolStripMenuItem
+        private ContextMenu OCMenuStrip;
+        private MenuItem
             previewObjectToolStripMenuItem,
             editObjectToolStripMenuItem,
             deleteObjectToolStripMenuItem,
             copyObjectToolStripMenuItem;
 
-        private ContextMenuStrip OCCMenuStrip;
-        private ToolStripMenuItem 
+        private ContextMenu OCCMenuStrip;
+        private MenuItem
             newObjectToolStripMenuItem,
             clearObjectsToolStripMenuItem;
 
-        private ContextMenuStrip OrphanRootMenuStrip;
-        private ToolStripMenuItem OrphanPurgeMenuItem;
+        private ContextMenu OrphanRootMenuStrip;
+        private MenuItem OrphanPurgeMenuItem;
 
-        private ContextMenuStrip OrphanMenuStrip;
-        private ToolStripMenuItem 
+        private ContextMenu OrphanMenuStrip;
+        private MenuItem
             moveOprphanToCollectorMenuItem, 
             findOrphanReferencesMenuItem;
 
         private void BuildMenu() {
-            moveOprphanToCollectorMenuItem = new ToolStripMenuItem();
+            moveOprphanToCollectorMenuItem = new MenuItem();
             moveOprphanToCollectorMenuItem.Name = "moveOprphanToCollectorMenuItem";
             //moveOprphanToCollectorMenuItem.ShortcutKeys = ClearObjectKey;
-            moveOprphanToCollectorMenuItem.Text = "Recreate orphan";
+            moveOprphanToCollectorMenuItem.Header = "Recreate orphan";
             //todo create click event
             //moveOprphanToCollectorMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
 
-            findOrphanReferencesMenuItem = new ToolStripMenuItem();
+            findOrphanReferencesMenuItem = new MenuItem();
             findOrphanReferencesMenuItem.Name = "findOrphanReferencesMenuItem";
             //findOrphanReferencesMenuItem.ShortcutKeys = ClearObjectKey;
-            findOrphanReferencesMenuItem.Text = "Find Orphan References";
+            findOrphanReferencesMenuItem.Header = "Find Orphan References";
             //todo create click event
             //findOrphanReferencesMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
 
-            OrphanPurgeMenuItem = new ToolStripMenuItem();
+            OrphanPurgeMenuItem = new MenuItem();
             OrphanPurgeMenuItem.Name = "OrphanPurgeMenuItem";
             //OrphanPurgeMenuItem.ShortcutKeys = ClearObjectKey;
-            OrphanPurgeMenuItem.Text = "Purge All Orphans";
+            OrphanPurgeMenuItem.Header = "Purge All Orphans";
             //todo create click event
             //OrphanPurgeMenuItem.Click += new EventHandler(clearObjectsToolStripMenuItem_Click);
 
-            closeFileMenuItem = new ToolStripMenuItem(
-                "Close File",
-                null,
-                null,
-                "closeFileMenuItem");
-            saveFileMenuItem = new ToolStripMenuItem(
-                "Save File",
-                null,
-                null,
-                "saveFileMenuItem");
-            reloadFileMenuItem = new ToolStripMenuItem(
-                "Reload File",
-                null,
-                null,
-                "reloadFileMenuItem");
+            closeFileMenuItem = new MenuItem();
+            closeFileMenuItem.Header = "Close File";
+            closeFileMenuItem.Name = "closeFileMenuItem";
+            //closeFileMenuItem.Click +=
 
-            OCMenuStrip = new ContextMenuStrip();
-            OCMenuStrip.Items.AddRange(new ToolStripItem[]{
-                previewObjectToolStripMenuItem,
-                editObjectToolStripMenuItem,
-                copyObjectToolStripMenuItem,
-                deleteObjectToolStripMenuItem});
+            saveFileMenuItem = new MenuItem();
+            saveFileMenuItem.Header = "Save File";
+            saveFileMenuItem.Name ="saveFileMenuItem";
+            //saveFileMenuItem.Click +=
+
+            reloadFileMenuItem = new MenuItem();
+            reloadFileMenuItem.Header = "Reload File";
+            reloadFileMenuItem.Name = "reloadFileMenuItem";
+            //reloadFileMenuItem.Click +=
+
+            OCMenuStrip = new ContextMenu();
+            OCMenuStrip.Items.Add(previewObjectToolStripMenuItem);
+            OCMenuStrip.Items.Add(editObjectToolStripMenuItem);
+            OCMenuStrip.Items.Add(copyObjectToolStripMenuItem);
+            OCMenuStrip.Items.Add(deleteObjectToolStripMenuItem);
             OCMenuStrip.Name = "OCMenuStrip";
 
-            OCCMenuStrip = new ContextMenuStrip();
-            OCCMenuStrip.Items.AddRange(new ToolStripItem[]{
-                newObjectToolStripMenuItem,
-                clearObjectsToolStripMenuItem});
+            OCCMenuStrip = new ContextMenu();
+            OCCMenuStrip.Items.Add(newObjectToolStripMenuItem);
+            OCCMenuStrip.Items.Add(clearObjectsToolStripMenuItem);
             OCCMenuStrip.Name = "OCCMenuStrip";
 
-            OrphanRootMenuStrip = new ContextMenuStrip();
-            OrphanRootMenuStrip.Items.AddRange(new ToolStripItem[] {
-                OrphanPurgeMenuItem
-            });
+            OrphanRootMenuStrip = new ContextMenu();
+            OrphanRootMenuStrip.Items.Add(OrphanPurgeMenuItem);
             OrphanRootMenuStrip.Name = "OrphanRootMenuStrip";
 
             //todo add orphan menu here
-            OrphanMenuStrip = new ContextMenuStrip();
-            OrphanMenuStrip.Items.AddRange(new ToolStripItem[] {
-                moveOprphanToCollectorMenuItem,
-                findOrphanReferencesMenuItem });
+            OrphanMenuStrip = new ContextMenu();
+            OrphanMenuStrip.Items.Add(moveOprphanToCollectorMenuItem);
+            OrphanMenuStrip.Items.Add(findOrphanReferencesMenuItem );
             OrphanMenuStrip.Name = "OrphanMenuStrip";
 
-            FileNodeMenuStrip = new ContextMenuStrip();
-            FileNodeMenuStrip.Items.AddRange(new ToolStripItem[] {
-                closeFileMenuItem,
-                saveFileMenuItem,
-                reloadFileMenuItem,
-                exportToolStripMenuItem1,
-                printToolStripMenuItem1,
-                printPreviewToolStripMenuItem1,
-                securityToolStripMenuItem1,
-                purgeFileToolStripMenuItem1
-            });
+            FileNodeMenuStrip = new ContextMenu();
+            FileNodeMenuStrip.Items.Add(closeFileMenuItem);
+            FileNodeMenuStrip.Items.Add(saveFileMenuItem);
+            FileNodeMenuStrip.Items.Add(reloadFileMenuItem);
+            FileNodeMenuStrip.Items.Add(exportToolStripMenuItem1);
+            FileNodeMenuStrip.Items.Add(printToolStripMenuItem1);
+            FileNodeMenuStrip.Items.Add(printPreviewToolStripMenuItem1);
+            FileNodeMenuStrip.Items.Add(securityToolStripMenuItem1);
+            FileNodeMenuStrip.Items.Add(purgeFileToolStripMenuItem1);
             FileNodeMenuStrip.Name = "FileNodeMenuStrip";
             }
 

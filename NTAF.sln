@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTAF.Core", "NTAF.Core\NTAF.Core.csproj", "{108F5FA9-CABB-42B3-AB25-417320A22C4A}"
 EndProject
@@ -36,40 +36,42 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoGears World Builder", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{9EC18134-0FDC-4F92-8EF3-5DED011A5AEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PropertyGrid", "PropertyGrid", "{7E4B9446-59F9-48B0-A653-957D1085C907}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Samples", "1 - Samples", "{15F96F76-8182-402D-BAD9-EFC6FE1D0DCA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{859B4581-1206-4420-8A8D-B25911407ED3}"
 	ProjectSection(SolutionItems) = preProject
-		WPG-master\LocalTestRun.testrunconfig = WPG-master\LocalTestRun.testrunconfig
-		WPG-master\WpfPropertyGrid.vsmdi = WPG-master\WpfPropertyGrid.vsmdi
-		WPG-master\WpfPropertyGrid1.vsmdi = WPG-master\WpfPropertyGrid1.vsmdi
+		WPG\LocalTestRun.testrunconfig = WPG\LocalTestRun.testrunconfig
+		WPG\WpfPropertyGrid.vsmdi = WPG\WpfPropertyGrid.vsmdi
+		WPG\WpfPropertyGrid1.vsmdi = WPG\WpfPropertyGrid1.vsmdi
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Tests", "2 - Tests", "{A548031D-89A5-465D-B8A4-DA1B8A1B2B97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 -Main", "0 -Main", "{55DD4FA5-C3FD-4DC6-99A9-15D71AC59541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfPropertyGrid", "WPG-master\Main\WpfPropertyGrid\WpfPropertyGrid.csproj", "{5A48B67F-1E7E-4ED6-A201-F6CC8E7E6788}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfPropertyGrid", "WPG\Main\WpfPropertyGrid\WpfPropertyGrid.csproj", "{5A48B67F-1E7E-4ED6-A201-F6CC8E7E6788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfPropertyGrid.Themes", "WPG-master\Main\WpfPropertyGrid.Themes\WpfPropertyGrid.Themes.csproj", "{DD5C7E14-01CC-44FC-81BC-5C6CF6BB2AD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfPropertyGrid.Themes", "WPG\Main\WpfPropertyGrid.Themes\WpfPropertyGrid.Themes.csproj", "{DD5C7E14-01CC-44FC-81BC-5C6CF6BB2AD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.WindowsFormsIntegration", "WPG-master\Samples\WPG.WindowsFormsIntegration\WPG.WindowsFormsIntegration.csproj", "{10FEEE5B-C2AD-4B44-A697-6BC4E715F9A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.WindowsFormsIntegration", "WPG\Samples\WPG.WindowsFormsIntegration\WPG.WindowsFormsIntegration.csproj", "{10FEEE5B-C2AD-4B44-A697-6BC4E715F9A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.Proxies", "WPG-master\Samples\WPG.Proxies\WPG.Proxies.csproj", "{2397BC43-06BE-4CAB-B464-7F54B166AC11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.Proxies", "WPG\Samples\WPG.Proxies\WPG.Proxies.csproj", "{2397BC43-06BE-4CAB-B464-7F54B166AC11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.CustomTypeEditors", "WPG-master\Samples\WPG.CustomTypeEditors\WPG.CustomTypeEditors.csproj", "{53CDF0D4-5E67-429E-9372-27402460C6AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.CustomTypeEditors", "WPG\Samples\WPG.CustomTypeEditors\WPG.CustomTypeEditors.csproj", "{53CDF0D4-5E67-429E-9372-27402460C6AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.BrushCategory", "WPG-master\Samples\WPG.BrushCategory\WPG.BrushCategory.csproj", "{08CCBA7A-0042-42A7-855E-09D7AACCE328}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.BrushCategory", "WPG\Samples\WPG.BrushCategory\WPG.BrushCategory.csproj", "{08CCBA7A-0042-42A7-855E-09D7AACCE328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.UnitTests", "WPG-master\Tests\WPG.UnitTests\WPG.UnitTests.csproj", "{916E06A8-7B5C-4158-8DE3-30E26C041DDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.UnitTests", "WPG\Tests\WPG.UnitTests\WPG.UnitTests.csproj", "{916E06A8-7B5C-4158-8DE3-30E26C041DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.CategoryEditor", "WPG-master\Samples\WPG.CategoryEditor\WPG.CategoryEditor.csproj", "{B49A9B13-8B8B-4999-B49B-D62C523F68B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.CategoryEditor", "WPG\Samples\WPG.CategoryEditor\WPG.CategoryEditor.csproj", "{B49A9B13-8B8B-4999-B49B-D62C523F68B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.ComplexProperty", "WPG-master\Samples\WPG.ComplexProperty\WPG.ComplexProperty.csproj", "{08F94DE3-4D53-4FBA-9A10-902E37D0FE56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.ComplexProperty", "WPG\Samples\WPG.ComplexProperty\WPG.ComplexProperty.csproj", "{08F94DE3-4D53-4FBA-9A10-902E37D0FE56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.DialogEditor", "WPG-master\Samples\WPG.DialogEditor\WPG.DialogEditor.csproj", "{A55E2D8D-C3B1-48A2-94AD-73F0EBF2B80D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.DialogEditor", "WPG\Samples\WPG.DialogEditor\WPG.DialogEditor.csproj", "{A55E2D8D-C3B1-48A2-94AD-73F0EBF2B80D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.ExtendedEditor", "WPG-master\Samples\WPG.ExtendedEditor\WPG.ExtendedEditor.csproj", "{DD275BBE-4860-45FA-AA0A-6DFC070EF61C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPG.ExtendedEditor", "WPG\Samples\WPG.ExtendedEditor\WPG.ExtendedEditor.csproj", "{DD275BBE-4860-45FA-AA0A-6DFC070EF61C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1927,10 +1929,11 @@ Global
 		{EB9EF60E-216D-4E71-AE44-D5DBEC2E5199} = {56AE688E-E745-454E-B96E-A4CE538E3B6D}
 		{4BC48D35-284F-49CC-B794-537AA5FADFE7} = {09F02A4E-46DE-47D7-A7BD-0A097ED4A7E6}
 		{4D38D09B-562E-4854-AAB4-45D9A1FB6D05} = {56AE688E-E745-454E-B96E-A4CE538E3B6D}
-		{15F96F76-8182-402D-BAD9-EFC6FE1D0DCA} = {9EC18134-0FDC-4F92-8EF3-5DED011A5AEE}
-		{859B4581-1206-4420-8A8D-B25911407ED3} = {9EC18134-0FDC-4F92-8EF3-5DED011A5AEE}
-		{A548031D-89A5-465D-B8A4-DA1B8A1B2B97} = {9EC18134-0FDC-4F92-8EF3-5DED011A5AEE}
-		{55DD4FA5-C3FD-4DC6-99A9-15D71AC59541} = {9EC18134-0FDC-4F92-8EF3-5DED011A5AEE}
+		{7E4B9446-59F9-48B0-A653-957D1085C907} = {9EC18134-0FDC-4F92-8EF3-5DED011A5AEE}
+		{15F96F76-8182-402D-BAD9-EFC6FE1D0DCA} = {7E4B9446-59F9-48B0-A653-957D1085C907}
+		{859B4581-1206-4420-8A8D-B25911407ED3} = {7E4B9446-59F9-48B0-A653-957D1085C907}
+		{A548031D-89A5-465D-B8A4-DA1B8A1B2B97} = {7E4B9446-59F9-48B0-A653-957D1085C907}
+		{55DD4FA5-C3FD-4DC6-99A9-15D71AC59541} = {7E4B9446-59F9-48B0-A653-957D1085C907}
 		{5A48B67F-1E7E-4ED6-A201-F6CC8E7E6788} = {55DD4FA5-C3FD-4DC6-99A9-15D71AC59541}
 		{DD5C7E14-01CC-44FC-81BC-5C6CF6BB2AD9} = {55DD4FA5-C3FD-4DC6-99A9-15D71AC59541}
 		{10FEEE5B-C2AD-4B44-A697-6BC4E715F9A9} = {15F96F76-8182-402D-BAD9-EFC6FE1D0DCA}
@@ -1942,9 +1945,6 @@ Global
 		{08F94DE3-4D53-4FBA-9A10-902E37D0FE56} = {15F96F76-8182-402D-BAD9-EFC6FE1D0DCA}
 		{A55E2D8D-C3B1-48A2-94AD-73F0EBF2B80D} = {15F96F76-8182-402D-BAD9-EFC6FE1D0DCA}
 		{DD275BBE-4860-45FA-AA0A-6DFC070EF61C} = {15F96F76-8182-402D-BAD9-EFC6FE1D0DCA}
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = WpfPropertyGrid1.vsmdi
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = WpfPropertyGrid1.vsmdi

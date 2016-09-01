@@ -269,6 +269,289 @@
             <param name="FileName"></param>
             <param name="imageKey"></param>
         </member>
+        <member name="T:NTAF.PlugInFramework.NTDataTreeNode">
+             <devdoc>
+                <para>
+                   Implements a node of a <see cref='T:System.Windows.Forms.TreeView'/>.
+            
+                </para>
+             </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Name">
+            <devdoc>
+                The name for the tree node - useful for indexing.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.#ctor">
+            <devdoc>
+                Creates a NTDataTreeNode object.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.#ctor(System.String)">
+            <devdoc>
+                Creates a NTDataTreeNode object.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.#ctor(System.String,NTAF.PlugInFramework.NTDataTreeNode[])">
+            <devdoc>
+                Creates a NTDataTreeNode object.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.FirstNode">
+            <devdoc>
+                The first child node of this node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Index">
+            <devdoc>
+                Returns the position of this node in relation to its siblings
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.LastNode">
+            <devdoc>
+                The last child node of this node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Level">
+            <devdoc>
+                This denotes the depth of nesting of the NTDataTreeNode.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.NextNode">
+            <devdoc>
+                The next sibling node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Nodes">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Parent">
+            <devdoc>
+                Retrieves parent node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.PrevNode">
+            <devdoc>
+                The previous sibling node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Clear">
+            <devdoc>
+                Called by the tree node collection to clear all nodes.  We optimize here if
+                this is the root node.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Clone">
+            <devdoc>
+                Clone the entire subtree rooted at this node.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.EnsureCapacity(System.Int32)">
+            <devdoc>
+                Makes sure there is enough room to add n children
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.GetFullPath(System.Text.StringBuilder,System.String)">
+            <devdoc>
+                Helper function for getFullPath().
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.GetNodeCount(System.Boolean)">
+            <devdoc>
+                Returns number of child nodes.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.InsertNodeAt(System.Int32,NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+                Helper function to add node at a given index after all validation has been done
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Remove">
+            <devdoc>
+                Remove this node from the TreeView control.  Child nodes are also removed from the
+                TreeView, but are still attached to this node.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Remove(System.Boolean)">
+            <devdoc>
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Text">
+            <devdoc>
+                The label text for the tree node
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.ToString">
+            <devdoc>
+                Returns the label text for the tree node
+            </devdoc>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NTDataTreeNodeCollection">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="F:NTAF.PlugInFramework.NTDataTreeNodeCollection.lastAccessedIndex">
+            A caching mechanism for key accessor
+            We use an index here rather than control so that we don't have lifetime
+            issues by holding on to extra references.
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.FixedIndex">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.Item(System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Item(System.Int32)">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.Item(System.String)">
+            <devdoc>
+                <para>Retrieves the child control with the specified key.</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.Count">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#ICollection#SyncRoot">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#ICollection#IsSynchronized">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#IsFixedSize">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.IsReadOnly">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Add(System.String)">
+            <devdoc>
+                Creates a new child node under this node.  Child node is positioned after siblings.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Add(System.String,System.String)">
+            <devdoc>
+                Creates a new child node under this node.  Child node is positioned after siblings.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.AddRange(NTAF.PlugInFramework.NTDataTreeNode[])">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Find(System.String,System.Boolean)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Add(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+                Adds a new child node to this node.  Child node is positioned after siblings.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Add(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Contains(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.ContainsKey(System.String)">
+            <devdoc>
+                <para>Returns true if the collection contains an item with the specified key, false otherwise.</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Contains(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.IndexOf(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#IndexOf(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.IndexOfKey(System.String)">
+            <devdoc>
+                <para>The zero-based index of the first occurrence of value within the entire CollectionBase, if found; otherwise, -1.</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Insert(System.Int32,NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+                Inserts a new child node on this node.  Child node is positioned as specified by index.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Insert(System.Int32,System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Insert(System.Int32,System.String)">
+            <devdoc>
+                Inserts a new child node on this node.  Child node is positioned as specified by index.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Insert(System.Int32,System.String,System.String)">
+            <devdoc>
+                Inserts a new child node on this node.  Child node is positioned as specified by index.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.IsValidIndex(System.Int32)">
+            <devdoc>
+                <para>Determines if the index is valid for the collection.</para>
+            </devdoc>
+            <internalonly/> 
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Clear">
+            <devdoc>
+                Remove all nodes from the tree view.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.CopyTo(System.Array,System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Remove(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Remove(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.RemoveAt(System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.RemoveByKey(System.String)">
+            <devdoc>
+                <para>Removes the child control with the specified key.</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.GetEnumerator">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
         <member name="T:NTAF.PlugInFramework.OCCNode">
             <summary>
             Object Class Collector Node
@@ -330,13 +613,6 @@
             trigered when update compleetes
             </summary>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.SetMenus(System.Windows.Controls.ContextMenu,System.Windows.Controls.ContextMenu)">
-            <summary>
-            Use this to set the optional context menues for when a node is right clicked
-            </summary>
-            <param name="RootMenu"></param>
-            <param name="NodeMenu"></param>
-        </member>
         <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.MainBranch">
             <summary>
             Creates and returns the collection node "branch" and all of its ObectClass nodes "leaflings" from the objects in the collector.
@@ -369,38 +645,6 @@
             event that occurs when the collection has been changed
             </summary>
             <param name="args">ItemChangedArgs defines what happend</param>
-        </member>
-        <member name="T:NTAF.PlugInFramework.NTTreeNode">
-            <summary>
-            todo
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor">
-            <summary>
-            todo
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.MyIcon">
-            <summary>
-            Gets/Sets the Selected Image for a TreeViewNode
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.OnUnselected(System.Windows.RoutedEventArgs)">
-            <summary>
-            Event Handler on UnSelected Event
-            </summary>
-            <param name="args">Eventargs</param>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.OnSelected(System.Windows.RoutedEventArgs)">
-            <summary>
-            Event Handler on Selected Event 
-            </summary>
-            <param name="args">Eventargs</param>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Text">
-            <summary>
-            Gets/Sets the HeaderText of TreeViewWithIcons
-            </summary>
         </member>
         <member name="T:NTAF.PlugInFramework.EditorMode">
             <summary>
@@ -501,6 +745,80 @@
             </summary>
             <param name="obj">Object to be found in original data location</param>
             <returns>The original object</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NTTreeNode">
+            <summary>
+            TreeNode object specifically for the NTTreeView conrol
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.NTTreeNode.nodeEntry">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.NTTreeNode.enumerator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor">
+            <summary>
+            Creates an instance of a NewTerra TreeNode
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor(System.Object)">
+            <summary>
+            Creates an instance of a NewTerra TreeNode and sets the NodeValue
+            </summary>
+            <param name="obj">Object to store in NodeValue</param>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.NodeKey">
+            <summary>
+            Gets or sets the key value to enable node lookup
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.NodeValue">
+            <summary>
+            Gets or sets the node value
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.myNodeValueNameChanged(NTAF.Core.NameChangeArgs)">
+            <summary>
+            Gets fired when the name of the containing type changes
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.Entry">
+            <summary>
+            gets KeyValue Pair for this node
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.MoveNext">
+            <summary>
+            Advances the enumerator
+            </summary>
+            <returns>true if the enumerator was successfully advanced to the next control;
+            false if the enumerator has passed the end of the collection. </returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.Current">
+            <summary>
+            gets the current enumerator for the node
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.Key">
+            <summary>
+            returns the key value of the node
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.Value">
+            <summary>
+            returns the value of the node
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.Reset">
+            <summary>
+            resets the enumerator
+            </summary>
         </member>
         <member name="T:NTAF.PlugInFramework.ObjectClassBase">
             <summary>

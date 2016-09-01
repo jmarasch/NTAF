@@ -10,12 +10,12 @@ namespace NTAF.PlugInFramework {
     /// <summary>
     /// todo
     /// </summary>
-    public class NTDataNode : NTTreeNode {
+    public class NTDataNode : NTDataTreeNode {
         /// <summary>
         /// todo
         /// </summary>
         /// <param name="FileName"></param>
-        public NTDataNode(string FileName) : base() { Header = FileName; }
+        public NTDataNode(string FileName) : base() { Text = FileName; }
         /// <summary>
         /// todo
         /// </summary>

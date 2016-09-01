@@ -8,7 +8,7 @@ namespace NTAF.PlugInFramework {
     /// <summary>
     /// Object Class Node
     /// </summary>
-    public class OCNode : NTTreeNode {
+    public class OCNode : NTDataTreeNode {
         ObjectClassBase i_ObjectClass = null;
 
         /// <summary>

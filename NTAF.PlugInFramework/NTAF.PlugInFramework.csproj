@@ -181,12 +181,13 @@
   <ItemGroup>
     <Compile Include="Attributes.cs" />
     <Compile Include="TreeView Classes\DataNode.cs" />
+    <Compile Include="TreeView Classes\NTDataTree.cs" />
     <Compile Include="TreeView Classes\OCCNode.cs" />
     <Compile Include="TreeView Classes\OCNode.cs" />
     <Compile Include="TreeView Classes\OCTreeNodeBaseClass.cs" />
     <None Include="TreeView Classes\OrphanCollectorNode.cs" />
     <None Include="TreeView Classes\OrphanNode.cs" />
-    <Compile Include="TreeView Classes\TreeNode.cs" />
+    <None Include="TreeView Classes\TreeNode.cs" />
     <None Include="TreeView Classes-old\TreeNode.cs" />
     <None Include="CustControls\NTTextBox.cs">
       <SubType>Component</SubType>
@@ -195,7 +196,7 @@
     <Compile Include="DieRoller.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Interfaces.cs" />
-    <None Include="NTDataTreeView.cs" />
+    <Compile Include="NTDataTreeView.cs" />
     <Compile Include="NTReflection.cs" />
     <Compile Include="ObjectClassBase.cs" />
     <Compile Include="OCCBaseClass.cs" />

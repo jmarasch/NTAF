@@ -9,7 +9,7 @@ namespace NTAF.PlugInFramework {
     /// <summary>
     /// Object Class Collector Node
     /// </summary>
-    public class OCCNode : NTTreeNode {
+    public class OCCNode : NTDataTreeNode {
         /// <summary>
         /// todo
         /// </summary>

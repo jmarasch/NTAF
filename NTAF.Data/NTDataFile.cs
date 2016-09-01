@@ -27,12 +27,12 @@ namespace NTAF.Core {
 
         #region fields
 
-        ContextMenu
-            i_FileMenu,
-            i_RootMenu,
-            i_NodeMenu,
-            i_OrphanRootMenu,
-            i_OrphansMenu;
+        //ContextMenu
+        //    i_FileMenu,
+        //    i_RootMenu,
+        //    i_NodeMenu,
+        //    i_OrphanRootMenu,
+        //    i_OrphansMenu;
 
         private List<OCCBase>
             i_OCCPlugins = new List<OCCBase>(PluginEngine.GetOCCPlugIns());
@@ -1521,6 +1521,8 @@ namespace NTAF.Core {
             }
 
         #region TreeNode Generation Methods
+        //todo: need to combine getnodes, programmer will have to figure out how to change the data to a visable tree
+
 
         /// <summary>
         /// Gets tree-nodes and assigns menus to them
@@ -1531,15 +1533,15 @@ namespace NTAF.Core {
         /// <param name="NodeMenu">Menu for Object note</param>
         /// <param name="OrphanRootMenu">"Menu for the root of the orphaned objects"</param>
         /// <param name="OrphanMenu">Menu for Orphaned nodes</param>
-        public void getTreeNodes(ItemCollection treeObject, ContextMenu FileMenu, ContextMenu RootMenu, ContextMenu NodeMenu, ContextMenu OrphanRootMenu, ContextMenu OrphanMenu) {
-            i_FileMenu = FileMenu;
-            i_RootMenu = RootMenu;
-            i_NodeMenu = NodeMenu;
-            i_OrphanRootMenu = OrphanRootMenu;
-            i_OrphansMenu = OrphanMenu;
+        public void getTreeNodes(NTDataTreeNode treeObject, ContextMenu FileMenu, ContextMenu RootMenu, ContextMenu NodeMenu, ContextMenu OrphanRootMenu, ContextMenu OrphanMenu) {
+            //i_FileMenu = FileMenu;
+            //i_RootMenu = RootMenu;
+            //i_NodeMenu = NodeMenu;
+            //i_OrphanRootMenu = OrphanRootMenu;
+            //i_OrphansMenu = OrphanMenu;
 
-            NTDataNode rootNode = new NTDataNode(this.FileName);
-            rootNode.ContextMenu = i_FileMenu;
+            NTDataTreeNode rootNode = new NTDataTreeNode(this.FileName);
+            //rootNode.ContextMenu = i_FileMenu;
 
             //treeObject.Add(new TreeNode(this.FileName));
 
@@ -1547,15 +1549,15 @@ namespace NTAF.Core {
             getTreeNodes(rootNode);
             //getTreeNodes(treeObject);
             //treeObject.Clear();
-            treeObject.Add(rootNode);
+            treeObject.Nodes.Add(rootNode);
             }
 
         /// <summary>
         /// Gets tree-nodes without assigning menus
         /// </summary>
         /// <param name="treeObject">Tree node that all nodes will be added to</param>
-        public void getTreeNodes(TreeViewItem treeObject) {
-            treeObject.Items.Clear();
+        public void getTreeNodes(NTDataTreeNode treeObject) {
+            treeObject.Nodes.Clear();
             //treeObject.Clear();
 
             List<OCTreeNodeBase>
@@ -1572,10 +1574,10 @@ namespace NTAF.Core {
                     treeNodePlug.AttachOCC(occ);
                     }
 
-                treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu);
+                //treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu);
 
                 //populate the node with collectors tree-nodes or object nodes
-                treeObject.Items.Add(treeNodePlug.MainBranch());
+                treeObject.Nodes.Add(treeNodePlug.MainBranch());
                 }
 
             //todo finally add orphan nodes here
@@ -1583,9 +1585,9 @@ namespace NTAF.Core {
                 currentCount = orphanCollector.Count;
 
             orphanTree.AttachOCC(orphanCollector);
-            orphanTree.SetMenus(i_OrphanRootMenu, i_OrphansMenu);
+            //orphanTree.SetMenus(i_OrphanRootMenu, i_OrphansMenu);
 
-            treeObject.Items.Add(orphanTree.MainBranch());
+            treeObject.Nodes.Add(orphanTree.MainBranch());
 
             //todo need to add the orphan list to an update method
             //if the orphans branch has less than 1 item don't show it

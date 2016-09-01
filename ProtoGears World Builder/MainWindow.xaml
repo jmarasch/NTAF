@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProtoGears_World_Builder"
         xmlns:Custom="http://schemas.denisvuyka.wordpress.com/wpfpropertygrid" x:Name="MainForm" x:Class="ProtoGears_World_Builder.MainWindow"
-        mc:Ignorable="d"
-        Title="Protogears World Builder" Height="465" Width="789" MinHeight="300" MinWidth="500" ResizeMode="CanResize"
-         >
+        mc:Ignorable="d" Title="Protogears World Builder" Height="465" Width="789" MinHeight="300" MinWidth="500" ResizeMode="CanResize"
+        Icon="Images/Icons/Program.ico" >
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition x:Name="RibbonGrid" Height="Auto" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Ribbon x:Name="RibbonWin" Grid.Row="0" SelectedIndex="0" SelectionChanged="RibbonWin_SelectionChanged" WindowIconVisibility="Hidden">
+        <Ribbon x:Name="RibbonWin" Grid.Row="0" SelectedIndex="0" WindowIconVisibility="Hidden">
             <!-- Help Pane, located at the right-hand side -->
             <Ribbon.HelpPaneContent>
-                <RibbonButton SmallImageSource="Images\help.png" Click="RibbonHelpButton_Click" />
+                <RibbonButton SmallImageSource="Images\help.png" />
             </Ribbon.HelpPaneContent>
-            <!-- Quick Access Toolbar - located at the upper-left corner -->
+            <!-- Quick Access Tool bar - located at the upper-left corner -->
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar>
+                    <RibbonButton x:Name="btnOpenFile" SmallImageSource="Images/RibbonIcons/Folder Open-01.png" Click="OpenFile_Click" />
                     <RibbonButton x:Name ="Save" SmallImageSource="Images\save.png" />
                     <RibbonSplitButton x:Name ="Undo" SmallImageSource="Images\undo.png">
                         <!--<RibbonSplitMenuItem Header="Undo 1" />
@@ -69,17 +69,26 @@
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="DataGrid" Width="*" MinWidth="245"/>
                 <ColumnDefinition x:Name="SizeAdjuster" Width="Auto"/>
                 <ColumnDefinition x:Name="PropertyGrid" Width="*" MinWidth="250"/>
             </Grid.ColumnDefinitions>
-            <TreeView x:Name="DataView" Grid.Column="0"/>
+            <TreeView x:Name="DataView" Grid.Column="0" SelectedItemChanged="DataView_SelectedItemChanged"/>
             <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="5" Background="#FFBCBCBC"/>
-
-            <Custom:PropertyGrid x:Name="PropertyViewer" Grid.Column="2"/>
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2"/>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="*" MinHeight="100"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"  MinHeight="35"/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="DataItemSelector" Grid.Row="0" />
+                <Custom:PropertyGrid x:Name="PropertyViewer" Grid.Row="1"/>
+                <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" ResizeBehavior="PreviousAndNext" Height="5" Background="#FFBCBCBC"/>
+                <Label x:Name="lblDescription" Grid.Row="3">Hello</Label>
+            </Grid>
         </Grid>
     </Grid>
 </RibbonWindow>

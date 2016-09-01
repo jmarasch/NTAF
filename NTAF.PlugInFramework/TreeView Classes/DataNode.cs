@@ -15,7 +15,7 @@ namespace NTAF.PlugInFramework {
         /// todo
         /// </summary>
         /// <param name="FileName"></param>
-        public NTDataNode(string FileName) : base() { Name = FileName; }
+        public NTDataNode(string FileName) : base() { Header = FileName; }
         /// <summary>
         /// todo
         /// </summary>

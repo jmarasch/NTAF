@@ -146,7 +146,7 @@ namespace ProtoGears_World_Builder {
             }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e) {
-            try {
+            //try {
                 if (CheckForSave()) {
                     // Create OpenFileDialog
                     Microsoft.Win32.OpenFileDialog OFD = new Microsoft.Win32.OpenFileDialog();
@@ -162,7 +162,20 @@ namespace ProtoGears_World_Builder {
 
                         LoadCache.Add(fileToLoad);
 
-                        bgw.RunWorkerAsync();
+                        //bgw.RunWorkerAsync();
+
+                        //copied from background worker
+                        foreach (NTDataFile dataFile in LoadCache) {
+                            DateTime fileloadStart = DateTime.Now;
+                            dataFile.Load3();
+                            DateTime fileloadFinish = DateTime.Now;
+                            Console.WriteLine(String.Format("Load Method 1:{0}", (fileloadFinish - fileloadStart)));
+                            }
+                        foreach (NTDataFile dataFile in LoadCache) {
+                            dataFile.getTreeNodes(DataView.Items, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                            DataFiles.Add(dataFile);
+                            }
+                        LoadCache.Clear();
                         }
 
                     //System.Windows.Forms.OpenFileDialog OFD = new System.Windows.Forms.OpenFileDialog();
@@ -180,9 +193,10 @@ namespace ProtoGears_World_Builder {
                     //    bgw.RunWorkerAsync();
                     //}
                     }
-                } catch (Exception ex) {
-                //todo need exception message box
-                }
+                //} catch (Exception ex) {
+                //    //throw ex;
+                ////todo need exception message box
+                //}
             }
         private bool CheckForSave() {
             //foreach (NTDataFile df in DataFiles) {

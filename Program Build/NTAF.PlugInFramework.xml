@@ -251,6 +251,157 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:NTAF.PlugInFramework.NTDataNode">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataNode.#ctor(System.String)">
+            <summary>
+            todo
+            </summary>
+            <param name="FileName"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataNode.#ctor(System.String,System.String)">
+            <summary>
+            todo
+            </summary>
+            <param name="FileName"></param>
+            <param name="imageKey"></param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCCNode">
+            <summary>
+            Object Class Collector Node
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCNode.#ctor">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCNode.Collector">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCNode">
+            <summary>
+            Object Class Node
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCNode.#ctor">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCNode.ObjectClass">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCNode.i_ObjectClass_EventNameChanged(NTAF.Core.NameChangeArgs)">
+            <summary>
+            todo
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCTreeNodeBase">
+            <summary>
+            The Object Class Tree Node Base provides the ability to create a TreeVew
+            plug-in class for the NTTreView Control.
+            
+            The only required override is CollectionType
+            
+            This class will require an appropriate OCCBase class to read and write to
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Updating">
+            <summary>
+            triggered when the tree goes in to update mode
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Update">
+            <summary>
+            triggered when a step in the update process is compleeted
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Updated">
+            <summary>
+            trigered when update compleetes
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.SetMenus(System.Windows.Controls.ContextMenu,System.Windows.Controls.ContextMenu)">
+            <summary>
+            Use this to set the optional context menues for when a node is right clicked
+            </summary>
+            <param name="RootMenu"></param>
+            <param name="NodeMenu"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.MainBranch">
+            <summary>
+            Creates and returns the collection node "branch" and all of its ObectClass nodes "leaflings" from the objects in the collector.
+            </summary>
+            <returns>A root node for the NTTreeView control</returns>
+            <exception cref="T:System.Exception">Thrown when the ObjectClassCollector has not been set</exception>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.AttachOCC(NTAF.PlugInFramework.OCCBase)">
+            <summary>
+            Attaches a collector to this object so it can create the branch and leaves
+            </summary>
+            <param name="collector">Collector object to reference</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.GrowBranch">
+            <summary>
+            Internally creates a main "branch" of sub nodes "Leafs" or sub collectors to return to the tree
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.PopulateNode(NTAF.PlugInFramework.OCCBase,System.Int32,System.Int32@)">
+            <summary>
+            populates collector node with object-class items
+            </summary>
+            <param name="occ">Collector with the objects</param>
+            <param name="InCount"></param>
+            <param name="OutCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.i_ObjectCollector_CollectionUpdated(NTAF.Core.ItemChangedArgs)">
+            <summary>
+            event that occurs when the collection has been changed
+            </summary>
+            <param name="args">ItemChangedArgs defines what happend</param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NTTreeNode">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.MyIcon">
+            <summary>
+            Gets/Sets the Selected Image for a TreeViewNode
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.OnUnselected(System.Windows.RoutedEventArgs)">
+            <summary>
+            Event Handler on UnSelected Event
+            </summary>
+            <param name="args">Eventargs</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTTreeNode.OnSelected(System.Windows.RoutedEventArgs)">
+            <summary>
+            Event Handler on Selected Event 
+            </summary>
+            <param name="args">Eventargs</param>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTTreeNode.Text">
+            <summary>
+            Gets/Sets the HeaderText of TreeViewWithIcons
+            </summary>
+        </member>
         <member name="T:NTAF.PlugInFramework.EditorMode">
             <summary>
             Standard operationg modes for the editors
@@ -350,80 +501,6 @@
             </summary>
             <param name="obj">Object to be found in original data location</param>
             <returns>The original object</returns>
-        </member>
-        <member name="T:NTAF.PlugInFramework.NTTreeNode">
-            <summary>
-            TreeNode object specifically for the NTTreeView conrol
-            </summary>
-        </member>
-        <member name="F:NTAF.PlugInFramework.NTTreeNode.nodeEntry">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NTAF.PlugInFramework.NTTreeNode.enumerator">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor">
-            <summary>
-            Creates an instance of a NewTerra TreeNode
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor(System.Object)">
-            <summary>
-            Creates an instance of a NewTerra TreeNode and sets the NodeValue
-            </summary>
-            <param name="obj">Object to store in NodeValue</param>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.NodeKey">
-            <summary>
-            Gets or sets the key value to enable node lookup
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.NodeValue">
-            <summary>
-            Gets or sets the node value
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.myNodeValueNameChanged(NTAF.Core.NameChangeArgs)">
-            <summary>
-            Gets fired when the name of the containing type changes
-            </summary>
-            <param name="args"></param>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Entry">
-            <summary>
-            gets KeyValue Pair for this node
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.MoveNext">
-            <summary>
-            Advances the enumerator
-            </summary>
-            <returns>true if the enumerator was successfully advanced to the next control;
-            false if the enumerator has passed the end of the collection. </returns>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Current">
-            <summary>
-            gets the current enumerator for the node
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Key">
-            <summary>
-            returns the key value of the node
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Value">
-            <summary>
-            returns the value of the node
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.Reset">
-            <summary>
-            resets the enumerator
-            </summary>
         </member>
         <member name="T:NTAF.PlugInFramework.ObjectClassBase">
             <summary>
@@ -902,71 +979,6 @@
             </summary>
             <param name="T">Type of the class to check</param>
             <returns>true/false</returns>
-        </member>
-        <member name="T:NTAF.PlugInFramework.OCTreeNodeBase">
-            <summary>
-            The Object Class Tree Node Base provides the ability to create a TreeVew
-            plug-in class for the NTTreView Control.
-            
-            The only required override is CollectionType
-            
-            This class will require an appropriate OCCBase class to read and write to
-            </summary>
-        </member>
-        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Updating">
-            <summary>
-            triggered when the tree goes in to update mode
-            </summary>
-        </member>
-        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Update">
-            <summary>
-            triggered when a step in the update process is compleeted
-            </summary>
-        </member>
-        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Updated">
-            <summary>
-            trigered when update compleetes
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.SetMenus(System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">
-            <summary>
-            Use this to set the optional context menues for when a node is right clicked
-            </summary>
-            <param name="RootMenu"></param>
-            <param name="NodeMenu"></param>
-        </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.MainBranch">
-            <summary>
-            Creates and returns the collection node "branch" and all of its ObectClass nodes "leaflings" from the objects in the collector.
-            </summary>
-            <returns>A root node for the NTTreeView control</returns>
-            <exception cref="T:System.Exception">Thrown when the ObjectClassCollector has not been set</exception>
-        </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.AttachOCC(NTAF.PlugInFramework.OCCBase)">
-            <summary>
-            Attaches a collector to this object so it can create the branch and leaves
-            </summary>
-            <param name="collector">Collector object to reference</param>
-        </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.GrowBranch">
-            <summary>
-            Internally creates a main "branch" of sub nodes "Leafs" or sub collectors to return to the tree
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.PopulateNode(NTAF.PlugInFramework.OCCBase,System.Int32,System.Int32@)">
-            <summary>
-            populates collector node with object-class items
-            </summary>
-            <param name="occ">Collector with the objects</param>
-            <param name="InCount"></param>
-            <param name="OutCount"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.i_ObjectCollector_CollectionUpdated(NTAF.Core.ItemChangedArgs)">
-            <summary>
-            event that occurs when the collection has been changed
-            </summary>
-            <param name="args">ItemChangedArgs defines what happend</param>
         </member>
         <member name="T:NTAF.PlugInFramework.PluginEngine">
             <summary>

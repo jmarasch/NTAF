@@ -97,17 +97,18 @@
             <param name="orphanedObjRef">Object that was orphaned</param>
             <returns>the object that was passed in but returns it from the linked orphan list</returns>
         </member>
-        <member name="M:NTAF.Core.NTDataFile.getTreeNodes(System.Windows.Forms.TreeNodeCollection,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip,System.Windows.Forms.ContextMenuStrip)">
+        <member name="M:NTAF.Core.NTDataFile.getTreeNodes(System.Windows.Controls.ItemCollection,System.Windows.Controls.ContextMenu,System.Windows.Controls.ContextMenu,System.Windows.Controls.ContextMenu,System.Windows.Controls.ContextMenu,System.Windows.Controls.ContextMenu)">
             <summary>
             Gets tree-nodes and assigns menus to them
             </summary>
             <param name="treeObject">Tree control node collection</param>
+            <param name="FileMenu">Tree control node collection</param>
             <param name="RootMenu">Menu for Collector nodes</param>
             <param name="NodeMenu">Menu for Object note</param>
             <param name="OrphanRootMenu">"Menu for the root of the orphaned objects"</param>
             <param name="OrphanMenu">Menu for Orphaned nodes</param>
         </member>
-        <member name="M:NTAF.Core.NTDataFile.getTreeNodes(System.Windows.Forms.TreeNode)">
+        <member name="M:NTAF.Core.NTDataFile.getTreeNodes(System.Windows.Controls.TreeViewItem)">
             <summary>
             Gets tree-nodes without assigning menus
             </summary>

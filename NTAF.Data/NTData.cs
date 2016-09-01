@@ -159,18 +159,18 @@ namespace NTAF.Core {
                     OrphanLeaves = new List<TreeNode>();
 
                 foreach ( Object obj in i_Orphans ) {
-                    NTTreeNode
-                        newNode = new NTTreeNode( obj );
+                    //NTTreeNode
+                    //    newNode = new NTTreeNode( obj );
 
-                    newNode.NodeFont = SystemFonts.DefaultFont; // default( Font );// new Font( "Tahoma", 8.25F );
+                    //newNode.NodeFont = SystemFonts.DefaultFont; // default( Font );// new Font( "Tahoma", 8.25F );
 
                     //this is part of the orphaning
-                    if ( obj is IOwner )
-                        if ( ( ( IOwner )obj ).myOwner == null ) {//is an orphan
-                            newNode.ForeColor = System.Drawing.Color.Red;
-                            newNode.NodeFont = new Font( newNode.NodeFont, FontStyle.Bold );
-                        }
-                    OrphanLeaves.Add( newNode );
+                    //if ( obj is IOwner )
+                    //    if ( ( ( IOwner )obj ).myOwner == null ) {//is an orphan
+                    //        newNode.ForeColor = System.Drawing.Color.Red;
+                    //        newNode.NodeFont = new Font( newNode.NodeFont, FontStyle.Bold );
+                    //    }
+                    //OrphanLeaves.Add( newNode );
                 }
 
                 //return OrphanLeaves.ToArray();

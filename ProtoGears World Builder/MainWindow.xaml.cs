@@ -75,32 +75,59 @@ namespace ProtoGears_World_Builder {
             bgw.WorkerReportsProgress = true;
             bgw.WorkerSupportsCancellation = true;
 
-            TreeViewItem
-                root = new TreeViewItem { Header = "Root" };
-            TreeNode
-                child1 = new TreeNode { Text = "Child1" },
-                child2 = new TreeNode { Text = "Child2" },
-                child3 = new TreeNode { Text = "Child3" },
-                child4 = new TreeNode { Text = "Child4" };
+            //TreeViewItem
+            //    root = new TreeViewItem { Header = "Root" };
+            //TreeNode
+            //    child1 = new TreeNode { Text = "Child1" },
+            //    child2 = new TreeNode { Text = "Child2" },
+            //    child3 = new TreeNode { Text = "Child3" },
+            //    child4 = new TreeNode { Text = "Child4" };
 
-            root.Items.Add(child1);
-            root.Items.Add(child2);
-            child2.Nodes.Add(child3);
-            root.Items.Add(child4);
+            //root.Items.Add(child1);
+            //root.Items.Add(child2);
+            //child2.Nodes.Add(child3);
+            //root.Items.Add(child4);
 
-            DataView.Items.Add(root);
+            //DataView.Items.Add(root);
             }
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             //UpdateProgressLabel1.Text = "Ready...";
             //UpdateProgressBar1.Value = 0;
 
+            NTDataTreeNode dataTree;
+
             foreach (NTDataFile dataFile in LoadCache) {
-                dataFile.getTreeNodes(DataView.Items, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                dataTree = new NTDataTreeNode();
+                dataTree = dataFile.GetDataTree();
                 DataFiles.Add(dataFile);
+                DataView.Items.Add(ConvertTree(dataTree));
                 }
             LoadCache.Clear();
             //UpdateProgressBar1.Visible = false;
             }
+
+        private TreeViewItem ConvertTree(NTDataTreeNode tree) {
+            //iterate thru all root nodes untill the one contatin the data file is found then clear it and readd it,
+            //if this is a new node then add the file node and populate children,
+            //todo: need to create a way to update specific nodes and such
+            TreeViewItem retval = new TreeViewItem { Header = tree.Text, Tag = tree.ObjectID };
+            if (tree.Nodes.Count >= 1) {
+                foreach (NTDataTreeNode item in tree.Nodes) {
+                    retval.Items.Add(BuildSubNodes(item));
+                    }
+                }
+            return retval;
+            }
+        private TreeViewItem BuildSubNodes(NTDataTreeNode node) {
+            TreeViewItem tvi = new TreeViewItem { Header = node.Text, Tag = node.ObjectID };
+            if (node.Nodes.Count >= 1) {
+                foreach (NTDataTreeNode item in node.Nodes) {
+                    tvi.Items.Add(BuildSubNodes(item));
+                    }
+                }
+            return tvi;
+            }
+        private void UpdateTreeView() { }
 
         private void bgw_ProgressChanged(object sender, ProgressChangedEventArgs e) {
             //if (!UpdateProgressBar1.Visible)
@@ -162,20 +189,20 @@ namespace ProtoGears_World_Builder {
 
                         LoadCache.Add(fileToLoad);
 
-                        //bgw.RunWorkerAsync();
+                        bgw.RunWorkerAsync();
 
-                        //copied from background worker
-                        foreach (NTDataFile dataFile in LoadCache) {
-                            DateTime fileloadStart = DateTime.Now;
-                            dataFile.Load3();
-                            DateTime fileloadFinish = DateTime.Now;
-                            Console.WriteLine(String.Format("Load Method 1:{0}", (fileloadFinish - fileloadStart)));
-                            }
-                        foreach (NTDataFile dataFile in LoadCache) {
-                            dataFile.getTreeNodes(DataView.Items, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
-                            DataFiles.Add(dataFile);
-                            }
-                        LoadCache.Clear();
+                        ////copied from background worker
+                        //foreach (NTDataFile dataFile in LoadCache) {
+                        //    DateTime fileloadStart = DateTime.Now;
+                        //    dataFile.Load3();
+                        //    DateTime fileloadFinish = DateTime.Now;
+                        //    Console.WriteLine(String.Format("Load Method 1:{0}", (fileloadFinish - fileloadStart)));
+                        //    }
+                        //foreach (NTDataFile dataFile in LoadCache) {
+                        //    dataFile.getTreeNodes(DataView.Items, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
+                        //    DataFiles.Add(dataFile);
+                        //    }
+                        //LoadCache.Clear();
                         }
 
                     //System.Windows.Forms.OpenFileDialog OFD = new System.Windows.Forms.OpenFileDialog();

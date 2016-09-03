@@ -42,6 +42,7 @@ namespace NTAF.PlugInFramework {
         object userData;
 
         string name;
+        string objectID;
 
         /// <devdoc>
         ///     The name for the tree node - useful for indexing.
@@ -52,6 +53,15 @@ namespace NTAF.PlugInFramework {
                 }
             set {
                 this.name = value;
+                }
+            }
+
+        public string ObjectID {
+            get {
+                return objectID == null ? "" : objectID;
+                }
+            set {
+                this.objectID = value;
                 }
             }
 
@@ -80,6 +90,23 @@ namespace NTAF.PlugInFramework {
             this.text = text;
             this.Nodes.AddRange(children);
             }
+        public NTDataTreeNode(string text, string objectId) : this() {
+            this.text = text;
+            this.Name = text;
+            this.ObjectID = objectId;
+            }
+        public NTDataTreeNode(string text, string objectId, NTDataTreeNode[] children) : this() {
+            this.text = text;
+            this.Name = text;
+            this.ObjectID = objectId;
+            this.Nodes.AddRange(children);
+            }
+        public NTDataTreeNode(ObjectClassBase obj) {
+            this.text = obj.Name;
+            this.Name = obj.Name;
+            this.ObjectID = obj.ID;
+            }
+
 
         /// <devdoc>
         ///     The first child node of this node.

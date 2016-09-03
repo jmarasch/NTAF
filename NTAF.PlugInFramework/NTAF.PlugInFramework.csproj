@@ -196,7 +196,7 @@
     <Compile Include="DieRoller.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Interfaces.cs" />
-    <Compile Include="NTDataTreeView.cs" />
+    <None Include="NTDataTreeView.cs" />
     <Compile Include="NTReflection.cs" />
     <Compile Include="ObjectClassBase.cs" />
     <Compile Include="OCCBaseClass.cs" />

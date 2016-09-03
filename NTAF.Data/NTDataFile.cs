@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Drawing;
 using System.Linq;
 using NTAF.PlugInFramework.OrphanControls;
+using System.Diagnostics;
 
 namespace NTAF.Core {
     [Serializable()]//, XmlInclude(typeof(KeyVal<String,Version>))]
@@ -552,7 +553,7 @@ namespace NTAF.Core {
             if (FileLocked)
                 throw new FileLockedException("File is locked, and cannot be edited.");
 
-            try {
+            //try {
                 OCCBase
                     tmpOCC = GetCollector(toAdd);
 
@@ -573,7 +574,7 @@ namespace NTAF.Core {
 
                 if (!NTAF.Core.Properties.Settings.Default.PerformingAction & !Properties.Settings.Default.Loading)
                     actions.AddUndoableOpp(UndoActionKeyWords.Add, toAdd);
-                } catch (Exception ex) { throw ex; }
+                //} catch (Exception ex) { throw ex; }
             }
 
         public void Edit(ObjectClassBase toEdit, ObjectClassBase NewValues) {
@@ -1523,33 +1524,25 @@ namespace NTAF.Core {
         #region TreeNode Generation Methods
         //todo: need to combine getnodes, programmer will have to figure out how to change the data to a visable tree
 
+        public NTDataTreeNode GetDataTree() {
+            NTDataTreeNode root = new NTDataTreeNode(this.FileName);
+            foreach (OCCBase occ in Collectors) {
+                root.Nodes.Add(occ.TreeData);
+                }
+            return root;
+            }
 
         /// <summary>
-        /// Gets tree-nodes and assigns menus to them
+        /// Gets data in a tree form
         /// </summary>
-        /// <param name="treeObject">Tree control node collection</param>
-        /// <param name="FileMenu">Tree control node collection</param>
-        /// <param name="RootMenu">Menu for Collector nodes</param>
-        /// <param name="NodeMenu">Menu for Object note</param>
-        /// <param name="OrphanRootMenu">"Menu for the root of the orphaned objects"</param>
-        /// <param name="OrphanMenu">Menu for Orphaned nodes</param>
-        public void getTreeNodes(NTDataTreeNode treeObject, ContextMenu FileMenu, ContextMenu RootMenu, ContextMenu NodeMenu, ContextMenu OrphanRootMenu, ContextMenu OrphanMenu) {
-            //i_FileMenu = FileMenu;
-            //i_RootMenu = RootMenu;
-            //i_NodeMenu = NodeMenu;
-            //i_OrphanRootMenu = OrphanRootMenu;
-            //i_OrphansMenu = OrphanMenu;
+        /// <param name="tree">Tree control node collection</param>
+        public void getDataTree(NTDataTreeNode tree) {
 
             NTDataTreeNode rootNode = new NTDataTreeNode(this.FileName);
-            //rootNode.ContextMenu = i_FileMenu;
 
-            //treeObject.Add(new TreeNode(this.FileName));
-
-            //todo add file name as a root object
             getTreeNodes(rootNode);
-            //getTreeNodes(treeObject);
-            //treeObject.Clear();
-            treeObject.Nodes.Add(rootNode);
+
+            tree.Nodes.Add(rootNode);
             }
 
         /// <summary>
@@ -1739,6 +1732,33 @@ namespace NTAF.Core {
 
                 //i_Orphans.Sort();
                 } catch { throw; }
+            }
+
+        public object FindObject(string ID) {
+            Object
+                retVal = null;
+
+            //null check
+            if (ID == "")
+                return retVal;
+
+            foreach (OCCBase occ in Collectors) {
+                try {
+                    retVal = occ[ID, SearchField.ID];
+                    if (retVal != null)
+                        break;
+                    } catch (Exception ex) {
+                        Debug.Print(ex.Message);
+                    }
+                }
+            //object could not be found
+            //search the orphan list
+            if (retVal == null) {
+                try {
+                    retVal = orphanCollector[ID, SearchField.ID];
+                    } catch { }
+                }
+            return retVal;
             }
 
         public object FindObject(ObjectClassBase obj) {

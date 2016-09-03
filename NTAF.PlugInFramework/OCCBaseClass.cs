@@ -17,6 +17,37 @@ namespace NTAF.PlugInFramework {
         private List<Object>
             i_Colector = new List<Object>( );
 
+        //for caching data in tree form
+        protected NTDataTreeNode
+            i_nodeTree;
+
+        public OCCBase() {
+            this.CollectionUpdated += OCCBase_CollectionUpdated;
+            }
+
+        private void OCCBase_CollectionUpdated(ItemChangedArgs args) {
+            //clear tree data then nullify it so it will get regenerated on next call
+            //on second thought should i just control the tree output during changes?
+            if (i_nodeTree == null) i_nodeTree = new NTDataTreeNode();
+            i_nodeTree.Clear();
+            i_nodeTree = null;
+            }
+
+        public virtual NTDataTreeNode TreeData {
+            get {
+                //check if data has been created already
+                if (i_nodeTree == null) {
+                    //build the tree structure
+                    i_nodeTree = new NTDataTreeNode(this.CollectionName);
+                    foreach (ObjectClassBase obj in Objects) {
+                        i_nodeTree.Nodes.Add(new NTDataTreeNode(obj.Name, obj.ID));
+                        }
+
+                    }
+                return i_nodeTree;
+                }
+            }
+
         /// <summary>
         /// Returns an enumerator that iterates over the collection
         /// </summary>
@@ -185,7 +216,7 @@ namespace NTAF.PlugInFramework {
         /// <summary>
         /// searches for the object by a key field method
         /// </summary>
-        /// <param name="Key">Search perammiter</param>
+        /// <param name="Key">Search parameter</param>
         /// <param name="Field">Filed to search in</param>
         /// <returns></returns>
         public virtual object this[string Key, SearchField Field] {

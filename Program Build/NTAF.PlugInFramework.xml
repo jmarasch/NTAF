@@ -746,80 +746,6 @@
             <param name="obj">Object to be found in original data location</param>
             <returns>The original object</returns>
         </member>
-        <member name="T:NTAF.PlugInFramework.NTTreeNode">
-            <summary>
-            TreeNode object specifically for the NTTreeView conrol
-            </summary>
-        </member>
-        <member name="F:NTAF.PlugInFramework.NTTreeNode.nodeEntry">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NTAF.PlugInFramework.NTTreeNode.enumerator">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor">
-            <summary>
-            Creates an instance of a NewTerra TreeNode
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.#ctor(System.Object)">
-            <summary>
-            Creates an instance of a NewTerra TreeNode and sets the NodeValue
-            </summary>
-            <param name="obj">Object to store in NodeValue</param>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.NodeKey">
-            <summary>
-            Gets or sets the key value to enable node lookup
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.NodeValue">
-            <summary>
-            Gets or sets the node value
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.myNodeValueNameChanged(NTAF.Core.NameChangeArgs)">
-            <summary>
-            Gets fired when the name of the containing type changes
-            </summary>
-            <param name="args"></param>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Entry">
-            <summary>
-            gets KeyValue Pair for this node
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.MoveNext">
-            <summary>
-            Advances the enumerator
-            </summary>
-            <returns>true if the enumerator was successfully advanced to the next control;
-            false if the enumerator has passed the end of the collection. </returns>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Current">
-            <summary>
-            gets the current enumerator for the node
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Key">
-            <summary>
-            returns the key value of the node
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.NTTreeNode.Value">
-            <summary>
-            returns the value of the node
-            </summary>
-        </member>
-        <member name="M:NTAF.PlugInFramework.NTTreeNode.Reset">
-            <summary>
-            resets the enumerator
-            </summary>
-        </member>
         <member name="T:NTAF.PlugInFramework.ObjectClassBase">
             <summary>
             The lowest level complex type for NewTerra applications
@@ -1075,7 +1001,7 @@
             <summary>
             searches for the object by a key field method
             </summary>
-            <param name="Key">Search perammiter</param>
+            <param name="Key">Search parameter</param>
             <param name="Field">Filed to search in</param>
             <returns></returns>
         </member>

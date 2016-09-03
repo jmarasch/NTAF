@@ -75,7 +75,13 @@
                 <ColumnDefinition x:Name="SizeAdjuster" Width="Auto"/>
                 <ColumnDefinition x:Name="PropertyGrid" Width="*" MinWidth="250"/>
             </Grid.ColumnDefinitions>
-            <TreeView x:Name="DataView" Grid.Column="0" SelectedItemChanged="DataView_SelectedItemChanged"/>
+            <TreeView x:Name="DataView" Grid.Column="0" SelectedItemChanged="DataView_SelectedItemChanged">
+                <!--<TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type NTAF.:Foo}" ItemsSource="{Binding Path=Children}">
+                        <TreeViewItem Header="{Binding Path=Name}"  />
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>-->
+            </TreeView>
             <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="5" Background="#FFBCBCBC"/>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>

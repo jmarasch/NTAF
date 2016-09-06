@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Controls.Ribbon;
+//using System.Windows.Controls.Ribbon;
+using Fluent;
 using System.Windows.Forms;
 using NTAF.Core;
 using NTAF.PlugInFramework;
@@ -56,7 +57,7 @@ namespace ProtoGears_World_Builder {
                 try {
                     TreeViewItem selectedNode = (TreeViewItem)DataView.SelectedItem;
 
-                    while (selectedNode.Parent != null) {
+                    while (selectedNode.Parent is TreeViewItem) {
                         selectedNode = (TreeViewItem)selectedNode.Parent;
                         }
 
@@ -74,6 +75,7 @@ namespace ProtoGears_World_Builder {
             bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
             bgw.WorkerReportsProgress = true;
             bgw.WorkerSupportsCancellation = true;
+
 
             //TreeViewItem
             //    root = new TreeViewItem { Header = "Root" };
@@ -97,20 +99,46 @@ namespace ProtoGears_World_Builder {
             NTDataTreeNode dataTree;
 
             foreach (NTDataFile dataFile in LoadCache) {
-                dataTree = new NTDataTreeNode();
+                //dataTree = new NTDataTreeNode();
                 dataTree = dataFile.GetDataTree();
-                DataFiles.Add(dataFile);
                 DataView.Items.Add(ConvertTree(dataTree));
+                foreach (OCCBase item in dataFile.Collectors) {
+                    item.TreeDataChanged += Item_TreeDataChanged;
+                    }
+                DataFiles.Add(dataFile);
                 }
             LoadCache.Clear();
             //UpdateProgressBar1.Visible = false;
             }
 
-        private TreeViewItem ConvertTree(NTDataTreeNode tree) {
+        private void Item_TreeDataChanged(CollectionChanged args) {
+            NTDataFile fileref = (NTDataFile)args.Sender.Owner;
+            OCCBase collectorRef = args.Sender;
+            int nodeindex;
+            foreach (TreeViewItem item in DataView.Items) {
+                if((string)item.Header == fileref.FileName) {
+                    foreach (TreeViewItem node in item.Items) {
+                        if ((string)node.Header==collectorRef.CollectionName) {
+                            nodeindex = item.Items.IndexOf(node);
+                            //node.Items.Clear();
+                            item.Items.Remove(node);
+                            item.Items.Insert(nodeindex, BuildSubNodes(collectorRef.TreeData));
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        private TreeViewItemExtention ConvertTree(NTDataTreeNode tree) {
             //iterate thru all root nodes untill the one contatin the data file is found then clear it and readd it,
             //if this is a new node then add the file node and populate children,
             //todo: need to create a way to update specific nodes and such
-            TreeViewItem retval = new TreeViewItem { Header = tree.Text, Tag = tree.ObjectID };
+            TreeViewItemExtention retval = new TreeViewItemExtention {
+                Header = tree.Text,
+                Tag = tree.ObjectID,
+                NodeType = ConvertNodeType(tree.NodeType) };
+            
             if (tree.Nodes.Count >= 1) {
                 foreach (NTDataTreeNode item in tree.Nodes) {
                     retval.Items.Add(BuildSubNodes(item));
@@ -118,8 +146,13 @@ namespace ProtoGears_World_Builder {
                 }
             return retval;
             }
+
         private TreeViewItem BuildSubNodes(NTDataTreeNode node) {
-            TreeViewItem tvi = new TreeViewItem { Header = node.Text, Tag = node.ObjectID };
+            TreeViewItemExtention tvi = new TreeViewItemExtention {
+                Header = node.Text,
+                Tag = node.ObjectID,
+                NodeType = ConvertNodeType(node.NodeType) };
+
             if (node.Nodes.Count >= 1) {
                 foreach (NTDataTreeNode item in node.Nodes) {
                     tvi.Items.Add(BuildSubNodes(item));
@@ -127,6 +160,24 @@ namespace ProtoGears_World_Builder {
                 }
             return tvi;
             }
+
+        /// <summary>
+        /// Converts from generic tree data node type to this forms node type
+        /// </summary>
+        /// <param name="orig">original data's enum</param>
+        /// <returns>enum value, defaults to other if it cant figure it out</returns>
+       TreeViewItemExtention.NodeTypeEnum ConvertNodeType(NTDataTreeNode.NodeTypeEnum orig) {
+            switch (orig) {
+                case NTDataTreeNode.NodeTypeEnum.DataRoot:
+                    return TreeViewItemExtention.NodeTypeEnum.DataRoot;
+                case NTDataTreeNode.NodeTypeEnum.ObjectCollector:
+                    return TreeViewItemExtention.NodeTypeEnum.ObjectCollector;
+                case NTDataTreeNode.NodeTypeEnum.Object:
+                    return TreeViewItemExtention.NodeTypeEnum.Object;
+                }
+            return TreeViewItemExtention.NodeTypeEnum.Other;
+            }
+
         private void UpdateTreeView() { }
 
         private void bgw_ProgressChanged(object sender, ProgressChangedEventArgs e) {
@@ -166,10 +217,83 @@ namespace ProtoGears_World_Builder {
 
             }
 
+        //private TreeViewItemExtention[] selectedObjectSubNodes = new TreeViewItemExtention[0];
+
         private void DataView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
 
-            var a = DataView.SelectedItem;
-            //lblDescription.Content = ((TreeViewItem)DataView.SelectedItem).Header.ToString();
+            //var a = DataView.SelectedItem;
+
+
+            ////clear last selection of nodes
+            //DataItemSelector.Items.Clear();
+
+            TreeViewItemExtention selectedItem = DataView.SelectedItem as TreeViewItemExtention;
+
+
+
+            if (selectedItem != null) {
+                DataItemSelector.Items.Clear();
+                if (selectedItem.NodeType != TreeViewItemExtention.NodeTypeEnum.Object) {
+                    foreach (TreeViewItemExtention item in selectedItem.AllMyChildren()) {
+                        DataItemSelector.Items.Add(new ComboBoxItem {
+                            Content = item.Header,
+                            Tag = item.Tag
+                            });
+                        }
+                    } else {
+                    DataItemSelector.Items.Add(new ComboBoxItem {
+                        Content = selectedItem.Header,
+                        Tag = selectedItem.Tag
+                        });
+                    }
+
+
+                switch (selectedItem.NodeType) {
+                    case TreeViewItemExtention.NodeTypeEnum.DataRoot:
+                        //if (DataView.SelectedNode is NTDataNode) {
+                        //    if (DataFile.FileLocked) {
+                        //        editLockToolStripMenuItem.Text = "UnLock File";
+                        //        } else {
+                        //        editLockToolStripMenuItem.Text = "Lock File";
+                        //        }
+                        //    }
+                        break;
+                    case TreeViewItemExtention.NodeTypeEnum.ObjectCollector:
+                        //basic node that should contain nodes of OCCNodes
+                        //if (selectedItem.HasItems) {
+
+                        //    }
+                        //foreach (TreeViewItemExtention occn in selectedItem.Ite .Nodes) {
+                        //    foreach (OCNode ocn in occn.Nodes) {
+                        //        comboBox1.Items.Add(ocn.ObjectClass);
+                        //        }
+                        //    }
+
+                        //if (DataView.SelectedNode is OCCNode) {
+                        //    foreach (OCNode ocn in DataView.SelectedNode.Nodes) {
+                        //        comboBox1.Items.Add(ocn.ObjectClass);
+                        //        }
+                        //    }
+                        break;
+                    case TreeViewItemExtention.NodeTypeEnum.Object:
+                        //if (DataView.SelectedNode is OCNode) {
+                        //    comboBox1.Items.Add(((OCNode)DataView.SelectedNode).ObjectClass);
+                        //    }
+                        break;
+                    case TreeViewItemExtention.NodeTypeEnum.Other:
+
+                        break;
+                    default:
+
+                        break;
+                    }
+                }
+            if (DataItemSelector.Items.Count >= 1)
+                DataItemSelector.SelectedIndex = 0;
+            else {
+                DataItemSelector.Text = "";
+                ObjectViewer.SelectedObject = null;
+                }
             }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e) {
@@ -190,40 +314,11 @@ namespace ProtoGears_World_Builder {
                         LoadCache.Add(fileToLoad);
 
                         bgw.RunWorkerAsync();
-
-                        ////copied from background worker
-                        //foreach (NTDataFile dataFile in LoadCache) {
-                        //    DateTime fileloadStart = DateTime.Now;
-                        //    dataFile.Load3();
-                        //    DateTime fileloadFinish = DateTime.Now;
-                        //    Console.WriteLine(String.Format("Load Method 1:{0}", (fileloadFinish - fileloadStart)));
-                        //    }
-                        //foreach (NTDataFile dataFile in LoadCache) {
-                        //    dataFile.getTreeNodes(DataView.Items, FileNodeMenuStrip, OCCMenuStrip, OCMenuStrip, OrphanRootMenuStrip, OrphanMenuStrip);
-                        //    DataFiles.Add(dataFile);
-                        //    }
-                        //LoadCache.Clear();
+                    
                         }
-
-                    //System.Windows.Forms.OpenFileDialog OFD = new System.Windows.Forms.OpenFileDialog();
-                    //OFD.Filter = "NewTerra Data Files (*.ntx)|*.ntx";
-                    ////OFD.SupportMultiDottedExtensions = true;
-                    //OFD.Multiselect = false;
-                    //if (OFD.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                    //    //DataView.Nodes.Clear();
-                    //    NTDataFile fileToLoad = new NTDataFile(OFD.FileName);
-
-                    //    FileEventSubscriptions(fileToLoad, false);
-
-                    //    LoadCache.Add(fileToLoad);
-
-                    //    bgw.RunWorkerAsync();
-                    //}
+                    
                     }
-                //} catch (Exception ex) {
-                //    //throw ex;
-                ////todo need exception message box
-                //}
+                
             }
         private bool CheckForSave() {
             //foreach (NTDataFile df in DataFiles) {
@@ -277,6 +372,31 @@ namespace ProtoGears_World_Builder {
                 ////throw;
                 }
             }
+
+        private void DataItemSelector_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (DataItemSelector.SelectedIndex == -1)
+                ObjectViewer.SelectedObject = null;
+            else {
+                ComboBoxItem cbiSelected = (ComboBoxItem) DataItemSelector.SelectedItem;
+                string objectID = cbiSelected.Tag.ToString();
+                object selectedObject = DataFile.FindObject(objectID);
+
+                ObjectViewer.SelectedObject = selectedObject;
+                }
+            }
+
+        private void chkCTVisable_Click(object sender, RoutedEventArgs e) {
+            if ((bool)chkCTVisable.IsChecked) {
+                tabTools.Visibility = Visibility.Visible;
+                } else
+                tabTools.Visibility = Visibility.Collapsed;
+
+            }
+
+        private void mnuExit_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+            }
+
         private void DataFile_LockStatusChange() {
             try {
                 //TreeNode tn = CurrentDataFileNode;

@@ -920,21 +920,9 @@
             not creating a root or layer 0 IObjectClass  
             </summary>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCCBase.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates over the collection
-            </summary>
-            <returns>Returns an enumerator that iterates over the collection</returns>
-        </member>
         <member name="E:NTAF.PlugInFramework.OCCBase.CollectionUpdated">
             <summary>
             fires when the collection is updated
-            </summary>
-        </member>
-        <member name="P:NTAF.PlugInFramework.OCCBase.objectLayer">
-            <summary>
-            Override Required if level is above 0 or root
-            Returns the layerd level of this object collection
             </summary>
         </member>
         <member name="P:NTAF.PlugInFramework.OCCBase.CollectionName">
@@ -949,39 +937,27 @@
             Returns the type of the collection
             </summary>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCCBase.IsOfType(System.Object)">
+        <member name="P:NTAF.PlugInFramework.OCCBase.Count">
             <summary>
-            Checks a passed in obj and determins if it matches the type of this collector
+            counts the number of objects in the collector
             </summary>
-            <param name="obj">Type of the class to check</param>
-            <returns>true/false</returns>
+            <returns>number of objects in the collector</returns>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCCBase.IsOfType(System.Type)">
+        <member name="P:NTAF.PlugInFramework.OCCBase.objectLayer">
             <summary>
-            Checks a passed in obj and determins if it matches the type of this collector
+            Override Required if level is above 0 or root
+            Returns the layerd level of this object collection
             </summary>
-            <param name="T">Type of the class to check</param>
-            <returns>true/false</returns>
         </member>
         <member name="P:NTAF.PlugInFramework.OCCBase.Objects">
             <summary>
             Returns all the object that this Collector holds
             </summary>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCCBase.FindIndex(System.Object)">
+        <member name="P:NTAF.PlugInFramework.OCCBase.Owner">
             <summary>
-            Finds the index of the specified item
+            Gets the NTDataFile that holds this collector
             </summary>
-            <param name="Item">item to find index for</param>
-            <returns>int index of the found item or -1 if it cannot find the item</returns>
-        </member>
-        <member name="M:NTAF.PlugInFramework.OCCBase.FindIndex(System.String,NTAF.PlugInFramework.SearchField)">
-            <summary>
-            Searched the collector based on a key and field.
-            </summary>
-            <param name="Key">Data to match</param>
-            <param name="Field">Field to search</param>
-            <returns>int index of the found item or -1 if it cannot find the item</returns>
         </member>
         <member name="P:NTAF.PlugInFramework.OCCBase.Item(System.Int32)">
             <summary>
@@ -997,6 +973,13 @@
             <param name="Item"></param>
             <returns>matching object from the Collector</returns>
         </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Item(System.String)">
+            <summary>
+            searches for the object by a passed object
+            </summary>
+            <param name="Item"></param>
+            <returns>matching object from the Collector</returns>
+        </member>
         <member name="P:NTAF.PlugInFramework.OCCBase.Item(System.String,NTAF.PlugInFramework.SearchField)">
             <summary>
             searches for the object by a key field method
@@ -1004,12 +987,6 @@
             <param name="Key">Search parameter</param>
             <param name="Field">Filed to search in</param>
             <returns></returns>
-        </member>
-        <member name="P:NTAF.PlugInFramework.OCCBase.Count">
-            <summary>
-            counts the number of objects in the collector
-            </summary>
-            <returns>number of objects in the collector</returns>
         </member>
         <member name="M:NTAF.PlugInFramework.OCCBase.AddObject(System.Object)">
             <summary>
@@ -1037,6 +1014,11 @@
             <param name="Items">Items to add. Must be of the same type of collector or it will throw an invalid peramiter exception</param>
             <param name="atIndex">Index at which to insert the objects</param>
         </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.Clear">
+            <summary>
+            clears all items from the collector.
+            </summary>
+        </member>
         <member name="M:NTAF.PlugInFramework.OCCBase.DropObject(NTAF.PlugInFramework.ObjectClassBase)">
             <summary>
             removes an object from the collector
@@ -1062,16 +1044,46 @@
             <param name="toEdit">Item to edit</param>
             <param name="newValues">Items New Values</param>
         </member>
-        <member name="M:NTAF.PlugInFramework.OCCBase.Clear">
-            <summary>
-            clears all items from the collector.
-            </summary>
-        </member>
         <member name="M:NTAF.PlugInFramework.OCCBase.Exists(System.Object)">
             <summary>
             Checks to see of the collector allreaddy holds atleast one of the specified objects
             </summary>
             <param name="Item">Item to check for</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.FindIndex(System.Object)">
+            <summary>
+            Finds the index of the specified item
+            </summary>
+            <param name="Item">item to find index for</param>
+            <returns>int index of the found item or -1 if it cannot find the item</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.FindIndex(System.String,NTAF.PlugInFramework.SearchField)">
+            <summary>
+            Searched the collector based on a key and field.
+            </summary>
+            <param name="Key">Data to match</param>
+            <param name="Field">Field to search</param>
+            <returns>int index of the found item or -1 if it cannot find the item</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates over the collection
+            </summary>
+            <returns>Returns an enumerator that iterates over the collection</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.IsOfType(System.Object)">
+            <summary>
+            Checks a passed in obj and determins if it matches the type of this collector
+            </summary>
+            <param name="obj">Type of the class to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.IsOfType(System.Type)">
+            <summary>
+            Checks a passed in obj and determins if it matches the type of this collector
+            </summary>
+            <param name="T">Type of the class to check</param>
             <returns>true/false</returns>
         </member>
         <member name="T:NTAF.PlugInFramework.OCEditorBase">

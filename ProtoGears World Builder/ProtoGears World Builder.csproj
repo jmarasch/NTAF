@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MainWindow.xaml.Menu.cs" />
+    <Compile Include="TreeViewItemExtention.cs" />
     <Compile Include="WPFWindowHelper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +126,14 @@
     <Resource Include="Images\undo.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fluent.Ribbon-develop\Fluent.Ribbon.Showcase\Fluent.Ribbon.Showcase.NET 4.5.csproj">
+      <Project>{2c2a076b-e626-4a07-9d6e-4aee3fec41b6}</Project>
+      <Name>Fluent.Ribbon.Showcase.NET 4.5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fluent.Ribbon-develop\Fluent.Ribbon\Fluent.Ribbon.NET 4.5.csproj">
+      <Project>{4c92fcf4-3561-499f-bc5b-f2f089863047}</Project>
+      <Name>Fluent.Ribbon.NET 4.5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NTAF.Core\NTAF.Core.csproj">
       <Project>{108f5fa9-cabb-42b3-ab25-417320a22c4a}</Project>
       <Name>NTAF.Core</Name>
@@ -157,6 +166,31 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\RibbonIcons\Folder Open-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Clipboard Paste-01.png" />
+    <Resource Include="Images\RibbonIcons\Clipboard-01.png" />
+    <Resource Include="Images\RibbonIcons\Document-01.png" />
+    <Resource Include="Images\RibbonIcons\Edit Document-01.png" />
+    <Resource Include="Images\RibbonIcons\Gear-01.png" />
+    <Resource Include="Images\RibbonIcons\Lock Lock-01.png" />
+    <Resource Include="Images\RibbonIcons\Lock Unlock-01.png" />
+    <Resource Include="Images\RibbonIcons\Save-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\File Open-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\File Export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Button Turn On-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Button Turn Off-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Save-As-01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

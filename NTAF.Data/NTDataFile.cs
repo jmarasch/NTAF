@@ -1526,7 +1526,11 @@ namespace NTAF.Core {
 
         public NTDataTreeNode GetDataTree() {
             NTDataTreeNode root = new NTDataTreeNode(this.FileName);
+            root.NodeType = NTDataTreeNode.NodeTypeEnum.DataRoot;
             foreach (OCCBase occ in Collectors) {
+                NTDataTreeNode occNode = occ.TreeData;
+                //occNode.NodeType = NTDataTreeNode.NodeTypeEnum.ObjectCollector;
+                //occNode.Text = occ.CollectionName;
                 root.Nodes.Add(occ.TreeData);
                 }
             return root;

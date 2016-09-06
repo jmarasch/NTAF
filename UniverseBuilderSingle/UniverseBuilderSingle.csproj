@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeViewItemExtention.cs" />
     <EmbeddedResource Include="StatusBarToggleButton.Resource.resx" />
     <None Include="StatusBarToggleButton.cs">
       <SubType>Component</SubType>

@@ -65,6 +65,15 @@ namespace NTAF.PlugInFramework {
                 }
             }
 
+        public NodeTypeEnum NodeType { get; set; }
+
+        public enum NodeTypeEnum {
+            DataRoot,
+            ObjectCollector,
+            Object,
+            Other
+            }
+
         /// <devdoc>
         ///     Creates a NTDataTreeNode object.
         /// </devdoc>

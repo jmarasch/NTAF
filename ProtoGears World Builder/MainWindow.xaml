@@ -7,16 +7,16 @@
         xmlns:pg="http://schemas.denisvuyka.wordpress.com/wpfpropertygrid"
         xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         x:Name="MainForm" x:Class="ProtoGears_World_Builder.MainWindow"
-        mc:Ignorable="d" Title="Protogears World Builder" Height="465" Width="789" MinHeight="300" MinWidth="500" ResizeMode="CanResize"
+        mc:Ignorable="d" Title="Protogears World Builder" Height="395.5" Width="789" MinHeight="300" MinWidth="500" ResizeMode="CanResize"
         Icon="Images/Icons/Program.ico" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition x:Name="RibbonGrid" Height="Auto" />
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Fluent:Ribbon x:Name="RibbonWin" Grid.Row="0">
+        <Fluent:Ribbon x:Name="RibbonWin" Grid.Row="0" AutomaticStateManagement="True">
             <!--Backstage-->
-
             <Fluent:Ribbon.Menu>
                 <Grid>
                     <Fluent:ApplicationMenu Header="File"
@@ -46,9 +46,9 @@
                                             BorderThickness="1"
                                             HorizontalAlignment="Stretch"
                                             BorderBrush="#DCDDDE" />
-                                    
+
                                     <Fluent:MenuItem x:Name="btnSettings" Header="Settings" Icon="Images\RibbonIcons\Gear-01.png" />
-                                    
+
                                     <Border Height="1"
                                             BorderThickness="1"
                                             HorizontalAlignment="Stretch"
@@ -56,7 +56,7 @@
 
                                 </StackPanel>
 
-                                <ItemsControl ItemsSource="{Binding GalleryViewModel.Items}">
+                                <ItemsControl x:Name="RecentFileControl" ItemsSource="{Binding GalleryViewModel.Items}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Fluent:MenuItem Header="{Binding Text}"
@@ -74,11 +74,12 @@
 
                         <Fluent:MenuItem Header="Save All"
                                          Icon="Images\RibbonIcons\Save-As-01.png"/>
-                        
+
                         <Fluent:MenuItem Header="Open"
                                          Description="CTRL + O"
                                          ToolTip="Open object"
-                                         Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/YellowLarge.png" />
+                                         Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/YellowLarge.png"
+                                         Click="fileOpen_Click"/>
 
                         <Separator />
 
@@ -104,27 +105,29 @@
                 <Fluent:QuickAccessMenuItem Target="{Binding ElementName=buttonSave}" IsChecked="True"/>
             </Fluent:Ribbon.QuickAccessItems>
             <!--Tabs-->
-            <Fluent:RibbonTabItem Header="Tab">
-                <Fluent:RibbonGroupBox Header="Group">
-                    <Fluent:Button Name="buttonSave" Header="Save" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" />
+            <Fluent:RibbonTabItem x:Name="tabHome" Header="Home">
+                <Fluent:RibbonGroupBox Header="Clipboard">
+                    <Fluent:Button Name="buttonCopy" Header="Copy" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" />
+                    <Fluent:Button Name="buttonPaste" Header="Paste" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" />
                 </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox>
-                    <Fluent:RibbonGroupBox Header="Toggles" >
-                        <Fluent:CheckBox x:Name="chkCTVisable" Header="Contex Tools"
-                                         Click="chkCTVisable_Click"/>
-                    </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Help">
+                    <Fluent:Button Name="buttonHelp" Header="Help" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" />
+                    <Fluent:Button Name="buttonAbout" Header="About" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" SizeDefinition="Middle" />
+                    <Fluent:Button Name="buttonLoadedPlugins" Header="Loaded Plugins" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" SizeDefinition="Middle"  />
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
 
             <!--Contextual Tabs-->
-            <Fluent:RibbonTabItem Header="CT" Group="{Binding ElementName=tabTools}"/>
-
+            <Fluent:RibbonTabItem Header="File Tools" Group="{Binding ElementName=tabDataGroup}"/>
+            
             <!--Contextual Tab Groups-->
             <Fluent:Ribbon.ContextualGroups>
-                <Fluent:RibbonContextualTabGroup x:Name="tabTools"  Header="Tools" Background="Green" BorderBrush="Green"  />
+                <Fluent:RibbonContextualTabGroup Header="Data" x:Name="tabDataGroup" Background="Orange" BorderBrush="Orange" />
             </Fluent:Ribbon.ContextualGroups>
+            
         </Fluent:Ribbon>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="DataGrid" Width="*" MinWidth="245"/>
                 <ColumnDefinition x:Name="SizeAdjuster" Width="Auto"/>
@@ -132,7 +135,7 @@
             </Grid.ColumnDefinitions>
             <TreeView x:Name="DataView" Grid.Column="0" SelectedItemChanged="DataView_SelectedItemChanged" >
             </TreeView>
-            <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="5" Background="#FFBCBCBC"/>
+            <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="5" Background="#FF2B579A"/>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="22"/>
@@ -156,139 +159,16 @@
                         </ResourceDictionary>
                     </pg:PropertyGrid.Resources>
                 </pg:PropertyGrid>
-                <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" ResizeBehavior="PreviousAndNext" Height="5" Background="#FFBCBCBC"/>
-                <Label x:Name="lblDescription" Grid.Row="3">Hello</Label>
+                <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" ResizeBehavior="PreviousAndNext" Height="5" Background="#FF2B579A"/>
+                <Label x:Name="lblDescription" Grid.Row="3" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">Hello</Label>
             </Grid>
         </Grid>
+        <Fluent:StatusBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Visibility="Visible" Grid.Row="2">
+            <Fluent:StatusBarItem HorizontalAlignment="Left" Margin="5,0,0,0">
+                <ProgressBar Height="15" Width="100" Minimum="0" Maximum="100" Value="10"/>
+            </Fluent:StatusBarItem>
+            <Separator HorizontalAlignment="Left" />
+            <Fluent:StatusBarItem x:Name="lblStatusText" Title="Words Width" Value="Ready..." HorizontalAlignment="Left"/>
+        </Fluent:StatusBar>
     </Grid>
 </Fluent:RibbonWindow>
-
-<!--<RibbonWindow
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProtoGears_World_Builder"
-        xmlns:pg="http://schemas.denisvuyka.wordpress.com/wpfpropertygrid"
-        x:Name="MainForm" x:Class="ProtoGears_World_Builder.MainWindow"
-        mc:Ignorable="d" Title="Protogears World Builder" Height="465" Width="789" MinHeight="300" MinWidth="500" ResizeMode="CanResize"
-        Icon="Images/Icons/Program.ico" >
-    <Grid Margin="0,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="RibbonGrid" Height="Auto" />
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Ribbon x:Name="RibbonWin" Grid.Row="0" SelectedIndex="0" WindowIconVisibility="Hidden" >
-            --><!-- Help Pane, located at the right-hand side --><!--
-            <Ribbon.HelpPaneContent>
-                <RibbonButton SmallImageSource="Images\help.png" />
-            </Ribbon.HelpPaneContent>
-            --><!-- Quick Access Tool bar - located at the upper-left corner --><!--
-            <Ribbon.QuickAccessToolBar>
-                <RibbonQuickAccessToolBar>
-                    <RibbonButton x:Name="btnOpenFile" SmallImageSource="Images/RibbonIcons/Folder Open-01.png" Click="OpenFile_Click" />
-                    <RibbonButton x:Name ="Save" SmallImageSource="Images\save.png" />
-                    <RibbonSplitButton x:Name ="Undo" SmallImageSource="Images\undo.png">
-                        --><!--<RibbonSplitMenuItem Header="Undo 1" />
-                        <RibbonSplitMenuItem Header="Undo 2" />
-                        <RibbonSplitMenuItem Header="Undo 3" />--><!--
-                    </RibbonSplitButton>
-                    <RibbonSplitButton x:Name="Redo" SmallImageSource="Images\redo.png" >
-                        --><!--<RibbonSplitMenuItem Header="Redo 1" />
-                        <RibbonSplitMenuItem Header="Redo 2" />--><!--
-                    </RibbonSplitButton>
-                </RibbonQuickAccessToolBar>
-            </Ribbon.QuickAccessToolBar>
-            --><!-- Application Menu, located at the left-hand side (down arrow) --><!--
-            <Ribbon.ApplicationMenu>
-                <RibbonApplicationMenu KeyTip="F" FlowDirection="LeftToRight" >
-                    <RibbonApplicationMenuItem Header="Options" ImageSource="Images\options.png" />
-                    <RibbonApplicationMenuItem Header="Exit" ImageSource="Images\quit.png" />
-                </RibbonApplicationMenu>
-            </Ribbon.ApplicationMenu>
-            --><!-- Ribbon Tab #1: Home --><!--
-            <RibbonTab Header="Home" KeyTip="H" >
-                --><!--FileOperations group--><!--
-                <RibbonGroup x:Name="Filer" Header="File">
-                    <RibbonMenuButton LargeImageSource="Images\RibbonIcons\Save-01.png" Label="Save" KeyTip="S">
-                        <RibbonMenuItem ImageSource="Images\RibbonIcons\Document-01.png" Header="New" KeyTip="N"/>
-                    </RibbonMenuButton>
-                    <RibbonMenuButton SmallImageSource="Images\RibbonIcons\File Export.png" Label="Export">
-                        <RibbonMenuItem Header="CSV" KeyTip="C" />
-                        <RibbonMenuItem Header="TXT" KeyTip="T" />
-                    </RibbonMenuButton>
-
-                    <RibbonButton SmallImageSource="Images\cut.png" Label="Cut" KeyTip="X" />
-                    <RibbonButton SmallImageSource="Images\copy.png" Label="Copy" KeyTip="C" />
-                </RibbonGroup>
-                --><!-- Home  group--><!--
-                <RibbonGroup x:Name="ClipboardGroup" Header="Home">
-                    <RibbonMenuButton LargeImageSource="Images\paste.png" Label="Paste" KeyTip="V">
-                        <RibbonMenuItem ImageSource="Images\paste.png" Header="Keep Text Only" KeyTip="T"/>
-                        <RibbonMenuItem ImageSource="Images\paste.png" Header="Paste Special..." KeyTip="S"/>
-                    </RibbonMenuButton>
-                    <RibbonButton SmallImageSource="Images\cut.png" Label="Cut" KeyTip="X" />
-                    <RibbonButton SmallImageSource="Images\copy.png" Label="Copy" KeyTip="C" />
-                    <RibbonButton SmallImageSource="Images\format_painter.png" Label="Format Painter" KeyTip="FP" />
-                </RibbonGroup>
-                --><!-- Employee And Payroll group--><!--
-                <RibbonGroup x:Name="Employee" Header="Something">
-                    --><!--<RibbonMenuButton LargeImageSource="Images\personal.png" Label="Employee" KeyTip="V">
-                        <RibbonMenuItem ImageSource="Images\paste.png" Header="Keep Text Only" KeyTip="T"/>
-                        <RibbonMenuItem ImageSource="Images\paste.png" Header="Paste Special..." KeyTip="S"/>
-                    </RibbonMenuButton>
-                    <RibbonButton SmallImageSource="Images\save.png" Label="Save" KeyTip="X" />
-                    <RibbonButton SmallImageSource="Images\add.png" Label="Add" KeyTip="C" />--><!--
-                </RibbonGroup>
-            </RibbonTab>
-            --><!-- Ribbon Tab #2: --><!--
-            <RibbonTab Header="Security" KeyTip="I">
-                <RibbonGroup Header="LockStuff">
-
-                </RibbonGroup>
-            </RibbonTab>
-        </Ribbon>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="DataGrid" Width="*" MinWidth="245"/>
-                <ColumnDefinition x:Name="SizeAdjuster" Width="Auto"/>
-                <ColumnDefinition x:Name="PropertyGrid" Width="*" MinWidth="250"/>
-            </Grid.ColumnDefinitions>
-            <TreeView x:Name="DataView" Grid.Column="0" SelectedItemChanged="DataView_SelectedItemChanged" 
-                      >
-                --><!--<TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type NTAF.:Foo}" ItemsSource="{Binding Path=Children}">
-                        <TreeViewItem Header="{Binding Path=Name}"  />
-                    </HierarchicalDataTemplate>
-                </TreeView.Resources>--><!--
-            </TreeView>
-            <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="5" Background="#FFBCBCBC"/>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="22"/>
-                    <RowDefinition Height="*" MinHeight="100"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="40"  MinHeight="35"/>
-                </Grid.RowDefinitions>
-                <ComboBox x:Name="DataItemSelector" Grid.Row="0" SelectionChanged="DataItemSelector_SelectionChanged" />
-                <pg:PropertyGrid x:Name="ObjectViewer" Grid.Row="1">
-                    <pg:PropertyGrid.Layout>
-                        <pg:TabbedLayout>
-                            <pg:AlphabeticalLayout pg:TabbedLayout.Header="Alphabetical"/>
-                            <pg:CategorizedLayout pg:TabbedLayout.Header="Categorized"/>
-                        </pg:TabbedLayout>
-                    </pg:PropertyGrid.Layout>
-                    <pg:PropertyGrid.Resources>
-                        <ResourceDictionary>
-                            <ResourceDictionary.MergedDictionaries>
-                                --><!--<pg:KaxamlTheme/>--><!--
-                            </ResourceDictionary.MergedDictionaries>
-                        </ResourceDictionary>
-                    </pg:PropertyGrid.Resources>
-                </pg:PropertyGrid>
-                <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" ResizeBehavior="PreviousAndNext" Height="5" Background="#FFBCBCBC"/>
-                <Label x:Name="lblDescription" Grid.Row="3">Hello</Label>
-            </Grid>
-        </Grid>
-    </Grid>
-</RibbonWindow>-->

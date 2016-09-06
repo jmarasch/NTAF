@@ -76,6 +76,15 @@ namespace ProtoGears_World_Builder {
             bgw.WorkerReportsProgress = true;
             bgw.WorkerSupportsCancellation = true;
 
+            for (int i = 1; i < 50+1; i++) {
+                RecentFileControl.Items.Add(new Fluent.MenuItem {
+                    Header = String.Format("File {0}",i),
+                    ToolTip = String.Format("File {0} Path", i),
+                    Icon = "Images/Icons/File.ico"
+                    });
+                }
+
+           
 
             //TreeViewItem
             //    root = new TreeViewItem { Header = "Root" };
@@ -246,10 +255,17 @@ namespace ProtoGears_World_Builder {
                         Tag = selectedItem.Tag
                         });
                     }
-
+                BooleanToVisibilityConverter converter = new BooleanToVisibilityConverter();
+                tabDataGroup.Visibility = (Visibility)converter.Convert(selectedItem.NodeType == TreeViewItemExtention.NodeTypeEnum.DataRoot, null, null, null);
+                //if() {
+                //        tabDataGroup.Visibility = Visibility.Visible;
+                //    } else {
+                //    tabDataGroup.Visibility = Visibility.Collapsed;
+                //    }
 
                 switch (selectedItem.NodeType) {
                     case TreeViewItemExtention.NodeTypeEnum.DataRoot:
+                        //tabDataGroup.Visibility = Visibility.Visible;
                         //if (DataView.SelectedNode is NTDataNode) {
                         //    if (DataFile.FileLocked) {
                         //        editLockToolStripMenuItem.Text = "UnLock File";
@@ -297,27 +313,7 @@ namespace ProtoGears_World_Builder {
             }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e) {
-            //try {
-                if (CheckForSave()) {
-                    // Create OpenFileDialog
-                    Microsoft.Win32.OpenFileDialog OFD = new Microsoft.Win32.OpenFileDialog();
 
-                    // Set filter for file extension and default file extension
-                    OFD.Filter = "NewTerra Data Files (*.ntx)|*.ntx";
-                    OFD.Multiselect = false;
-
-                    if (OFD.ShowDialog() == true) {
-                        NTDataFile fileToLoad = new NTDataFile(OFD.FileName);
-
-                        FileEventSubscriptions(fileToLoad, false);
-
-                        LoadCache.Add(fileToLoad);
-
-                        bgw.RunWorkerAsync();
-                    
-                        }
-                    
-                    }
                 
             }
         private bool CheckForSave() {
@@ -385,16 +381,32 @@ namespace ProtoGears_World_Builder {
                 }
             }
 
-        private void chkCTVisable_Click(object sender, RoutedEventArgs e) {
-            if ((bool)chkCTVisable.IsChecked) {
-                tabTools.Visibility = Visibility.Visible;
-                } else
-                tabTools.Visibility = Visibility.Collapsed;
-
-            }
-
         private void mnuExit_Click(object sender, RoutedEventArgs e) {
             this.Close();
+            }
+
+        private void fileOpen_Click(object sender, RoutedEventArgs e) {
+            //try {
+            if (CheckForSave()) {
+                // Create OpenFileDialog
+                Microsoft.Win32.OpenFileDialog OFD = new Microsoft.Win32.OpenFileDialog();
+
+                // Set filter for file extension and default file extension
+                OFD.Filter = "NewTerra Data Files (*.ntx)|*.ntx";
+                OFD.Multiselect = false;
+
+                if (OFD.ShowDialog() == true) {
+                    NTDataFile fileToLoad = new NTDataFile(OFD.FileName);
+
+                    FileEventSubscriptions(fileToLoad, false);
+
+                    LoadCache.Add(fileToLoad);
+
+                    bgw.RunWorkerAsync();
+
+                    }
+
+                }
             }
 
         private void DataFile_LockStatusChange() {

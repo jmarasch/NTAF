@@ -126,10 +126,6 @@
     <Resource Include="Images\undo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fluent.Ribbon-develop\Fluent.Ribbon.Showcase\Fluent.Ribbon.Showcase.NET 4.5.csproj">
-      <Project>{2c2a076b-e626-4a07-9d6e-4aee3fec41b6}</Project>
-      <Name>Fluent.Ribbon.Showcase.NET 4.5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fluent.Ribbon-develop\Fluent.Ribbon\Fluent.Ribbon.NET 4.5.csproj">
       <Project>{4c92fcf4-3561-499f-bc5b-f2f089863047}</Project>
       <Name>Fluent.Ribbon.NET 4.5</Name>

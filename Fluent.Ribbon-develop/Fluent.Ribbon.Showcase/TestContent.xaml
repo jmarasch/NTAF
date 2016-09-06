@@ -1596,7 +1596,7 @@
                                    KeyTip="X"
                                    Header="Cut"
                                    Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/Cut.png"
-                                   SizeDefinition="Middle,Small"
+                                   
                                    Command="Cut"
                                    FocusManager.IsFocusScope="True">
                         <Fluent:Button.ToolTip>

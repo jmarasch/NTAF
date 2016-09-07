@@ -196,6 +196,31 @@
   <ItemGroup>
     <Resource Include="Images\RibbonIcons\Button Close-01.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Button Help-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Button Add-01.png" />
+    <Resource Include="Images\RibbonIcons\Button Info-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Document-Purge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\database-Locked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\database-password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Document Preview-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\print-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\print-Settings-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

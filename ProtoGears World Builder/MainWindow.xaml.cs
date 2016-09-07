@@ -1,4 +1,6 @@
-﻿//using System.Windows.Controls.Ribbon;
+﻿//#define UseCustomMenuItems
+
+//using System.Windows.Controls.Ribbon;
 using Fluent;
 using NTAF.Core;
 using NTAF.PlugInFramework;
@@ -41,17 +43,29 @@ namespace ProtoGears_World_Builder {
             bgw.WorkerReportsProgress = true;
             bgw.WorkerSupportsCancellation = true;
 
+            //tabHome.Visibility = Visibility.Hidden;
+
             string[] recentFiles = Properties.Settings.Default.RecentFiles.Split(';');
 
+            recentFiles = recentFiles.Where(s => s != "").ToArray();
+
             foreach (string sFile in recentFiles) {
-                //RecentFileItem menuItem = new RecentFileItem(sFile);
+#if UseCustomMenuItems
+
+                RecentFileItem menuItem = new RecentFileItem(sFile);
+#else
                 Fluent.MenuItem menuItem = new Fluent.MenuItem {
                     Header = System.IO.Path.GetFileName(sFile),
                     ToolTip = sFile,
-                    Icon = "Images/Icons/File.ico"
+                    Icon = "Images/Icons/File.ico",
+                    Size = RibbonControlSize.Large,
+                    Width = 300
+
                     };
+#endif
                 menuItem.Click += RecentFile_Click;
-                RecentFileControl.Items.Add(menuItem);
+                RecentFileGallery.Items.Add(menuItem);
+                //RecentFileControl.Items.Add(menuItem);
                 }
 
             //TreeViewItem
@@ -70,9 +84,9 @@ namespace ProtoGears_World_Builder {
             //DataView.Items.Add(root);
             }
 
-        #endregion Constructors
+#endregion Constructors
 
-        #region Properties
+#region Properties
 
         private TreeViewItem CurrentDataFileNode {
             get {
@@ -104,9 +118,9 @@ namespace ProtoGears_World_Builder {
                 }
             }
 
-        #endregion Properties
+#endregion Properties
 
-        #region Methods
+#region Methods
 
         private void bgw_DoWork(object sender, DoWorkEventArgs e) {
             //todo:: the only way its going to get faster is if linking is done on demand when an object is used
@@ -130,8 +144,6 @@ namespace ProtoGears_World_Builder {
             }
 
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            //UpdateProgressLabel1.Text = "Ready...";
-            //UpdateProgressBar1.Value = 0;
 
             NTDataTreeNode dataTree;
 
@@ -147,6 +159,8 @@ namespace ProtoGears_World_Builder {
             LoadCache.Clear();
             UpdateProgressBar.Visibility = Visibility.Collapsed;
             UpdateProgressLabel.Value = "Ready...";
+            UpdateProgressBar.Value = 0;
+
             }
 
         private TreeViewItem BuildSubNodes(NTDataTreeNode node) {
@@ -283,8 +297,12 @@ namespace ProtoGears_World_Builder {
                         Tag = selectedItem.Tag
                         });
                     }
+
                 BooleanToVisibilityConverter converter = new BooleanToVisibilityConverter();
                 tabDataGroup.Visibility = (Visibility)converter.Convert(selectedItem.NodeType == TreeViewItemExtention.NodeTypeEnum.DataRoot, null, null, null);
+                tabCollectorGroup.Visibility = (Visibility)converter.Convert(selectedItem.NodeType == TreeViewItemExtention.NodeTypeEnum.ObjectCollector, null, null, null);
+                tabObjectGroup.Visibility = (Visibility)converter.Convert(selectedItem.NodeType == TreeViewItemExtention.NodeTypeEnum.Object, null, null, null);
+
                 //if() {
                 //        tabDataGroup.Visibility = Visibility.Visible;
                 //    } else {
@@ -293,6 +311,7 @@ namespace ProtoGears_World_Builder {
 
                 switch (selectedItem.NodeType) {
                     case TreeViewItemExtention.NodeTypeEnum.DataRoot:
+                        RibbonWin.SelectedTabItem = tabFileTools;
                         //tabDataGroup.Visibility = Visibility.Visible;
                         //if (DataView.SelectedNode is NTDataNode) {
                         //    if (DataFile.FileLocked) {
@@ -304,6 +323,7 @@ namespace ProtoGears_World_Builder {
                         break;
 
                     case TreeViewItemExtention.NodeTypeEnum.ObjectCollector:
+                        RibbonWin.SelectedTabItem = tabCollectorTools;
                         //basic node that should contain nodes of OCCNodes
                         //if (selectedItem.HasItems) {
                         //    }
@@ -321,6 +341,7 @@ namespace ProtoGears_World_Builder {
                         break;
 
                     case TreeViewItemExtention.NodeTypeEnum.Object:
+                        RibbonWin.SelectedTabItem = tabObjectTools;
                         //if (DataView.SelectedNode is OCNode) {
                         //    comboBox1.Items.Add(((OCNode)DataView.SelectedNode).ObjectClass);
                         //    }
@@ -404,7 +425,10 @@ namespace ProtoGears_World_Builder {
                     Fluent.MenuItem rfi = new Fluent.MenuItem {
                         Header = System.IO.Path.GetFileName(OFD.FileName),
                         ToolTip = OFD.FileName,
-                        Icon = "Images/Icons/File.ico"
+                        Icon = "Images/Icons/File.ico",
+                        Size = RibbonControlSize.Large,
+                        Width = 300
+
                         };
 
                     UpdateRecentFiles(rfi);
@@ -434,21 +458,19 @@ namespace ProtoGears_World_Builder {
             this.Close();
             }
 
-        private void OpenFile(string[] files) {
-            }
-
-        //private TreeViewItemExtention[] selectedObjectSubNodes = new TreeViewItemExtention[0];
-        private void OpenFile_Click(object sender, RoutedEventArgs e) {
-            }
-
         private void RecentFile_Click(object sender, RoutedEventArgs e) {
             if (bgw.IsBusy) {
                 System.Windows.MessageBox.Show("Currently Loading files, please wait until their done.", "Slow down cowboy", MessageBoxButton.OK);
                 } else {
+
+#if UseCustomMenuItems
+                RecentFileItem rfi = (RecentFileItem)sender;
+                LoadCache.Add(new NTDataFile(rfi.FilePath));
+#else
                 Fluent.MenuItem rfi = (Fluent.MenuItem)sender;
-                //                rfi = (RecentFileItem)sender;
-                //LoadCache.Add(new NTDataFile(rfi.FilePath));
                 LoadCache.Add(new NTDataFile(rfi.ToolTip.ToString()));
+#endif
+
                 bgw.RunWorkerAsync();
                 }
 
@@ -456,35 +478,62 @@ namespace ProtoGears_World_Builder {
             }
 
         private void UpdateRecentFiles(object sender) {
-            //RecentFileItem file = (RecentFileItem)sender;
+#if UseCustomMenuItems
+            RecentFileItem file = (RecentFileItem)sender;
+#else
             Fluent.MenuItem file = (Fluent.MenuItem)sender;
+#endif
 
-            //foreach (RecentFileItem rfi in RecentFileControl.Items) {
-            foreach (Fluent.MenuItem rfi in RecentFileControl.Items) {
+#if UseCustomMenuItems
+            foreach (RecentFileItem rfi in RecentFileControl.Items) {
+#else
+            //foreach (Fluent.MenuItem rfi in RecentFileControl.Items) {
+            foreach (Fluent.MenuItem rfi in RecentFileGallery.Items) {
+
                 rfi.Click -= RecentFile_Click;
+#endif
                 }
 
-            RecentFileControl.Items.Clear();
+            RecentFileGallery.Items.Clear();
+
+            //RecentFileControl.Items.Clear();
 
             List<String> recentFiles = new List<string>(Properties.Settings.Default.RecentFiles.Split(';'));
 
-            //recentFiles.RemoveAll(s => s == file.FilePath);
-            recentFiles.RemoveAll(s => s == file.ToolTip.ToString());
+            recentFiles.Remove("");
 
-            //recentFiles.Insert(0, file.FilePath);
+#if UseCustomMenuItems
+            recentFiles.RemoveAll(s => s == file.FilePath);
+#else
+            recentFiles.RemoveAll(s => s == file.ToolTip.ToString());
+#endif
+
+#if UseCustomMenuItems
+            recentFiles.Insert(0, file.FilePath);
+#else
             recentFiles.Insert(0, file.ToolTip.ToString());
+#endif
 
             string saveString = "";
 
             for (int i = 0; i <= recentFiles.Count - 1 & i < 10; i++) {
-                //RecentFileItem menuItem = new RecentFileItem(recentFiles[i]);
+
+#if UseCustomMenuItems
+                RecentFileItem menuItem = new RecentFileItem(recentFiles[i]);
+
+#else
                 Fluent.MenuItem menuItem = new Fluent.MenuItem {
                     Header = System.IO.Path.GetFileName(recentFiles[i]),
                     ToolTip = recentFiles[i],
-                    Icon = "Images/Icons/File.ico"
+                    Icon = "Images/Icons/File.ico",
+                    Size = RibbonControlSize.Large,
+                    Width = 300
                     };
+#endif
+
                 menuItem.Click += RecentFile_Click;
-                RecentFileControl.Items.Add(menuItem);
+                RecentFileGallery.Items.Add(menuItem);
+                //RecentFileControl.Items.Add(menuItem);
 
                 saveString += recentFiles[i];
                 if (i < recentFiles.Count - 1)
@@ -496,6 +545,6 @@ namespace ProtoGears_World_Builder {
         private void UpdateTreeView() {
             }
 
-        #endregion Methods
+#endregion Methods
         }
     }

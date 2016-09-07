@@ -15,9 +15,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Fluent:Ribbon x:Name="RibbonWin" Grid.Row="0" AutomaticStateManagement="True">
+        <Fluent:Ribbon x:Name="RibbonWin" Grid.Row="0" AutomaticStateManagement="True" CanCustomizeQuickAccessToolBar="False" CanCustomizeRibbon="False">
+            <Fluent:Ribbon.QuickAccessItems/>
             <!--Backstage-->
-            <Fluent:Ribbon.Menu>
+            <!--<Fluent:Ribbon.Menu>
                 <Grid>
                     <Fluent:ApplicationMenu Header="File"
                                             Visibility="Visible">
@@ -47,7 +48,7 @@
                                             HorizontalAlignment="Stretch"
                                             BorderBrush="#DCDDDE" />
 
-                                    <Fluent:MenuItem x:Name="btnSettings" Header="Settings" Icon="Images\RibbonIcons\Gear-01.png" />
+                                    
 
                                     <Border Height="1"
                                             BorderThickness="1"
@@ -56,14 +57,13 @@
 
                                 </StackPanel>
 
-                                <ItemsControl x:Name="RecentFileControl" ItemsSource="{Binding GalleryViewModel.Items}">
+                                <ItemsControl x:Name="RecentFileControlx" ItemsSource="{Binding GalleryViewModel.Items}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Fluent:MenuItem Header="{Binding Text}"
                                                              ToolTip="{Binding Text}"
                                                              Description="{Binding Group}"
-                                                             IsDefinitive="True"
-                                                             Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/BlueLarge.png" />
+                                                             IsDefinitive="True" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -78,7 +78,7 @@
                         <Fluent:MenuItem Header="Open"
                                          Description="CTRL + O"
                                          ToolTip="Open object"
-                                         Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/YellowLarge.png"
+                                         Icon="Images\RibbonIcons\Folder Open-01.png"
                                          Click="fileOpen_Click"/>
 
                         <Separator />
@@ -91,43 +91,120 @@
                                          KeyTip="X"
                                          Click="mnuExit_Click" />
                     </Fluent:ApplicationMenu>
+
                 </Grid>
-            </Fluent:Ribbon.Menu>
+            </Fluent:Ribbon.Menu>-->
 
+            <Fluent:Ribbon.ToolBarItems>
+                <Fluent:Button Size="Small"
+                               Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Images/Help.png"
+                               ToolTip="Help">
+                </Fluent:Button>
+                <Fluent:Button Size="Small"
+                               Icon="Images\RibbonIcons\Button Info-01.png"
+                               ToolTip="About">
+                </Fluent:Button>
+                <Fluent:Button Size="Small"
+                               Icon="Images/RibbonIcons/Button Add-01.png"
+                               ToolTip="Loaded Plugins">
+                </Fluent:Button>
+            </Fluent:Ribbon.ToolBarItems>
 
-
-            <!--Quick Access Toolbar Items-->
-            <Fluent:Ribbon.QuickAccessItems>
-                <!--Use Content or Target Property to set QAT item-->
-                <Fluent:QuickAccessMenuItem IsChecked="True">
-                    <Fluent:Button Header="Settings" Icon="Images\RibbonIcons\Gear-01.png"/>
-                </Fluent:QuickAccessMenuItem>
-                <Fluent:QuickAccessMenuItem Target="{Binding ElementName=buttonSave}" IsChecked="True"/>
-            </Fluent:Ribbon.QuickAccessItems>
-            <!--Tabs-->
             <Fluent:RibbonTabItem x:Name="tabHome" Header="Home">
-                <Fluent:RibbonGroupBox Header="Clipboard">
-                    <Fluent:Button Name="buttonCopy" Header="Copy" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" />
-                    <Fluent:Button Name="buttonPaste" Header="Paste" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" />
+                
+                <Fluent:RibbonGroupBox Header="File">
+                    <Fluent:SplitButton Header="Open"
+                                   ToolTip="Open object"
+                                   Icon="Images\RibbonIcons\Folder Open-01.png"
+                                   LargeIcon="Images\RibbonIcons\Folder Open-01.png"
+                                   MaxDropDownHeight="500"
+                                   DropDownHeight="300"
+                                   Click="fileOpen_Click">
+                        <Fluent:Gallery x:Name="RecentFileGallery"
+                                        MinHeight="60"
+                                        MinWidth="250"
+                                        HorizontalContentAlignment="Right"
+                                        MaxItemsInRow="1">
+                        </Fluent:Gallery>
+                        <Fluent:MenuItem Header="Clear Recent"/>
+                    </Fluent:SplitButton>
+                    
+                    <Fluent:Button Header="New"
+                                   Icon="Images\RibbonIcons\Document-01.png"
+                                   LargeIcon="Images\RibbonIcons\Document-01.png" />
+
+                    <Fluent:Button Header="Save All"
+                                   Icon="Images\RibbonIcons\Save-As-01.png"
+                                   LargeIcon="Images\RibbonIcons\Save-As-01.png"/>
                 </Fluent:RibbonGroupBox>
 
-                <Fluent:RibbonGroupBox Header="Help">
-                    <Fluent:Button Name="buttonHelp" Header="Help" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" />
-                    <Fluent:Button Name="buttonAbout" Header="About" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" SizeDefinition="Middle" />
-                    <Fluent:Button Name="buttonLoadedPlugins" Header="Loaded Plugins" Icon="Images\RibbonIcons\Save-01.png" LargeIcon="Images\RibbonIcons\Save-01.png" SizeDefinition="Middle"  />
+                <Fluent:RibbonGroupBox Header="Program">
+
+                    <Fluent:Button Header="Settings"
+                                   Icon="Images\RibbonIcons\Gear-01.png" 
+                                   LargeIcon="Images\RibbonIcons\Gear-01.png" />
+
+                    <Fluent:Button Header="Exit"
+                                   Icon="Images\RibbonIcons\Button Turn Off-01.png"
+                                   LargeIcon="Images\RibbonIcons\Button Turn Off-01.png"
+                                   KeyTip="X"
+                                   Click="mnuExit_Click" />
                 </Fluent:RibbonGroupBox>
+                
             </Fluent:RibbonTabItem>
 
             <!--Contextual Tabs-->
-            <Fluent:RibbonTabItem Header="File Tools" Group="{Binding ElementName=tabDataGroup}">
+            <Fluent:RibbonTabItem x:Name="tabFileTools" Header="File Tools" Group="{Binding ElementName=tabDataGroup}">
                 <Fluent:RibbonGroupBox>
-                    <Fluent:Button Name="buttonCloseFile" Header="Close File" Size="Large" Icon="Images\RibbonIcons\Button Close-01.png" />
+                    <Fluent:Button Name="buttonCloseFile" Header="Close File" Size="Large" Icon="Images\RibbonIcons\Button Close-01.png" LargeIcon="Images\RibbonIcons\Button Close-01.png"/>
+                    <Fluent:SplitButton Name="buttonExport" Header="Export" Size="Large" Icon="Images\RibbonIcons\File Export.png" LargeIcon="Images\RibbonIcons\File Export.png">
+                        <Fluent:Button Name="btnExportTEXT" Header="TXT" Size="Middle"/>
+                        <Fluent:Button Name="btnExportCSV" Header="CSV" Size="Middle"/>
+                    </Fluent:SplitButton>
+                    <Fluent:Button Name="buttonPurge" Header="Purge" Size="Large" Icon="Images\RibbonIcons\Document-Purge.png" LargeIcon="Images\RibbonIcons\Document-Purge.png"/>
+                    <Fluent:Button Name="buttonLockFile" Header="Lock" Size="Large" Icon="Images\RibbonIcons\database-Locked.png" LargeIcon="Images\RibbonIcons\database-Locked.png"/>
+                    <Fluent:Button Name="buttonSetFilePassword" Header="Set Password" Size="Large" Icon="Images\RibbonIcons\database-password.png" LargeIcon="Images\RibbonIcons\database-password.png"/>
+                    <Fluent:SplitButton Name="buttonPrintFile" Header="Print" Size="Large" Icon="Images\RibbonIcons\print-icon.png" LargeIcon="Images\RibbonIcons\print-icon.png">
+                        <Fluent:Button Name="buttonPrintPreview" Header="Preview" Size="Middle" Icon="Images\RibbonIcons\Document Preview-01.png" LargeIcon="Images\RibbonIcons\Document Preview-01.png"/>
+                        <Fluent:Button Name="buttonPrintSetup" Header="Setup" Size="Middle" Icon="Images\RibbonIcons\print-Settings-icon.png" LargeIcon="Images\RibbonIcons\print-Settings-icon.png"/>
+                    </Fluent:SplitButton>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem x:Name="tabCollectorTools" Header="Collector Tools" Group="{Binding ElementName=tabCollectorGroup}">
+                <Fluent:RibbonGroupBox>
+                    <Fluent:Button Name="buttonAddObject" Header="Add" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:SplitButton Name="buttonPurgeObjects" Header="Purge Group" Size="Large" Icon="" LargeIcon="">
+                        <Fluent:Button Name="buttonClearObjects" Header="Clear Group" Size="Large" Icon="" LargeIcon=""/>
+                    </Fluent:SplitButton>
+                    <Fluent:Button Name="buttonPrintGroup" Header="Print" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:Button Name="buttonCopyGroup" Header="Copy" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:Button Name="buttonPasteGroup" Header="Paste" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:SplitButton Name="buttonExportGroup" Header="Export" Size="Large" Icon="" LargeIcon="">
+                        <Fluent:Button Name="btnExportTEXTGroup" Header="TXT" Size="Middle"/>
+                        <Fluent:Button Name="btnExportCSVGroup" Header="CSV" Size="Middle"/>
+                    </Fluent:SplitButton>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem x:Name="tabObjectTools" Header="Object Tools" Group="{Binding ElementName=tabObjectGroup}">
+                <Fluent:RibbonGroupBox>
+                    <Fluent:Button Name="buttonDeleteObject" Header="Delete" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:Button Name="buttonEditObject" Header="Edit" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:Button Name="buttonUsedIn" Header="Used in?" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:Button Name="buttonPrintObject" Header="Print" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:Button Name="buttonCopyObject" Header="Copy" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:Button Name="buttonPasteObject" Header="Paste" Size="Large" Icon="" LargeIcon=""/>
+                    <Fluent:SplitButton Name="buttonExportObject" Header="Export" Size="Large" Icon="" LargeIcon="">
+                        <Fluent:Button Name="btnExportTEXTObject" Header="TXT" Size="Middle"/>
+                        <Fluent:Button Name="btnExportCSVObject" Header="CSV" Size="Middle"/>
+                    </Fluent:SplitButton>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
 
             <!--Contextual Tab Groups-->
             <Fluent:Ribbon.ContextualGroups>
-                <Fluent:RibbonContextualTabGroup Header="Data" x:Name="tabDataGroup" Background="Orange" BorderBrush="Orange" />
+                <Fluent:RibbonContextualTabGroup Header="Data" x:Name="tabDataGroup" Background="Orange" BorderBrush="DarkOrange" />
+                <Fluent:RibbonContextualTabGroup Header="Objects" x:Name="tabCollectorGroup" Background="Purple" BorderBrush="Violet" />
+                <Fluent:RibbonContextualTabGroup Header="Object" x:Name="tabObjectGroup" Background="Green" BorderBrush="DarkGreen" />
             </Fluent:Ribbon.ContextualGroups>
             
         </Fluent:Ribbon>
@@ -169,7 +246,7 @@
         </Grid>
         <Fluent:StatusBar x:Name="StatusStrip" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Visibility="Visible" Grid.Row="2">
             <Fluent:StatusBarItem HorizontalAlignment="Left" Margin="5,0,0,0">
-                <ProgressBar x:Name="UpdateProgressBar" Height="15" Width="100" Minimum="0" Maximum="100" Value="10"/>
+                <ProgressBar x:Name="UpdateProgressBar" Height="15" Width="100" Minimum="0" Maximum="100" Value="10" Visibility="Collapsed"/>
             </Fluent:StatusBarItem>
             <Separator HorizontalAlignment="Left" />
             <Fluent:StatusBarItem x:Name="UpdateProgressLabel" Title="Words Width" Value="Ready..." HorizontalAlignment="Left"/>

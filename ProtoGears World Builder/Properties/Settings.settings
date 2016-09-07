@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="RecentFiles" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\jakob\Source\Repos\NTAF\DataFiles\TestOrphan2.ntx;C:\Users\jakob\Source\Repos\NTAF\DataFiles\BasicData.ntx</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Setting" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\jakob\Source\Repos\NTAF\DataFiles\TestOrphan2.ntx;C:\Users\jakob\Source\Repos\NTAF\DataFiles\BasicData.ntx</Value>

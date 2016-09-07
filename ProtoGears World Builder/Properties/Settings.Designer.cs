@@ -25,8 +25,7 @@ namespace ProtoGears_World_Builder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\jakob\\Source\\Repos\\NTAF\\DataFiles\\TestOrphan2.ntx;C:\\Users\\jakob\\Source\\" +
-            "Repos\\NTAF\\DataFiles\\BasicData.ntx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string RecentFiles {
             get {
                 return ((string)(this["RecentFiles"]));

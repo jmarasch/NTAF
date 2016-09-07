@@ -119,8 +119,12 @@
             </Fluent:RibbonTabItem>
 
             <!--Contextual Tabs-->
-            <Fluent:RibbonTabItem Header="File Tools" Group="{Binding ElementName=tabDataGroup}"/>
-            
+            <Fluent:RibbonTabItem Header="File Tools" Group="{Binding ElementName=tabDataGroup}">
+                <Fluent:RibbonGroupBox>
+                    <Fluent:Button Name="buttonCloseFile" Header="Close File" Size="Large" Icon="Images\RibbonIcons\Button Close-01.png" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+
             <!--Contextual Tab Groups-->
             <Fluent:Ribbon.ContextualGroups>
                 <Fluent:RibbonContextualTabGroup Header="Data" x:Name="tabDataGroup" Background="Orange" BorderBrush="Orange" />
@@ -163,12 +167,12 @@
                 <Label x:Name="lblDescription" Grid.Row="3" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">Hello</Label>
             </Grid>
         </Grid>
-        <Fluent:StatusBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Visibility="Visible" Grid.Row="2">
+        <Fluent:StatusBar x:Name="StatusStrip" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Visibility="Visible" Grid.Row="2">
             <Fluent:StatusBarItem HorizontalAlignment="Left" Margin="5,0,0,0">
-                <ProgressBar Height="15" Width="100" Minimum="0" Maximum="100" Value="10"/>
+                <ProgressBar x:Name="UpdateProgressBar" Height="15" Width="100" Minimum="0" Maximum="100" Value="10"/>
             </Fluent:StatusBarItem>
             <Separator HorizontalAlignment="Left" />
-            <Fluent:StatusBarItem x:Name="lblStatusText" Title="Words Width" Value="Ready..." HorizontalAlignment="Left"/>
+            <Fluent:StatusBarItem x:Name="UpdateProgressLabel" Title="Words Width" Value="Ready..." HorizontalAlignment="Left"/>
         </Fluent:StatusBar>
     </Grid>
 </Fluent:RibbonWindow>

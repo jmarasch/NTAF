@@ -39,9 +39,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Samples", "1 - Samples", "{15F96F76-8182-402D-BAD9-EFC6FE1D0DCA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{859B4581-1206-4420-8A8D-B25911407ED3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6ADD536-3DB2-4418-AED6-98AB991D1B77}"
 	ProjectSection(SolutionItems) = preProject
+		Fluent.Ribbon-develop\Changelog.md = Fluent.Ribbon-develop\Changelog.md
+		Fluent.Ribbon-develop\Fluent.Ribbon.ruleset = Fluent.Ribbon-develop\Fluent.Ribbon.ruleset
+		Fluent.Ribbon-develop\Shared\GlobalAssemblyInfo.cs = Fluent.Ribbon-develop\Shared\GlobalAssemblyInfo.cs
+		Fluent.Ribbon-develop\License.txt = Fluent.Ribbon-develop\License.txt
 		WPG-master\LocalTestRun.testrunconfig = WPG-master\LocalTestRun.testrunconfig
+		Fluent.Ribbon-develop\README.md = Fluent.Ribbon-develop\README.md
+		Fluent.Ribbon-develop\ReleaseNotes.md = Fluent.Ribbon-develop\ReleaseNotes.md
 		WPG-master\WpfPropertyGrid.vsmdi = WPG-master\WpfPropertyGrid.vsmdi
 		WPG-master\WpfPropertyGrid1.vsmdi = WPG-master\WpfPropertyGrid1.vsmdi
 	EndProjectSection
@@ -106,8 +112,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Fluent.Ribbon-develop\Fluent.Ribbon.ruleset = Fluent.Ribbon-develop\Fluent.Ribbon.ruleset
 		Fluent.Ribbon-develop\Shared\GlobalAssemblyInfo.cs = Fluent.Ribbon-develop\Shared\GlobalAssemblyInfo.cs
 		Fluent.Ribbon-develop\License.txt = Fluent.Ribbon-develop\License.txt
+		WPG-master\LocalTestRun.testrunconfig = WPG-master\LocalTestRun.testrunconfig
 		Fluent.Ribbon-develop\README.md = Fluent.Ribbon-develop\README.md
 		Fluent.Ribbon-develop\ReleaseNotes.md = Fluent.Ribbon-develop\ReleaseNotes.md
+		WPG-master\WpfPropertyGrid.vsmdi = WPG-master\WpfPropertyGrid.vsmdi
+		WPG-master\WpfPropertyGrid1.vsmdi = WPG-master\WpfPropertyGrid1.vsmdi
 	EndProjectSection
 EndProject
 Global
@@ -764,7 +773,6 @@ Global
 		{3C6E109A-7213-405E-A038-6F0A676B8266}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{3C6E109A-7213-405E-A038-6F0A676B8266}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{3C6E109A-7213-405E-A038-6F0A676B8266}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3C6E109A-7213-405E-A038-6F0A676B8266}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{3C6E109A-7213-405E-A038-6F0A676B8266}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{3C6E109A-7213-405E-A038-6F0A676B8266}.Debug|x64.Build.0 = Debug|Any CPU
 		{3C6E109A-7213-405E-A038-6F0A676B8266}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -1987,7 +1995,6 @@ Global
 		{2C2A076B-E626-4A07-9D6E-4AEE3FEC41B6}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{2C2A076B-E626-4A07-9D6E-4AEE3FEC41B6}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{2C2A076B-E626-4A07-9D6E-4AEE3FEC41B6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{2C2A076B-E626-4A07-9D6E-4AEE3FEC41B6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{2C2A076B-E626-4A07-9D6E-4AEE3FEC41B6}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{2C2A076B-E626-4A07-9D6E-4AEE3FEC41B6}.Debug|x64.Build.0 = Debug|Any CPU
 		{2C2A076B-E626-4A07-9D6E-4AEE3FEC41B6}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -2071,6 +2078,7 @@ Global
 		{4C92FCF4-3561-499F-BC5B-F2F089863047}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{4C92FCF4-3561-499F-BC5B-F2F089863047}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{4C92FCF4-3561-499F-BC5B-F2F089863047}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4C92FCF4-3561-499F-BC5B-F2F089863047}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{4C92FCF4-3561-499F-BC5B-F2F089863047}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{4C92FCF4-3561-499F-BC5B-F2F089863047}.Debug|x64.Build.0 = Debug|Any CPU
 		{4C92FCF4-3561-499F-BC5B-F2F089863047}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -2154,7 +2162,6 @@ Global
 		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|x64.Build.0 = Debug|Any CPU
 		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -2238,7 +2245,6 @@ Global
 		{2A893D50-BBC4-4482-ADAA-D52B517E8632}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{2A893D50-BBC4-4482-ADAA-D52B517E8632}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{2A893D50-BBC4-4482-ADAA-D52B517E8632}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{2A893D50-BBC4-4482-ADAA-D52B517E8632}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{2A893D50-BBC4-4482-ADAA-D52B517E8632}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{2A893D50-BBC4-4482-ADAA-D52B517E8632}.Debug|x64.Build.0 = Debug|Any CPU
 		{2A893D50-BBC4-4482-ADAA-D52B517E8632}.Debug|x86.ActiveCfg = Debug|Any CPU

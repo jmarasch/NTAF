@@ -18,5 +18,5 @@ using NTAF.PlugInFramework;
 
 // The information about the plugin is contained herein
 [assembly: PluginDesigner( "Jakob Marasch" )]
-[assembly: PluginDesignerContact( "NewTerraStudios@sbcglobal.net" )]
-[assembly: PluginDesignerWebUrl( "http://www.NewTerraStudios.net/" )]
+[assembly: PluginDesignerContact( "Jakob@NewTerraStudios.com" )]
+[assembly: PluginDesignerWebUrl( "http://www.NewTerraStudios.com/" )]

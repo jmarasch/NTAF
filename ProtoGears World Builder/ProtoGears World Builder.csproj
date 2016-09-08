@@ -58,10 +58,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LoadedPlugins.xaml.cs">
+      <DependentUpon>LoadedPlugins.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.Menu.cs" />
     <Compile Include="RecentFileItem.cs" />
     <Compile Include="TreeViewItemExtention.cs" />
     <Compile Include="WPFWindowHelper.cs" />
+    <Page Include="LoadedPlugins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -220,6 +227,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\RibbonIcons\print-Settings-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\File New-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\File Delete-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\Text Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonIcons\File-Question.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

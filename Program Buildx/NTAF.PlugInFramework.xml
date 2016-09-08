@@ -1,0 +1,1602 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NTAF.PlugInFramework</name>
+    </assembly>
+    <members>
+        <member name="T:NTAF.PlugInFramework.OCCPlugIn">
+            <summary>
+            Attach this to an Object Class Collector and make it a plugin, sets the version info, and the plugin name
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.OCCPlugIn.version">
+            <summary>
+            returns the version of the plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.OCCPlugIn.Name">
+            <summary>
+            gets the name of the plugin
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCPlugIn.#ctor(System.String,System.String)">
+            <summary>
+            Creates an instance of the Object Class Collector attribute class, defines basic information
+            about the object types name, and version
+            </summary>
+            <param name="plugInName">Name of this plugin</param>
+            <param name="plugInVersion">Version of this plugin can be entered as a
+            "0.0.0.0" string, '*' is current not implimented</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCPlugIn.ToString">
+            <summary>
+            retrieves version informtion as a string
+            </summary>
+            <returns>version as a string</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.EditorPlugIn">
+            <summary>
+            Used to define an editor plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorPlugIn.version">
+            <summary>
+            returns the version of the plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorPlugIn.Name">
+            <summary>
+            gets the name of the plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorPlugIn.isGUI">
+            <summary>
+            used to define if the editor is graphical
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorPlugIn.IEdit">
+            <summary>
+            defined the types the editor can edit
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.EditorPlugIn.#ctor(System.String,System.String,System.Boolean,System.Type)">
+            <summary>
+            Creates an instance of the EditorPlugIn attribute, defines basic information about the editor
+            including what it can edit, its name and version info
+            </summary>
+            <param name="plugInName">Name of the plugin</param>
+            <param name="plugInVersion">Version of this plugin can be entered as a
+            "0.0.0.0" string, '*' is current not implimented</param>
+            <param name="IsGUI">Is the gui graphical</param>
+            <param name="iEdit">what type does it edit</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.EditorPlugIn.#ctor(System.String,System.String,System.Boolean,System.Type[])">
+            <summary>
+            Creates an instance of the EditorPlugIn attribute, defines basic information about the editor
+            including what it can edit, its name and version info
+            </summary>
+            <param name="plugInName">Name of the plugin</param>
+            <param name="plugInVersion">Version of this plugin can be entered as a
+            "0.0.0.0" string, '*' is current not implimented</param>
+            <param name="IsGUI">Is the gui graphical</param>
+            <param name="iEdit">what types does it edit</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.EditorPlugIn.ToString">
+            <summary>
+            retrieves version informtion as a string
+            </summary>
+            <returns>version as a string</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.TreeNodePlugIn">
+            <summary>
+            Used to define a TreeNode plugn
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.TreeNodePlugIn.version">
+            <summary>
+            returns the version of the plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.TreeNodePlugIn.Name">
+            <summary>
+            gets the name of the plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.TreeNodePlugIn.DisplayName">
+            <summary>
+            gets the name of the plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.TreeNodePlugIn.IDisplay">
+            <summary>
+            defined the types the tree can display
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.TreeNodePlugIn.#ctor(System.String,System.String,System.String,System.Type)">
+            <summary>
+            Creates an instance of the TreeNodePlugIn attribute, defines basic information about the node
+            including its name and version info
+            </summary>
+            <param name="plugInName">Name of the plugin</param>
+            <param name="displayName">Name to display on the main branch of the tree</param>
+            <param name="plugInVersion">Version of this plugin can be entered as a
+            "0.0.0.0" string, '*' is current not implimented</param>
+            <param name="iDisplay">the type this tree displays</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.TreeNodePlugIn.#ctor(System.String,System.String,System.String,System.Type[])">
+            <summary>
+            Creates an instance of the TreeNodePlugIn attribute, defines basic information about the node
+            including its name and version info
+            </summary>
+            <param name="plugInName">Name of the plugin</param>
+            <param name="displayName">Name to display on the main branch of the tree</param>
+            <param name="plugInVersion">Version of this plugin can be entered as a
+            "0.0.0.0" string, '*' is current not implimented</param>
+            <param name="iDisplay">An array of types this tree can display</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.TreeNodePlugIn.ToString">
+            <summary>
+            retrieves version informtion as a string
+            </summary>
+            <returns>version as a string</returns>        
+        </member>
+        <member name="T:NTAF.PlugInFramework.ObjectClassPlugIn">
+            <summary>
+            Used to define a ObjectClass plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.ObjectClassPlugIn.version">
+            <summary>
+            returns the version of the plugin
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.ObjectClassPlugIn.Name">
+            <summary>
+            gets the name of the plugin
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassPlugIn.#ctor(System.String,System.String)">
+            <summary>
+            Creates an instance of the ObjectClass attribute, defines basic information about the OC
+            including its name and version info
+            </summary>
+            <param name="plugInName">Name of the plugin</param>
+            <param name="plugInVersion">Version of this plugin can be entered as a
+            "0.0.0.0" string, '*' is current not implimented</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassPlugIn.ToString">
+            <summary>
+            retrieves version informtion as a string
+            </summary>
+            <returns>version as a string</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.PluginDesigner">
+            <summary>
+            Sets the plugin Designer
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.PluginDesigner.retVal">
+            <summary>
+            Designers Name
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginDesigner.#ctor(System.String)">
+            <summary>
+            Creates an instance of the plugin designer attribute
+            </summary>
+            <param name="designer">Designers Name</param>
+        </member>
+        <member name="P:NTAF.PlugInFramework.PluginDesigner.Designer">
+            <summary>
+            Returns the Designers Name
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginDesigner.ToString">
+            <summary>
+            also returns the designers name
+            </summary>
+            <returns>String as the designers name</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.PluginDesignerContact">
+            <summary>
+            Use this attribute to define a method to contact the plugindesigner
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.PluginDesignerContact.retVal">
+            <summary>
+            gets contact info
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginDesignerContact.#ctor(System.String)">
+            <summary>
+            creates instance of attribute
+            </summary>
+            <param name="designerContact">Designers contact info</param>
+        </member>
+        <member name="P:NTAF.PlugInFramework.PluginDesignerContact.DesignerContact">
+            <summary>
+            gets contact information
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginDesignerContact.ToString">
+            <summary>
+            gets contact information
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.PluginDesignerWebUrl">
+            <summary>
+            attribute that defines the designers web url
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.PluginDesignerWebUrl.retVal">
+            <summary>
+            holds the designers web url
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginDesignerWebUrl.#ctor(System.String)">
+            <summary>
+            creates an instance of the PluginDesigner WebUrl
+            </summary>
+            <param name="designerWebUrl">URL that the designer owns or posts to</param>
+        </member>
+        <member name="P:NTAF.PlugInFramework.PluginDesignerWebUrl.DesignerWebUrl">
+            <summary>
+            gets the url for the designer
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginDesignerWebUrl.ToString">
+            <summary>
+            also get the url for the designer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NTDataNode">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataNode.#ctor(System.String)">
+            <summary>
+            todo
+            </summary>
+            <param name="FileName"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataNode.#ctor(System.String,System.String)">
+            <summary>
+            todo
+            </summary>
+            <param name="FileName"></param>
+            <param name="imageKey"></param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NTDataTreeNode">
+             <devdoc>
+                <para>
+                   Implements a node of a <see cref='T:System.Windows.Forms.TreeView'/>.
+            
+                </para>
+             </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Name">
+            <devdoc>
+                The name for the tree node - useful for indexing.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.#ctor">
+            <devdoc>
+                Creates a NTDataTreeNode object.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.#ctor(System.String)">
+            <devdoc>
+                Creates a NTDataTreeNode object.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.#ctor(System.String,NTAF.PlugInFramework.NTDataTreeNode[])">
+            <devdoc>
+                Creates a NTDataTreeNode object.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.FirstNode">
+            <devdoc>
+                The first child node of this node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Index">
+            <devdoc>
+                Returns the position of this node in relation to its siblings
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.LastNode">
+            <devdoc>
+                The last child node of this node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Level">
+            <devdoc>
+                This denotes the depth of nesting of the NTDataTreeNode.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.NextNode">
+            <devdoc>
+                The next sibling node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Nodes">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Parent">
+            <devdoc>
+                Retrieves parent node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.PrevNode">
+            <devdoc>
+                The previous sibling node.
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Clear">
+            <devdoc>
+                Called by the tree node collection to clear all nodes.  We optimize here if
+                this is the root node.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Clone">
+            <devdoc>
+                Clone the entire subtree rooted at this node.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.EnsureCapacity(System.Int32)">
+            <devdoc>
+                Makes sure there is enough room to add n children
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.GetFullPath(System.Text.StringBuilder,System.String)">
+            <devdoc>
+                Helper function for getFullPath().
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.GetNodeCount(System.Boolean)">
+            <devdoc>
+                Returns number of child nodes.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.InsertNodeAt(System.Int32,NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+                Helper function to add node at a given index after all validation has been done
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Remove">
+            <devdoc>
+                Remove this node from the TreeView control.  Child nodes are also removed from the
+                TreeView, but are still attached to this node.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.Remove(System.Boolean)">
+            <devdoc>
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNode.Text">
+            <devdoc>
+                The label text for the tree node
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNode.ToString">
+            <devdoc>
+                Returns the label text for the tree node
+            </devdoc>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NTDataTreeNodeCollection">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="F:NTAF.PlugInFramework.NTDataTreeNodeCollection.lastAccessedIndex">
+            A caching mechanism for key accessor
+            We use an index here rather than control so that we don't have lifetime
+            issues by holding on to extra references.
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.FixedIndex">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.Item(System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Item(System.Int32)">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.Item(System.String)">
+            <devdoc>
+                <para>Retrieves the child control with the specified key.</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.Count">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#ICollection#SyncRoot">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#ICollection#IsSynchronized">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#IsFixedSize">
+            <internalonly/>
+        </member>
+        <member name="P:NTAF.PlugInFramework.NTDataTreeNodeCollection.IsReadOnly">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Add(System.String)">
+            <devdoc>
+                Creates a new child node under this node.  Child node is positioned after siblings.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Add(System.String,System.String)">
+            <devdoc>
+                Creates a new child node under this node.  Child node is positioned after siblings.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.AddRange(NTAF.PlugInFramework.NTDataTreeNode[])">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Find(System.String,System.Boolean)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Add(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+                Adds a new child node to this node.  Child node is positioned after siblings.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Add(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Contains(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.ContainsKey(System.String)">
+            <devdoc>
+                <para>Returns true if the collection contains an item with the specified key, false otherwise.</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Contains(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.IndexOf(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#IndexOf(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.IndexOfKey(System.String)">
+            <devdoc>
+                <para>The zero-based index of the first occurrence of value within the entire CollectionBase, if found; otherwise, -1.</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Insert(System.Int32,NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+                Inserts a new child node on this node.  Child node is positioned as specified by index.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Insert(System.Int32,System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Insert(System.Int32,System.String)">
+            <devdoc>
+                Inserts a new child node on this node.  Child node is positioned as specified by index.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Insert(System.Int32,System.String,System.String)">
+            <devdoc>
+                Inserts a new child node on this node.  Child node is positioned as specified by index.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.IsValidIndex(System.Int32)">
+            <devdoc>
+                <para>Determines if the index is valid for the collection.</para>
+            </devdoc>
+            <internalonly/> 
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Clear">
+            <devdoc>
+                Remove all nodes from the tree view.
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.CopyTo(System.Array,System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.Remove(NTAF.PlugInFramework.NTDataTreeNode)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.System#Collections#IList#Remove(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.RemoveAt(System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.RemoveByKey(System.String)">
+            <devdoc>
+                <para>Removes the child control with the specified key.</para>
+            </devdoc>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NTDataTreeNodeCollection.GetEnumerator">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCCNode">
+            <summary>
+            Object Class Collector Node
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCNode.#ctor">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCNode.Collector">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCNode">
+            <summary>
+            Object Class Node
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCNode.#ctor">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCNode.ObjectClass">
+            <summary>
+            todo
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCNode.i_ObjectClass_EventNameChanged(NTAF.Core.NameChangeArgs)">
+            <summary>
+            todo
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCTreeNodeBase">
+            <summary>
+            The Object Class Tree Node Base provides the ability to create a TreeVew
+            plug-in class for the NTTreView Control.
+            
+            The only required override is CollectionType
+            
+            This class will require an appropriate OCCBase class to read and write to
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Updating">
+            <summary>
+            triggered when the tree goes in to update mode
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Update">
+            <summary>
+            triggered when a step in the update process is compleeted
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.OCTreeNodeBase.Updated">
+            <summary>
+            trigered when update compleetes
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.MainBranch">
+            <summary>
+            Creates and returns the collection node "branch" and all of its ObectClass nodes "leaflings" from the objects in the collector.
+            </summary>
+            <returns>A root node for the NTTreeView control</returns>
+            <exception cref="T:System.Exception">Thrown when the ObjectClassCollector has not been set</exception>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.AttachOCC(NTAF.PlugInFramework.OCCBase)">
+            <summary>
+            Attaches a collector to this object so it can create the branch and leaves
+            </summary>
+            <param name="collector">Collector object to reference</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.GrowBranch">
+            <summary>
+            Internally creates a main "branch" of sub nodes "Leafs" or sub collectors to return to the tree
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.PopulateNode(NTAF.PlugInFramework.OCCBase,System.Int32,System.Int32@)">
+            <summary>
+            populates collector node with object-class items
+            </summary>
+            <param name="occ">Collector with the objects</param>
+            <param name="InCount"></param>
+            <param name="OutCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCTreeNodeBase.i_ObjectCollector_CollectionUpdated(NTAF.Core.ItemChangedArgs)">
+            <summary>
+            event that occurs when the collection has been changed
+            </summary>
+            <param name="args">ItemChangedArgs defines what happend</param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.EditorMode">
+            <summary>
+            Standard operationg modes for the editors
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorMode.New">
+            <summary>
+            the object is new and being edited
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorMode.Edit">
+            <summary>
+            object is old and being changed
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorMode.View">
+            <summary>
+            currently onl viewing the object
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorMode.ReadOnly">
+            <summary>
+            object cannot be changed
+            </summary>
+        </member>
+        <member name="T:NTAF.PlugInFramework.EditorExitCode">
+            <summary>
+            standard exit messages
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorExitCode.OK">
+            <summary>
+            Ended on a good note
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.EditorExitCode.Cancel">
+            <summary>
+            Ended on a not good note
+            </summary>
+        </member>
+        <member name="T:NTAF.PlugInFramework.SearchField">
+            <summary>
+            defines what standard field to look in when searching
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.SearchField.Name">
+            <summary>
+            Search by name field
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.SearchField.ID">
+            <summary>
+            search by ID field
+            </summary>
+        </member>
+        <member name="T:NTAF.PlugInFramework.ICreatorInfo">
+            <summary>
+            DONT USE THIS
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ICreatorInfo.Creator">
+            <summary>
+            Returns the classes creators name
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ICreatorInfo.Contact">
+            <summary>
+            Returns the classes creators contact info, ie e-mail, phone, or mailing address
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ICreatorInfo.WebUrl">
+            <summary>
+            Returns the classes creators Web address
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ICreatorInfo.Version">
+            <summary>
+            Returns the classes Version info, not the same as the plugins, dll, or file version neccicarrily.
+            </summary>
+        </member>
+        <member name="T:NTAF.PlugInFramework.ILink">
+            <summary>
+            Provides an interface forwhich to allow the linking of lowerlevel objects to higherlevel objects.
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ILink.LinkData">
+            <summary>
+            Links data among all files, this is an important setep when loading files objects with a 
+            higher object level reset their 'shallow pointers' back to the original items or root and/or
+            mid level objects. basically it uses the shallow copy method so that when an original object changes
+            the changes are reflected throughout the object(s) and file(s) that reference that(those) object(s) 
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ILink.FindObject(NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            Searches for and returns a traceable object
+            </summary>
+            <param name="obj">Object to be found in original data location</param>
+            <returns>The original object</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.ObjectClassBase">
+            <summary>
+            The lowest level complex type for NewTerra applications
+            Interfaces:
+            IAboutMe, ICloneable, IComparable, IMemberCopy
+            INTId, INTName, IOwner, IPrintable, 
+            IValidate, 
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.ObjectClassBase.MyDataChanged">
+            <summary>
+            Occurs when data has changed
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ObjectClassBase.ID">
+            <summary>
+            Gets or sets the objects Unique ID. All ids need to consist of a 4 alpha numeric prefix
+            controlled by its file data prefix id and typically an 8 Hex ID the prefix/id
+            is used to make sure that even if two items should ever share the same id in different files
+            they will never be cross confused due to the prefix.
+            <example>
+            BSDS54D457A6
+            BSDS is the id prefix and 54D457A6 is the id inside the file
+            </example>
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ObjectClassBase.IDPreFix">
+            <summary>
+            Gets the objects prefix identifier, see ID for more information
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.ObjectClassBase.EventNameChanged">
+            <summary>
+            Fires when a name change occurs
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ObjectClassBase.Name">
+            <summary>
+            Gets or sets the name of the object
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ObjectClassBase.myOwner">
+            <summary>
+            The data file that this object belongs to
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.Clone">
+            <summary>
+            creates a shallow clone of this object
+            </summary>
+            <returns>An object identical to this one</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.clearMyEvents">
+            <summary>
+            Clears all the basic events this object could have, you must override
+            is basic operation if you plan on adding custom events, when overriding
+            this method you should call base.clearMyEvents() prior to any event clearing
+            your method will do.
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ObjectClassBase.aboutMe">
+            <summary>
+            Gets a string of root basic details about the object.
+            Override this method and first call base.aboutMe and then
+            add your extra field information. This method is important
+            in that if print is unavailable, this will typically get called
+            in its place.
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.Valid">
+            <summary>
+            Override this method call the base version then simply finish validating the
+            item by checking for null referenced fields, when a field/property
+            thats required for the object to work properly is found blank/empty/null
+            or what ever state that would not be good or the object do a
+            throw new ValidationExecption("this is whats wrong");
+            </summary>
+            <exception cref="T:NTAF.Core.ValidationException">Sends back information on whats
+            wrong with the object</exception>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.Print(NTAF.PrintEngine.PrintElement)">
+            <summary>
+            Needs to be overridden if you want the object to print anything
+            see NewTerra Print Framework documentation for details
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.CopyMembers(System.Object)">
+            <summary>
+            copies all read/write fields from one object to this one
+            </summary>
+            <param name="members">The object thats having its properties copied</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.Link(NTAF.PlugInFramework.ILink)">
+            <summary>
+            Must be overridden if the object level is 1 or higher for the ClassCollector
+            this instructs the object on how to find complex reference objects and create
+            a link to them
+            </summary>
+            <param name="DataMaster"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.ReplaceReferences(NTAF.PlugInFramework.ObjectClassBase,NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            Must be overridden if the object level is 1 or higher for the ClassCollector
+            this instructs the object on how to find complex reference objects and create
+            a link to them
+            </summary>
+            <param name="ObjectToReplace"></param>
+            <param name="ReplaceWith"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.CheckForReferences(NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            Must be overridden if the object level is 1 or higher for the ClassCollector,
+            Checks to find out if a reference to the passed object exists in this object
+            </summary>
+            <param name="Item">Object were looking for references for</param>
+            <returns>True if a reference exists, False if no reference is found</returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ObjectClassBase.CollectionName">
+            <summary>
+            Gets the name of the class based on the ObjectClassPlugIn attribute
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.ObjectClassBase.CollectionType">
+            <summary>
+            Gets the type of this object
+            </summary>
+            <returns>This objects type</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.IsOfType(System.Object)">
+            <summary>
+            checks to see if this object is of testing type
+            </summary>
+            <param name="obj">Object to test</param>
+            <returns>true if they match false if the don't match</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.IsOfType(System.Type)">
+            <summary>
+            checks to see if this object is of testing type
+            </summary>
+            <param name="T">Type to test</param>
+            <returns>true if they match false if the don't match</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.MyType">
+            <summary>
+            Gets the type of this object
+            </summary>
+            <returns>This objects type</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.Serialize(System.Object,System.String)">
+            <summary>
+            not implemented not used, may be used in the future
+            </summary>
+            <param name="toSerial"></param>
+            <param name="tempPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.ObjectClassBase.Deserialize(System.String)">
+            <summary>
+            not implemented not used, may be used in the future
+            </summary>
+            <param name="PathOfSavedObject"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCCBase">
+            <summary>
+            The Object Collector Base Class provides all the functionality needed to create
+            a functioning collector for any class that inherits IObjectClass.
+            
+            to use this class you only need to override Collection Name, and CollectionType
+            the only time its required to override objectLevel is when your 
+            not creating a root or layer 0 IObjectClass  
+            </summary>
+        </member>
+        <member name="E:NTAF.PlugInFramework.OCCBase.CollectionUpdated">
+            <summary>
+            fires when the collection is updated
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.CollectionName">
+            <summary>
+            Override Required
+            Returns the collection Name
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.CollectionType">
+            <summary>
+            Override Required
+            Returns the type of the collection
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Count">
+            <summary>
+            counts the number of objects in the collector
+            </summary>
+            <returns>number of objects in the collector</returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.objectLayer">
+            <summary>
+            Override Required if level is above 0 or root
+            Returns the layerd level of this object collection
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Objects">
+            <summary>
+            Returns all the object that this Collector holds
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Owner">
+            <summary>
+            Gets the NTDataFile that holds this collector
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Item(System.Int32)">
+            <summary>
+            Returns the object at a specified index
+            </summary>
+            <param name="index">Index of the object</param>
+            <returns>Object from the list</returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Item(System.Object)">
+            <summary>
+            searches for the object by a passed object
+            </summary>
+            <param name="Item"></param>
+            <returns>matching object from the Collector</returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Item(System.String)">
+            <summary>
+            searches for the object by a passed object
+            </summary>
+            <param name="Item"></param>
+            <returns>matching object from the Collector</returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCCBase.Item(System.String,NTAF.PlugInFramework.SearchField)">
+            <summary>
+            searches for the object by a key field method
+            </summary>
+            <param name="Key">Search parameter</param>
+            <param name="Field">Filed to search in</param>
+            <returns></returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.AddObject(System.Object)">
+            <summary>
+            add an object to the collector
+            </summary>
+            <param name="Item">Item to add. Must be of the same type of collector or it will throw an invalid peramiter exception</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.AddObject(System.Object[])">
+            <summary>
+            add multiple objects to the collector
+            </summary>
+            <param name="Items">Items to add. Must be of the same type of collector or it will throw an invalid peramiter exception</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.AddObject(System.Object,System.Int32)">
+            <summary>
+            add multiple objects to the collector
+            </summary>
+            <param name="Item">Items to add. Must be of the same type of collector or it will throw an invalid peramiter exception</param>
+            <param name="atIndex">Index at which to insert the object</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.AddObject(System.Object[],System.Int32)">
+            <summary>
+            add multiple objects to the collector
+            </summary>
+            <param name="Items">Items to add. Must be of the same type of collector or it will throw an invalid peramiter exception</param>
+            <param name="atIndex">Index at which to insert the objects</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.Clear">
+            <summary>
+            clears all items from the collector.
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.DropObject(NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            removes an object from the collector
+            </summary>
+            <param name="Item">object to remove. Must be of the same type of collector or it will throw an invalid peramiter exception</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.DropObject(System.Object[])">
+            <summary>
+            removes multiple objects from the collector
+            </summary>
+            <param name="Items">objects to remove. Must be of the same type of collector or it will throw an invalid peramiter exception</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.DropObject(System.Int32)">
+            <summary>
+            remove an object from the collector
+            </summary>
+            <param name="atIndex">Index at which to insert the object</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.EditObject(System.Object,System.Object)">
+            <summary>
+            Edits the object in the collector with the the passed in new values
+            </summary>
+            <param name="toEdit">Item to edit</param>
+            <param name="newValues">Items New Values</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.Exists(System.Object)">
+            <summary>
+            Checks to see of the collector allreaddy holds atleast one of the specified objects
+            </summary>
+            <param name="Item">Item to check for</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.FindIndex(System.Object)">
+            <summary>
+            Finds the index of the specified item
+            </summary>
+            <param name="Item">item to find index for</param>
+            <returns>int index of the found item or -1 if it cannot find the item</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.FindIndex(System.String,NTAF.PlugInFramework.SearchField)">
+            <summary>
+            Searched the collector based on a key and field.
+            </summary>
+            <param name="Key">Data to match</param>
+            <param name="Field">Field to search</param>
+            <returns>int index of the found item or -1 if it cannot find the item</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates over the collection
+            </summary>
+            <returns>Returns an enumerator that iterates over the collection</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.IsOfType(System.Object)">
+            <summary>
+            Checks a passed in obj and determins if it matches the type of this collector
+            </summary>
+            <param name="obj">Type of the class to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCCBase.IsOfType(System.Type)">
+            <summary>
+            Checks a passed in obj and determins if it matches the type of this collector
+            </summary>
+            <param name="T">Type of the class to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.OCEditorBase">
+            <summary>
+            This class is to be used as a base inheritance over "Form" when creating an ObjectClass editor
+            class will also require the EditroPlugIn attribute
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.FormLoading">
+            <summary>
+            Easy way to tell events not to fire without unsubscribing and then re-subscribing
+            </summary>
+            <returns>true - if form is loading, false - if form is not loading</returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCEditorBase.Graphical">
+            <summary>
+            Checks the EditorPlugin atribute and reports if the editor is a graphical editor
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCEditorBase.MyObject">
+            <summary>
+            Gets and sets the object currently contained within the editor.
+            
+            when an object is sent it needs to be striped of subscribed events
+            and have just the values copied using the IMemberCopy interface
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCEditorBase.Collectors">
+            <summary>
+            Gets and sets the Collectors that an editor can read from to pull needed reference information
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.RunEditor(NTAF.PlugInFramework.EditorMode)">
+            <summary>
+            this will run the editor, using the object previously attached to it using the MyObject 
+            </summary>
+            <param name="mode">editing mode</param>
+            <returns>Editors exit code</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.RunEditor(NTAF.PlugInFramework.ObjectClassBase,NTAF.PlugInFramework.EditorMode)">
+            <summary>
+            Sets the editors object and runs the editor
+            </summary>
+            <param name="setObject">Object to set</param>
+            <param name="mode">editing mode</param>
+            <returns>Editors exit code</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.IEdit(System.Type)">
+            <summary>
+            Tests to see if the editor can edit a specific type
+            </summary>
+            <param name="thisType">Type to test for editing</param>
+            <returns>true if the type can be edited using this editor</returns>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCEditorBase.CollectionType">
+            <summary>
+            Override Required
+            Returns the type of the collection
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCEditorBase.MyResult">
+            <summary>
+            Gets or sets( proected ) the editors exits status
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.OCEditorBase.Mode">
+            <summary>
+            Gets or sets the current mode of the editor
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.editing(System.Boolean)">
+            <summary>
+            Requires override, basse provides basic functionallity to set TextBoxes to readonly or not-readonly
+            base will make a button named "btnEdit" visible or not visible depending on editing setting
+            </summary>
+            <param name="editing"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.FormLoad">
+            <summary>
+            will call PopulateComboboxes and PopulateFields when the form loads
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.PopulateFields">
+            <summary>
+            Should be overridden base function will populate fields with proper names
+            check documentation of current fields for this version
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.PopulateComboboxes">
+            <summary>
+            Should be overridden base function will populate comboboxes or lists with
+            proper names check documentation of current fields for this version
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.button_Save_Click(System.Object,System.EventArgs)">
+            <summary>
+            Calls for vaallidation of the object using IValidate sets the proper exit code
+            and closes the form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.button_Cancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            cancels the current editing by setting the result code
+            and closing the form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.button_Edit_Click(System.Object,System.EventArgs)">
+            <summary>
+            sets the Mode of the form to edit
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.Leave_field(System.Object,System.EventArgs)">
+            <summary>
+            Call base.Leave_field(sender,e) then overried the rest of the implementation
+            if the field being left is a text box and of one of the standard fields
+            it will auto set the field for the oject. check current documentation for
+            what the current standard field names are and what they are for
+            
+            you will need to override this if you are using custom fields and you should
+            be using custom fields if your creating a plugin.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OCEditorBase.Enter_field(System.Object,System.EventArgs)">
+            <summary>
+            Call base.Enter_field(sender,e) then overried the rest of the implementation
+            based on how you want it to work for what ever field your entering
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OrphanControls.OrphanCollector.IsOfType(System.Object)">
+            <summary>
+            Checks a passed in obj and determines if it matches the type of this collector
+            </summary>
+            <param name="obj">Type of the class to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.OrphanControls.OrphanCollector.IsOfType(System.Type)">
+            <summary>
+            Checks a passed in obj and determines if it matches the type of this collector
+            </summary>
+            <param name="T">Type of the class to check</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.PluginEngine">
+            <summary>
+            This class provides the functionallity to use NewTerra Plugins
+            in an application
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.PluginEngine.MAX_OBJECT_LAYER">
+            <summary>
+            Current max limit of supported object layers
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.PluginEngine.PLUGIN_PATH">
+            <summary>
+            Directory for the current application plugin folder
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.PluginEngine.USER_PLUGIN_PATH">
+            <summary>
+            Directory path for plugins stored in users personal folders
+            </summary>
+        </member>
+        <member name="F:NTAF.PlugInFramework.PluginEngine.i_LoadedAssemblies">
+            <summary>
+            Holds all plugin assemblies
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.LoadedAssemblies">
+            <summary>
+            Gets the currently loaded assemblies
+            </summary>
+            <returns>An array of assemblies that meet the plugin assemblies
+            expectations of what a Plugin assembly needs</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.Reload">
+            <summary>
+            Rrfreshes the current list of loaded plugins but doesnot report back of whats loaded
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.LoadPlugInAssemblies">
+            <summary>
+            Checks assemblies in proper folder if the meet the requirements it will load the assembly and add it to the return array
+            </summary>
+            <returns>List of proper plugin assemblies</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.GetSerailPlugins">
+            <summary>
+            Returns all plugin types that are marked as Serializable
+            </summary>
+            <returns>Serializable class types</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.GetTreePlugIns">
+            <summary>
+            Scans through all loaded assemblies and returns NTTreeNode Plugins        
+            </summary>
+            <returns>Array of loaded OCTreeNodeBase inheritied classes</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.GetEditorPlugIns">
+            <summary>
+            Scans through all loaded assemblies and returns Editor Plugins        
+            </summary>
+            <returns>Array of loaded OCEditorBase inheritied classes</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.GetOCCPlugIns">
+            <summary>
+            Scans through all loaded assemblies and returns Class Collector Plugins        
+            </summary>
+            <returns>Array of loaded OCCBase inheritied classes</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.GetOCCPlugInsByLayer">
+            <summary>
+            Scans through all loaded assemblies and returns Class Collector Plugins in order by layer level stating at 0.       
+            </summary>
+            <returns>Array of loaded OCCBase inheritied classes</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginEngine.GetObjectClasses">
+            <summary>
+            Scans through all loaded assemblies and returns Object Class Plugins        
+            </summary>
+            <returns>Array of loaded IObjectClass inheritied classes</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NoPluginsLoadedException">
+            <summary>
+            Exception used to denote that no plugins have been loaded for a particular type
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoPluginsLoadedException.#ctor">
+            <summary>
+            Creates an empty exception object
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoPluginsLoadedException.#ctor(System.String)">
+            <summary>
+            Creates an exception object
+            </summary>
+            <param name="message">Error message that accompanies the error</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoPluginsLoadedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates an exception object
+            </summary>
+            <param name="message">Error message that acompanies the error</param>
+            <param name="innerException">Underlying error that that caused this error</param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NoEditorFound">
+            <summary>
+            Eception used to denote the fact that a proper editor could not be found
+            to edit the object.
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoEditorFound.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates an exception object
+            </summary>
+            <param name="creator">Name of the person that made the ObjectClass</param>
+            <param name="contacct">Contact information of the person that created the Object Class plugin</param>
+            <param name="webUrl">WebLocation that the plugin shouldhave been goten from</param>
+            <param name="version">Version of the current Object Class plugin</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoEditorFound.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates an exception object
+            </summary>
+            <param name="creator">Name of the person that made the ObjectClass</param>
+            <param name="contacct">Contact information of the person that created the Object Class plugin</param>
+            <param name="webUrl">WebLocation that the plugin shouldhave been goten from</param>
+            <param name="version">Version of the current Object Class plugin</param>
+            <param name="message">Error message that accompanies the error</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoEditorFound.#ctor(System.String,System.String,System.String,System.String,System.String,System.Exception)">
+            <summary>
+            Creates an exception object
+            </summary>
+            <param name="creator">Name of the person that made the ObjectClass</param>
+            <param name="contacct">Contact information of the person that created the Object Class plug in</param>
+            <param name="webUrl">WebLocation that the plug in should have been goten from</param>
+            <param name="version">Version of the current Object Class plugin</param>
+            <param name="message">Error message that accompanies the error</param>
+            <param name="innerException">Underlying error that caused this error</param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NoOCCFound">
+            <summary>
+            Occurs when an ObjectClass plugin is available but a proper Collector could not be found
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoOCCFound.#ctor">
+            <summary>
+            Creates an empty exception
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoOCCFound.#ctor(System.String)">
+            <summary>
+            Creates an exception
+            </summary>
+            <param name="message">Message about the error</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoOCCFound.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates an exception
+            </summary>
+            <param name="message">Message about the error</param>
+            <param name="innerException">hold the exception that steamrolled in to this execption</param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.NoTreeSupportFound">
+            <summary>
+            Execption that is thrown when thier is a ObjectClass and a collector but no Tree plugin to display the data in the collector
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoTreeSupportFound.#ctor">
+            <summary>
+            Creates an empty execption
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoTreeSupportFound.#ctor(System.String)">
+            <summary>
+            Creates an exception
+            </summary>
+            <param name="message">Message about the error</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.NoTreeSupportFound.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates an exception
+            </summary>
+            <param name="message">Message about the error</param>
+            <param name="innerException">hold the exception that steamrolled in to this execption</param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.PluginMissing">
+            <summary>
+            A more general execption that can be thrown dealing with missing plugin items or extentions
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginMissing.#ctor">
+            <summary>
+            Creates an empty execption
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginMissing.#ctor(System.String)">
+            <summary>
+            Creates an exception
+            </summary>
+            <param name="message">Message about the error</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.PluginMissing.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates an exception
+            </summary>
+            <param name="message">Message about the error</param>
+            <param name="innerException">hold the exception that steamrolled in to this execption</param>
+        </member>
+        <member name="T:NTAF.PlugInFramework.SerializableVersion">
+            <summary>
+            Use anywhere an Xml serializable version number is required
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.SerializableVersion.Name">
+            <summary>
+            Name of the versioned item
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.SerializableVersion.Type">
+            <summary>
+            Type of the versioned item
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.SerializableVersion.Major">
+            <summary>
+            Major Build Number
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.SerializableVersion.Minor">
+            <summary>
+            Minor build number
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.SerializableVersion.Revision">
+            <summary>
+            Revision build number
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.SerializableVersion.Build">
+            <summary>
+            Current build for this Major/Minor/Revion
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.#ctor">
+            <summary>
+            Creates an empty SerializableVersion object
+            </summary>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.#ctor(System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a SerializableVersion object
+            </summary>
+            <param name="name">Name of the versioned item</param>
+            <param name="type">Type of the versioned item</param>
+            <param name="major">Major Build Number</param>
+            <param name="minor">Minor build number</param>
+            <param name="revision">Revision build number</param>
+            <param name="build">Current build for this Major/Minor/Revion</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates a SerializableVersion object
+            </summary>
+            <param name="name">Name of the versioned item</param>
+            <param name="type">Type of the versioned item</param>
+            <param name="version">Version in string format "Major#.Minor#.Revision#.Build#"</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.#ctor(NTAF.PlugInFramework.SerializableVersion)">
+            <summary>
+            Creates a SerializableVersion object
+            </summary>
+            <param name="version">Version in string format "Major#.Minor#.Revision#.Build#"</param>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.ToString">
+            <summary>
+            Gets a string object representing the version of the object as "Type:Name Major.Minor.Revision.Build"
+            </summary>
+            <returns>"Type:Name Major.Minor.Revision.Build"</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.GetHashCode">
+            <summary>
+            gets the objects hash code
+            </summary>
+            <returns>Integer object</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.Version">
+            <summary>
+            gets string representing the version of this object as "Major.Minor.Revision.Build"
+            </summary>
+            <returns>"Major.Minor.Revision.Build"</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.Equals(System.Object)">
+            <summary>
+            Checks if this object equals the tested object
+            </summary>
+            <param name="obj">Object to test</param>
+            <returns>True if the objects match</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.op_GreaterThanOrEqual(NTAF.PlugInFramework.SerializableVersion,NTAF.PlugInFramework.SerializableVersion)">
+            <summary>
+            checks if one object is greater than or equal to another
+            </summary>
+            <param name="a">Subject A</param>
+            <param name="b">Subject B</param>
+            <returns>True if a <!-->=--> b</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.op_LessThanOrEqual(NTAF.PlugInFramework.SerializableVersion,NTAF.PlugInFramework.SerializableVersion)">
+            <summary>
+            checks if one object is lessthan than or equal to another
+            </summary>
+            <param name="a">Subject A</param>
+            <param name="b">Subject B</param>
+            <returns>True if a <!--<=--> b</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.op_Equality(NTAF.PlugInFramework.SerializableVersion,NTAF.PlugInFramework.SerializableVersion)">
+            <summary>
+            checks if one object is equal to another
+            </summary>
+            <param name="a">Subject A</param>
+            <param name="b">Subject B</param>
+            <returns>True if a <!--==--> b</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.op_Inequality(NTAF.PlugInFramework.SerializableVersion,NTAF.PlugInFramework.SerializableVersion)">
+            <summary>
+            checks if one object is not equal to another
+            </summary>
+            <param name="a">Subject A</param>
+            <param name="b">Subject B</param>
+            <returns>True if a <!--!=--> b</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.op_GreaterThan(NTAF.PlugInFramework.SerializableVersion,NTAF.PlugInFramework.SerializableVersion)">
+            <summary>
+            checks if one object is greater than to another
+            </summary>
+            <param name="a">Subject A</param>
+            <param name="b">Subject B</param>
+            <returns>True if a <!-->--> b</returns>
+        </member>
+        <member name="M:NTAF.PlugInFramework.SerializableVersion.op_LessThan(NTAF.PlugInFramework.SerializableVersion,NTAF.PlugInFramework.SerializableVersion)">
+            <summary>
+            checks if one object is less than another
+            </summary>
+            <param name="a">Subject A</param>
+            <param name="b">Subject B</param>
+            <returns>True if a <!--<--> b</returns>
+        </member>
+        <member name="T:NTAF.PlugInFramework.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:NTAF.PlugInFramework.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

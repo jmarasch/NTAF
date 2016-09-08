@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NTAF.Core</name>
+    </assembly>
+    <members>
+        <member name="T:NTAF.Core.FileLockedException">
+            <summary>
+            Thrown when the file is locked and cannot be edited
+            </summary>
+        </member>
+        <member name="M:NTAF.Core.FileLockedException.#ctor">
+            <summary>
+            Initializes a new instance of the FileLockedException class.
+            </summary>
+        </member>
+        <member name="M:NTAF.Core.FileLockedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the FileLockedException class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:NTAF.Core.FileLockedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the FileLockedException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerEcecption">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
+        </member>
+        <member name="E:NTAF.Core.IUpdateProgress.Updating">
+            <summary>
+            Suscribe to this to notify when updates start
+            </summary>
+        </member>
+        <member name="E:NTAF.Core.IUpdateProgress.Update">
+            <summary>
+            Suscribe to this to get an update when something changes durring the updating process
+            </summary>
+        </member>
+        <member name="E:NTAF.Core.IUpdateProgress.Updated">
+            <summary>
+            This will notify that the update progress is finished
+            </summary>
+        </member>
+        <member name="T:NTAF.Core.IMemberCopy">
+            <summary>
+            provides a common interface to do a deep cloning operation on applicable objects.
+            </summary>
+        </member>
+        <member name="M:NTAF.Core.IMemberCopy.CopyMembers(System.Object)">
+            <summary>
+            A method to do a true deep copy on an object so that when a field changes on one object it
+            doesn't change on both or all objects. Note this method should NOT copy avalable event subscribers.
+            </summary>
+            <param name="members">The original object to copy members from</param>
+        </member>
+        <member name="T:NTAF.Core.Security">
+            <summary>
+            Description of Security.
+            </summary>
+        </member>
+        <member name="M:NTAF.Core.Security.Encrypt(System.String)">
+            <summary>
+            Encrypts specified plaintext using Rijndael symmetric key algorithm
+            and returns a base64-encoded result.
+            </summary>
+            <param name="plainText">
+            Plaintext value to be encrypted.
+            </param>
+            <returns>
+            Encrypted value formatted as a base64-encoded string.
+            </returns>
+        </member>
+        <member name="M:NTAF.Core.Security.Decrypt(System.String)">
+            <summary>
+            Decrypts specified ciphertext using Rijndael symmetric key algorithm.
+            </summary>
+            <param name="cipherText">
+            Base64-formatted ciphertext value.
+            </param>
+            <returns>
+            Decrypted string value.
+            </returns>
+        </member>
+        <member name="T:InputBox">
+            <summary>
+            Displays a prompt in a dialog box, waits for the user to input text or click a button, and then returns a string containing the contents of the text box.
+            </summary>
+        </member>
+        <member name="M:InputBox.Show(System.String,System.String)">
+            <summary>
+            Displays a prompt in a dialog box, waits for the user to input text or click a button, and then returns a string containing the contents of the text box.
+            </summary>
+            <param name="Prompt">String expression displayed as the message in the dialog box.</param>
+            <param name="Title">String expression displayed in the title bar of the dialog box.</param>
+            <returns>The value in the textbox is returned if the user clicks OK or presses the ENTER key. If the user clicks Cancel, a zero-length string is returned.</returns>
+        </member>
+        <member name="M:InputBox.Show(System.String,System.String,System.Boolean)">
+            <summary>
+            Displays a prompt in a dialog box, waits for the user to input text or click a button, and then returns a string containing the contents of the text box.
+            </summary>
+            <param name="Prompt">String expression displayed as the message in the dialog box.</param>
+            <param name="Title">String expression displayed in the title bar of the dialog box.</param>
+            <param name="PasswordBox">If set to true the inputBox will be masked</param>
+            <returns>The value in the textbox is returned if the user clicks OK or presses the ENTER key. If the user clicks Cancel, a zero-length string is returned.</returns>
+        </member>
+        <member name="M:InputBox.Show(System.String,System.String,System.String)">
+            <summary>
+            Displays a prompt in a dialog box, waits for the user to input text or click a button, and then returns a string containing the contents of the text box.
+            </summary>
+            <param name="Prompt">String expression displayed as the message in the dialog box.</param>
+            <param name="Title">String expression displayed in the title bar of the dialog box.</param>
+            <param name="DefaultResponse">String expression displayed in the text box as the default response if no other input is provided. If you omit DefaultResponse, the displayed text box is empty.</param>
+            <returns>The value in the textbox is returned if the user clicks OK or presses the ENTER key. If the user clicks Cancel, a zero-length string is returned.</returns>
+        </member>
+        <member name="M:InputBox.Show(System.String,System.String,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Displays a prompt in a dialog box, waits for the user to input text or click a button, and then returns a string containing the contents of the text box.
+            </summary>
+            <param name="Prompt">String expression displayed as the message in the dialog box.</param>
+            <param name="Title">String expression displayed in the title bar of the dialog box.</param>
+            <param name="DefaultResponse">String expression displayed in the text box as the default response if no other input is provided. If you omit DefaultResponse, the displayed text box is empty.</param>
+            <param name="XPos">Integer expression that specifies, in pixels, the distance of the left edge of the dialog box from the left edge of the screen.</param>
+            <param name="YPos">Integer expression that specifies, in pixels, the distance of the upper edge of the dialog box from the top of the screen.</param>
+            <returns>The value in the textbox is returned if the user clicks OK or presses the ENTER key. If the user clicks Cancel, a zero-length string is returned.</returns>
+        </member>
+        <member name="T:InputBoxForm">
+            <summary>
+            Summary description for InputBoxForm.
+            </summary>
+        </member>
+        <member name="F:InputBoxForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:InputBoxForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:InputBoxForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

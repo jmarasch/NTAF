@@ -1,7 +1,4 @@
-﻿//#define UseCustomMenuItems
-
-//using System.Windows.Controls.Ribbon;
-using Fluent;
+﻿using Fluent;
 using NTAF.Core;
 using NTAF.PlugInFramework;
 using System;
@@ -50,10 +47,7 @@ namespace ProtoGears_World_Builder {
             recentFiles = recentFiles.Where(s => s != "").ToArray();
 
             foreach (string sFile in recentFiles) {
-#if UseCustomMenuItems
 
-                RecentFileItem menuItem = new RecentFileItem(sFile);
-#else
                 Fluent.MenuItem menuItem = new Fluent.MenuItem {
                     Header = System.IO.Path.GetFileName(sFile),
                     ToolTip = sFile,
@@ -62,26 +56,12 @@ namespace ProtoGears_World_Builder {
                     Width = 300
 
                     };
-#endif
+
                 menuItem.Click += RecentFile_Click;
                 RecentFileGallery.Items.Add(menuItem);
                 //RecentFileControl.Items.Add(menuItem);
                 }
-
-            //TreeViewItem
-            //    root = new TreeViewItem { Header = "Root" };
-            //TreeNode
-            //    child1 = new TreeNode { Text = "Child1" },
-            //    child2 = new TreeNode { Text = "Child2" },
-            //    child3 = new TreeNode { Text = "Child3" },
-            //    child4 = new TreeNode { Text = "Child4" };
-
-            //root.Items.Add(child1);
-            //root.Items.Add(child2);
-            //child2.Nodes.Add(child3);
-            //root.Items.Add(child4);
-
-            //DataView.Items.Add(root);
+            
             }
 
 #endregion Constructors
@@ -176,22 +156,6 @@ namespace ProtoGears_World_Builder {
                     }
                 }
             return tvi;
-            }
-
-        private bool CheckForSave() {
-            //foreach (NTDataFile df in DataFiles) {
-            //    if (df.DataChanged) {
-            //        switch (MessageBox.Show(String.Format("{0} has changed since it was opened would you like to save it now?", df.FileName), "Save file?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1)) {
-            //            case DialogResult.Yes:
-            //                df.Save();
-            //                break;
-
-            //            case DialogResult.Cancel:
-            //                break;
-            //        }
-            //    }
-            //}
-            return true;
             }
 
         /// <summary>
@@ -463,13 +427,8 @@ namespace ProtoGears_World_Builder {
                 System.Windows.MessageBox.Show("Currently Loading files, please wait until their done.", "Slow down cowboy", MessageBoxButton.OK);
                 } else {
 
-#if UseCustomMenuItems
-                RecentFileItem rfi = (RecentFileItem)sender;
-                LoadCache.Add(new NTDataFile(rfi.FilePath));
-#else
                 Fluent.MenuItem rfi = (Fluent.MenuItem)sender;
                 LoadCache.Add(new NTDataFile(rfi.ToolTip.ToString()));
-#endif
 
                 bgw.RunWorkerAsync();
                 }
@@ -478,50 +437,28 @@ namespace ProtoGears_World_Builder {
             }
 
         private void UpdateRecentFiles(object sender) {
-#if UseCustomMenuItems
-            RecentFileItem file = (RecentFileItem)sender;
-#else
-            Fluent.MenuItem file = (Fluent.MenuItem)sender;
-#endif
 
-#if UseCustomMenuItems
-            foreach (RecentFileItem rfi in RecentFileControl.Items) {
-#else
-            //foreach (Fluent.MenuItem rfi in RecentFileControl.Items) {
+            Fluent.MenuItem file = (Fluent.MenuItem)sender;
+
             foreach (Fluent.MenuItem rfi in RecentFileGallery.Items) {
 
                 rfi.Click -= RecentFile_Click;
-#endif
                 }
 
             RecentFileGallery.Items.Clear();
-
-            //RecentFileControl.Items.Clear();
 
             List<String> recentFiles = new List<string>(Properties.Settings.Default.RecentFiles.Split(';'));
 
             recentFiles.Remove("");
 
-#if UseCustomMenuItems
-            recentFiles.RemoveAll(s => s == file.FilePath);
-#else
             recentFiles.RemoveAll(s => s == file.ToolTip.ToString());
-#endif
 
-#if UseCustomMenuItems
-            recentFiles.Insert(0, file.FilePath);
-#else
             recentFiles.Insert(0, file.ToolTip.ToString());
-#endif
 
             string saveString = "";
 
             for (int i = 0; i <= recentFiles.Count - 1 & i < 10; i++) {
 
-#if UseCustomMenuItems
-                RecentFileItem menuItem = new RecentFileItem(recentFiles[i]);
-
-#else
                 Fluent.MenuItem menuItem = new Fluent.MenuItem {
                     Header = System.IO.Path.GetFileName(recentFiles[i]),
                     ToolTip = recentFiles[i],
@@ -529,7 +466,6 @@ namespace ProtoGears_World_Builder {
                     Size = RibbonControlSize.Large,
                     Width = 300
                     };
-#endif
 
                 menuItem.Click += RecentFile_Click;
                 RecentFileGallery.Items.Add(menuItem);
@@ -542,9 +478,52 @@ namespace ProtoGears_World_Builder {
             Properties.Settings.Default.RecentFiles = saveString;
             Properties.Settings.Default.Save();
             }
-        private void UpdateTreeView() {
+
+        private void buttonCloseFile_Click(object sender, RoutedEventArgs e) {
+            if (DataFile.DataChanged) {
+                switch (MessageBox.Show(String.Format("{0} has changed since it was opened would you like to save it now?", DataFile.FileName), "Save file?", MessageBoxButton.YesNoCancel)) {
+                    case MessageBoxResult.Yes:
+                        DataFile.Save();
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                    }
+                }
+            foreach (OCCBase item in DataFile.Collectors) {
+                item.TreeDataChanged -= Item_TreeDataChanged;
+                }
+            
+            int indexof = DataFiles.IndexOf(DataFile);
+            bool removed = DataFiles.Remove(DataFile);
+            DataView.Items.Remove(DataView.SelectedItem);
+            if( DataView.SelectedItem==null)
+                tabDataGroup.Visibility = Visibility.Collapsed;
             }
 
-#endregion Methods
+        private void UpdateTreeView() {
+            
+            }
+
+        private void btnPlugins_Click(object sender, RoutedEventArgs e) {
+            LoadedPlugins wind = new LoadedPlugins();
+            wind.ShowDialog();
+            }
+
+        private bool CheckForSave() {
+            if (DataFile != null) {
+                if (DataFile.DataChanged) {
+                    switch (MessageBox.Show(String.Format("{0} has changed since it was opened would you like to save it now?", DataFile.FileName), "Save file?", MessageBoxButton.YesNoCancel)) {
+                        case MessageBoxResult.Yes:
+                            DataFile.Save();
+                            break;
+
+                        case MessageBoxResult.Cancel:
+                            break;
+                        }
+                    }
+                }
+            return true;
+            }
+        #endregion Methods
         }
     }

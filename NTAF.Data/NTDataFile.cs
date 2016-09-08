@@ -1033,6 +1033,7 @@ namespace NTAF.Core {
 
         public void Load3() {
             //throw new NotImplementedException();
+
             Properties.Settings.Default.Loading = true;
 
             if (Updating != null)

@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Linq;
 using NTAF.PlugInFramework.OrphanControls;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace NTAF.Core {
     [Serializable()]//, XmlInclude(typeof(KeyVal<String,Version>))]
@@ -107,7 +108,25 @@ namespace NTAF.Core {
         #endregion
 
         #region Properties
-        [XmlAttribute()]
+        [XmlElement()]        
+        public string Author { get; set; }
+
+        [XmlElement()]
+        public string AuthorWebsite { get; set; }
+
+        [XmlElement()]
+        public string AuthorEmail { get; set; }
+
+        [XmlElement(), ReadOnly(true)]
+        public DateTime DateCreated { get; set; }
+
+        [XmlElement(), ReadOnly(true)]
+        public DateTime DateLastEdited { get; set; }
+
+        [XmlElement()]
+        public string Description { get; set; }
+
+        [XmlAttribute(), ReadOnly(true)]
         public string DataFileName {
             get { return datafilename; }
             set {
@@ -117,7 +136,8 @@ namespace NTAF.Core {
                     EventDataStateChanged();
                 }
             }
-        [XmlIgnore()]
+
+        [XmlIgnore(), Browsable(false)]
         public bool DataChanged {
             get { return dataChanged; }
             set {
@@ -128,6 +148,7 @@ namespace NTAF.Core {
                 }
             }
 
+        [Browsable(false)]
         public T[] GetObjects<T>() {
             List<T>
                 retVal = new List<T>();
@@ -144,6 +165,7 @@ namespace NTAF.Core {
             return retVal.ToArray();
             }
 
+        [Browsable(false)]
         public OCCBase GetCollector(Type T) {
             OCCBase
                 retVal = null;
@@ -158,6 +180,7 @@ namespace NTAF.Core {
             return retVal;
             }
 
+        [Browsable(false)]
         public OCCBase GetCollector(Object T) {
             OCCBase
                 retVal = null;
@@ -169,17 +192,17 @@ namespace NTAF.Core {
             return retVal;
             }
 
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public OCCBase[] Collectors {
             get { return i_OCCPlugins.ToArray(); }
             }
 
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public ObjectClassBase[] Orphans {
             get { return (ObjectClassBase[])orphanCollector.Objects.ToArray(); }
             }
 
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public ObjectClassBase[] AllData {
             get {
                 List<ObjectClassBase> retVal = new List<ObjectClassBase>();
@@ -199,7 +222,7 @@ namespace NTAF.Core {
         /// Gets or sets the full path to the file
         /// "C:\blah\blah\blah.NTD"
         /// </summary>
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public string FullFileName {
             get { return _Path; }
             set { _Path = value; }
@@ -208,7 +231,7 @@ namespace NTAF.Core {
         /// <summary>
         /// Gets the file name with no path
         /// </summary>
-        [XmlIgnore()]
+        [XmlIgnore(), ReadOnly(true)]
         public string FileName {
             get { return System.IO.Path.GetFileName(_Path); }
             }
@@ -216,17 +239,17 @@ namespace NTAF.Core {
         /// <summary>
         /// Gets the full path to the file but doesn't include the file name
         /// </summary>
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public string FileDir {
             get { return System.IO.Path.GetDirectoryName(_Path); }
             }
 
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public string FileExtention {
             get { return System.IO.Path.GetExtension(_Path); }
             }
 
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public string FilePath {
             get { return _Path.Remove(_Path.LastIndexOf(System.IO.Path.GetFileName(_Path))); }
             }
@@ -236,7 +259,7 @@ namespace NTAF.Core {
         /// Note:strings longer than 4 chars are cut off after the 4th so\n
         /// "ABCDE" will turn in to "ABCD"
         /// </summary>
-        [XmlAttribute()]
+        [XmlAttribute(), ReadOnly(true)]
         public string IDPreFix {
             get {
                 String retVal = "";
@@ -247,7 +270,7 @@ namespace NTAF.Core {
             set { _IDPreFix = value.ToCharArray(0, 4); }
             }
 
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public String[] IDs {
             get {
                 List<String>
@@ -260,7 +283,7 @@ namespace NTAF.Core {
                 }
             }
 
-        [XmlIgnore()]
+        [XmlIgnore(), Browsable(false)]
         public SerializableVersion[] LoadedPlugins {
             get {
                 List<SerializableVersion>
@@ -300,7 +323,7 @@ namespace NTAF.Core {
                 }
             }
         //todo try and create a warning system when loading if a collection is missing non-required plug-ins like the tree node or at least one editor
-
+        
         public SerializableVersion[] RequiredPlugins() {
             //get {
             List<SerializableVersion>
@@ -386,7 +409,7 @@ namespace NTAF.Core {
         /// <summary>
         /// Returns true of the file is locked
         /// </summary>
-        [XmlIgnore()]
+        [XmlIgnore(), ReadOnly(true)]
         public bool FileLocked {
             get {
                 bool retval = false;
@@ -404,7 +427,7 @@ namespace NTAF.Core {
         /// or takes a clear type string, encrypts it and stores it in the file
         /// </summary>
         /// <exception cref="FileLockedException">FileLockedException - if the file is locked</exception>
-        [XmlAttribute()]
+        [XmlAttribute(),Browsable(false)]
         public string FilePassword {
             get { return filePassword; }
             set {

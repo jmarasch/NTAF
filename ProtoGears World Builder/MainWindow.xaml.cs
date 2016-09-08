@@ -231,9 +231,13 @@ namespace ProtoGears_World_Builder {
                 ObjectViewer.SelectedObject = null;
             else {
                 ComboBoxItem cbiSelected = (ComboBoxItem)DataItemSelector.SelectedItem;
-                string objectID = cbiSelected.Tag.ToString();
-                object selectedObject = DataFile.FindObject(objectID);
-
+                object selectedObject;
+                if (cbiSelected.Tag is string) {
+                    string objectID = cbiSelected.Tag.ToString();
+                    selectedObject = DataFile.FindObject(objectID);
+                    }else {
+                    selectedObject = cbiSelected.Tag;
+                    }
                 ObjectViewer.SelectedObject = selectedObject;
                 }
             }
@@ -275,6 +279,10 @@ namespace ProtoGears_World_Builder {
 
                 switch (selectedItem.NodeType) {
                     case TreeViewItemExtention.NodeTypeEnum.DataRoot:
+                        DataItemSelector.Items.Insert(0, new ComboBoxItem {
+                            Content = DataFile.FileName,
+                            Tag = DataFile
+                            });
                         RibbonWin.SelectedTabItem = tabFileTools;
                         //tabDataGroup.Visibility = Visibility.Visible;
                         //if (DataView.SelectedNode is NTDataNode) {
@@ -507,6 +515,10 @@ namespace ProtoGears_World_Builder {
         private void btnPlugins_Click(object sender, RoutedEventArgs e) {
             LoadedPlugins wind = new LoadedPlugins();
             wind.ShowDialog();
+            }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e) {
+            
             }
 
         private bool CheckForSave() {

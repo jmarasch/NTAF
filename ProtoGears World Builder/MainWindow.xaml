@@ -124,7 +124,9 @@
                     <Fluent:Button x:Name="btnNew"
                                    Header="New"
                                    Icon="Images\RibbonIcons\Document-01.png"
-                                   LargeIcon="Images\RibbonIcons\Document-01.png" />
+                                   LargeIcon="Images\RibbonIcons\Document-01.png" 
+                                   Click="btnNew_Click"
+                                   />
 
                     <Fluent:Button x:Name="btnSaveAll"
                                    Header="Save All"
@@ -228,7 +230,7 @@
                     <RowDefinition Height="40"  MinHeight="35"/>
                 </Grid.RowDefinitions>
                 <ComboBox x:Name="DataItemSelector" Grid.Row="0" SelectionChanged="DataItemSelector_SelectionChanged" />
-                <pg:PropertyGrid x:Name="ObjectViewer" Grid.Row="1">
+                <pg:PropertyGrid x:Name="ObjectViewer" Grid.Row="1" ShowReadOnlyProperties="True" ShowAttachedProperties="True">
                     <pg:PropertyGrid.Layout>
                         <pg:TabbedLayout>
                             <pg:AlphabeticalLayout pg:TabbedLayout.Header="Alphabetical"/>

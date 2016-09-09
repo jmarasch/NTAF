@@ -89,6 +89,9 @@
     <Compile Include="Special Controls\TextInput.xaml.cs">
       <DependentUpon>TextInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Special Controls\TextInputWithButton.xaml.cs">
+      <DependentUpon>TextInputWithButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TreeViewItemExtention.cs" />
     <Compile Include="WPFWindowHelper.cs" />
     <Page Include="LoadedPlugins.xaml">
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Special Controls\TextInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Special Controls\TextInputWithButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

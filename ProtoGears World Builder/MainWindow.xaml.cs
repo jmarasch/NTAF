@@ -1,4 +1,5 @@
 ﻿using Fluent;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using NTAF.Core;
 using NTAF.PlugInFramework;
 using System;
@@ -518,7 +519,30 @@ namespace ProtoGears_World_Builder {
             }
 
         private void btnNew_Click(object sender, RoutedEventArgs e) {
-            
+            NewFile wndNewFile = new NewFile();
+            wndNewFile.ShowDialog();
+
+            if (wndNewFile.Result == CommonFileDialogResult.Ok) {
+                NTDataFile newFile = new NTDataFile(
+                    wndNewFile.txtFilePathText.Text + "\\" + wndNewFile.txtFileNameText.Text + ".ntx",
+                    wndNewFile.txtFileIDText.Text,
+                    wndNewFile.txtFileDataSetText.Text
+                    );
+                newFile.Author = wndNewFile.txtAuthorText.Text;
+                newFile.AuthorEmail = wndNewFile.txtAuthorEmailText.Text;
+                newFile.AuthorWebsite = wndNewFile.txtAuthorWebText.Text;
+                newFile.Description = wndNewFile.txtDescriptionText.Text;
+                newFile.DateCreated = DateTime.Now;
+
+                newFile.Save();
+                newFile = null;
+
+                newFile = new NTDataFile(wndNewFile.txtFilePathText.Text + "\\" + wndNewFile.txtFileNameText.Text + ".ntx");
+                FileEventSubscriptions(newFile, false);
+                LoadCache.Add(newFile);
+
+                bgw.RunWorkerAsync();
+                }
             }
 
         private bool CheckForSave() {

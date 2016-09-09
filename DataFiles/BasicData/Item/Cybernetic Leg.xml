@@ -1,0 +1,6 @@
+﻿<Item ID="BSDSAA2B231C" Name="Cybernetic Leg" Cost="500" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="Agility" Modifier="-1" />
+  </ModifiesStats>
+  <Description />
+</Item>

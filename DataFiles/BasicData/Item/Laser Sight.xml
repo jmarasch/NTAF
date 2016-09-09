@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSC9715096" Name="Laser Sight" Cost="100" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>+1 to hit for pistol and rifles</Description>
+</Item>

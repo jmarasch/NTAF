@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS1B9E4ABE" Name="Small Rock" Range="(Mx2)+6" MvsP="0" MvsA="0" SvMod="0" SIOR="2" Shots="1" Cost="1" BaseType="Thrown">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSF95E3BB8" Name="Thrown Weapons" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>models may pick up rocks of the ground and hurl them after making a “shit I’m out roll”.  Models starting with large rocks must roll after the first is thrown.</Special>
+</Weapon>

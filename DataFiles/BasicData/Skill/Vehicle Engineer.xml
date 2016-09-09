@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS3C43F015" Name="Vehicle Engineer" Cost="300" SpeciesCanUseSkill="All" Group="Mechanic">
+  <Description>Makes it possible to build vehicles with out a land that allows you to do so. If you have a land that does allow you to, it will only take ½ the time to build a vehicle.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS6389ED91" Name="Mechanical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

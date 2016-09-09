@@ -1,0 +1,13 @@
+﻿<BaseUnit ID="BSDS6C46BF71" Name="Leader" Movement="6" HitPoints="15" HandToHand="8" ActionPoints="4" PsyPoints="0" RangedWeapons="8" Might="8" Toughness="8" Agility="8" Willpower="8" HorrorFactor="1" CostMod="0">
+  <archetype ID="BSDS2CDC0E34" Name="Leader" BaseType="Leader" />
+  <BaseRace ID="BSDS9A264EA9" Name="Human" species="Human" />
+  <Description>Human Leader Unit</Description>
+  <Special />
+  <WPermissions />
+  <SPermissions />
+  <PPermissions />
+  <Weapons />
+  <SkillsAndAbilities />
+  <Psys />
+  <Items />
+</BaseUnit>

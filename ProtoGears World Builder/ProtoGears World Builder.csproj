@@ -85,6 +85,9 @@
     <Compile Include="NewFile.xaml.cs">
       <DependentUpon>NewFile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgramSettings.xaml.cs">
+      <DependentUpon>ProgramSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RecentFileItem.cs" />
     <Compile Include="Special Controls\TextInput.xaml.cs">
       <DependentUpon>TextInput.xaml</DependentUpon>
@@ -117,6 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS67113D2B" Name="Precise Throw" Cost="150" SpeciesCanUseSkill="Human Mutant Genics_B Aquatic Fun" Group="Arsonist">
+  <Description>When throwing something in combat the model gets a +1 to RW.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF4D4D86A" Name="Arsonists" SpeciesCanEquip="Human Mutant Undead Genics_B Aquatic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

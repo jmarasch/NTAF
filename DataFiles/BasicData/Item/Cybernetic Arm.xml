@@ -1,0 +1,6 @@
+﻿<Item ID="BSDS1A871879" Name="Cybernetic Arm" Cost="250" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="Might" Modifier="1" />
+  </ModifiesStats>
+  <Description>Requires a cybernetic hand</Description>
+</Item>

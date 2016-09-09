@@ -1,0 +1,13 @@
+﻿<BaseUnit ID="BSDS2578607F" Name="Vet" Movement="5" HitPoints="10" HandToHand="7" ActionPoints="3" PsyPoints="0" RangedWeapons="7" Might="7" Toughness="7" Agility="7" Willpower="7" HorrorFactor="1" CostMod="0">
+  <archetype ID="BSDS8FDAC4BB" Name="Vet" BaseType="Vet" />
+  <BaseRace ID="BSDS9A264EA9" Name="Human" species="Human" />
+  <Description />
+  <Special />
+  <WPermissions />
+  <SPermissions />
+  <PPermissions />
+  <Weapons />
+  <SkillsAndAbilities />
+  <Psys />
+  <Items />
+</BaseUnit>

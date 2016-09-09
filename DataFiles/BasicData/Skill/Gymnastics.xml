@@ -1,0 +1,7 @@
+﻿<Skill ID="BSDSD41FAD54" Name="Gymnastics" Cost="300" SpeciesCanUseSkill="Human Mutant Genics_A Genics_B Angelic Demonic Fun" Group="Agility">
+  <Description />
+  <ModifiesStats>
+    <StatsMod StatToMod="Agility" Modifier="1" />
+  </ModifiesStats>
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSDEC7D165" Name="Agility" SpeciesCanEquip="Human Mutant Genics_A Genics_B Angelic Demonic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

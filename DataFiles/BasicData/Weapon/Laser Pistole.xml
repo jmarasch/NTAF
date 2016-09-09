@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDSAF89E948" Name="Laser Pistole" Range="12" MvsP="4" MvsA="4" SvMod="0" SIOR="4" Shots="1" Cost="75" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS78536172" Name="Energy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

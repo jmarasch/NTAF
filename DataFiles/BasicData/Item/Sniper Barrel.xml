@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS8CE06E28" Name="Sniper Barrel" Cost="220" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>+1 to RW, +2 to RW with a scope</Description>
+</Item>

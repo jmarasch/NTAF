@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSBE7F579B" Name="Leap" Cost="200" SpeciesCanUseSkill="Human Mutant Genics_A Genics_B Angelic Demonic Fun" Group="Agility">
+  <Description>The model has superior jumping capabilities and only fails a jump on a 12</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSDEC7D165" Name="Agility" SpeciesCanEquip="Human Mutant Genics_A Genics_B Angelic Demonic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

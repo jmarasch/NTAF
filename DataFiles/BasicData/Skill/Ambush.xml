@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSFB715A61" Name="Ambush" Cost="200" SpeciesCanUseSkill="Human Genics_A Genics_B Aquatic Angelic Demonic Fun" Group="Stealth">
+  <Description>Uses rules for showing up but it does not occur until d4 turns in to the game</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSB532A5C3" Name="Stealth" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

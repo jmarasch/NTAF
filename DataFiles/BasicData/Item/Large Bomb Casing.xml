@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS922FF04B" Name="Large Bomb Casing" Cost="25" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>The Shell of a large bomb, 9 Units</Description>
+</Item>

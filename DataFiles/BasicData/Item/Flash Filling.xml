@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS43FE89F1" Name="Flash Filling" Cost="6" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Blinds all units in a 12” diameter for d3 turns, costs 1 unit</Description>
+</Item>

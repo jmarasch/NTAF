@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSCF48574B" Name="Reflect" ppCost="3" Range="0" Template="None" TemplateSize="" PsyTypes="Generic">
+  <Description />
+  <Effect>A model that has the reflect spell cast on them will reflect a spell cast at them in a random direction half the distance between the spell caster and the targeted model i.e. a spell caster casts fireball and hits a model with reflect the fireball, they are 12" apart the fire ball then goes 6" in a random direction. if a model is hit by the spell that model then "takes it" as thoe it were cast on them. </Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

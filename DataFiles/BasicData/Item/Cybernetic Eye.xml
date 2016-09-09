@@ -1,0 +1,6 @@
+﻿<Item ID="BSDSCB8A1489" Name="Cybernetic Eye" Cost="1000" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="RangedWeapons" Modifier="1" />
+  </ModifiesStats>
+  <Description>+5" to any ranged weapon ranges if a cybernetic hand has been attached</Description>
+</Item>

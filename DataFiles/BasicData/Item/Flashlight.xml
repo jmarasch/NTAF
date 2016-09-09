@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS9A070C57" Name="Flashlight" Cost="10" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Makes negatives to shooting in the dark null</Description>
+</Item>

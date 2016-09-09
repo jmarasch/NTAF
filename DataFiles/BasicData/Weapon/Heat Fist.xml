@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS3F633058" Name="Heat Fist" Range="0" MvsP="2" MvsA="0" SvMod="0" SIOR="0" Shots="0" Cost="100" BaseType="HandToHand">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS879CA176" Name="Bludgen" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

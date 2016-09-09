@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS89E88214" Name="Timer" Cost="5" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Goes on any casing, makes it go off after d4 turns, costs 1 unit</Description>
+</Item>

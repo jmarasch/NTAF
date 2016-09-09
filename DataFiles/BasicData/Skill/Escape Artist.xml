@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS7DC4C145" Name="Escape Artist" Cost="500" SpeciesCanUseSkill="All" Group="Stealth">
+  <Description>Model may not be captured at the end of a battle</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSB532A5C3" Name="Stealth" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS807E01CE" Name="Shrapnel Storm" ppCost="2" Range="0" Template="Round" TemplateSize="1&quot;" PsyTypes="Generic">
+  <Description />
+  <Effect>MvsP = 6, MvsA = 4</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSCF299AFC" Name="Double Dammage" ppCost="5" Range="0" Template="None" TemplateSize="" PsyTypes="Generic">
+  <Description />
+  <Effect>When a model hits and does damage the damage is multiplied by 2</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

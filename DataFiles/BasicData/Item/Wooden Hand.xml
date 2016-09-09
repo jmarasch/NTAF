@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSE467093E" Name="Wooden Hand" Cost="5" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Counts as a dub in hand to hand</Description>
+</Item>

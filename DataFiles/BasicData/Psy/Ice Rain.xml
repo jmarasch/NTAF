@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS6BB5B1A6" Name="Ice Rain" ppCost="6" Range="0" Template="Round" TemplateSize="dD6&quot;d" PsyTypes="Water">
+  <Description />
+  <Effect>Large Chuncks of ice rocks fall from the sky and strike in a 4d6" diameter each model cought in the storm sustains d4 hits at MvsP=4, MvsA=3, The caster decides where the storm starts up to 48" from caster and then the storm deviates d3" in a random direction from that point</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS63F937B3" Name="Ice" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

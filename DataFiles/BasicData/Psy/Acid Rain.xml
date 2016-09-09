@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS6A3F28B8" Name="Acid Rain" ppCost="6" Range="0" Template="Round" TemplateSize="4D6&quot;" PsyTypes="Cloud">
+  <Description>The caster decides where the storm starts up to 48" from caster and then the storm deviates d3" in a random direction from that point</Description>
+  <Effect>Causes metallic armor to rust. The area affected by the acid rain is 4d6" diameter for each model caught in the storm Armor values drop to half of what they are normally.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS5ED11D2D" Name="Earth" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

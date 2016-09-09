@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSF36ED935" Name="Scope" Cost="150" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>For evey 150 pq spent the weapon gets +1 to hit, cannot be attached to a pistol</Description>
+</Item>

@@ -1,0 +1,13 @@
+﻿<BaseUnit ID="BSDSDC936F78" Name="Green" Movement="3" HitPoints="5" HandToHand="4" ActionPoints="1" PsyPoints="0" RangedWeapons="4" Might="4" Toughness="4" Agility="4" Willpower="4" HorrorFactor="0" CostMod="0">
+  <archetype ID="BSDS175F654B" Name="Green" BaseType="Green" />
+  <BaseRace ID="BSDS9A264EA9" Name="Human" species="Human" />
+  <Description />
+  <Special />
+  <WPermissions />
+  <SPermissions />
+  <PPermissions />
+  <Weapons />
+  <SkillsAndAbilities />
+  <Psys />
+  <Items />
+</BaseUnit>

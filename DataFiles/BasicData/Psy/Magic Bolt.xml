@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS741B5A93" Name="Magic Bolt" ppCost="2" Range="0" Template="None" TemplateSize="" PsyTypes="Lighting">
+  <Description />
+  <Effect>A bolt of shimmering light hits a model with in 12" of the caster MvsP=5, MvsA=5. The model getting attacked may make a reflex save (D12 under AG)</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDSE4BC23B8" Name="Lighting" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

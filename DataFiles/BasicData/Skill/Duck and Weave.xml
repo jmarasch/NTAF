@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS407E0C17" Name="Duck and Weave" Cost="200" SpeciesCanUseSkill="Human Mutant Genics_A Genics_B Aquatic Angelic Demonic Fun" Group="Stealth">
+  <Description>When running from fire the model shooting has a –2 to hit that model</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSB532A5C3" Name="Stealth" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

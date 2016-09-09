@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSE0A55230" Name="Dodge" Cost="0" SpeciesCanUseSkill="Human Mutant Genics_A Genics_B Aquatic Angelic Demonic Fun" Group="TrapSetter">
+  <Description>Roll a d12 if its equal to or under the models Ag the model may dive out of the way of a trap in a random direction.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS9DA4CA8A" Name="Trap Setter" SpeciesCanEquip="Human Mutant Genics_A Genics_B Aquatic Angelic Demonic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

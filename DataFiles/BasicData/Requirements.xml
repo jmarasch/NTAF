@@ -1,0 +1,22 @@
+﻿<ArrayOfSerializableVersion>
+  <SerializableVersion Name="Archetype" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Archetypes" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="BaseUnit" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="BaseUnits" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Item" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Items" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Psy" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Psys" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="PsyPermission" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="PsyPermissions" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Race" Type="ObjectClass" Major="0" Minor="9" Revision="0" Build="0" />
+  <SerializableVersion Name="Races" Type="OCC" Major="0" Minor="5" Revision="0" Build="0" />
+  <SerializableVersion Name="Skill" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Skills" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="SkillPermission" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="SkillPermissions" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Weapon" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="Weapons" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="WeaponPermission" Type="ObjectClass" Major="0" Minor="0" Revision="0" Build="0" />
+  <SerializableVersion Name="WeaponPermissions" Type="OCC" Major="0" Minor="0" Revision="0" Build="0" />
+</ArrayOfSerializableVersion>

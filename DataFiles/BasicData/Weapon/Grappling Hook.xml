@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDSBDDD93F0" Name="Grappling Hook" Range="40" MvsP="6" MvsA="4" SvMod="0" SIOR="10" Shots="1" Cost="150" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS19EC42F8" Name="Pistole" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>Shoots every other turn, if a hit is scored, the model may pull itself to a vehicle, up/to a building, or another model to it with a might check and –2 (models may only be pulled if wounded)</Special>
+</Weapon>

@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSD5245162" Name="Bomb Improvements" Cost="400" SpeciesCanUseSkill="Human Genics_B Fun" Group="Arsonist">
+  <Description>The model can dismantle dud bombs for ½ the insides (rounded down) and the casing.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF4D4D86A" Name="Arsonists" SpeciesCanEquip="Human Mutant Undead Genics_B Aquatic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

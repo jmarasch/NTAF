@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSABD84296" Name="Electro Magnetic" Cost="20" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Goes out 3” for every unit used, costs 1 unit</Description>
+</Item>

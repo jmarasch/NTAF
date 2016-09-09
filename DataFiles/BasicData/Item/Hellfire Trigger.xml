@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS989D6CB1" Name="Hellfire Trigger" Cost="500" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Give a semi automatic weapon +2 shots</Description>
+</Item>

@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSF964EE2C" Name="Better Mousetrap" Cost="300" SpeciesCanUseSkill="Human Genics_A Genics_B Demonic Fun" Group="TrapSetter">
+  <Description>Roll a 1d12 when a trap goes off if its equal to or lowered than the models Ag that set the trap the trap does x2 damage</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS9DA4CA8A" Name="Trap Setter" SpeciesCanEquip="Human Mutant Genics_A Genics_B Aquatic Angelic Demonic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS5C9EB1D7" Name="Shotgun Scatter" Range="20" MvsP="0" MvsA="2" SvMod="0" SIOR="5" Shots="1" Cost="175" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSC1C35482" Name="Rifle" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description> </Description>
+  <Special>MvsP is determined by the weapons range</Special>
+</Weapon>

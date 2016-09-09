@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS5CCD092E" Name="Chain Lighting" ppCost="5" Range="0" Template="None" TemplateSize="" PsyTypes="Lighting">
+  <Description />
+  <Effect>When chain lightning hits it does a M7 d12 hit and will continue on randomly up to 3 more models doing a M3 d6 hit. This will only jump back and fourth between models that are within 2” of each other. Follow element rules.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDSE4BC23B8" Name="Lighting" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

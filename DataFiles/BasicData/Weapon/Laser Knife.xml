@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS88F6AE9F" Name="Laser Knife" Range="0" MvsP="1" MvsA="0" SvMod="0" SIOR="0" Shots="0" Cost="40" BaseType="Blade">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSFAC0DB1D" Name="Blade" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description>Oooo a sparkly knife!</Description>
+  <Special>Parry</Special>
+</Weapon>

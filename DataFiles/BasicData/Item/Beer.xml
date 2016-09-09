@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS2CB6F4F9" Name="Beer" Cost="10" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Heals 5 HP</Description>
+</Item>

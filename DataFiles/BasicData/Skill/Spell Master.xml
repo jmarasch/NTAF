@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSB9C8C751" Name="Spell Master" Cost="500" SpeciesCanUseSkill="Human Undead Genics_A Aquatic Angelic Demonic Fun" Group="Psyonicist">
+  <Description>Re-roll flopped spell only once per-turn</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS8A0C8A25" Name="Psionicist" SpeciesCanEquip="Human Undead Genics_A Genics_B Aquatic Angelic Demonic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

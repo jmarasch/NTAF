@@ -237,6 +237,14 @@ namespace NTAF.Core {
             }
 
         /// <summary>
+        /// Gets the file name with no path or file extension
+        /// </summary>
+        [XmlIgnore(), ReadOnly(true)]
+        public string FileNameNoExt {
+            get { return System.IO.Path.GetFileNameWithoutExtension(_Path); }
+            }
+
+        /// <summary>
         /// Gets the full path to the file but doesn't include the file name
         /// </summary>
         [XmlIgnore(), Browsable(false)]
@@ -323,7 +331,26 @@ namespace NTAF.Core {
                 }
             }
         //todo try and create a warning system when loading if a collection is missing non-required plug-ins like the tree node or at least one editor
-        
+
+        public Type[] GetLoadedPluginTypes() {
+            List<Type>
+                    retVal = new List<Type>();
+
+            foreach (Assembly ass in PluginEngine.LoadedAssemblies()) {
+                foreach (Type typ in ass.GetTypes()) {
+                    if (typ.IsSubclassOf(typeof(OCCBase))) {
+                        retVal.Add(typ);
+                        }
+                    if (typ.IsSubclassOf(typeof(ObjectClassBase))) {
+                        retVal.Add(typ);
+                        }                   
+                    }
+                }
+
+            //retVal.AddRange(ass.GetTypes().Where(t=>t is OCCBase));
+            return retVal.ToArray();
+            }
+
         public SerializableVersion[] RequiredPlugins() {
             //get {
             List<SerializableVersion>
@@ -1150,6 +1177,12 @@ namespace NTAF.Core {
                 filePassword = dataSet.filePassword;
                 DataFileName = dataSet.DataFileName;
                 IDPreFix = dataSet.IDPreFix;
+                Author = dataSet.Author;
+                AuthorEmail = dataSet.AuthorEmail;
+                AuthorWebsite = dataSet.AuthorWebsite;
+                Description = dataSet.Description;
+                DateCreated = dataSet.DateCreated;
+                DateLastEdited = dataSet.DateLastEdited;
                 }
             List<String>
                 UnlodableObjects = new List<String>();
@@ -1371,7 +1404,7 @@ namespace NTAF.Core {
             }
 
         public void ExportToCSV(String path) {
-            StreamWriter sw = new StreamWriter(new FileStream(path, FileMode.Create));
+            StreamWriter sw = new StreamWriter(new FileStream(path + FileNameNoExt + ".csv", FileMode.Create));
             sw.WriteLine("This file can be loaded an any good spread sheet program as table data. when loading be sure to split the data via the pipe '|' found above the '\\' key");
             try {
                 bool printHeader = true;
@@ -1422,7 +1455,7 @@ namespace NTAF.Core {
             }
 
         public void ExportToTXT(String path) {
-            StreamWriter sw = new StreamWriter(new FileStream(path, FileMode.Create));
+            StreamWriter sw = new StreamWriter(new FileStream(path + FileNameNoExt + ".txt", FileMode.Create));
 
             try {
                 foreach (Object obj in this.AllData) {
@@ -1451,6 +1484,61 @@ namespace NTAF.Core {
                 } finally {
                 sw.Close();
                 }
+            }
+
+        public void ExportToXML(String path) {
+            String
+                tmpFolder = path + FileNameNoExt;
+
+           if (!Directory.Exists(tmpFolder))
+                Directory.CreateDirectory(tmpFolder);
+            else
+                if (Directory.GetDirectories(tmpFolder).Length != 0 || Directory.GetFiles(tmpFolder).Length != 0) {
+                Directory.Delete(tmpFolder, true);
+                Directory.CreateDirectory(tmpFolder);
+                }
+
+            try {
+                WriteObject(this, tmpFolder + "\\" + FileName.Split('.')[0]);
+
+                WriteObject(RequiredPlugins(), tmpFolder + "\\Requirements");
+
+                foreach (Object obj in this.AllData) {
+                    try {
+                        if (!(obj is ObjectClassBase))
+                            throw new Exception(); //todo make this better
+
+                        ObjectClassBase
+                            IObj = (ObjectClassBase)obj;
+
+                        String
+                            tmpFile = tmpFolder + "\\" + IObj.CollectionName + "\\" + IObj.Name;
+
+                        WriteObject(IObj, tmpFile);// + "!" + IObj.CollectionName);
+
+                        } catch (Exception ex) { }
+
+                    }
+                } catch (Exception ex) { }
+            }
+
+        public void ExportToXMLSingle(String path) {
+            String
+                tmpFolder = path + FileNameNoExt;
+
+            //if (!Directory.Exists(tmpFolder))
+            //    Directory.CreateDirectory(tmpFolder);
+            //else
+            //     if (Directory.GetDirectories(tmpFolder).Length != 0 || Directory.GetFiles(tmpFolder).Length != 0) {
+            //    Directory.Delete(tmpFolder, true);
+            //    Directory.CreateDirectory(tmpFolder);
+            //    }
+
+            try {
+                NTDataFileExt fileout = new NTDataFileExt { InternalFile = this };
+                WriteObject2(fileout, tmpFolder);
+
+                } catch (Exception ex) { }
             }
 
         private bool ReadObject(out Object objectToRead, Stream stream, Type T) {
@@ -1530,6 +1618,35 @@ namespace NTAF.Core {
             try {
                 XmlSerializer
                     SER = new XmlSerializer(objToWrite.GetType());
+                //new part
+                XmlTextWriter xmlTextWriter = new XmlTextWriterFormattedNoDeclaration(FS); // new XmlTextWriter( memoryStream, Encoding.UTF8 );
+
+                XmlSerializerNamespaces NameSpace = new XmlSerializerNamespaces();
+
+                NameSpace.Add("", "");
+
+                SER.Serialize(xmlTextWriter, objToWrite, NameSpace);
+
+                return path;
+                } catch { throw; } finally {
+                FS.Close();
+                }
+            }
+
+        private String WriteObject2(Object objToWrite, string path) {
+            //throw new NotImplementedException();
+            path += ".xml";
+            if (!Directory.Exists(Path.GetDirectoryName(path)))
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+
+            FileStream
+                FS = new FileStream(path, FileMode.Create);
+
+            Type[] loadedTypes = GetLoadedPluginTypes();
+
+            try {
+                XmlSerializer
+                    SER = new XmlSerializer(objToWrite.GetType(), loadedTypes);
                 //new part
                 XmlTextWriter xmlTextWriter = new XmlTextWriterFormattedNoDeclaration(FS); // new XmlTextWriter( memoryStream, Encoding.UTF8 );
 
@@ -1833,6 +1950,19 @@ namespace NTAF.Core {
             }
 
         #endregion
+        }
+
+    [Serializable()]
+    public class NTDataFileExt {
+        public NTDataFileExt() { }
+
+        public NTDataFile InternalFile { get; set; }
+        
+        [XmlElement(), Browsable(false)]
+        public OCCBase[] Collectors {
+            get { return InternalFile.Collectors; }
+            set { }
+            }
         }
     }
 

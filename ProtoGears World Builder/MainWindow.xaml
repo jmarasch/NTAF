@@ -118,7 +118,7 @@
                         <Fluent:Gallery x:Name="RecentFileGallery" MinHeight="60" MinWidth="250"
                                         HorizontalContentAlignment="Right" MaxItemsInRow="1">
                         </Fluent:Gallery>
-                        <Fluent:MenuItem Header="Clear Recent"/>
+                        <Fluent:MenuItem Header="Clear Recent" Click="btnClearRecent_Click"/>
                     </Fluent:SplitButton>
 
                     <Fluent:Button x:Name="btnNew"
@@ -131,7 +131,7 @@
                     <Fluent:Button x:Name="btnSaveAll"
                                    Header="Save All"
                                    Icon="Images\RibbonIcons\Save-As-01.png"
-                                   LargeIcon="Images\RibbonIcons\Save-As-01.png"/>
+                                   LargeIcon="Images\RibbonIcons\Save-As-01.png" Click="btnSaveAll_Click"/>
                 </Fluent:RibbonGroupBox>
 
                 <Fluent:RibbonGroupBox Header="Program">
@@ -139,7 +139,7 @@
                     <Fluent:Button x:Name="btnSettings"
                                    Header="Settings"
                                    Icon="Images\RibbonIcons\Gear-01.png" 
-                                   LargeIcon="Images\RibbonIcons\Gear-01.png" />
+                                   LargeIcon="Images\RibbonIcons\Gear-01.png" Click="btnSettings_Click" />
 
                     <Fluent:Button x:Name="btnExit"
                                    Header="Exit"
@@ -156,9 +156,12 @@
                 <Fluent:RibbonGroupBox>
                     <Fluent:Button x:Name="buttonCloseFile" Header="Close File" Size="Large" Icon="Images\RibbonIcons\Button Close-01.png" LargeIcon="Images\RibbonIcons\Button Close-01.png"
                                    Click="buttonCloseFile_Click" />
-                    <Fluent:SplitButton x:Name="buttonExport" Header="Export" Size="Large" Icon="Images\RibbonIcons\File Export.png" LargeIcon="Images\RibbonIcons\File Export.png">
-                        <Fluent:Button x:Name="btnExportTEXT" Header="TXT" Size="Middle"/>
-                        <Fluent:Button x:Name="btnExportCSV" Header="CSV" Size="Middle"/>
+                    <Fluent:SplitButton x:Name="btnExport" Header="Export" Size="Large" Icon="Images\RibbonIcons\File Export.png" LargeIcon="Images\RibbonIcons\File Export.png"
+                                        Click="btnExportFile_Click">
+                        <Fluent:Button x:Name="btnExportTEXT" Header="TXT" Size="Middle"
+                                       Click="btnExportFile_Click"/>
+                        <Fluent:Button x:Name="btnExportCSV" Header="CSV" Size="Middle"
+                                       Click="btnExportFile_Click"/>
                     </Fluent:SplitButton>
                     <Fluent:Button x:Name="buttonPurge" Header="Purge" Size="Large" Icon="Images\RibbonIcons\Document-Purge.png" LargeIcon="Images\RibbonIcons\Document-Purge.png"/>
                     <Fluent:Button x:Name="buttonLockFile" Header="Lock" Size="Large" Icon="Images\RibbonIcons\database-Locked.png" LargeIcon="Images\RibbonIcons\database-Locked.png"/>

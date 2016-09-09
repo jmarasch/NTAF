@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS38E30AF7" Name="Blade Sharpener" Cost="100" SpeciesCanUseSkill="All" Group="ArmsMaster">
+  <Description>+2 MvsP, +1 MvsA to bladed weapons that the model carries</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF8F13F38" Name="Arms Master" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

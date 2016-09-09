@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSD70C7107" Name="Light Healing" ppCost="2" Range="0" Template="None" TemplateSize="" PsyTypes="Medical">
+  <Description />
+  <Effect>D6 hp regained, model must be within 15”</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS3BB830F7" Name="Medical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

@@ -42,6 +42,11 @@
             Gets the file name with no path
             </summary>
         </member>
+        <member name="P:NTAF.Core.NTDataFile.FileNameNoExt">
+            <summary>
+            Gets the file name with no path or file extension
+            </summary>
+        </member>
         <member name="P:NTAF.Core.NTDataFile.FileDir">
             <summary>
             Gets the full path to the file but doesn't include the file name

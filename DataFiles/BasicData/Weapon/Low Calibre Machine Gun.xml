@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS5A9D3372" Name="Low Calibre Machine Gun" Range="50" MvsP="5" MvsA="3" SvMod="0" SIOR="6" Shots="8" Cost="240" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS6B0C799E" Name="Heavy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>Move and Fire, -1 when moved</Special>
+</Weapon>

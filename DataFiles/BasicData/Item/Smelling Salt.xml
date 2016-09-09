@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSB0D7499C" Name="Smelling Salt" Cost="15" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>A pungent salt that instantly wakes up an unconscious model</Description>
+</Item>

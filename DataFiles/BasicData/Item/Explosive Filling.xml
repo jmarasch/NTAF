@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS2DFC8CF7" Name="Explosive Filling" Cost="5" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>MvsP = 2, MvsA = 1.5, 1” diameter, costs 1 unit</Description>
+</Item>

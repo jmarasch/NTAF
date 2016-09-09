@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS28017D58" Name="Shield" Range="0" MvsP="0" MvsA="0" SvMod="0" SIOR="0" Shots="0" Cost="20" BaseType="Bludgen">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS879CA176" Name="Bludgen" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description>protect the important stuff</Description>
+  <Special>Causes a concussion on a roll of a natural 1 when attacking. +1 defensive dice</Special>
+</Weapon>

@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSBC76B3B0" Name="Booze" Cost="40" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Heals 20 HP</Description>
+</Item>

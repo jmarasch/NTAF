@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS3C2F9905" Name="Patient Care" Cost="300" SpeciesCanUseSkill="Human Mutant Aquatic Fun" Group="Medic">
+  <Description>+5 hp when using healing items (may be used with the +5 from first aid)</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSAD0CFF38" Name="Medic" SpeciesCanEquip="Human Mutant Aquatic Angelic Demonic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

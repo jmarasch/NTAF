@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS92D6A215" Name="Landmine Casing Standard" Cost="15" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Shell of a land mine, 6 units</Description>
+</Item>

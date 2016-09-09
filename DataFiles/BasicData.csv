@@ -1,0 +1,234 @@
+This file can be loaded an any good spread sheet program as table data. when loading be sure to split the data via the pipe '|' found above the '\' key
+Table:Archetype
+Name|Type|
+Green|Green|
+Heavy|Heavy|
+Leader|Leader|
+Member|Member|
+Psychic|Psychic|
+Special|Special|
+Vet|Vet|
+
+Table:BaseUnit
+Name|Description|Description|Description|Movement|HitPoints|HandToHand|ActionPoints|PsyPoints|RangedWeapons|Might|Toughness|Agility|Willpower|HorrorFactor|Weapon Permissions|Skill Permissions|Psy Permissions|Weapons|Skills|Psy Ablilites|Items|Special|Cost Modifier|Cost|
+Leader|Human|Leader|Human Leader Unit|6|15|8|4|0|8|8|8|8|8|1|||||||||0|259|
+Green|Human|Green||3|5|4|1|0|4|4|4|4|4|0|||||||||0|92|
+Heavy|Human|Heavy||4|10|3|2|0|6|6|6|4|5|1|||||||||0|168|
+Psychic|Human|Psychic||4|4|2|2|6|2|2|4|4|8|1|||||||||0|172|
+Member|Human|Member||4|8|5|2|0|5|5|5|5|5|1|||||||||0|148|
+Vet|Human|Vet||5|10|7|3|0|7|7|7|7|7|1|||||||||0|198|
+
+Table:Item
+Name|Description|Modifies Stats|Archatypes Can Use|Races Can Use|Species Can Use|Cost|
+Bionic Leg||Agility +1|All||All|500|
+Cybernetic Leg||Agility -1|All||All|500|
+Wooden Leg|Gives the model the ability to walk again|Movement -2|All||All|5|
+Bionic Arm||HandToHand +1|All||All|550|
+Cybernetic Arm|Requires a cybernetic hand|Might +1|All||All|250|
+Cybernetic Hand|||All||All|450|
+Wooden Hand|Counts as a dub in hand to hand||All||All|5|
+Bionic Eye||RangedWeapons +1|All||All|1000|
+Cybernetic Eye|+5" to any ranged weapon ranges if a cybernetic hand has been attached|RangedWeapons +1|All||All|1000|
+Glass Eye|You can give someone the evil eye|HorrorFactor +4|All||All|100|
+Bionic Ear|Cannot be snuck up upon||All||All|250|
+Scope|For evey 150 pq spent the weapon gets +1 to hit, cannot be attached to a pistol||All||All|150|
+Hellfire Trigger|Give a semi automatic weapon +2 shots||All||All|500|
+Double Trigger|Give +1 shot to a shot gun||All||All|150|
+Auto Responce Trigger|x2 shots per trigger pull, only for semi automatic weapons||All||All|255|
+Extended Amo Clip|+2 to weapons SIOR roll||All||All|500|
+Bayonet|Allows rifel to double as pole arm type weapon||All||All|25|
+Laser Sight|+1 to hit for pistol and rifles||All||All|100|
+Sniper Barrel|+1 to RW, +2 to RW with a scope||All||All|220|
+Comfort Grip|it just needs to feel right||All||All|20|
+Beer|Heals 5 HP||All||All|10|
+Booze|Heals 20 HP||All||All|40|
+Morphine|+D4 Toughness for D6 rounds||All||All|45|
+Ephedrine|+2 movement, +1 attack for d6 rounds||All||All|60|
+Ammo Reload|If you fail an SIOR you may reload the weapon next turn and continue as though the roll never happened, one use item, when its used its gone till you buy more||All||All|25|
+Flashlight|Makes negatives to shooting in the dark null||All||All|10|
+Smelling Salt|A pungent salt that instantly wakes up an unconscious model||All||All|15|
+Duct Tape|Allows you to combine any two weapons in to one weapon, one use item, when its used its gone till you buy more||All||All|200|
+Gask Mask|Nullifies poison gas effects||All||All|25|
+Grenade Casing Standard|The shell of grenade, Holds 3 units||All||All|5|
+Grenade Casing Sticky|The out side has a sticky shell that when thrown can stick to a target, it sticks on a roll of a hit, 3 units||All||All|8|
+Landmine Casing Standard|Shell of a land mine, 6 units||All||All|15|
+Large Bomb Casing|The Shell of a large bomb, 9 Units||All||All|25|
+Timer|Goes on any casing, makes it go off after d4 turns, costs 1 unit||All||All|5|
+Smoke Filling|Adds smoke to a grenade, cost 1 unit||All||All|10|
+Explosive Filling|MvsP = 2, MvsA = 1.5, 1” diameter, costs 1 unit||All||All|5|
+C4 Filling|MvsP = 6, MvsA = 3, 2” Diameter, costs 1 unit||All||All|35|
+Black Powder Filling|MvsP = 1, .5” diameter, costs 1 unit||All||All|1|
+Flash Filling|Blinds all units in a 12” diameter for d3 turns, costs 1 unit||All||All|6|
+Nitroglycerin Filling|MvsP = 8, MvsA = 5, 3” Diameter, costs 1 unit||All||All|40|
+Metal Bits|MvsP = 3, small shrapnel costs 1 unit requires 1 unit of explosives||All||All|2|
+Ball Bearings|MvsP = 10, MvsA = 8, +3” in explosion costs 2 units, requires 1 unit of explosives for every units of bearings ||All||All|50|
+Uranium|Costs 1 units, requires 8 unit of explosives uses rules for mini nukes||All||All|10000|
+Electro Magnetic|Goes out 3” for every unit used, costs 1 unit||All||All|20|
+Thermo Reduction|Reduces vehicle armor 2 points per unit, costs 1 unit||All||All|20|
+
+Table:Psy
+Name|PP Cost|Range|Template|Template Size|Psy Type|Discription|Effect|Requires Permission|
+Acid Rain|6|0|Round|4D6"|Cloud|The caster decides where the storm starts up to 48" from caster and then the storm deviates d3" in a random direction from that point|Causes metallic armor to rust. The area affected by the acid rain is 4d6" diameter for each model caught in the storm Armor values drop to half of what they are normally.|Earth|
+Cats Grace|4|0|None||Agility||Automatically allows a model to pass all agility checks for 1 round of combat i.e. jumping, falling, tumbling ect|Medical|
+Chain Lighting|5|0|None||Lighting||When chain lightning hits it does a M7 d12 hit and will continue on randomly up to 3 more models doing a M3 d6 hit. This will only jump back and fourth between models that are within 2” of each other. Follow element rules.|Lighting|
+Clairvoyance|2|0|None||Mental||+3 agility, for d6 round effects are not cumulative|Generic|
+Double Dammage|5|0|None||Generic||When a model hits and does damage the damage is multiplied by 2|Generic|
+Fear|3|0|None||Mental||Fear creates an illusion that a model is scarier than it really is. The spell lasts d4 rounds and adds d12 HF (horror) to a model within 24" of the caster.|Generic|
+Fearless|2|0|None||Medical||This model doesn't need to make a WP (willpower) save when confronted by a model with a higher HF (horror factor) than them. Lasts d3 rounds|Generic|
+Fireball|1|0|None||Fire||MvsP = 2, MvsA = 1, per point spent. follow element rules|Fire|
+Fog|3|0|Round|36"d|Cloud||A rolling cloud of fog 36” in diameter comes on the board, and lasts d12 turns, follow rules for smoke clouds|Generic|
+Freezing Touch|4|0|None||Cold||Works like liquid nitrogen… a spell caster may cast this on them self or a model within 12". Played as normal mele weapon doing MvsP=6 MvsA=3 if a model is wearing armor and is touched if another model can get a successful hit on the model the armor has a chance to shatter and be destroyed, the chance is equal to the weapons M (might) roll d12 under the stat.|Touch|
+Give Me the Strength|5|0|None||Medical||Can be cast on a model within 12" to give the model a +2 to their MT (might)|Medical|
+Growth|5|0|None||Generic||Can be cast on a model within 12", this spell will double the size of the model. The model doubles M, MT, T, and gains a HF of 12. The model then incurs a +4 penalty to be hit, can't use vehicles or guns. The spell lasts d3 rounds.|Generic|
+Hands of Flame|4|0|None||Fire||give the model the ability to set things on fire. On a successful H+H attack follow the burning rules. The model takes a MvsP of 5|Touch|
+Heavy Healing|4|0|None||Medical||D12 hp regained, model must be with in 12”|Medical|
+Hidden|1|0|None||Generic||Model gains instant heavy cover for the rest of the turn, may only be cast once per-turn, may be combined with other cover bonuses, if the model moves or shoots the hidden is no longer in effect|Generic|
+Ice Blast|3|0|None||Water||A blast of icy wind hits a target model within 24" of the caster and does MvsP=5, MvsA=5 (only for models with armor), MvsA=3|Ice|
+Ice Rain|6|0|Round|dD6"d|Water||Large Chuncks of ice rocks fall from the sky and strike in a 4d6" diameter each model cought in the storm sustains d4 hits at MvsP=4, MvsA=3, The caster decides where the storm starts up to 48" from caster and then the storm deviates d3" in a random direction from that point|Ice|
+Levitation|2|0|None||Generic||A model may float for d3 turns may be cast on any model, if the model has no momentum it cannot move, a model that has momentum moves in a straight line equal to the number of inches it last moved.|Generic|
+Life Reaping|2|0|None||Medical||caster is allowed to steal up to d4 life from another model up to 12" away. The model getting drained may make a WP save (d12 under WP) to stop the spell|Medical|
+Light Healing|2|0|None||Medical||D6 hp regained, model must be within 15”|Medical|
+Lighting Ball|1|0|None||Lighting||MvsP = 2, MvsA = 1, per point spent. follow element rules|Lighting|
+Flash Fire|5|0|Round|D12"|Fire||Flash Fire pin points a model within 24" of the caster. The spell then bursts outward d12 inches in diameter the model and everything within that area catches fire (trees, long grass, bushes, paper ect) under brush burns for d4 turns and any model that touches the under brush may catch fire. the fire then spreads to other flammable objects at a rate of d4" per turn unless their is nothing in the area to catch fire. Models in the blast area take a MvsP=7 MvsA=2|Fire|
+Lighting Flash|3|0|None||Lighting||A bright light flash that blinds all models with in a d4" diameter. Models may meke a AG save to negate the effects (D12 under AG). Any model that fails gets their M,H+H, RW, AG cut in half for d3 turns, but don’t neet make a HF save when confronting a model with a high HF.|Lighting|
+Magic Bolt|2|0|None||Lighting||A bolt of shimmering light hits a model with in 12" of the caster MvsP=5, MvsA=5. The model getting attacked may make a reflex save (D12 under AG)|Lighting|
+Noxious Gas Cloud|1|0|Round|varries|Cloud||A cloud of horrible gas comes rolling out 1” in diameter for every point spent to cast it. The cloud hangs around for d6 rounds and randomly moves any model caught in the gas cloud finds it hard to breath and takes a might 4 d12 hit. Follow rules for smoke clouds.|Generic|
+Penetrator|5|0|None||Generic||When an model has this cast on them they substitute MvsA with MvsP on attack rolls. Lasts d3 turns|Generic|
+Reflect|3|0|None||Generic||A model that has the reflect spell cast on them will reflect a spell cast at them in a random direction half the distance between the spell caster and the targeted model i.e. a spell caster casts fireball and hits a model with reflect the fireball, they are 12" apart the fire ball then goes 6" in a random direction. if a model is hit by the spell that model then "takes it" as thoe it were cast on them. |Generic|
+Shield|5|0|None||Generic||Shield does not count as armor but will add d3 T (toughness) to a single model with in 12" of the spell caster for d3 rounds. This spell cannot be stacked and requires a 2 round wait period until it can be cast again.|Generic|
+Shocking Poke|1|0|None||Lighting||A model with shocking poke may tuch another model with their finger to do a MvsP=4, and MvsA=3 attack. |Lighting|
+Shrapnel Storm|2|0|Round|1"|Generic||MvsP = 6, MvsA = 4|Generic|
+Spirit Blast|2|0|None||Generic||A blast of energy hits a model for MvsP=3, MvsA=3. Causes a knock back hit for D4" the model is considered knocked over|Generic|
+Straight Shot|1|0|None||Generic||+4 RW for 1 shot|Generic|
+Teleportation|2|0|None||Generic||Model may teleport it self or other friendly models 10 inches|Generic|
+
+Table:PsyPermission
+Name|Type|Race Can Equip|Species Can Equip|
+Fire|Psy Permission||All|
+Lighting|Psy Permission||All|
+Ice|Psy Permission||All|
+Water|Psy Permission||All|
+Wind|Psy Permission||All|
+Earth|Psy Permission||All|
+Touch|Psy Permission||All|
+Medical|Psy Permission||All|
+Generic|Psy Permission||All|
+
+Table:Race
+Name|Species|
+Human|Human|
+
+Table:Skill
+Name|Description|Modifies Stats|Skill Group|Avalable to|Permission|Cost|
+Bomb Making|When making a bomb you first need to select a shell for this example I will use a standard casing this shell has 3 units, each item put into a shell will take up space this space is defined by units. I will then decide to fill the case with 3 “explosive fillings” to do this you need to roll 1d12 under the models average wp and ag ( (wp+ag)/2 ) if successful you’ll have just made a standard grenade and saved 5 tabs its not much but it is kind of like buy 4 get one free. The only time you roll is after your done putting the bomb together. If you roll a 12 the bomb explodes in the models face causing damage equal to what would happen on the battle field if its enough to kill it the model has died the model will only completely recover at the start of the next battle damage between fights is cumulative, if you roll under the models Wp & Ag average you have successfully made a bomb, if you roll equal to the average or above the bomb is a dud and must be discarded losing everything you put in to it.||Arsonist|Human, Mutant, Undead, Genics_B, Aquatic, Fun|Arsonists|100|
+Precise Throw|When throwing something in combat the model gets a +1 to RW.||Arsonist|Human, Mutant, Genics_B, Aquatic, Fun|Arsonists|150|
+Bomb Improvements|The model can dismantle dud bombs for ½ the insides (rounded down) and the casing.||Arsonist|Human, Genics_B, Fun|Arsonists|400|
+Demolitions|Makes all homemade bombs blast diameters 1½x their original size.||Arsonist|Human, Mutant, Genics_B, Aquatic, Fun|Arsonists|0|
+Disarm|You may re-roll failed bomb making rolls once for each bomb.||Arsonist|Human, Mutant, Genics_B, Aquatic, Fun|Arsonists|0|
+Vehicle Repairs|½ cost for repairing broken vehicles||Mechanic|All|Mechanical|100|
+Refueling|½ cost for refueling vehicles||Mechanic|All|Mechanical|100|
+Vehicle Engineer|Makes it possible to build vehicles with out a land that allows you to do so. If you have a land that does allow you to, it will only take ½ the time to build a vehicle.||Mechanic|All|Mechanical|300|
+Gunsmith|Allows for weapon attachments to be added to weapons (only one guy in the crew is needed to have the skill for all weapon upgrades)||Mechanic|Human, Mutant, Genics_B, Aquatic, Angelic, Demonic, Fun|Mechanical|0|
+Trap Making|When Playing with traps its important t know where your traps are and what they are. Poker chips are a good way to do this, on a separate sheet write down some numbers (one to however many Traps you can set) then write down what traps are what numbers. Take out some poker chips with corresponding numbers. when you play a scenario that allows traps everyone but the player setting traps leaves the room. The numbered tokens are placed face down on the game board. On the sheet of paper with the numbers write down what each trap is and what it does. Then that same person lays the treasure tokens down face down on the board. If multiple people can lay traps the number of total allowed traps are divided equally and treasure tokens to be place are layer down are equally divided, players take turns leavening the room to set up traps or treasure. Ex player one lays one trap, player two comes in and lays one treasure, player one comes back in and lays one treasure, player two, so on and so fourth till all traps and treasure are placed.||TrapSetter|Human, Genics_A, Genics_B, Demonic, Fun|Trap Setter|100|
+Trap Hiding|Allows the model to switch out a treasure for a trap during a game||TrapSetter|Human, Genics_A, Demonic, Fun|Trap Setter|200|
+Better Mousetrap|Roll a 1d12 when a trap goes off if its equal to or lowered than the models Ag that set the trap the trap does x2 damage||TrapSetter|Human, Genics_A, Genics_B, Demonic, Fun|Trap Setter|300|
+Dodge|Roll a d12 if its equal to or under the models Ag the model may dive out of the way of a trap in a random direction.||TrapSetter|Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|Trap Setter|0|
+Quick Shot|A model may make 1 sustained fire roll (d12 under the last rolled number)||Gunman|Human, Mutant, Genics_B, Demonic, Fun|Gunman|150|
+Trigger Happy|If the model may take as many shots as it has attack with pistols||Gunman|Human, Mutant, Undead, Genics_B, Demonic, Fun|Gunman|300|
+Sniper|+1 RW when using a scope||Gunman|Human, Undead, Genics_B, Angelic, Fun|Gunman|250|
+Gun Slinger|If the model is carrying 2 pistols it may fire both of them once per turn||Gunman|Human, Mutant, Undead, Genics_B, Aquatic, Angelic, Demonic, Fun|Gunman|0|
+Hip Shot|The model suffers no penalty to shooting at a model coming from or into cover when on over watch||Gunman|All|Gunman|0|
+Blade Sharpener|+2 MvsP, +1 MvsA to bladed weapons that the model carries||ArmsMaster|All|Arms Master|100|
+Quick Blade|When charge upon in combat the model may make one attack before the charging model attacks.||ArmsMaster|All|Arms Master|200|
+Swordman|If the model carries two swords it may make one extra attack in H+H combat, beyond the extra attack for 2 weapons.||ArmsMaster|Human, Undead, Genics_A, Genics_B, Angelic, Demonic, Fun|Arms Master|300|
+Block|The model may make one extra block per turn||ArmsMaster|All|Arms Master|0|
+Step Aside|When charged you may roll d12 under the models Ag if successful the model steps aside dodging the charge||ArmsMaster|Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic|Arms Master|0|
+First Aid|+5 hp when using healing items.||Medic|Human, Mutant, Aquatic, Angelic, Fun|Medic|100|
+Patient Care|+5 hp when using healing items (may be used with the +5 from first aid)||Medic|Human, Mutant, Aquatic, Fun|Medic|300|
+Billing Agent|½ cost to all medical supplies||Medic|Human, Demonic, Fun|Medic|500|
+Centered Thought||Willpower +1|Psyonicist|Human, Undead, Genics_A, Aquatic, Angelic, Demonic, Fun|Psionicist|200|
+Earthen Power|+2 WP When Casting||Psyonicist|Human, Undead, Genics_A, Aquatic, Angelic, Demonic, Fun|Psionicist|400|
+Spell Master|Re-roll flopped spell only once per-turn||Psyonicist|Human, Undead, Genics_A, Aquatic, Angelic, Demonic, Fun|Psionicist|500|
+Sprinter||Movement +2|Physical|Human, Undead, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|Physical|500|
+Muscles||Might +1|Physical|Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|Physical|300|
+Bullrush|The model may make a bull rush attack, MvsP = Str, the model being bull rushed will fall straight back and slide an equal number of inches to the attacking models str. If the model goes off an edge use the falling rules next if it hits a wall the model stops their and takes a strength hit equal to the number of inches not traveled when sliding.||Physical|All|Physical|300|
+Throwback|When a grenade or bomb is thrown the model may roll d12 under their Ag, if successful they may immediately throw the grenade back||Physical|Human, Genics_B, Aquatic, Angelic, Demonic, Fun|Physical|300|
+Infiltration|Use rules for showing up||Stealth|All|Stealth|300|
+Dive for cover|Roll d12 under Ag if successful the model may dive to the nearest cover not more than their basic movement away||Stealth|Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|Stealth|100|
+Ambush|Uses rules for showing up but it does not occur until d4 turns in to the game||Stealth|Human, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|Stealth|200|
+Duck and Weave|When running from fire the model shooting has a –2 to hit that model||Stealth|Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|Stealth|200|
+Escape Artist|Model may not be captured at the end of a battle||Stealth|All|Stealth|500|
+Cat Fall|The model rolls once for falling every inch until a success is rolled. ||Agility|Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun|Agility|100|
+Leap|The model has superior jumping capabilities and only fails a jump on a 12||Agility|Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun|Agility|200|
+Gymnastics||Agility +1|Agility|Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun|Agility|300|
+
+Table:SkillPermission
+Name|Type|Race Can Equip|Species Can Equip|
+Agility|Skill Permission||Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun|
+Arms Master|Skill Permission||All|
+Arsonists|Skill Permission||Human, Mutant, Undead, Genics_B, Aquatic, Fun|
+Gunman|Skill Permission||All|
+Mechanical|Skill Permission||All|
+Medic|Skill Permission||Human, Mutant, Aquatic, Angelic, Demonic, Fun|
+Physical|Skill Permission||All|
+Psionicist|Skill Permission||Human, Undead, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|
+Stealth|Skill Permission||All|
+Trap Setter|Skill Permission||Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun|
+
+Table:Weapon
+Name|Range|Description|Special|MvsP|MvsA|SIOR|SvMod|Shots|Permission|Cost|
+Heat Fist|0|||2|0|0|0|0|Bludgen|100|
+Flail|0||M+4 on a charge +1 to disarm|1|0|0|0|0|Bludgen|85|
+Knife|0|Its a knife!|Parry|0|0|0|0|0|Blade|5|
+Laser Knife|0|Oooo a sparkly knife!|Parry|1|0|0|0|0|Blade|40|
+Laser Sword|0|Similar to the Laser Knife but longer!|Parry|3|1|0|0|0|Blade|110|
+Mace|0|Lets go CLUBBIN!!!|+2 on a charge|1|0|0|0|0|Bludgen|60|
+Shield|0|protect the important stuff|Causes a concussion on a roll of a natural 1 when attacking. +1 defensive dice|0|0|0|0|0|Bludgen|20|
+Sword|0| |Parry|1|0|0|0|0|Blade|15|
+Whip|2|If you get the right hat you could play Indiana Jones!|+1 to disarm|0|2|0|0|0|Blade|5|
+Shotgun Slug|20| | |5|3|5|0|1|Rifle|175|
+Shotgun Scatter|20| |MvsP is determined by the weapons range|0|2|5|0|1|Rifle|175|
+Chain Saw|0|This is my chan saw and this is my BOOM STICK!!!|Runs on gas so it can run out, Parry|7|4|8|0|0|Mechanical Hand to Hand|130|
+Grenade Standarded|(Mx2)+6| | |6|6|11|0|1|Thrown Weapons|25|
+Grenade MMRVE|(Mx2)+6| Multi Magnetic Resonance Variable Explosive|Causes all electrical systems with in a 12" radius to shut down for 1d3 turns, and anyhting with in a 6" radius to shutdown for 1d3 extra turns.|2|1|11|0|1|Thrown Weapons|30|
+Grenade TRE|(Mx2)+6||Lowers armour value for vehicles by 6 for d3 rounds.|0|0|11|0|1|Thrown Weapons|50|
+Large Rock|(Mx2)+6||models may pick up rocks of the ground and hurl them after making a “shit I’m out roll”.  Models starting with large rocks must roll after the first is thrown.|1|0|3|0|1|Thrown Weapons|1|
+Small Rock|(Mx2)+6||models may pick up rocks of the ground and hurl them after making a “shit I’m out roll”.  Models starting with large rocks must roll after the first is thrown.|0|0|2|0|1|Thrown Weapons|1|
+Boltaction/Semautomatic Rifle|30|||6|4|5|-2|1|Rifle|150|
+Full Auto Rifle|24|||6|4|7|0|2|Rifle|150|
+Crossbow|20|||4|1|3|0|1|Bows|80|
+Bow|24|||3|1|3|0|1|Blade|80|
+Heat Gun|24| |When shooting at a target at half range or less the Heat guns MvsP=7 and MvsA=8|6|6|6|0|1|Energy|170|
+Grappling Hook|40||Shoots every other turn, if a hit is scored, the model may pull itself to a vehicle, up/to a building, or another model to it with a might check and –2 (models may only be pulled if wounded)|6|4|10|0|1|Pistole|150|
+Laser Rifle|20|||4|4|4|0|1|Energy|90|
+Blunderbus|15|||4|1|8|0|1|Rifle|25|
+Sling|10|||3|1|2|0|1|Thrown Weapons|15|
+Revolver/Semiautomatic Pistol|12|||5|3|5|0|1|Pistole|85|
+Laser Pistole|12|||4|4|4|0|1|Energy|75|
+Flame Thrower|6||Models hit and wounded by a flamethrower are on fire on a 5+ and fall under the “dude your shit is on fire” rules.|4|2|10|0|1|Heavy|50|
+Black Powder Pistol|12|||4|2|7|0|1|Pistole|60|
+NetGun|10||Template 8", All models under the template are pinned on a 4+|0|0|12|0|1|Pistole|70|
+Rail Gun|80||Move or Fire|11|9|6|0|1|Heavy|365|
+Chain Gun|50|||7|6|6|0|3|Heavy|320|
+Rocket Launcher|80||on impact creates a 1" explosion template for 1/2 dammage|11|10|8|0|1|Heavy|600|
+Missile Launcher|50||move and fire if the models strenght is 8 or greater, -2 to hit if allowed to move and fire. On impace creates a blast template of 1" for 1/2 dammage.|8|7|8|0|3|Heavy|270|
+Mortar|60||No line of sight is required, shots may be guess placed creates a 2" blast template for 1/2 dammage|6|6|8|0|1|Heavy|320|
+Grenade Launcher|48||creates a 4" blast template for 1/2 dammage|6|7|8|0|1|Heavy|200|
+HIgh Calibre Machine Gun|40||Move and Fire, -2 to shoot when moved|6|4|6|0|6|Heavy|225|
+Low Calibre Machine Gun|50||Move and Fire, -1 when moved|5|3|6|0|8|Heavy|240|
+Heat Cannon|10||Move and Fire|3|1|2|0|1|Heavy|280|
+
+Table:WeaponPermission
+Name|Type|Race Can Equip|Species Can Equip|
+Blade|Weapon Permission||All|
+Bludgen|Weapon Permission||All|
+Sword|Weapon Permission||All|
+Heavy|Weapon Permission||All|
+Rifle|Weapon Permission||All|
+Pistole|Weapon Permission||All|
+Energy|Weapon Permission||All|
+Bows|Weapon Permission||All|
+Sniper|Weapon Permission||All|
+Thrown Weapons|Weapon Permission||All|
+Mechanical Hand to Hand|Weapon Permission||All|
+

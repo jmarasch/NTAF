@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDSC4CA0480" Name="HIgh Calibre Machine Gun" Range="40" MvsP="6" MvsA="4" SvMod="0" SIOR="6" Shots="6" Cost="225" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS6B0C799E" Name="Heavy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>Move and Fire, -2 to shoot when moved</Special>
+</Weapon>

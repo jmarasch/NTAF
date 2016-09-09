@@ -1,0 +1,6 @@
+﻿<Item ID="BSDSB106D655" Name="Glass Eye" Cost="100" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="HorrorFactor" Modifier="4" />
+  </ModifiesStats>
+  <Description>You can give someone the evil eye</Description>
+</Item>

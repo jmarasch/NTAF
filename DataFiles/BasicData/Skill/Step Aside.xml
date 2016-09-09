@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS60E85A1D" Name="Step Aside" Cost="0" SpeciesCanUseSkill="Human Mutant Genics_A Genics_B Aquatic Angelic Demonic" Group="ArmsMaster">
+  <Description>When charged you may roll d12 under the models Ag if successful the model steps aside dodging the charge</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF8F13F38" Name="Arms Master" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

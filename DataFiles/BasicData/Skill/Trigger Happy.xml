@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS753809E4" Name="Trigger Happy" Cost="300" SpeciesCanUseSkill="Human Mutant Undead Genics_B Demonic Fun" Group="Gunman">
+  <Description>If the model may take as many shots as it has attack with pistols</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSCEB1C6F7" Name="Gunman" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

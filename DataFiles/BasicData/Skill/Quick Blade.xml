@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS65092811" Name="Quick Blade" Cost="200" SpeciesCanUseSkill="All" Group="ArmsMaster">
+  <Description>When charge upon in combat the model may make one attack before the charging model attacks.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF8F13F38" Name="Arms Master" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

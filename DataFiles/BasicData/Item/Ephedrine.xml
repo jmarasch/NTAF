@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSB20F5638" Name="Ephedrine" Cost="60" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>+2 movement, +1 attack for d6 rounds</Description>
+</Item>

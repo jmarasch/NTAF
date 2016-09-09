@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSE3CEC441" Name="Fog" ppCost="3" Range="0" Template="Round" TemplateSize="36&quot;d" PsyTypes="Cloud">
+  <Description />
+  <Effect>A rolling cloud of fog 36” in diameter comes on the board, and lasts d12 turns, follow rules for smoke clouds</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

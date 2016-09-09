@@ -1,0 +1,13 @@
+﻿<BaseUnit ID="BSDS26A810BE" Name="Psychic" Movement="4" HitPoints="4" HandToHand="2" ActionPoints="2" PsyPoints="6" RangedWeapons="2" Might="2" Toughness="4" Agility="4" Willpower="8" HorrorFactor="1" CostMod="0">
+  <archetype ID="BSDS2549C0A4" Name="Psychic" BaseType="Psychic" />
+  <BaseRace ID="BSDS9A264EA9" Name="Human" species="Human" />
+  <Description />
+  <Special />
+  <WPermissions />
+  <SPermissions />
+  <PPermissions />
+  <Weapons />
+  <SkillsAndAbilities />
+  <Psys />
+  <Items />
+</BaseUnit>

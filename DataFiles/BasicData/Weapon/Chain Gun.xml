@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS9348B270" Name="Chain Gun" Range="50" MvsP="7" MvsA="6" SvMod="0" SIOR="6" Shots="3" Cost="320" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS6B0C799E" Name="Heavy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

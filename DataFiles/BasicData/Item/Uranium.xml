@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS5ECC18F0" Name="Uranium" Cost="10000" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Costs 1 units, requires 8 unit of explosives uses rules for mini nukes</Description>
+</Item>

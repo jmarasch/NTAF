@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS7CD6E296" Name="Grenade MMRVE" Range="(Mx2)+6" MvsP="2" MvsA="1" SvMod="0" SIOR="11" Shots="1" Cost="30" BaseType="Thrown">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSF95E3BB8" Name="Thrown Weapons" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description> Multi Magnetic Resonance Variable Explosive</Description>
+  <Special>Causes all electrical systems with in a 12" radius to shut down for 1d3 turns, and anyhting with in a 6" radius to shutdown for 1d3 extra turns.</Special>
+</Weapon>

@@ -1,0 +1,6 @@
+﻿<Item ID="BSDSD52C0F22" Name="Bionic Eye" Cost="1000" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="RangedWeapons" Modifier="1" />
+  </ModifiesStats>
+  <Description />
+</Item>

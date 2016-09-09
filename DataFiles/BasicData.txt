@@ -1,0 +1,2031 @@
+Archetype
+Name:Green
+Type:Green
+============================================================
+Archetype
+Name:Heavy
+Type:Heavy
+============================================================
+Archetype
+Name:Leader
+Type:Leader
+============================================================
+Archetype
+Name:Member
+Type:Member
+============================================================
+Archetype
+Name:Psychic
+Type:Psychic
+============================================================
+Archetype
+Name:Special
+Type:Special
+============================================================
+Archetype
+Name:Vet
+Type:Vet
+============================================================
+BaseUnit
+Name:Leader
+Description:Human
+Description:Leader
+Description:Human Leader Unit
+Movement:6
+HitPoints:15
+HandToHand:8
+ActionPoints:4
+PsyPoints:0
+RangedWeapons:8
+Might:8
+Toughness:8
+Agility:8
+Willpower:8
+HorrorFactor:1
+Weapon Permissions:
+Skill Permissions:
+Psy Permissions:
+Weapons:
+Skills:
+Psy Ablilites:
+Items:
+Special:
+Cost Modifier:0
+Cost:259
+============================================================
+BaseUnit
+Name:Green
+Description:Human
+Description:Green
+Description:
+Movement:3
+HitPoints:5
+HandToHand:4
+ActionPoints:1
+PsyPoints:0
+RangedWeapons:4
+Might:4
+Toughness:4
+Agility:4
+Willpower:4
+HorrorFactor:0
+Weapon Permissions:
+Skill Permissions:
+Psy Permissions:
+Weapons:
+Skills:
+Psy Ablilites:
+Items:
+Special:
+Cost Modifier:0
+Cost:92
+============================================================
+BaseUnit
+Name:Heavy
+Description:Human
+Description:Heavy
+Description:
+Movement:4
+HitPoints:10
+HandToHand:3
+ActionPoints:2
+PsyPoints:0
+RangedWeapons:6
+Might:6
+Toughness:6
+Agility:4
+Willpower:5
+HorrorFactor:1
+Weapon Permissions:
+Skill Permissions:
+Psy Permissions:
+Weapons:
+Skills:
+Psy Ablilites:
+Items:
+Special:
+Cost Modifier:0
+Cost:168
+============================================================
+BaseUnit
+Name:Psychic
+Description:Human
+Description:Psychic
+Description:
+Movement:4
+HitPoints:4
+HandToHand:2
+ActionPoints:2
+PsyPoints:6
+RangedWeapons:2
+Might:2
+Toughness:4
+Agility:4
+Willpower:8
+HorrorFactor:1
+Weapon Permissions:
+Skill Permissions:
+Psy Permissions:
+Weapons:
+Skills:
+Psy Ablilites:
+Items:
+Special:
+Cost Modifier:0
+Cost:172
+============================================================
+BaseUnit
+Name:Member
+Description:Human
+Description:Member
+Description:
+Movement:4
+HitPoints:8
+HandToHand:5
+ActionPoints:2
+PsyPoints:0
+RangedWeapons:5
+Might:5
+Toughness:5
+Agility:5
+Willpower:5
+HorrorFactor:1
+Weapon Permissions:
+Skill Permissions:
+Psy Permissions:
+Weapons:
+Skills:
+Psy Ablilites:
+Items:
+Special:
+Cost Modifier:0
+Cost:148
+============================================================
+BaseUnit
+Name:Vet
+Description:Human
+Description:Vet
+Description:
+Movement:5
+HitPoints:10
+HandToHand:7
+ActionPoints:3
+PsyPoints:0
+RangedWeapons:7
+Might:7
+Toughness:7
+Agility:7
+Willpower:7
+HorrorFactor:1
+Weapon Permissions:
+Skill Permissions:
+Psy Permissions:
+Weapons:
+Skills:
+Psy Ablilites:
+Items:
+Special:
+Cost Modifier:0
+Cost:198
+============================================================
+Item
+Name:Bionic Leg
+Description:
+Modifies Stats:Agility +1
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:500
+============================================================
+Item
+Name:Cybernetic Leg
+Description:
+Modifies Stats:Agility -1
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:500
+============================================================
+Item
+Name:Wooden Leg
+Description:Gives the model the ability to walk again
+Modifies Stats:Movement -2
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:5
+============================================================
+Item
+Name:Bionic Arm
+Description:
+Modifies Stats:HandToHand +1
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:550
+============================================================
+Item
+Name:Cybernetic Arm
+Description:Requires a cybernetic hand
+Modifies Stats:Might +1
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:250
+============================================================
+Item
+Name:Cybernetic Hand
+Description:
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:450
+============================================================
+Item
+Name:Wooden Hand
+Description:Counts as a dub in hand to hand
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:5
+============================================================
+Item
+Name:Bionic Eye
+Description:
+Modifies Stats:RangedWeapons +1
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:1000
+============================================================
+Item
+Name:Cybernetic Eye
+Description:+5" to any ranged weapon ranges if a cybernetic hand has been attached
+Modifies Stats:RangedWeapons +1
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:1000
+============================================================
+Item
+Name:Glass Eye
+Description:You can give someone the evil eye
+Modifies Stats:HorrorFactor +4
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:100
+============================================================
+Item
+Name:Bionic Ear
+Description:Cannot be snuck up upon
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:250
+============================================================
+Item
+Name:Scope
+Description:For evey 150 pq spent the weapon gets +1 to hit, cannot be attached to a pistol
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:150
+============================================================
+Item
+Name:Hellfire Trigger
+Description:Give a semi automatic weapon +2 shots
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:500
+============================================================
+Item
+Name:Double Trigger
+Description:Give +1 shot to a shot gun
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:150
+============================================================
+Item
+Name:Auto Responce Trigger
+Description:x2 shots per trigger pull, only for semi automatic weapons
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:255
+============================================================
+Item
+Name:Extended Amo Clip
+Description:+2 to weapons SIOR roll
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:500
+============================================================
+Item
+Name:Bayonet
+Description:Allows rifel to double as pole arm type weapon
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:25
+============================================================
+Item
+Name:Laser Sight
+Description:+1 to hit for pistol and rifles
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:100
+============================================================
+Item
+Name:Sniper Barrel
+Description:+1 to RW, +2 to RW with a scope
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:220
+============================================================
+Item
+Name:Comfort Grip
+Description:it just needs to feel right
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:20
+============================================================
+Item
+Name:Beer
+Description:Heals 5 HP
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:10
+============================================================
+Item
+Name:Booze
+Description:Heals 20 HP
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:40
+============================================================
+Item
+Name:Morphine
+Description:+D4 Toughness for D6 rounds
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:45
+============================================================
+Item
+Name:Ephedrine
+Description:+2 movement, +1 attack for d6 rounds
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:60
+============================================================
+Item
+Name:Ammo Reload
+Description:If you fail an SIOR you may reload the weapon next turn and continue as though the roll never happened, one use item, when its used its gone till you buy more
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:25
+============================================================
+Item
+Name:Flashlight
+Description:Makes negatives to shooting in the dark null
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:10
+============================================================
+Item
+Name:Smelling Salt
+Description:A pungent salt that instantly wakes up an unconscious model
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:15
+============================================================
+Item
+Name:Duct Tape
+Description:Allows you to combine any two weapons in to one weapon, one use item, when its used its gone till you buy more
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:200
+============================================================
+Item
+Name:Gask Mask
+Description:Nullifies poison gas effects
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:25
+============================================================
+Item
+Name:Grenade Casing Standard
+Description:The shell of grenade, Holds 3 units
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:5
+============================================================
+Item
+Name:Grenade Casing Sticky
+Description:The out side has a sticky shell that when thrown can stick to a target, it sticks on a roll of a hit, 3 units
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:8
+============================================================
+Item
+Name:Landmine Casing Standard
+Description:Shell of a land mine, 6 units
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:15
+============================================================
+Item
+Name:Large Bomb Casing
+Description:The Shell of a large bomb, 9 Units
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:25
+============================================================
+Item
+Name:Timer
+Description:Goes on any casing, makes it go off after d4 turns, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:5
+============================================================
+Item
+Name:Smoke Filling
+Description:Adds smoke to a grenade, cost 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:10
+============================================================
+Item
+Name:Explosive Filling
+Description:MvsP = 2, MvsA = 1.5, 1” diameter, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:5
+============================================================
+Item
+Name:C4 Filling
+Description:MvsP = 6, MvsA = 3, 2” Diameter, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:35
+============================================================
+Item
+Name:Black Powder Filling
+Description:MvsP = 1, .5” diameter, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:1
+============================================================
+Item
+Name:Flash Filling
+Description:Blinds all units in a 12” diameter for d3 turns, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:6
+============================================================
+Item
+Name:Nitroglycerin Filling
+Description:MvsP = 8, MvsA = 5, 3” Diameter, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:40
+============================================================
+Item
+Name:Metal Bits
+Description:MvsP = 3, small shrapnel costs 1 unit requires 1 unit of explosives
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:2
+============================================================
+Item
+Name:Ball Bearings
+Description:MvsP = 10, MvsA = 8, +3” in explosion costs 2 units, requires 1 unit of explosives for every units of bearings 
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:50
+============================================================
+Item
+Name:Uranium
+Description:Costs 1 units, requires 8 unit of explosives uses rules for mini nukes
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:10000
+============================================================
+Item
+Name:Electro Magnetic
+Description:Goes out 3” for every unit used, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:20
+============================================================
+Item
+Name:Thermo Reduction
+Description:Reduces vehicle armor 2 points per unit, costs 1 unit
+Modifies Stats:
+Archatypes Can Use:All
+Races Can Use:
+Species Can Use:All
+Cost:20
+============================================================
+Psy
+Name:Acid Rain
+PP Cost:6
+Range:0
+Template:Round
+Template Size:4D6"
+Psy Type:Cloud
+Discription:The caster decides where the storm starts up to 48" from caster and then the storm deviates d3" in a random direction from that point
+Effect:Causes metallic armor to rust. The area affected by the acid rain is 4d6" diameter for each model caught in the storm Armor values drop to half of what they are normally.
+Requires Permission:Earth
+============================================================
+Psy
+Name:Cats Grace
+PP Cost:4
+Range:0
+Template:None
+Template Size:
+Psy Type:Agility
+Discription:
+Effect:Automatically allows a model to pass all agility checks for 1 round of combat i.e. jumping, falling, tumbling ect
+Requires Permission:Medical
+============================================================
+Psy
+Name:Chain Lighting
+PP Cost:5
+Range:0
+Template:None
+Template Size:
+Psy Type:Lighting
+Discription:
+Effect:When chain lightning hits it does a M7 d12 hit and will continue on randomly up to 3 more models doing a M3 d6 hit. This will only jump back and fourth between models that are within 2” of each other. Follow element rules.
+Requires Permission:Lighting
+============================================================
+Psy
+Name:Clairvoyance
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Mental
+Discription:
+Effect:+3 agility, for d6 round effects are not cumulative
+Requires Permission:Generic
+============================================================
+Psy
+Name:Double Dammage
+PP Cost:5
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:When a model hits and does damage the damage is multiplied by 2
+Requires Permission:Generic
+============================================================
+Psy
+Name:Fear
+PP Cost:3
+Range:0
+Template:None
+Template Size:
+Psy Type:Mental
+Discription:
+Effect:Fear creates an illusion that a model is scarier than it really is. The spell lasts d4 rounds and adds d12 HF (horror) to a model within 24" of the caster.
+Requires Permission:Generic
+============================================================
+Psy
+Name:Fearless
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Medical
+Discription:
+Effect:This model doesn't need to make a WP (willpower) save when confronted by a model with a higher HF (horror factor) than them. Lasts d3 rounds
+Requires Permission:Generic
+============================================================
+Psy
+Name:Fireball
+PP Cost:1
+Range:0
+Template:None
+Template Size:
+Psy Type:Fire
+Discription:
+Effect:MvsP = 2, MvsA = 1, per point spent. follow element rules
+Requires Permission:Fire
+============================================================
+Psy
+Name:Fog
+PP Cost:3
+Range:0
+Template:Round
+Template Size:36"d
+Psy Type:Cloud
+Discription:
+Effect:A rolling cloud of fog 36” in diameter comes on the board, and lasts d12 turns, follow rules for smoke clouds
+Requires Permission:Generic
+============================================================
+Psy
+Name:Freezing Touch
+PP Cost:4
+Range:0
+Template:None
+Template Size:
+Psy Type:Cold
+Discription:
+Effect:Works like liquid nitrogen… a spell caster may cast this on them self or a model within 12". Played as normal mele weapon doing MvsP=6 MvsA=3 if a model is wearing armor and is touched if another model can get a successful hit on the model the armor has a chance to shatter and be destroyed, the chance is equal to the weapons M (might) roll d12 under the stat.
+Requires Permission:Touch
+============================================================
+Psy
+Name:Give Me the Strength
+PP Cost:5
+Range:0
+Template:None
+Template Size:
+Psy Type:Medical
+Discription:
+Effect:Can be cast on a model within 12" to give the model a +2 to their MT (might)
+Requires Permission:Medical
+============================================================
+Psy
+Name:Growth
+PP Cost:5
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:Can be cast on a model within 12", this spell will double the size of the model. The model doubles M, MT, T, and gains a HF of 12. The model then incurs a +4 penalty to be hit, can't use vehicles or guns. The spell lasts d3 rounds.
+Requires Permission:Generic
+============================================================
+Psy
+Name:Hands of Flame
+PP Cost:4
+Range:0
+Template:None
+Template Size:
+Psy Type:Fire
+Discription:
+Effect:give the model the ability to set things on fire. On a successful H+H attack follow the burning rules. The model takes a MvsP of 5
+Requires Permission:Touch
+============================================================
+Psy
+Name:Heavy Healing
+PP Cost:4
+Range:0
+Template:None
+Template Size:
+Psy Type:Medical
+Discription:
+Effect:D12 hp regained, model must be with in 12”
+Requires Permission:Medical
+============================================================
+Psy
+Name:Hidden
+PP Cost:1
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:Model gains instant heavy cover for the rest of the turn, may only be cast once per-turn, may be combined with other cover bonuses, if the model moves or shoots the hidden is no longer in effect
+Requires Permission:Generic
+============================================================
+Psy
+Name:Ice Blast
+PP Cost:3
+Range:0
+Template:None
+Template Size:
+Psy Type:Water
+Discription:
+Effect:A blast of icy wind hits a target model within 24" of the caster and does MvsP=5, MvsA=5 (only for models with armor), MvsA=3
+Requires Permission:Ice
+============================================================
+Psy
+Name:Ice Rain
+PP Cost:6
+Range:0
+Template:Round
+Template Size:dD6"d
+Psy Type:Water
+Discription:
+Effect:Large Chuncks of ice rocks fall from the sky and strike in a 4d6" diameter each model cought in the storm sustains d4 hits at MvsP=4, MvsA=3, The caster decides where the storm starts up to 48" from caster and then the storm deviates d3" in a random direction from that point
+Requires Permission:Ice
+============================================================
+Psy
+Name:Levitation
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:A model may float for d3 turns may be cast on any model, if the model has no momentum it cannot move, a model that has momentum moves in a straight line equal to the number of inches it last moved.
+Requires Permission:Generic
+============================================================
+Psy
+Name:Life Reaping
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Medical
+Discription:
+Effect:caster is allowed to steal up to d4 life from another model up to 12" away. The model getting drained may make a WP save (d12 under WP) to stop the spell
+Requires Permission:Medical
+============================================================
+Psy
+Name:Light Healing
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Medical
+Discription:
+Effect:D6 hp regained, model must be within 15”
+Requires Permission:Medical
+============================================================
+Psy
+Name:Lighting Ball
+PP Cost:1
+Range:0
+Template:None
+Template Size:
+Psy Type:Lighting
+Discription:
+Effect:MvsP = 2, MvsA = 1, per point spent. follow element rules
+Requires Permission:Lighting
+============================================================
+Psy
+Name:Flash Fire
+PP Cost:5
+Range:0
+Template:Round
+Template Size:D12"
+Psy Type:Fire
+Discription:
+Effect:Flash Fire pin points a model within 24" of the caster. The spell then bursts outward d12 inches in diameter the model and everything within that area catches fire (trees, long grass, bushes, paper ect) under brush burns for d4 turns and any model that touches the under brush may catch fire. the fire then spreads to other flammable objects at a rate of d4" per turn unless their is nothing in the area to catch fire. Models in the blast area take a MvsP=7 MvsA=2
+Requires Permission:Fire
+============================================================
+Psy
+Name:Lighting Flash
+PP Cost:3
+Range:0
+Template:None
+Template Size:
+Psy Type:Lighting
+Discription:
+Effect:A bright light flash that blinds all models with in a d4" diameter. Models may meke a AG save to negate the effects (D12 under AG). Any model that fails gets their M,H+H, RW, AG cut in half for d3 turns, but don’t neet make a HF save when confronting a model with a high HF.
+Requires Permission:Lighting
+============================================================
+Psy
+Name:Magic Bolt
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Lighting
+Discription:
+Effect:A bolt of shimmering light hits a model with in 12" of the caster MvsP=5, MvsA=5. The model getting attacked may make a reflex save (D12 under AG)
+Requires Permission:Lighting
+============================================================
+Psy
+Name:Noxious Gas Cloud
+PP Cost:1
+Range:0
+Template:Round
+Template Size:varries
+Psy Type:Cloud
+Discription:
+Effect:A cloud of horrible gas comes rolling out 1” in diameter for every point spent to cast it. The cloud hangs around for d6 rounds and randomly moves any model caught in the gas cloud finds it hard to breath and takes a might 4 d12 hit. Follow rules for smoke clouds.
+Requires Permission:Generic
+============================================================
+Psy
+Name:Penetrator
+PP Cost:5
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:When an model has this cast on them they substitute MvsA with MvsP on attack rolls. Lasts d3 turns
+Requires Permission:Generic
+============================================================
+Psy
+Name:Reflect
+PP Cost:3
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:A model that has the reflect spell cast on them will reflect a spell cast at them in a random direction half the distance between the spell caster and the targeted model i.e. a spell caster casts fireball and hits a model with reflect the fireball, they are 12" apart the fire ball then goes 6" in a random direction. if a model is hit by the spell that model then "takes it" as thoe it were cast on them. 
+Requires Permission:Generic
+============================================================
+Psy
+Name:Shield
+PP Cost:5
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:Shield does not count as armor but will add d3 T (toughness) to a single model with in 12" of the spell caster for d3 rounds. This spell cannot be stacked and requires a 2 round wait period until it can be cast again.
+Requires Permission:Generic
+============================================================
+Psy
+Name:Shocking Poke
+PP Cost:1
+Range:0
+Template:None
+Template Size:
+Psy Type:Lighting
+Discription:
+Effect:A model with shocking poke may tuch another model with their finger to do a MvsP=4, and MvsA=3 attack. 
+Requires Permission:Lighting
+============================================================
+Psy
+Name:Shrapnel Storm
+PP Cost:2
+Range:0
+Template:Round
+Template Size:1"
+Psy Type:Generic
+Discription:
+Effect:MvsP = 6, MvsA = 4
+Requires Permission:Generic
+============================================================
+Psy
+Name:Spirit Blast
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:A blast of energy hits a model for MvsP=3, MvsA=3. Causes a knock back hit for D4" the model is considered knocked over
+Requires Permission:Generic
+============================================================
+Psy
+Name:Straight Shot
+PP Cost:1
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:+4 RW for 1 shot
+Requires Permission:Generic
+============================================================
+Psy
+Name:Teleportation
+PP Cost:2
+Range:0
+Template:None
+Template Size:
+Psy Type:Generic
+Discription:
+Effect:Model may teleport it self or other friendly models 10 inches
+Requires Permission:Generic
+============================================================
+PsyPermission
+Name:Fire
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Lighting
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Ice
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Water
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Wind
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Earth
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Touch
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Medical
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+PsyPermission
+Name:Generic
+Type:Psy Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+Race
+Name:Human
+Species:Human
+============================================================
+Skill
+Name:Bomb Making
+Description:When making a bomb you first need to select a shell for this example I will use a standard casing this shell has 3 units, each item put into a shell will take up space this space is defined by units. I will then decide to fill the case with 3 “explosive fillings” to do this you need to roll 1d12 under the models average wp and ag ( (wp+ag)/2 ) if successful you’ll have just made a standard grenade and saved 5 tabs its not much but it is kind of like buy 4 get one free. The only time you roll is after your done putting the bomb together. If you roll a 12 the bomb explodes in the models face causing damage equal to what would happen on the battle field if its enough to kill it the model has died the model will only completely recover at the start of the next battle damage between fights is cumulative, if you roll under the models Wp & Ag average you have successfully made a bomb, if you roll equal to the average or above the bomb is a dud and must be discarded losing everything you put in to it.
+Modifies Stats:
+Skill Group:Arsonist
+Avalable to:Human, Mutant, Undead, Genics_B, Aquatic, Fun
+Permission:Arsonists
+Cost:100
+============================================================
+Skill
+Name:Precise Throw
+Description:When throwing something in combat the model gets a +1 to RW.
+Modifies Stats:
+Skill Group:Arsonist
+Avalable to:Human, Mutant, Genics_B, Aquatic, Fun
+Permission:Arsonists
+Cost:150
+============================================================
+Skill
+Name:Bomb Improvements
+Description:The model can dismantle dud bombs for ½ the insides (rounded down) and the casing.
+Modifies Stats:
+Skill Group:Arsonist
+Avalable to:Human, Genics_B, Fun
+Permission:Arsonists
+Cost:400
+============================================================
+Skill
+Name:Demolitions
+Description:Makes all homemade bombs blast diameters 1½x their original size.
+Modifies Stats:
+Skill Group:Arsonist
+Avalable to:Human, Mutant, Genics_B, Aquatic, Fun
+Permission:Arsonists
+Cost:0
+============================================================
+Skill
+Name:Disarm
+Description:You may re-roll failed bomb making rolls once for each bomb.
+Modifies Stats:
+Skill Group:Arsonist
+Avalable to:Human, Mutant, Genics_B, Aquatic, Fun
+Permission:Arsonists
+Cost:0
+============================================================
+Skill
+Name:Vehicle Repairs
+Description:½ cost for repairing broken vehicles
+Modifies Stats:
+Skill Group:Mechanic
+Avalable to:All
+Permission:Mechanical
+Cost:100
+============================================================
+Skill
+Name:Refueling
+Description:½ cost for refueling vehicles
+Modifies Stats:
+Skill Group:Mechanic
+Avalable to:All
+Permission:Mechanical
+Cost:100
+============================================================
+Skill
+Name:Vehicle Engineer
+Description:Makes it possible to build vehicles with out a land that allows you to do so. If you have a land that does allow you to, it will only take ½ the time to build a vehicle.
+Modifies Stats:
+Skill Group:Mechanic
+Avalable to:All
+Permission:Mechanical
+Cost:300
+============================================================
+Skill
+Name:Gunsmith
+Description:Allows for weapon attachments to be added to weapons (only one guy in the crew is needed to have the skill for all weapon upgrades)
+Modifies Stats:
+Skill Group:Mechanic
+Avalable to:Human, Mutant, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Mechanical
+Cost:0
+============================================================
+Skill
+Name:Trap Making
+Description:When Playing with traps its important t know where your traps are and what they are. Poker chips are a good way to do this, on a separate sheet write down some numbers (one to however many Traps you can set) then write down what traps are what numbers. Take out some poker chips with corresponding numbers. when you play a scenario that allows traps everyone but the player setting traps leaves the room. The numbered tokens are placed face down on the game board. On the sheet of paper with the numbers write down what each trap is and what it does. Then that same person lays the treasure tokens down face down on the board. If multiple people can lay traps the number of total allowed traps are divided equally and treasure tokens to be place are layer down are equally divided, players take turns leavening the room to set up traps or treasure. Ex player one lays one trap, player two comes in and lays one treasure, player one comes back in and lays one treasure, player two, so on and so fourth till all traps and treasure are placed.
+Modifies Stats:
+Skill Group:TrapSetter
+Avalable to:Human, Genics_A, Genics_B, Demonic, Fun
+Permission:Trap Setter
+Cost:100
+============================================================
+Skill
+Name:Trap Hiding
+Description:Allows the model to switch out a treasure for a trap during a game
+Modifies Stats:
+Skill Group:TrapSetter
+Avalable to:Human, Genics_A, Demonic, Fun
+Permission:Trap Setter
+Cost:200
+============================================================
+Skill
+Name:Better Mousetrap
+Description:Roll a 1d12 when a trap goes off if its equal to or lowered than the models Ag that set the trap the trap does x2 damage
+Modifies Stats:
+Skill Group:TrapSetter
+Avalable to:Human, Genics_A, Genics_B, Demonic, Fun
+Permission:Trap Setter
+Cost:300
+============================================================
+Skill
+Name:Dodge
+Description:Roll a d12 if its equal to or under the models Ag the model may dive out of the way of a trap in a random direction.
+Modifies Stats:
+Skill Group:TrapSetter
+Avalable to:Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Trap Setter
+Cost:0
+============================================================
+Skill
+Name:Quick Shot
+Description:A model may make 1 sustained fire roll (d12 under the last rolled number)
+Modifies Stats:
+Skill Group:Gunman
+Avalable to:Human, Mutant, Genics_B, Demonic, Fun
+Permission:Gunman
+Cost:150
+============================================================
+Skill
+Name:Trigger Happy
+Description:If the model may take as many shots as it has attack with pistols
+Modifies Stats:
+Skill Group:Gunman
+Avalable to:Human, Mutant, Undead, Genics_B, Demonic, Fun
+Permission:Gunman
+Cost:300
+============================================================
+Skill
+Name:Sniper
+Description:+1 RW when using a scope
+Modifies Stats:
+Skill Group:Gunman
+Avalable to:Human, Undead, Genics_B, Angelic, Fun
+Permission:Gunman
+Cost:250
+============================================================
+Skill
+Name:Gun Slinger
+Description:If the model is carrying 2 pistols it may fire both of them once per turn
+Modifies Stats:
+Skill Group:Gunman
+Avalable to:Human, Mutant, Undead, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Gunman
+Cost:0
+============================================================
+Skill
+Name:Hip Shot
+Description:The model suffers no penalty to shooting at a model coming from or into cover when on over watch
+Modifies Stats:
+Skill Group:Gunman
+Avalable to:All
+Permission:Gunman
+Cost:0
+============================================================
+Skill
+Name:Blade Sharpener
+Description:+2 MvsP, +1 MvsA to bladed weapons that the model carries
+Modifies Stats:
+Skill Group:ArmsMaster
+Avalable to:All
+Permission:Arms Master
+Cost:100
+============================================================
+Skill
+Name:Quick Blade
+Description:When charge upon in combat the model may make one attack before the charging model attacks.
+Modifies Stats:
+Skill Group:ArmsMaster
+Avalable to:All
+Permission:Arms Master
+Cost:200
+============================================================
+Skill
+Name:Swordman
+Description:If the model carries two swords it may make one extra attack in H+H combat, beyond the extra attack for 2 weapons.
+Modifies Stats:
+Skill Group:ArmsMaster
+Avalable to:Human, Undead, Genics_A, Genics_B, Angelic, Demonic, Fun
+Permission:Arms Master
+Cost:300
+============================================================
+Skill
+Name:Block
+Description:The model may make one extra block per turn
+Modifies Stats:
+Skill Group:ArmsMaster
+Avalable to:All
+Permission:Arms Master
+Cost:0
+============================================================
+Skill
+Name:Step Aside
+Description:When charged you may roll d12 under the models Ag if successful the model steps aside dodging the charge
+Modifies Stats:
+Skill Group:ArmsMaster
+Avalable to:Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic
+Permission:Arms Master
+Cost:0
+============================================================
+Skill
+Name:First Aid
+Description:+5 hp when using healing items.
+Modifies Stats:
+Skill Group:Medic
+Avalable to:Human, Mutant, Aquatic, Angelic, Fun
+Permission:Medic
+Cost:100
+============================================================
+Skill
+Name:Patient Care
+Description:+5 hp when using healing items (may be used with the +5 from first aid)
+Modifies Stats:
+Skill Group:Medic
+Avalable to:Human, Mutant, Aquatic, Fun
+Permission:Medic
+Cost:300
+============================================================
+Skill
+Name:Billing Agent
+Description:½ cost to all medical supplies
+Modifies Stats:
+Skill Group:Medic
+Avalable to:Human, Demonic, Fun
+Permission:Medic
+Cost:500
+============================================================
+Skill
+Name:Centered Thought
+Description:
+Modifies Stats:Willpower +1
+Skill Group:Psyonicist
+Avalable to:Human, Undead, Genics_A, Aquatic, Angelic, Demonic, Fun
+Permission:Psionicist
+Cost:200
+============================================================
+Skill
+Name:Earthen Power
+Description:+2 WP When Casting
+Modifies Stats:
+Skill Group:Psyonicist
+Avalable to:Human, Undead, Genics_A, Aquatic, Angelic, Demonic, Fun
+Permission:Psionicist
+Cost:400
+============================================================
+Skill
+Name:Spell Master
+Description:Re-roll flopped spell only once per-turn
+Modifies Stats:
+Skill Group:Psyonicist
+Avalable to:Human, Undead, Genics_A, Aquatic, Angelic, Demonic, Fun
+Permission:Psionicist
+Cost:500
+============================================================
+Skill
+Name:Sprinter
+Description:
+Modifies Stats:Movement +2
+Skill Group:Physical
+Avalable to:Human, Undead, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Physical
+Cost:500
+============================================================
+Skill
+Name:Muscles
+Description:
+Modifies Stats:Might +1
+Skill Group:Physical
+Avalable to:Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Physical
+Cost:300
+============================================================
+Skill
+Name:Bullrush
+Description:The model may make a bull rush attack, MvsP = Str, the model being bull rushed will fall straight back and slide an equal number of inches to the attacking models str. If the model goes off an edge use the falling rules next if it hits a wall the model stops their and takes a strength hit equal to the number of inches not traveled when sliding.
+Modifies Stats:
+Skill Group:Physical
+Avalable to:All
+Permission:Physical
+Cost:300
+============================================================
+Skill
+Name:Throwback
+Description:When a grenade or bomb is thrown the model may roll d12 under their Ag, if successful they may immediately throw the grenade back
+Modifies Stats:
+Skill Group:Physical
+Avalable to:Human, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Physical
+Cost:300
+============================================================
+Skill
+Name:Infiltration
+Description:Use rules for showing up
+Modifies Stats:
+Skill Group:Stealth
+Avalable to:All
+Permission:Stealth
+Cost:300
+============================================================
+Skill
+Name:Dive for cover
+Description:Roll d12 under Ag if successful the model may dive to the nearest cover not more than their basic movement away
+Modifies Stats:
+Skill Group:Stealth
+Avalable to:Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Stealth
+Cost:100
+============================================================
+Skill
+Name:Ambush
+Description:Uses rules for showing up but it does not occur until d4 turns in to the game
+Modifies Stats:
+Skill Group:Stealth
+Avalable to:Human, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Stealth
+Cost:200
+============================================================
+Skill
+Name:Duck and Weave
+Description:When running from fire the model shooting has a –2 to hit that model
+Modifies Stats:
+Skill Group:Stealth
+Avalable to:Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+Permission:Stealth
+Cost:200
+============================================================
+Skill
+Name:Escape Artist
+Description:Model may not be captured at the end of a battle
+Modifies Stats:
+Skill Group:Stealth
+Avalable to:All
+Permission:Stealth
+Cost:500
+============================================================
+Skill
+Name:Cat Fall
+Description:The model rolls once for falling every inch until a success is rolled. 
+Modifies Stats:
+Skill Group:Agility
+Avalable to:Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun
+Permission:Agility
+Cost:100
+============================================================
+Skill
+Name:Leap
+Description:The model has superior jumping capabilities and only fails a jump on a 12
+Modifies Stats:
+Skill Group:Agility
+Avalable to:Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun
+Permission:Agility
+Cost:200
+============================================================
+Skill
+Name:Gymnastics
+Description:
+Modifies Stats:Agility +1
+Skill Group:Agility
+Avalable to:Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun
+Permission:Agility
+Cost:300
+============================================================
+SkillPermission
+Name:Agility
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:Human, Mutant, Genics_A, Genics_B, Angelic, Demonic, Fun
+============================================================
+SkillPermission
+Name:Arms Master
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+SkillPermission
+Name:Arsonists
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:Human, Mutant, Undead, Genics_B, Aquatic, Fun
+============================================================
+SkillPermission
+Name:Gunman
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+SkillPermission
+Name:Mechanical
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+SkillPermission
+Name:Medic
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:Human, Mutant, Aquatic, Angelic, Demonic, Fun
+============================================================
+SkillPermission
+Name:Physical
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+SkillPermission
+Name:Psionicist
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:Human, Undead, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+============================================================
+SkillPermission
+Name:Stealth
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+SkillPermission
+Name:Trap Setter
+Type:Skill Permission
+Race Can Equip:
+Species Can Equip:Human, Mutant, Genics_A, Genics_B, Aquatic, Angelic, Demonic, Fun
+============================================================
+Weapon
+Name:Heat Fist
+Range:0
+Description:
+Special:
+MvsP:2
+MvsA:0
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Bludgen
+Cost:100
+============================================================
+Weapon
+Name:Flail
+Range:0
+Description:
+Special:M+4 on a charge +1 to disarm
+MvsP:1
+MvsA:0
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Bludgen
+Cost:85
+============================================================
+Weapon
+Name:Knife
+Range:0
+Description:Its a knife!
+Special:Parry
+MvsP:0
+MvsA:0
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Blade
+Cost:5
+============================================================
+Weapon
+Name:Laser Knife
+Range:0
+Description:Oooo a sparkly knife!
+Special:Parry
+MvsP:1
+MvsA:0
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Blade
+Cost:40
+============================================================
+Weapon
+Name:Laser Sword
+Range:0
+Description:Similar to the Laser Knife but longer!
+Special:Parry
+MvsP:3
+MvsA:1
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Blade
+Cost:110
+============================================================
+Weapon
+Name:Mace
+Range:0
+Description:Lets go CLUBBIN!!!
+Special:+2 on a charge
+MvsP:1
+MvsA:0
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Bludgen
+Cost:60
+============================================================
+Weapon
+Name:Shield
+Range:0
+Description:protect the important stuff
+Special:Causes a concussion on a roll of a natural 1 when attacking. +1 defensive dice
+MvsP:0
+MvsA:0
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Bludgen
+Cost:20
+============================================================
+Weapon
+Name:Sword
+Range:0
+Description: 
+Special:Parry
+MvsP:1
+MvsA:0
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Blade
+Cost:15
+============================================================
+Weapon
+Name:Whip
+Range:2
+Description:If you get the right hat you could play Indiana Jones!
+Special:+1 to disarm
+MvsP:0
+MvsA:2
+SIOR:0
+SvMod:0
+Shots:0
+Permission:Blade
+Cost:5
+============================================================
+Weapon
+Name:Shotgun Slug
+Range:20
+Description: 
+Special: 
+MvsP:5
+MvsA:3
+SIOR:5
+SvMod:0
+Shots:1
+Permission:Rifle
+Cost:175
+============================================================
+Weapon
+Name:Shotgun Scatter
+Range:20
+Description: 
+Special:MvsP is determined by the weapons range
+MvsP:0
+MvsA:2
+SIOR:5
+SvMod:0
+Shots:1
+Permission:Rifle
+Cost:175
+============================================================
+Weapon
+Name:Chain Saw
+Range:0
+Description:This is my chan saw and this is my BOOM STICK!!!
+Special:Runs on gas so it can run out, Parry
+MvsP:7
+MvsA:4
+SIOR:8
+SvMod:0
+Shots:0
+Permission:Mechanical Hand to Hand
+Cost:130
+============================================================
+Weapon
+Name:Grenade Standarded
+Range:(Mx2)+6
+Description: 
+Special: 
+MvsP:6
+MvsA:6
+SIOR:11
+SvMod:0
+Shots:1
+Permission:Thrown Weapons
+Cost:25
+============================================================
+Weapon
+Name:Grenade MMRVE
+Range:(Mx2)+6
+Description: Multi Magnetic Resonance Variable Explosive
+Special:Causes all electrical systems with in a 12" radius to shut down for 1d3 turns, and anyhting with in a 6" radius to shutdown for 1d3 extra turns.
+MvsP:2
+MvsA:1
+SIOR:11
+SvMod:0
+Shots:1
+Permission:Thrown Weapons
+Cost:30
+============================================================
+Weapon
+Name:Grenade TRE
+Range:(Mx2)+6
+Description:
+Special:Lowers armour value for vehicles by 6 for d3 rounds.
+MvsP:0
+MvsA:0
+SIOR:11
+SvMod:0
+Shots:1
+Permission:Thrown Weapons
+Cost:50
+============================================================
+Weapon
+Name:Large Rock
+Range:(Mx2)+6
+Description:
+Special:models may pick up rocks of the ground and hurl them after making a “shit I’m out roll”.  Models starting with large rocks must roll after the first is thrown.
+MvsP:1
+MvsA:0
+SIOR:3
+SvMod:0
+Shots:1
+Permission:Thrown Weapons
+Cost:1
+============================================================
+Weapon
+Name:Small Rock
+Range:(Mx2)+6
+Description:
+Special:models may pick up rocks of the ground and hurl them after making a “shit I’m out roll”.  Models starting with large rocks must roll after the first is thrown.
+MvsP:0
+MvsA:0
+SIOR:2
+SvMod:0
+Shots:1
+Permission:Thrown Weapons
+Cost:1
+============================================================
+Weapon
+Name:Boltaction/Semautomatic Rifle
+Range:30
+Description:
+Special:
+MvsP:6
+MvsA:4
+SIOR:5
+SvMod:-2
+Shots:1
+Permission:Rifle
+Cost:150
+============================================================
+Weapon
+Name:Full Auto Rifle
+Range:24
+Description:
+Special:
+MvsP:6
+MvsA:4
+SIOR:7
+SvMod:0
+Shots:2
+Permission:Rifle
+Cost:150
+============================================================
+Weapon
+Name:Crossbow
+Range:20
+Description:
+Special:
+MvsP:4
+MvsA:1
+SIOR:3
+SvMod:0
+Shots:1
+Permission:Bows
+Cost:80
+============================================================
+Weapon
+Name:Bow
+Range:24
+Description:
+Special:
+MvsP:3
+MvsA:1
+SIOR:3
+SvMod:0
+Shots:1
+Permission:Blade
+Cost:80
+============================================================
+Weapon
+Name:Heat Gun
+Range:24
+Description: 
+Special:When shooting at a target at half range or less the Heat guns MvsP=7 and MvsA=8
+MvsP:6
+MvsA:6
+SIOR:6
+SvMod:0
+Shots:1
+Permission:Energy
+Cost:170
+============================================================
+Weapon
+Name:Grappling Hook
+Range:40
+Description:
+Special:Shoots every other turn, if a hit is scored, the model may pull itself to a vehicle, up/to a building, or another model to it with a might check and –2 (models may only be pulled if wounded)
+MvsP:6
+MvsA:4
+SIOR:10
+SvMod:0
+Shots:1
+Permission:Pistole
+Cost:150
+============================================================
+Weapon
+Name:Laser Rifle
+Range:20
+Description:
+Special:
+MvsP:4
+MvsA:4
+SIOR:4
+SvMod:0
+Shots:1
+Permission:Energy
+Cost:90
+============================================================
+Weapon
+Name:Blunderbus
+Range:15
+Description:
+Special:
+MvsP:4
+MvsA:1
+SIOR:8
+SvMod:0
+Shots:1
+Permission:Rifle
+Cost:25
+============================================================
+Weapon
+Name:Sling
+Range:10
+Description:
+Special:
+MvsP:3
+MvsA:1
+SIOR:2
+SvMod:0
+Shots:1
+Permission:Thrown Weapons
+Cost:15
+============================================================
+Weapon
+Name:Revolver/Semiautomatic Pistol
+Range:12
+Description:
+Special:
+MvsP:5
+MvsA:3
+SIOR:5
+SvMod:0
+Shots:1
+Permission:Pistole
+Cost:85
+============================================================
+Weapon
+Name:Laser Pistole
+Range:12
+Description:
+Special:
+MvsP:4
+MvsA:4
+SIOR:4
+SvMod:0
+Shots:1
+Permission:Energy
+Cost:75
+============================================================
+Weapon
+Name:Flame Thrower
+Range:6
+Description:
+Special:Models hit and wounded by a flamethrower are on fire on a 5+ and fall under the “dude your shit is on fire” rules.
+MvsP:4
+MvsA:2
+SIOR:10
+SvMod:0
+Shots:1
+Permission:Heavy
+Cost:50
+============================================================
+Weapon
+Name:Black Powder Pistol
+Range:12
+Description:
+Special:
+MvsP:4
+MvsA:2
+SIOR:7
+SvMod:0
+Shots:1
+Permission:Pistole
+Cost:60
+============================================================
+Weapon
+Name:NetGun
+Range:10
+Description:
+Special:Template 8", All models under the template are pinned on a 4+
+MvsP:0
+MvsA:0
+SIOR:12
+SvMod:0
+Shots:1
+Permission:Pistole
+Cost:70
+============================================================
+Weapon
+Name:Rail Gun
+Range:80
+Description:
+Special:Move or Fire
+MvsP:11
+MvsA:9
+SIOR:6
+SvMod:0
+Shots:1
+Permission:Heavy
+Cost:365
+============================================================
+Weapon
+Name:Chain Gun
+Range:50
+Description:
+Special:
+MvsP:7
+MvsA:6
+SIOR:6
+SvMod:0
+Shots:3
+Permission:Heavy
+Cost:320
+============================================================
+Weapon
+Name:Rocket Launcher
+Range:80
+Description:
+Special:on impact creates a 1" explosion template for 1/2 dammage
+MvsP:11
+MvsA:10
+SIOR:8
+SvMod:0
+Shots:1
+Permission:Heavy
+Cost:600
+============================================================
+Weapon
+Name:Missile Launcher
+Range:50
+Description:
+Special:move and fire if the models strenght is 8 or greater, -2 to hit if allowed to move and fire. On impace creates a blast template of 1" for 1/2 dammage.
+MvsP:8
+MvsA:7
+SIOR:8
+SvMod:0
+Shots:3
+Permission:Heavy
+Cost:270
+============================================================
+Weapon
+Name:Mortar
+Range:60
+Description:
+Special:No line of sight is required, shots may be guess placed creates a 2" blast template for 1/2 dammage
+MvsP:6
+MvsA:6
+SIOR:8
+SvMod:0
+Shots:1
+Permission:Heavy
+Cost:320
+============================================================
+Weapon
+Name:Grenade Launcher
+Range:48
+Description:
+Special:creates a 4" blast template for 1/2 dammage
+MvsP:6
+MvsA:7
+SIOR:8
+SvMod:0
+Shots:1
+Permission:Heavy
+Cost:200
+============================================================
+Weapon
+Name:HIgh Calibre Machine Gun
+Range:40
+Description:
+Special:Move and Fire, -2 to shoot when moved
+MvsP:6
+MvsA:4
+SIOR:6
+SvMod:0
+Shots:6
+Permission:Heavy
+Cost:225
+============================================================
+Weapon
+Name:Low Calibre Machine Gun
+Range:50
+Description:
+Special:Move and Fire, -1 when moved
+MvsP:5
+MvsA:3
+SIOR:6
+SvMod:0
+Shots:8
+Permission:Heavy
+Cost:240
+============================================================
+Weapon
+Name:Heat Cannon
+Range:10
+Description:
+Special:Move and Fire
+MvsP:3
+MvsA:1
+SIOR:2
+SvMod:0
+Shots:1
+Permission:Heavy
+Cost:280
+============================================================
+WeaponPermission
+Name:Blade
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Bludgen
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Sword
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Heavy
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Rifle
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Pistole
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Energy
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Bows
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Sniper
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Thrown Weapons
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================
+WeaponPermission
+Name:Mechanical Hand to Hand
+Type:Weapon Permission
+Race Can Equip:
+Species Can Equip:All
+============================================================

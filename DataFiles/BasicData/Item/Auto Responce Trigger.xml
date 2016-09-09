@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSEE734280" Name="Auto Responce Trigger" Cost="255" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>x2 shots per trigger pull, only for semi automatic weapons</Description>
+</Item>

@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSDE51AA53" Name="Double Trigger" Cost="150" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Give +1 shot to a shot gun</Description>
+</Item>

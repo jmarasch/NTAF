@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS64475A9E" Name="Growth" ppCost="5" Range="0" Template="None" TemplateSize="" PsyTypes="Generic">
+  <Description />
+  <Effect>Can be cast on a model within 12", this spell will double the size of the model. The model doubles M, MT, T, and gains a HF of 12. The model then incurs a +4 penalty to be hit, can't use vehicles or guns. The spell lasts d3 rounds.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

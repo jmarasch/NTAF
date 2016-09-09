@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSCDC1A761" Name="Bullrush" Cost="300" SpeciesCanUseSkill="All" Group="Physical">
+  <Description>The model may make a bull rush attack, MvsP = Str, the model being bull rushed will fall straight back and slide an equal number of inches to the attacking models str. If the model goes off an edge use the falling rules next if it hits a wall the model stops their and takes a strength hit equal to the number of inches not traveled when sliding.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS7130F063" Name="Physical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

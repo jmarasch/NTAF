@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS83997E85" Name="Bayonet" Cost="25" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Allows rifel to double as pole arm type weapon</Description>
+</Item>

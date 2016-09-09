@@ -1,0 +1,6 @@
+﻿<Item ID="BSDS9A9F72D0" Name="Bionic Arm" Cost="550" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="HandToHand" Modifier="1" />
+  </ModifiesStats>
+  <Description />
+</Item>

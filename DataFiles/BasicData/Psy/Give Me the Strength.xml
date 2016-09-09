@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSB08076AF" Name="Give Me the Strength" ppCost="5" Range="0" Template="None" TemplateSize="" PsyTypes="Medical">
+  <Description />
+  <Effect>Can be cast on a model within 12" to give the model a +2 to their MT (might)</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS3BB830F7" Name="Medical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

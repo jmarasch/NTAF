@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS51A5A7F7" Name="Crossbow" Range="20" MvsP="4" MvsA="1" SvMod="0" SIOR="3" Shots="1" Cost="80" BaseType="Projectile">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS682A0477" Name="Bows" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

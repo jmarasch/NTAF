@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS7DD7051E" Name="Quick Shot" Cost="150" SpeciesCanUseSkill="Human Mutant Genics_B Demonic Fun" Group="Gunman">
+  <Description>A model may make 1 sustained fire roll (d12 under the last rolled number)</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSCEB1C6F7" Name="Gunman" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

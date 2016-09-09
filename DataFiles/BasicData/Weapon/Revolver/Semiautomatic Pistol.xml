@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDSA8A44C21" Name="Revolver/Semiautomatic Pistol" Range="12" MvsP="5" MvsA="3" SvMod="0" SIOR="5" Shots="1" Cost="85" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS19EC42F8" Name="Pistole" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS40F84D93" Name="Gun Slinger" Cost="0" SpeciesCanUseSkill="Human Mutant Undead Genics_B Aquatic Angelic Demonic Fun" Group="Gunman">
+  <Description>If the model is carrying 2 pistols it may fire both of them once per turn</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSCEB1C6F7" Name="Gunman" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

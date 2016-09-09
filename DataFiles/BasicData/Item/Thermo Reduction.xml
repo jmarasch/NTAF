@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS6343BD8A" Name="Thermo Reduction" Cost="20" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Reduces vehicle armor 2 points per unit, costs 1 unit</Description>
+</Item>

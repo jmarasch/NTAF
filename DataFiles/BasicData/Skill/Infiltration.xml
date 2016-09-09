@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS40960E07" Name="Infiltration" Cost="300" SpeciesCanUseSkill="All" Group="Stealth">
+  <Description>Use rules for showing up</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSB532A5C3" Name="Stealth" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

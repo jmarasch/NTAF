@@ -520,6 +520,8 @@ namespace ProtoGears_World_Builder {
 
         private void btnNew_Click(object sender, RoutedEventArgs e) {
             NewFile wndNewFile = new NewFile();
+            wndNewFile.Owner = this;
+            wndNewFile.ShowInTaskbar = false;
             wndNewFile.ShowDialog();
 
             if (wndNewFile.Result == CommonFileDialogResult.Ok) {
@@ -543,6 +545,60 @@ namespace ProtoGears_World_Builder {
 
                 bgw.RunWorkerAsync();
                 }
+            }
+
+        private void btnSaveAll_Click(object sender, RoutedEventArgs e) {
+            foreach (NTDataFile file in DataFiles) {
+                file.Save();
+                }
+            }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e) {
+            ProgramSettings wndNewFile = new ProgramSettings();
+            wndNewFile.Owner = this;
+            wndNewFile.ShowInTaskbar = false;
+            wndNewFile.ShowDialog();
+            }
+
+        private void btnClearRecent_Click(object sender, RoutedEventArgs e) {
+            RecentFileGallery.Items.Clear();
+            Properties.Settings.Default.RecentFiles = "";
+            Properties.Settings.Default.Save();
+            }
+
+        private void btnExportFile_Click(object sender, RoutedEventArgs e) {
+            if (DataFile == null) return;
+
+            string folder = GetFolderLocation();
+
+            if (folder == "") return;
+            if (((FrameworkElement)sender).Name == "btnExport")
+                DataFile.ExportToXMLSingle(folder + "\\");
+            if (((FrameworkElement)sender).Name == "btnExportTEXT")
+                DataFile.ExportToTXT(folder + "\\");
+            if (((FrameworkElement)sender).Name == "btnExportCSV")
+                DataFile.ExportToCSV(folder + "\\");
+            }
+
+        private string GetFolderLocation() {
+            var dlg = new CommonOpenFileDialog();
+
+            dlg.Title = "Export To Folder...";
+            dlg.IsFolderPicker = true;
+
+            dlg.AddToMostRecentlyUsedList = false;
+            dlg.AllowNonFileSystemItems = false;
+            dlg.EnsureFileExists = true;
+            dlg.EnsurePathExists = true;
+            dlg.EnsureReadOnly = false;
+            dlg.EnsureValidNames = true;
+            dlg.Multiselect = false;
+            dlg.ShowPlacesList = true;
+
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok) {
+                return dlg.FileName;
+                }
+            return "";
             }
 
         private bool CheckForSave() {

@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS968072A5" Name="Ice Blast" ppCost="3" Range="0" Template="None" TemplateSize="" PsyTypes="Water">
+  <Description />
+  <Effect>A blast of icy wind hits a target model within 24" of the caster and does MvsP=5, MvsA=5 (only for models with armor), MvsA=3</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS63F937B3" Name="Ice" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

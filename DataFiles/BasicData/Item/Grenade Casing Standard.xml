@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS49A12ABA" Name="Grenade Casing Standard" Cost="5" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>The shell of grenade, Holds 3 units</Description>
+</Item>

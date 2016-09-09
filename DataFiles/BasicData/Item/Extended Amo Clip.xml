@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSC4D90305" Name="Extended Amo Clip" Cost="500" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>+2 to weapons SIOR roll</Description>
+</Item>

@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS3F5AD9B7" Name="Flash Fire" ppCost="5" Range="0" Template="Round" TemplateSize="D12&quot;" PsyTypes="Fire">
+  <Description />
+  <Effect>Flash Fire pin points a model within 24" of the caster. The spell then bursts outward d12 inches in diameter the model and everything within that area catches fire (trees, long grass, bushes, paper ect) under brush burns for d4 turns and any model that touches the under brush may catch fire. the fire then spreads to other flammable objects at a rate of d4" per turn unless their is nothing in the area to catch fire. Models in the blast area take a MvsP=7 MvsA=2</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS7133A8B3" Name="Fire" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

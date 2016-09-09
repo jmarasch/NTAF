@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS8C3AB539" Name="Heat Cannon" Range="10" MvsP="3" MvsA="1" SvMod="0" SIOR="2" Shots="1" Cost="280" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS6B0C799E" Name="Heavy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>Move and Fire</Special>
+</Weapon>

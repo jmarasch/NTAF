@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDSD0AC9AD5" Name="Rail Gun" Range="80" MvsP="11" MvsA="9" SvMod="0" SIOR="6" Shots="1" Cost="365" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS6B0C799E" Name="Heavy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>Move or Fire</Special>
+</Weapon>

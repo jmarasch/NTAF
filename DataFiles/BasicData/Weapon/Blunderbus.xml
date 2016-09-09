@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDSC68E7851" Name="Blunderbus" Range="15" MvsP="4" MvsA="1" SvMod="0" SIOR="8" Shots="1" Cost="25" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSC1C35482" Name="Rifle" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

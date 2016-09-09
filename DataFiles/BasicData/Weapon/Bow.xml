@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS89E17FFA" Name="Bow" Range="24" MvsP="3" MvsA="1" SvMod="0" SIOR="3" Shots="1" Cost="80" BaseType="Projectile">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSFAC0DB1D" Name="Blade" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS37B64FE8" Name="Gunsmith" Cost="0" SpeciesCanUseSkill="Human Mutant Genics_B Aquatic Angelic Demonic Fun" Group="Mechanic">
+  <Description>Allows for weapon attachments to be added to weapons (only one guy in the crew is needed to have the skill for all weapon upgrades)</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS6389ED91" Name="Mechanical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

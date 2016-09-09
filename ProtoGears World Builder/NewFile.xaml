@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProtoGears_World_Builder"
         xmlns:Special_Controls="clr-namespace:ProtoGears_World_Builder.Special_Controls" x:Class="ProtoGears_World_Builder.NewFile"
         mc:Ignorable="d"
-        Title="NewFile" Width="285" Height="350">
+        Title="Create New File" Width="285" Height="366.482" WindowStyle="ToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSD2BF9FF8" Name="Bionic Ear" Cost="250" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Cannot be snuck up upon</Description>
+</Item>

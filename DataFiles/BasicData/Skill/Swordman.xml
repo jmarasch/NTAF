@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS589FC9E3" Name="Swordman" Cost="300" SpeciesCanUseSkill="Human Undead Genics_A Genics_B Angelic Demonic Fun" Group="ArmsMaster">
+  <Description>If the model carries two swords it may make one extra attack in H+H combat, beyond the extra attack for 2 weapons.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF8F13F38" Name="Arms Master" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

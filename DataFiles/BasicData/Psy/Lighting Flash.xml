@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS8FB858B8" Name="Lighting Flash" ppCost="3" Range="0" Template="None" TemplateSize="" PsyTypes="Lighting">
+  <Description />
+  <Effect>A bright light flash that blinds all models with in a d4" diameter. Models may meke a AG save to negate the effects (D12 under AG). Any model that fails gets their M,H+H, RW, AG cut in half for d3 turns, but don’t neet make a HF save when confronting a model with a high HF.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDSE4BC23B8" Name="Lighting" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

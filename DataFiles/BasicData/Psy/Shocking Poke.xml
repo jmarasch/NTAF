@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSCF7E3180" Name="Shocking Poke" ppCost="1" Range="0" Template="None" TemplateSize="" PsyTypes="Lighting">
+  <Description />
+  <Effect>A model with shocking poke may tuch another model with their finger to do a MvsP=4, and MvsA=3 attack. </Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDSE4BC23B8" Name="Lighting" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

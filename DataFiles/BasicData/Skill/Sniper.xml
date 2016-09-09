@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS991D8593" Name="Sniper" Cost="250" SpeciesCanUseSkill="Human Undead Genics_B Angelic Fun" Group="Gunman">
+  <Description>+1 RW when using a scope</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSCEB1C6F7" Name="Gunman" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

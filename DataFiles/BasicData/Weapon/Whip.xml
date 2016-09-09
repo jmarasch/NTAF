@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS73B8C134" Name="Whip" Range="2" MvsP="0" MvsA="2" SvMod="0" SIOR="0" Shots="0" Cost="5" BaseType="HandToHand">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSFAC0DB1D" Name="Blade" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description>If you get the right hat you could play Indiana Jones!</Description>
+  <Special>+1 to disarm</Special>
+</Weapon>

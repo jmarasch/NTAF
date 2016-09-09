@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSFCFB0A6C" Name="Nitroglycerin Filling" Cost="40" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>MvsP = 8, MvsA = 5, 3” Diameter, costs 1 unit</Description>
+</Item>

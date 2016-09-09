@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS4F54675D" Name="Flame Thrower" Range="6" MvsP="4" MvsA="2" SvMod="0" SIOR="10" Shots="1" Cost="50" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS6B0C799E" Name="Heavy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>Models hit and wounded by a flamethrower are on fire on a 5+ and fall under the “dude your shit is on fire” rules.</Special>
+</Weapon>

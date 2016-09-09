@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS3061A4F9" Name="Grenade Casing Sticky" Cost="8" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>The out side has a sticky shell that when thrown can stick to a target, it sticks on a roll of a hit, 3 units</Description>
+</Item>

@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS66F3D592" Name="Black Powder Pistol" Range="12" MvsP="4" MvsA="2" SvMod="0" SIOR="7" Shots="1" Cost="60" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS19EC42F8" Name="Pistole" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special />
+</Weapon>

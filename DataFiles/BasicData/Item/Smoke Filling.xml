@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS8D37EF69" Name="Smoke Filling" Cost="10" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Adds smoke to a grenade, cost 1 unit</Description>
+</Item>

@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS8C1668F2" Name="Throwback" Cost="300" SpeciesCanUseSkill="Human Genics_B Aquatic Angelic Demonic Fun" Group="Physical">
+  <Description>When a grenade or bomb is thrown the model may roll d12 under their Ag, if successful they may immediately throw the grenade back</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS7130F063" Name="Physical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

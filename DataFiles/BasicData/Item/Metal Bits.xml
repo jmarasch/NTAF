@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS33DB939B" Name="Metal Bits" Cost="2" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>MvsP = 3, small shrapnel costs 1 unit requires 1 unit of explosives</Description>
+</Item>

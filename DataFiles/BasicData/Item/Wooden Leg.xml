@@ -1,0 +1,6 @@
+﻿<Item ID="BSDS677EB7E5" Name="Wooden Leg" Cost="5" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="Movement" Modifier="-2" />
+  </ModifiesStats>
+  <Description>Gives the model the ability to walk again</Description>
+</Item>

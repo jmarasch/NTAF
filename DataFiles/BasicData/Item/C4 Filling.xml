@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS7BBDC24E" Name="C4 Filling" Cost="35" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>MvsP = 6, MvsA = 3, 2” Diameter, costs 1 unit</Description>
+</Item>

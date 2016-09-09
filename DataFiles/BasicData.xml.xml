@@ -1,0 +1,16 @@
+﻿<NTDataFileExt>
+  <InternalFile DataFileName="BasicData" IDPreFix="BSDS" FilePassword="">
+    <DateCreated>0001-01-01T00:00:00</DateCreated>
+    <DateLastEdited>0001-01-01T00:00:00</DateLastEdited>
+  </InternalFile>
+  <Collectors d2p1:type="ArchetypeCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="BaseUnits" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="ItemCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="PsyCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="PsyPermissionCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="RaceCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="SkillCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="SkillPermissionCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="WeaponCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Collectors d2p1:type="WeaponPermissionCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</NTDataFileExt>

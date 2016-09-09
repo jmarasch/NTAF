@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS49781AD9" Name="Cat Fall" Cost="100" SpeciesCanUseSkill="Human Mutant Genics_A Genics_B Angelic Demonic Fun" Group="Agility">
+  <Description>The model rolls once for falling every inch until a success is rolled. </Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSDEC7D165" Name="Agility" SpeciesCanEquip="Human Mutant Genics_A Genics_B Angelic Demonic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

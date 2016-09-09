@@ -1,0 +1,13 @@
+﻿<BaseUnit ID="BSDSFB323414" Name="Heavy" Movement="4" HitPoints="10" HandToHand="3" ActionPoints="2" PsyPoints="0" RangedWeapons="6" Might="6" Toughness="6" Agility="4" Willpower="5" HorrorFactor="1" CostMod="0">
+  <archetype ID="BSDS372AACE7" Name="Heavy" BaseType="Heavy" />
+  <BaseRace ID="BSDS9A264EA9" Name="Human" species="Human" />
+  <Description />
+  <Special />
+  <WPermissions />
+  <SPermissions />
+  <PPermissions />
+  <Weapons />
+  <SkillsAndAbilities />
+  <Psys />
+  <Items />
+</BaseUnit>

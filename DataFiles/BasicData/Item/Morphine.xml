@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS69D6D6DA" Name="Morphine" Cost="45" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>+D4 Toughness for D6 rounds</Description>
+</Item>

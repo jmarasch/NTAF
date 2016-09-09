@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSB448C4E6" Name="Freezing Touch" ppCost="4" Range="0" Template="None" TemplateSize="" PsyTypes="Cold">
+  <Description />
+  <Effect>Works like liquid nitrogen… a spell caster may cast this on them self or a model within 12". Played as normal mele weapon doing MvsP=6 MvsA=3 if a model is wearing armor and is touched if another model can get a successful hit on the model the armor has a chance to shatter and be destroyed, the chance is equal to the weapons M (might) roll d12 under the stat.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDSC077C357" Name="Touch" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

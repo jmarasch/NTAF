@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSFFD568A4" Name="Hands of Flame" ppCost="4" Range="0" Template="None" TemplateSize="" PsyTypes="Fire">
+  <Description />
+  <Effect>give the model the ability to set things on fire. On a successful H+H attack follow the burning rules. The model takes a MvsP of 5</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDSC077C357" Name="Touch" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

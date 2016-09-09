@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS7047CF96" Name="Ball Bearings" Cost="50" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>MvsP = 10, MvsA = 8, +3” in explosion costs 2 units, requires 1 unit of explosives for every units of bearings </Description>
+</Item>

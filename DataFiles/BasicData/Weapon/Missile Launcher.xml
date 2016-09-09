@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS59AF2719" Name="Missile Launcher" Range="50" MvsP="8" MvsA="7" SvMod="0" SIOR="8" Shots="3" Cost="270" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS6B0C799E" Name="Heavy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>move and fire if the models strenght is 8 or greater, -2 to hit if allowed to move and fire. On impace creates a blast template of 1" for 1/2 dammage.</Special>
+</Weapon>

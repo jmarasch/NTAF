@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSF954A7B1" Name="Levitation" ppCost="2" Range="0" Template="None" TemplateSize="" PsyTypes="Generic">
+  <Description />
+  <Effect>A model may float for d3 turns may be cast on any model, if the model has no momentum it cannot move, a model that has momentum moves in a straight line equal to the number of inches it last moved.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

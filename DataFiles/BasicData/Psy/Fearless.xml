@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS63E38596" Name="Fearless" ppCost="2" Range="0" Template="None" TemplateSize="" PsyTypes="Medical">
+  <Description />
+  <Effect>This model doesn't need to make a WP (willpower) save when confronted by a model with a higher HF (horror factor) than them. Lasts d3 rounds</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

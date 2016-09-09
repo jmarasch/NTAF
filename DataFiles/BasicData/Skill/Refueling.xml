@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS4DB31BAF" Name="Refueling" Cost="100" SpeciesCanUseSkill="All" Group="Mechanic">
+  <Description>½ cost for refueling vehicles</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDS6389ED91" Name="Mechanical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

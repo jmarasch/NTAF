@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSE2B57676" Name="Shield" ppCost="5" Range="0" Template="None" TemplateSize="" PsyTypes="Generic">
+  <Description />
+  <Effect>Shield does not count as armor but will add d3 T (toughness) to a single model with in 12" of the spell caster for d3 rounds. This spell cannot be stacked and requires a 2 round wait period until it can be cast again.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

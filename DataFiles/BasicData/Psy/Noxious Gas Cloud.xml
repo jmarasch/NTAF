@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSA13ADEC8" Name="Noxious Gas Cloud" ppCost="1" Range="0" Template="Round" TemplateSize="varries" PsyTypes="Cloud">
+  <Description />
+  <Effect>A cloud of horrible gas comes rolling out 1” in diameter for every point spent to cast it. The cloud hangs around for d6 rounds and randomly moves any model caught in the gas cloud finds it hard to breath and takes a might 4 d12 hit. Follow rules for smoke clouds.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

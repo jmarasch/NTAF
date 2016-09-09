@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS5659247E" Name="Laser Sword" Range="0" MvsP="3" MvsA="1" SvMod="0" SIOR="0" Shots="0" Cost="110" BaseType="Blade">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSFAC0DB1D" Name="Blade" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description>Similar to the Laser Knife but longer!</Description>
+  <Special>Parry</Special>
+</Weapon>

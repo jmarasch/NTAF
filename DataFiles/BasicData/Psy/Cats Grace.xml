@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS99E4109E" Name="Cats Grace" ppCost="4" Range="0" Template="None" TemplateSize="" PsyTypes="Agility">
+  <Description />
+  <Effect>Automatically allows a model to pass all agility checks for 1 round of combat i.e. jumping, falling, tumbling ect</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS3BB830F7" Name="Medical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

@@ -1,0 +1,13 @@
+﻿<BaseUnit ID="BSDS46DAD7C1" Name="Member" Movement="4" HitPoints="8" HandToHand="5" ActionPoints="2" PsyPoints="0" RangedWeapons="5" Might="5" Toughness="5" Agility="5" Willpower="5" HorrorFactor="1" CostMod="0">
+  <archetype ID="BSDS159919F9" Name="Member" BaseType="Member" />
+  <BaseRace ID="BSDS9A264EA9" Name="Human" species="Human" />
+  <Description />
+  <Special />
+  <WPermissions />
+  <SPermissions />
+  <PPermissions />
+  <Weapons />
+  <SkillsAndAbilities />
+  <Psys />
+  <Items />
+</BaseUnit>

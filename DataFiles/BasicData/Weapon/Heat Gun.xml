@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS10AD98BB" Name="Heat Gun" Range="24" MvsP="6" MvsA="6" SvMod="0" SIOR="6" Shots="1" Cost="170" BaseType="Gun">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS78536172" Name="Energy" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description> </Description>
+  <Special>When shooting at a target at half range or less the Heat guns MvsP=7 and MvsA=8</Special>
+</Weapon>

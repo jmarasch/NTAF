@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS57B31A02" Name="Block" Cost="0" SpeciesCanUseSkill="All" Group="ArmsMaster">
+  <Description>The model may make one extra block per turn</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF8F13F38" Name="Arms Master" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

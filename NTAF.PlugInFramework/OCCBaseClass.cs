@@ -113,6 +113,7 @@ namespace NTAF.PlugInFramework {
         /// </summary>
         public virtual Object[] Objects {
             get { return i_Colector.ToArray() as Object[]; }
+            set { }
             }
 
         /// <summary>

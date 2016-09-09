@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS9BD816F5" Name="Ammo Reload" Cost="25" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>If you fail an SIOR you may reload the weapon next turn and continue as though the roll never happened, one use item, when its used its gone till you buy more</Description>
+</Item>

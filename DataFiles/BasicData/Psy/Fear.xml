@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS2DA1BD57" Name="Fear" ppCost="3" Range="0" Template="None" TemplateSize="" PsyTypes="Mental">
+  <Description />
+  <Effect>Fear creates an illusion that a model is scarier than it really is. The spell lasts d4 rounds and adds d12 HF (horror) to a model within 24" of the caster.</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS599F7359" Name="Generic" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

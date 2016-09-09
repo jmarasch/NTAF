@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDS65EBB5DF" Name="Grenade TRE" Range="(Mx2)+6" MvsP="0" MvsA="0" SvMod="0" SIOR="11" Shots="1" Cost="50" BaseType="Thrown">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDSF95E3BB8" Name="Thrown Weapons" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description />
+  <Special>Lowers armour value for vehicles by 6 for d3 rounds.</Special>
+</Weapon>

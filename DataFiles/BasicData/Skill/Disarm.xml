@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSE0A25020" Name="Disarm" Cost="0" SpeciesCanUseSkill="Human Mutant Genics_B Aquatic Fun" Group="Arsonist">
+  <Description>You may re-roll failed bomb making rolls once for each bomb.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF4D4D86A" Name="Arsonists" SpeciesCanEquip="Human Mutant Undead Genics_B Aquatic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS7D990CD9" Name="Life Reaping" ppCost="2" Range="0" Template="None" TemplateSize="" PsyTypes="Medical">
+  <Description />
+  <Effect>caster is allowed to steal up to d4 life from another model up to 12" away. The model getting drained may make a WP save (d12 under WP) to stop the spell</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS3BB830F7" Name="Medical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

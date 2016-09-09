@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDS1842C76A" Name="Heavy Healing" ppCost="4" Range="0" Template="None" TemplateSize="" PsyTypes="Medical">
+  <Description />
+  <Effect>D12 hp regained, model must be with in 12”</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS3BB830F7" Name="Medical" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

@@ -1,0 +1,5 @@
+﻿<Psy ID="BSDSFAB771B0" Name="Fireball" ppCost="1" Range="0" Template="None" TemplateSize="" PsyTypes="Fire">
+  <Description />
+  <Effect>MvsP = 2, MvsA = 1, per point spent. follow element rules</Effect>
+  <RequiresPermission d2p1:type="PsyPermission" ID="BSDS7133A8B3" Name="Fire" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Psy>

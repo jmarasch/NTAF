@@ -1,0 +1,5 @@
+﻿<Weapon ID="BSDSBDC39F88" Name="Chain Saw" Range="0" MvsP="7" MvsA="4" SvMod="0" SIOR="8" Shots="0" Cost="130" BaseType="HandToHand">
+  <RequiresPermission d2p1:type="WeaponPermission" ID="BSDS5AD1942E" Name="Mechanical Hand to Hand" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Description>This is my chan saw and this is my BOOM STICK!!!</Description>
+  <Special>Runs on gas so it can run out, Parry</Special>
+</Weapon>

@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS4D7834C3" Name="Gask Mask" Cost="25" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Nullifies poison gas effects</Description>
+</Item>

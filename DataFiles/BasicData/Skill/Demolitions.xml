@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDS6B03AFE2" Name="Demolitions" Cost="0" SpeciesCanUseSkill="Human Mutant Genics_B Aquatic Fun" Group="Arsonist">
+  <Description>Makes all homemade bombs blast diameters 1½x their original size.</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSF4D4D86A" Name="Arsonists" SpeciesCanEquip="Human Mutant Undead Genics_B Aquatic Fun" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

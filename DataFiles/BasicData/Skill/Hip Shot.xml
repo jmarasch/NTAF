@@ -1,0 +1,5 @@
+﻿<Skill ID="BSDSE5CBE712" Name="Hip Shot" Cost="0" SpeciesCanUseSkill="All" Group="Gunman">
+  <Description>The model suffers no penalty to shooting at a model coming from or into cover when on over watch</Description>
+  <ModifiesStats />
+  <RequiresPermission d2p1:type="SkillPermission" ID="BSDSCEB1C6F7" Name="Gunman" SpeciesCanEquip="All" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance" />
+</Skill>

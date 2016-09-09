@@ -1,0 +1,4 @@
+﻿<Item ID="BSDSA4FF7337" Name="Duct Tape" Cost="200" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>Allows you to combine any two weapons in to one weapon, one use item, when its used its gone till you buy more</Description>
+</Item>

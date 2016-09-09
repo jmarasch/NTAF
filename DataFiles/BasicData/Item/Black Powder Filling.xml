@@ -1,0 +1,4 @@
+﻿<Item ID="BSDS9D7356A7" Name="Black Powder Filling" Cost="1" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats />
+  <Description>MvsP = 1, .5” diameter, costs 1 unit</Description>
+</Item>

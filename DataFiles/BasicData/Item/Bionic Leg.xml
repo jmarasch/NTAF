@@ -1,0 +1,6 @@
+﻿<Item ID="BSDS737C5AAC" Name="Bionic Leg" Cost="500" TypesCanUse="All" SpeciesCanEquip="All">
+  <ModifiesStats>
+    <StatsMod StatToMod="Agility" Modifier="1" />
+  </ModifiesStats>
+  <Description />
+</Item>

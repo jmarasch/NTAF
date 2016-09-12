@@ -1,0 +1,36 @@
+﻿<NTDataFileExt>
+  <Collectors d2p1:type="ArchetypeCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="BaseUnits" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="ItemCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="PsyCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="PsyPermissionCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="RaceCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="SkillCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="SkillPermissionCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="WeaponCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Collectors d2p1:type="WeaponPermissionCollector" xmlns:d2p1="http://www.w3.org/2001/XMLSchema-instance">
+    <Objects />
+  </Collectors>
+  <Author>Jakob</Author>
+  <AuthorEmail>jakob@j.com</AuthorEmail>
+  <AuthorWebsite />
+  <Description />
+</NTDataFileExt>

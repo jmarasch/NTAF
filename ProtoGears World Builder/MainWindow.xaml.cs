@@ -65,9 +65,9 @@ namespace ProtoGears_World_Builder {
             
             }
 
-#endregion Constructors
+        #endregion Constructors
 
-#region Properties
+        #region Properties
 
         private TreeViewItem CurrentDataFileNode {
             get {
@@ -79,6 +79,15 @@ namespace ProtoGears_World_Builder {
                         }
 
                     return selectedNode;
+                    } catch (Exception ex) {
+                    return null;
+                    }
+                }
+            }
+        private TreeViewItem SelectedNode {
+            get {
+                try {
+                    return (TreeViewItem)DataView.SelectedItem;
                     } catch (Exception ex) {
                     return null;
                     }
@@ -572,12 +581,15 @@ namespace ProtoGears_World_Builder {
             string folder = GetFolderLocation();
 
             if (folder == "") return;
-            if (((FrameworkElement)sender).Name == "btnExport")
+            if ((FrameworkElement)sender == btnExport)
                 DataFile.ExportToXMLSingle(folder + "\\");
-            if (((FrameworkElement)sender).Name == "btnExportTEXT")
+            if ((FrameworkElement)sender == btnExportTEXT)
                 DataFile.ExportToTXT(folder + "\\");
-            if (((FrameworkElement)sender).Name == "btnExportCSV")
+            if ((FrameworkElement)sender == btnExportCSV)
                 DataFile.ExportToCSV(folder + "\\");
+            if ((FrameworkElement)sender == buttonExportGroup)
+                DataFile.ExportCollectorToXML(folder + "\\", SelectedNode.Header.ToString());
+            
             }
 
         private string GetFolderLocation() {
@@ -599,6 +611,43 @@ namespace ProtoGears_World_Builder {
                 return dlg.FileName;
                 }
             return "";
+            }
+
+        private void btnPurge_Click(object sender, RoutedEventArgs e) {
+            DataFile.PurgeFile();
+            }
+
+        private void btnLockFile_Click(object sender, RoutedEventArgs e) {
+            InputWindows.InputPasswordWindow pswrdBox;
+            if (DataFile.FileLocked) {
+                //get password from user
+                pswrdBox = new InputWindows.InputPasswordWindow("Password:", false);
+                if (pswrdBox.ShowDialog() == false) return;
+                if (DataFile.CheckPassword(pswrdBox.Answer)) {
+                    DataFile.UnLockFile(pswrdBox.Answer);
+                    } else {
+                    MessageBox.Show("Invalid Password...");
+                    }
+                } else {
+                pswrdBox = new InputWindows.InputPasswordWindow("Password:", true);
+                if (pswrdBox.ShowDialog() == false) return;
+                DataFile.FilePassword = pswrdBox.Answer;
+                DataFile.LockFile();
+                }
+            }
+
+        private void btnSetFilePassword(object sender, RoutedEventArgs e) {
+            if (DataFile.FilePassword != "") {
+                InputWindows.InputPasswordWindow pswrdBox = new InputWindows.InputPasswordWindow("Enter Current Password:");
+                if (pswrdBox.ShowDialog() == false) return;
+                if(!DataFile.CheckPassword(pswrdBox.Answer)) {
+                    MessageBox.Show("Incorrect Password!");
+                    return;
+                    }
+                }
+            InputWindows.InputPasswordWindow newPassBox = new InputWindows.InputPasswordWindow("Enter New Password:", true);
+            if (newPassBox.ShowDialog() == false) return;
+            DataFile.FilePassword = newPassBox.Answer;
             }
 
         private bool CheckForSave() {

@@ -17,17 +17,33 @@ using System.ComponentModel;
 namespace NTAF.Core {
     [Serializable()]//, XmlInclude(typeof(KeyVal<String,Version>))]
     public class NTDataFile : ITrackChange, ILockable, IUpdateProgress, ILink {
-        #region Enums
-        public enum NTFileType { NTX, NTD }
-        public enum NTSaveType { FileDefault, SaveAs, Copy, CopyAs };
-        private enum UndoActionKeyWords {
-            Drop,
-            Add,
-            Edit
-            }
-        #endregion
 
-        #region fields
+        #region Fields
+
+        private char[] _IDPreFix;
+
+        //private List<String>
+        //    I_RequirePlugins = new List<string>();
+        private string _Path;
+
+        OperationLogger actions = new OperationLogger();
+
+        private bool dataChanged = false;
+
+        private string datafilename = "";
+
+        private bool fileLock = false;
+
+        /// <summary>
+        /// stored encrypted password
+        /// </summary>
+        private string filePassword = "";
+
+        private List<OCCBase>
+            i_OCCPlugins = new List<OCCBase>(PluginEngine.GetOCCPlugIns());
+
+        private OrphanCollector
+            orphanCollector = new PlugInFramework.OrphanControls.OrphanCollector();
 
         //ContextMenu
         //    i_FileMenu,
@@ -35,49 +51,11 @@ namespace NTAF.Core {
         //    i_NodeMenu,
         //    i_OrphanRootMenu,
         //    i_OrphansMenu;
-
-        private List<OCCBase>
-            i_OCCPlugins = new List<OCCBase>(PluginEngine.GetOCCPlugIns());
-
         //private List<ObjectClassBase>
         //    i_Orphans = new List<ObjectClassBase>();
-
-        private OrphanCollector
-            orphanCollector = new PlugInFramework.OrphanControls.OrphanCollector();
-
         OrphanTree orphanTree = new OrphanTree();
 
-        //private List<String>
-        //    I_RequirePlugins = new List<string>();
-
-        private char[] _IDPreFix;
-        private string _Path;
-        private bool dataChanged = false;
-
-        private bool fileLock = false;
-        private string datafilename = "";
-
-        /// <summary>
-        /// stored encrypted password
-        /// </summary>
-        private string filePassword = "";
-
-        OperationLogger actions = new OperationLogger();
-
-        //private List<ObjectClassBase>
-        //    orphanedObjects = new List<ObjectClassBase>();
-        #endregion
-
-        #region Deligates
-        public delegate void NTDataFileDisposing(NTDataFile DataFile);
-        #endregion
-
-        #region Events
-
-        public event NTEventHandler EventDataStateChanged;
-        public event NTEventHandler<ItemChangedArgs> EventOrphansChanged;
-
-        #endregion Events
+        #endregion Fields
 
         #region Constructors
 
@@ -85,15 +63,14 @@ namespace NTAF.Core {
             IDPreFix = "NULL";
             }
 
-        //public NTDataFile( NTDataFile dataFile ) {
-        //    throw new System.NotImplementedException();
-        //}
-
         public NTDataFile(String path) {
             FullFileName = path;
             IDPreFix = "NULL";
             }
 
+        //public NTDataFile( NTDataFile dataFile ) {
+        //    throw new System.NotImplementedException();
+        //}
         public NTDataFile(String path, string idPreFix) {
             _Path = path;
             IDPreFix = idPreFix;
@@ -105,102 +82,45 @@ namespace NTAF.Core {
             DataFileName = dataSetName;
             }
 
-        #endregion
+        #endregion Constructors
+
+        #region Delegates
+
+        public delegate void NTDataFileDisposing(NTDataFile DataFile);
+
+        #endregion Delegates
+
+        #region Events
+
+        //private List<ObjectClassBase>
+        //    orphanedObjects = new List<ObjectClassBase>();
+        public event NTEventHandler EventDataStateChanged;
+
+        public event NTEventHandler<ItemChangedArgs> EventOrphansChanged;
+
+        public event NTEventHandler LockStatusChange;
+
+        public event NTEventHandler<UpdateProgressEventArgs> Update;
+
+        public event NTEventHandler Updated;
+
+        public event NTEventHandler<UpdaterEventArgs> Updating;
+
+        #endregion Events
+
+        #region Enums
+
+        public enum NTFileType { NTX, NTD }
+        public enum NTSaveType { FileDefault, SaveAs, Copy, CopyAs };
+        private enum UndoActionKeyWords {
+            Drop,
+            Add,
+            Edit
+            }
+
+        #endregion Enums
 
         #region Properties
-        [XmlElement()]        
-        public string Author { get; set; }
-
-        [XmlElement()]
-        public string AuthorWebsite { get; set; }
-
-        [XmlElement()]
-        public string AuthorEmail { get; set; }
-
-        [XmlElement(), ReadOnly(true)]
-        public DateTime DateCreated { get; set; }
-
-        [XmlElement(), ReadOnly(true)]
-        public DateTime DateLastEdited { get; set; }
-
-        [XmlElement()]
-        public string Description { get; set; }
-
-        [XmlAttribute(), ReadOnly(true)]
-        public string DataFileName {
-            get { return datafilename; }
-            set {
-                datafilename = value;
-
-                if (EventDataStateChanged != null)
-                    EventDataStateChanged();
-                }
-            }
-
-        [XmlIgnore(), Browsable(false)]
-        public bool DataChanged {
-            get { return dataChanged; }
-            set {
-                dataChanged = value;
-
-                if (EventDataStateChanged != null)
-                    EventDataStateChanged();
-                }
-            }
-
-        [Browsable(false)]
-        public T[] GetObjects<T>() {
-            List<T>
-                retVal = new List<T>();
-
-            foreach (OCCBase oc in i_OCCPlugins) {
-                if (typeof(T) == oc.CollectionType)
-                    foreach (Object obj in oc.Objects) {
-                        if (obj is T) {
-                            retVal.Add((T)obj);
-                            }
-                        }
-                }
-
-            return retVal.ToArray();
-            }
-
-        [Browsable(false)]
-        public OCCBase GetCollector(Type T) {
-            OCCBase
-                retVal = null;
-
-            foreach (OCCBase iocc in i_OCCPlugins) {
-                if (iocc.CollectionType == T) {
-                    retVal = iocc;
-                    break;
-                    }
-                }
-
-            return retVal;
-            }
-
-        [Browsable(false)]
-        public OCCBase GetCollector(Object T) {
-            OCCBase
-                retVal = null;
-
-            foreach (OCCBase iocc in i_OCCPlugins)
-                if (iocc.IsOfType(T.GetType()))
-                    return iocc;
-
-            return retVal;
-            }
-
-        [XmlIgnore(), Browsable(false)]
-        public OCCBase[] Collectors {
-            get { return i_OCCPlugins.ToArray(); }
-            }
-
-        [XmlIgnore(), Browsable(false)]
-        public ObjectClassBase[] Orphans {
-            get { return (ObjectClassBase[])orphanCollector.Objects.ToArray(); }
-            }
 
         [XmlIgnore(), Browsable(false)]
         public ObjectClassBase[] AllData {
@@ -218,14 +138,77 @@ namespace NTAF.Core {
                 }
             }
 
+        [XmlElement()]
+        public string Author { get; set; }
+
+        [XmlElement()]
+        public string AuthorEmail { get; set; }
+
+        [XmlElement()]
+        public string AuthorWebsite { get; set; }
+        [XmlIgnore(), Browsable(false)]
+        public OCCBase[] Collectors {
+            get { return i_OCCPlugins.ToArray(); }
+            }
+
+        [XmlIgnore(), Browsable(false)]
+        public bool DataChanged {
+            get { return dataChanged; }
+            set {
+                dataChanged = value;
+
+                if (EventDataStateChanged != null)
+                    EventDataStateChanged();
+                }
+            }
+
+        [XmlAttribute(), ReadOnly(true)]
+        public string DataFileName {
+            get { return datafilename; }
+            set {
+                datafilename = value;
+
+                if (EventDataStateChanged != null)
+                    EventDataStateChanged();
+                }
+            }
+
+        [XmlElement(), ReadOnly(true)]
+        public DateTime DateCreated { get; set; }
+
+        [XmlElement(), ReadOnly(true)]
+        public DateTime DateLastEdited { get; set; }
+
+        [XmlElement()]
+        public string Description { get; set; }
         /// <summary>
-        /// Gets or sets the full path to the file
-        /// "C:\blah\blah\blah.NTD"
+        /// Gets the full path to the file but doesn't include the file name
         /// </summary>
         [XmlIgnore(), Browsable(false)]
-        public string FullFileName {
-            get { return _Path; }
-            set { _Path = value; }
+        public string FileDir {
+            get { return System.IO.Path.GetDirectoryName(_Path); }
+            }
+
+        [XmlIgnore(), Browsable(false)]
+        public string FileExtention {
+            get { return System.IO.Path.GetExtension(_Path); }
+            }
+
+        //new
+        /// <summary>
+        /// Returns true of the file is locked
+        /// </summary>
+        [XmlIgnore(), ReadOnly(true)]
+        public bool FileLocked {
+            get {
+                bool retval = false;
+                if (Properties.Settings.Default.Loading)
+                    retval = false;
+                else
+                    retval = fileLock;
+
+                return retval;
+                }
             }
 
         /// <summary>
@@ -244,22 +227,47 @@ namespace NTAF.Core {
             get { return System.IO.Path.GetFileNameWithoutExtension(_Path); }
             }
 
+        //new
         /// <summary>
-        /// Gets the full path to the file but doesn't include the file name
+        /// Sets the file password if the file is not currently locked
+        /// or takes a clear type string, encrypts it and stores it in the file
         /// </summary>
-        [XmlIgnore(), Browsable(false)]
-        public string FileDir {
-            get { return System.IO.Path.GetDirectoryName(_Path); }
-            }
+        /// <exception cref="FileLockedException">FileLockedException - if the file is locked</exception>
+        [XmlAttribute(), Browsable(false)]
+        public string FilePassword {
+            get { return filePassword; }
+            set {
+                if (FileLocked)
+                    throw new FileLockedException("File is locked, and cannot be edited.");
 
-        [XmlIgnore(), Browsable(false)]
-        public string FileExtention {
-            get { return System.IO.Path.GetExtension(_Path); }
+                if (value.Trim() == String.Empty) {
+                    filePassword = value;
+                    fileLock = false;
+                    DataChanged = true;
+                    return;
+                    }
+
+                if (!Properties.Settings.Default.Loading) {
+                    filePassword = Security.Encrypt(value);
+                    DataChanged = true;
+                    } else
+                    filePassword = value;
+                }
             }
 
         [XmlIgnore(), Browsable(false)]
         public string FilePath {
             get { return _Path.Remove(_Path.LastIndexOf(System.IO.Path.GetFileName(_Path))); }
+            }
+
+        /// <summary>
+        /// Gets or sets the full path to the file
+        /// "C:\blah\blah\blah.NTD"
+        /// </summary>
+        [XmlIgnore(), Browsable(false)]
+        public string FullFileName {
+            get { return _Path; }
+            set { _Path = value; }
             }
 
         /// <summary>
@@ -330,211 +338,62 @@ namespace NTAF.Core {
                 return retVal.ToArray();
                 }
             }
-        //todo try and create a warning system when loading if a collection is missing non-required plug-ins like the tree node or at least one editor
 
-        public Type[] GetLoadedPluginTypes() {
-            List<Type>
-                    retVal = new List<Type>();
-
-            foreach (Assembly ass in PluginEngine.LoadedAssemblies()) {
-                foreach (Type typ in ass.GetTypes()) {
-                    if (typ.IsSubclassOf(typeof(OCCBase))) {
-                        retVal.Add(typ);
-                        }
-                    if (typ.IsSubclassOf(typeof(ObjectClassBase))) {
-                        retVal.Add(typ);
-                        }                   
-                    }
-                }
-
-            //retVal.AddRange(ass.GetTypes().Where(t=>t is OCCBase));
-            return retVal.ToArray();
-            }
-
-        public SerializableVersion[] RequiredPlugins() {
-            //get {
-            List<SerializableVersion>
-                retVal = new List<SerializableVersion>();
-
-            List<Type>
-                requiredTypes = new List<Type>();
-
-            foreach (OCCBase occ in this.Collectors) {
-                if (occ.Count >= 1) {
-                    foreach (ObjectClassBase oc in PluginEngine.GetObjectClasses()) {
-                        if (oc.CollectionType == occ.CollectionType) {
-                            requiredTypes.Add(oc.GetType());
-                            break;
-                            }
-                        }
-
-                    requiredTypes.Add(occ.GetType());
-                    }
-                }
-
-            foreach (Type typ in requiredTypes) {
-                List<object>
-                       attributes = new List<object>(typ.GetCustomAttributes(typeof(ObjectClassPlugIn), true));
-
-                if (attributes.Count >= 1)
-                    foreach (ObjectClassPlugIn ocpi in attributes)
-                        retVal.Add(ocpi.version);
-
-                attributes = new List<object>(typ.GetCustomAttributes(typeof(OCCPlugIn), true));
-
-                if (attributes.Count >= 1)
-                    foreach (OCCPlugIn occpi in attributes)
-                        retVal.Add(occpi.version);
-                }
-
-            return retVal.ToArray();
-            }
-
-        Boolean checkForRequiredPlugins(SerializableVersion[] requiredPlugins, out String[] MessageList) {
-            List<SerializableVersion>
-                loadedPlugs = new List<SerializableVersion>(LoadedPlugins);
-
-            List<String>
-                msgList = new List<string>();
-
-            Boolean
-                retval = true,
-                currentTest = true;
-
-            foreach (SerializableVersion reqPlugin in requiredPlugins) {
-                currentTest = loadedPlugs.Contains(reqPlugin);
-                if (!currentTest) {//check if its a version issue
-                    foreach (SerializableVersion ldplug in loadedPlugs) {
-                        if (ldplug.Name == reqPlugin.Name && ldplug.Type == reqPlugin.Type) {//the plugin is available
-                            if (reqPlugin > ldplug) {//required version is newer than the installed version
-                                currentTest = false;
-                                msgList.Add(String.Format("Required plugin {0} is newer than installed version,\nFound version {1}\nRequired version {2}",
-                                                            String.Format("{1}:{0}", reqPlugin.Name, reqPlugin.Type),
-                                                            ldplug.Version(),
-                                                            reqPlugin.Version()));
-                                } else
-                                currentTest = true;
-                            }
-                        }
-                    if (!currentTest)//still not found
-                        msgList.Add(String.Format("The plugin {0} could not be found and is required to load this file",
-                                                    reqPlugin.ToString()));
-
-                    if (!currentTest && retval)
-                        retval = false;
-                    }
-                }
-            MessageList = msgList.ToArray();
-            return retval;
+        [XmlIgnore(), Browsable(false)]
+        public ObjectClassBase[] Orphans {
+            get { return (ObjectClassBase[])orphanCollector.Objects.ToArray(); }
             }
 
         #endregion Properties
 
-        #region File security
-        public event NTEventHandler LockStatusChange;
-        //new
-        /// <summary>
-        /// Returns true of the file is locked
-        /// </summary>
-        [XmlIgnore(), ReadOnly(true)]
-        public bool FileLocked {
-            get {
-                bool retval = false;
-                if (Properties.Settings.Default.Loading)
-                    retval = false;
-                else
-                    retval = fileLock;
+        #region Methods
 
-                return retval;
+        public void Add(ObjectClassBase toAdd) {
+            if (FileLocked)
+                throw new FileLockedException("File is locked, and cannot be edited.");
+
+            //try {
+            OCCBase
+                tmpOCC = GetCollector(toAdd);
+
+            if (tmpOCC == null)
+                throw new InvalidOperationException("Could not find that type among the plugins");
+
+            if (tmpOCC.Exists(toAdd))
+                throw new ItemException("That Object Already exists in the collection");
+
+            ((ObjectClassBase)toAdd).MyDataChanged += new NTEventHandler(NTDataFile_EventMyDataChanged);
+
+            if (toAdd is IOwner)
+                ((IOwner)toAdd).myOwner = this;
+
+            tmpOCC.AddObject(toAdd);
+
+            DataChanged = true;
+
+            if (!NTAF.Core.Properties.Settings.Default.PerformingAction & !Properties.Settings.Default.Loading)
+                actions.AddUndoableOpp(UndoActionKeyWords.Add, toAdd);
+            //} catch (Exception ex) { throw ex; }
+            }
+
+        public void AddOrpahns(ObjectClassBase[] NewOrphans) {
+            foreach (ObjectClassBase orphan in NewOrphans) {
+                AddOrphan(orphan);
                 }
             }
-        //new
-        /// <summary>
-        /// Sets the file password if the file is not currently locked
-        /// or takes a clear type string, encrypts it and stores it in the file
-        /// </summary>
-        /// <exception cref="FileLockedException">FileLockedException - if the file is locked</exception>
-        [XmlAttribute(),Browsable(false)]
-        public string FilePassword {
-            get { return filePassword; }
-            set {
-                if (FileLocked)
-                    throw new FileLockedException("File is locked, and cannot be edited.");
 
-                if (value.Trim() == String.Empty) {
-                    filePassword = value;
-                    fileLock = false;
-                    DataChanged = true;
-                    return;
-                    }
-
-                if (!Properties.Settings.Default.Loading) {
-                    filePassword = Security.Encrypt(value);
-                    DataChanged = true;
-                    } else
-                    filePassword = value;
-                }
-            }
-        /// <summary>
-        /// locks the file if a password has been set
-        /// </summary>
-        /// <exception cref="Exception">standard plain exception thrown</exception>
-        public void LockFile() {
-            if (filePassword == "")
-                throw new NullPasswordException("No Password Set");
-
-            fileLock = true;
-
-            if (LockStatusChange != null)
-                LockStatusChange();
-
-
-
-            }
-        /// <summary>
-        /// will unlock this file if passed password matched stored password
-        /// </summary>
-        /// <param name="cleartypePassword">un-encrypted password string used to lock the file</param>
-        public void UnLockFile(string cleartypePassword) {
-            //todo
-            //check that passwords match if not throw error otherwise unlock the file for editing
-            if (CheckPassword(cleartypePassword)) {
-                fileLock = false;
-                if (LockStatusChange != null)
-                    LockStatusChange();
-                } else
-                throw new InvalidPasswordException("Password incorrect");
+        public void AddOrphan(ObjectClassBase OrphanedObject) {
+            if (!orphanCollector.Exists(OrphanedObject))
+                MoveToOrphanList(OrphanedObject, null);
+            //orphanedObjects.Add( OrphanedObject );
             }
 
         public bool CheckPassword(string cleartypePassword) {
             return filePassword == Security.Encrypt(cleartypePassword);
             }
 
-        #endregion
-
-        #region methods
-        public void DoUndo() {
-            try {
-                NTAF.Core.Properties.Settings.Default.PerformingAction = true;
-                Operation action = actions.UndoAction();
-                switch ((UndoActionKeyWords)action.Action) {
-                    //in the event of undoing an action we need to do the reverse of the action that happened
-                    case UndoActionKeyWords.Add:
-                        //Add should delete what was added
-                        Drop((ObjectClassBase)action.Data);
-                        break;
-                    case UndoActionKeyWords.Drop:
-                        //Drop needs to re add the removed item and remove from orphan list
-                        Add((ObjectClassBase)action.Data);
-                        DropOrphan((ObjectClassBase)action.Data);
-                        break;
-                    case UndoActionKeyWords.Edit:
-                        //edit needs to un-edit
-                        Object[] tmpArray = (Object[])action.Data;
-                        Edit((ObjectClassBase)tmpArray[1], (ObjectClassBase)tmpArray[0]);
-                        break;
-                    }
-                } catch { throw; } finally { NTAF.Core.Properties.Settings.Default.PerformingAction = false; }
+        public void ClearOrphans() {
+            orphanCollector.Clear();
             }
 
         public void DoRedo() {
@@ -560,8 +419,28 @@ namespace NTAF.Core {
                 } catch { throw; } finally { NTAF.Core.Properties.Settings.Default.PerformingAction = false; }
             }
 
-        public override string ToString() {
-            return base.ToString();
+        public void DoUndo() {
+            try {
+                NTAF.Core.Properties.Settings.Default.PerformingAction = true;
+                Operation action = actions.UndoAction();
+                switch ((UndoActionKeyWords)action.Action) {
+                    //in the event of undoing an action we need to do the reverse of the action that happened
+                    case UndoActionKeyWords.Add:
+                        //Add should delete what was added
+                        Drop((ObjectClassBase)action.Data);
+                        break;
+                    case UndoActionKeyWords.Drop:
+                        //Drop needs to re add the removed item and remove from orphan list
+                        Add((ObjectClassBase)action.Data);
+                        DropOrphan((ObjectClassBase)action.Data);
+                        break;
+                    case UndoActionKeyWords.Edit:
+                        //edit needs to un-edit
+                        Object[] tmpArray = (Object[])action.Data;
+                        Edit((ObjectClassBase)tmpArray[1], (ObjectClassBase)tmpArray[0]);
+                        break;
+                    }
+                } catch { throw; } finally { NTAF.Core.Properties.Settings.Default.PerformingAction = false; }
             }
 
         /// <summary>
@@ -599,32 +478,13 @@ namespace NTAF.Core {
                 } catch (Exception ex) { throw ex; }
             }
 
-        public void Add(ObjectClassBase toAdd) {
-            if (FileLocked)
-                throw new FileLockedException("File is locked, and cannot be edited.");
-
-            //try {
-                OCCBase
-                    tmpOCC = GetCollector(toAdd);
-
-                if (tmpOCC == null)
-                    throw new InvalidOperationException("Could not find that type among the plugins");
-
-                if (tmpOCC.Exists(toAdd))
-                    throw new ItemException("That Object Already exists in the collection");
-
-                ((ObjectClassBase)toAdd).MyDataChanged += new NTEventHandler(NTDataFile_EventMyDataChanged);
-
-                if (toAdd is IOwner)
-                    ((IOwner)toAdd).myOwner = this;
-
-                tmpOCC.AddObject(toAdd);
-
-                DataChanged = true;
-
-                if (!NTAF.Core.Properties.Settings.Default.PerformingAction & !Properties.Settings.Default.Loading)
-                    actions.AddUndoableOpp(UndoActionKeyWords.Add, toAdd);
-                //} catch (Exception ex) { throw ex; }
+        /// <summary>
+        /// removes object from orphaning collector
+        /// </summary>
+        /// <param name="OrphanedObject"></param>
+        public void DropOrphan(ObjectClassBase OrphanedObject) {
+            if (orphanCollector.Exists(OrphanedObject))
+                orphanCollector.DropObject(OrphanedObject);
             }
 
         public void Edit(ObjectClassBase toEdit, ObjectClassBase NewValues) {
@@ -674,113 +534,437 @@ namespace NTAF.Core {
                 } catch (Exception ex) { throw ex; }
             }
 
-        private void ReplaceReferences(ObjectClassBase toEdit, ObjectClassBase NewValues) {
-            byte objLayer = 0;
+        public void ExportToCSV(String path) {
+            StreamWriter sw = new StreamWriter(new FileStream(path + FileNameNoExt + ".csv", FileMode.Create));
+            sw.WriteLine("This file can be loaded an any good spread sheet program as table data. when loading be sure to split the data via the pipe '|' found above the '\\' key");
+            try {
+                bool printHeader = true;
 
-            //figure out the objects level
-            foreach (OCCBase colector in Collectors)
-                if (colector.CollectionType == toEdit.CollectionType)
-                    objLayer = colector.objectLayer;
+                foreach (ObjectClassBase objectClass in PluginEngine.GetObjectClasses()) {
+                    sw.WriteLine("Table:" + objectClass.CollectionName);
+                    foreach (ObjectClassBase obj in this.AllData) {
+                        if (obj.CollectionType == ((ObjectClassBase)objectClass).CollectionType) {
 
-            for (int i = objLayer + 1; i <= PluginEngine.MAX_OBJECT_LAYER; ++i)
-                foreach (OCCBase occ in Collectors)
-                    if (occ.objectLayer == i)
-                        foreach (ObjectClassBase obj in occ)
-                            obj.ReplaceReferences(toEdit, NewValues);
-            }
+                            DataMember[] dataMembers = obj.getDataMembers();
 
-        private bool CheckForReferences(ObjectClassBase Item) {
-            byte objLayer = 0;
+                            String line = "";
 
-            //figure out the objects level
-            OCCBase colector = Collectors.Where(c => c.CollectionType == Item.CollectionType).First();
-            objLayer = colector.objectLayer;
+                            if (printHeader) {
 
-            foreach (OCCBase occ in Collectors.Where(c => c.objectLayer > colector.objectLayer))
-                foreach (ObjectClassBase obj in occ)
-                    if (obj.CheckForReferences(Item))
-                        return true;
+                                foreach (DataMember dataMember in dataMembers)
+                                    line += String.Format("{0}|", dataMember.Field);
+                                line = line.TrimEnd(new[] { ' ', ',' });
+                                sw.WriteLine(line);
 
-            return false;
-            }
+                                line = "";
 
-        void NTDataFile_EventMyDataChanged() {
-            //todo throw new NotImplementedException();
-            }
+                                printHeader = false;
+                                }
 
-        private void MoveToOrphanList(ObjectClassBase Item, OCCBase OCC) {
-            //find the proper insertion point and put the now orphaned object in the list
-            //if (orphanCollector.Count > 0) {
-            //    for (int i = 0; i <= orphanCollector.Count - 1; i++) {
-            //        if (Item.Name.CompareTo(orphanCollector[i].Name) < 0) {
-            //            orphanCollector. Insert(i, Item); break;
-            //        }
-            //    }
-            //    if (!orphanCollector.Exists(Item))
-            //        orphanCollector.AddObject(Item);
-            //}
-            //else {
-            orphanCollector.AddObject(Item);
-            //}
+                            try {
 
-            if (OCC != null)
-                OCC.DropObject(Item);
+                                foreach (DataMember dataMember in dataMembers)
+                                    line += String.Format("{0}|", dataMember.Data);
+                                line = line.TrimEnd(new[] { ' ', ',' });
+                                sw.WriteLine(line);
 
-            if (EventOrphansChanged != null)
-                EventOrphansChanged(new ItemChangedArgs(orphanCollector.FindIndex(Item), Item, ArgAction.Add));
-            }
+                                } catch (Exception ex) {
+                                throw new Exception("Object out put error", ex);
+                                }
+                            }
 
-        private void RemoveFromOrphanList(ObjectClassBase Item) {
-            int index = orphanCollector.FindIndex(Item);
+                        }
+                    sw.WriteLine("");
+                    printHeader = true;
 
-            orphanCollector.DropObject(Item);
-
-            if (EventOrphansChanged != null)
-                EventOrphansChanged(new ItemChangedArgs(index, Item, ArgAction.Remove));
-            }
-
-        public void AddOrphan(ObjectClassBase OrphanedObject) {
-            if (!orphanCollector.Exists(OrphanedObject))
-                MoveToOrphanList(OrphanedObject, null);
-            //orphanedObjects.Add( OrphanedObject );
-            }
-
-        /// <summary>
-        /// removes object from orphaning collector
-        /// </summary>
-        /// <param name="OrphanedObject"></param>
-        public void DropOrphan(ObjectClassBase OrphanedObject) {
-            if (orphanCollector.Exists(OrphanedObject))
-                orphanCollector.DropObject(OrphanedObject);
-            }
-
-        public void ClearOrphans() {
-            orphanCollector.Clear();
-            }
-
-        public void AddOrpahns(ObjectClassBase[] NewOrphans) {
-            foreach (ObjectClassBase orphan in NewOrphans) {
-                AddOrphan(orphan);
+                    }
+                } catch (Exception ex) {
+                throw new NTFileExecption(Path.GetFileName(path), "Could not export data", ex);
+                } finally {
+                sw.Close();
                 }
             }
 
-        /// <summary>
-        /// Adds the orphaned object to the orphaned list if it doesn't exist
-        /// </summary>
-        /// <param name="orphanedObjRef">Object that was orphaned</param>
-        /// <returns>the object that was passed in but returns it from the linked orphan list</returns>
-        internal ObjectClassBase updateOrphaning(ObjectClassBase orphanedObjRef) {
-            //find out if obj exists in orphaned list
-            if (!orphanCollector.Exists(orphanedObjRef)) {
-                //doesn't exist make sure it has no owner info
-                if (orphanedObjRef is IOwner)
-                    ((IOwner)orphanedObjRef).myOwner = null;
-                //add to the list
-                AddOrphan(orphanedObjRef);
+        public void ExportToTXT(String path) {
+            StreamWriter sw = new StreamWriter(new FileStream(path + FileNameNoExt + ".txt", FileMode.Create));
+
+            try {
+                foreach (Object obj in this.AllData) {
+                    try {
+                        if (!(obj is ObjectClassBase))
+                            throw new Exception(); //todo make this better
+
+                        ObjectClassBase
+                            IObj = (ObjectClassBase)obj;
+
+                        DataMember[] dataMembers = IObj.getDataMembers();
+
+                        sw.WriteLine(IObj.CollectionName);
+
+                        foreach (DataMember dataMember in dataMembers)
+                            sw.WriteLine(String.Format("{0}:{1}", dataMember.Field, dataMember.Data));
+
+                        sw.WriteLine("============================================================");
+
+                        } catch (Exception ex) {
+                        throw new Exception("Object out put error", ex);
+                        }
+                    }
+                } catch (Exception ex) {
+                throw new NTFileExecption(Path.GetFileName(path), "Could not export data", ex);
+                } finally {
+                sw.Close();
+                }
+            }
+
+        public void ExportToXML(String path) {
+            String
+                tmpFolder = path + FileNameNoExt;
+
+            if (!Directory.Exists(tmpFolder))
+                Directory.CreateDirectory(tmpFolder);
+            else
+                 if (Directory.GetDirectories(tmpFolder).Length != 0 || Directory.GetFiles(tmpFolder).Length != 0) {
+                Directory.Delete(tmpFolder, true);
+                Directory.CreateDirectory(tmpFolder);
                 }
 
-            //find and return object by its id
-            return null;//NTData.FindObjectClassBaseObjectByID( orphanedObjects.ToArray(), orphanedObjRef.ID );
+            try {
+                WriteObject(this, tmpFolder + "\\" + FileName.Split('.')[0]);
+
+                WriteObject(RequiredPlugins(), tmpFolder + "\\Requirements");
+
+                foreach (Object obj in this.AllData) {
+                    try {
+                        if (!(obj is ObjectClassBase))
+                            throw new Exception(); //todo make this better
+
+                        ObjectClassBase
+                            IObj = (ObjectClassBase)obj;
+
+                        String
+                            tmpFile = tmpFolder + "\\" + IObj.CollectionName + "\\" + IObj.Name;
+
+                        WriteObject(IObj, tmpFile);// + "!" + IObj.CollectionName);
+
+                        } catch (Exception ex) { }
+
+                    }
+                } catch (Exception ex) { }
+            }
+
+        public void ExportToXMLSingle(String path) {
+            String
+                tmpFolder = path + FileNameNoExt;
+
+            try {
+                NTDataFileExt fileout = new NTDataFileExt {
+                    InternalFile = this,
+                    Author = this.Author,
+                    AuthorEmail = this.AuthorEmail,
+                    AuthorWebsite = this.AuthorWebsite,
+                    Description = this.Description};
+
+                WriteObject2(fileout, tmpFolder);
+
+                } catch (Exception ex) { }
+            }
+
+        public void ExportCollectorToCSV(String path, string Collector) { }
+        public void ExportCollectorToCSV(String path, OCCBase Collector) { }
+        public void ExportCollectorToTXT(String path, string Collector) { }
+        public void ExportCollectorToTXT(String path, OCCBase Collector) { }
+        public void ExportCollectorToXML(String path, string Collector) {
+            OCCBase toExport = Collectors.First(c => c.CollectionName == Collector);
+            if (toExport == null) throw new ItemException("Collector Not Found");
+            ExportCollectorToXML(path, toExport);
+            }
+        public void ExportCollectorToXML(String path, OCCBase Collector) {
+            String
+                tmpFolder = path + FileNameNoExt + "-" + Collector.CollectionName;
+
+            try {
+                
+
+                WriteObject2(Collector, tmpFolder);
+
+                } catch (Exception ex) { }
+            }
+
+        public void ExportObjectToCSV(String path, string id) { }
+        public void ExportObjectToCSV(String path, ObjectClassBase obj) { }
+        public void ExportObjectToTXT(String path, string id) { }
+        public void ExportObjectToTXT(String path, ObjectClassBase obj) { }
+        public void ExportObjectToXML(String path, string id) { }
+        public void ExportObjectToXML(String path, ObjectClassBase obj) { }
+
+        public object FindObject(string ID) {
+            Object
+                retVal = null;
+
+            //null check
+            if (ID == "")
+                return retVal;
+
+            foreach (OCCBase occ in Collectors) {
+                try {
+                    retVal = occ[ID, SearchField.ID];
+                    if (retVal != null)
+                        break;
+                    } catch (Exception ex) {
+                    Debug.Print(ex.Message);
+                    }
+                }
+            //object could not be found
+            //search the orphan list
+            if (retVal == null) {
+                try {
+                    retVal = orphanCollector[ID, SearchField.ID];
+                    } catch { }
+                }
+            return retVal;
+            }
+
+        public object FindObject(ObjectClassBase obj) {
+            Object
+                retVal = null;
+
+            //null check
+            if (obj == null)
+                return retVal;
+            //todo use LINQ to return just what you want instead of constantly iterating over the data
+
+            foreach (OCCBase occ in Collectors.Where(c => obj.GetType() == c.CollectionType)) {
+                try {
+                    retVal = occ[obj];
+                    if (retVal != null)
+                        break;
+                    } catch (InvalidParameter) { } catch (Exception ex) {
+                    throw new Exception(
+                        String.Format(
+                            "An error occurred while linking objects" + Environment.NewLine +
+                            (obj is IOwner ?
+                                "The object {0} in file {1} caused the error" :
+                                "The object {0} caused the error in an {1} file"),
+                            obj.Name,
+                            (obj is IOwner ? ((IOwner)obj).myOwner : "untraceable")
+                            ),
+                        ex);
+                    }
+                }
+            //object could not be found
+            if (retVal == null) {
+                //search the orphan list make sure its not being added twice
+                if (!orphanCollector.Exists(obj)) {
+                    //doesn't exist add it
+                    MoveToOrphanList(obj, null);
+                    //i_Orphans.Add( obj );
+                    }
+
+                //retrieve the orphan from the orphan list
+                retVal = orphanCollector[obj];
+                }
+
+            return retVal;
+            }
+
+        public string GenerateIDCode() {
+            //this is what is called no matter what prams are supplied
+            string guidResult = string.Empty;
+
+            do {
+                guidResult = IDPreFix;// "";
+                while (guidResult.Length < 12) {
+                    // Get the GUID.
+                    guidResult += Guid.NewGuid().ToString().GetHashCode().ToString("X");
+                    }
+
+                if (IDPreFix.Length != 4)
+                    throw new ArgumentException("dataSetID is not valid, it must be exactly 4 characters long");
+
+                } while (IDCodeIsUnique(guidResult.Substring(0, 12)));
+
+            // Return the first length bytes.
+            return guidResult.Substring(0, 12);
+            }
+
+        [Browsable(false)]
+        public OCCBase GetCollector(Type T) {
+            OCCBase
+                retVal = null;
+
+            foreach (OCCBase iocc in i_OCCPlugins) {
+                if (iocc.CollectionType == T) {
+                    retVal = iocc;
+                    break;
+                    }
+                }
+
+            return retVal;
+            }
+
+        [Browsable(false)]
+        public OCCBase GetCollector(Object T) {
+            OCCBase
+                retVal = null;
+
+            foreach (OCCBase iocc in i_OCCPlugins)
+                if (iocc.IsOfType(T.GetType()))
+                    return iocc;
+
+            return retVal;
+            }
+
+        /// <summary>
+        /// Gets data in a tree form
+        /// </summary>
+        /// <param name="tree">Tree control node collection</param>
+        public void getDataTree(NTDataTreeNode tree) {
+
+            NTDataTreeNode rootNode = new NTDataTreeNode(this.FileName);
+
+            getTreeNodes(rootNode);
+
+            tree.Nodes.Add(rootNode);
+            }
+
+        public NTDataTreeNode GetDataTree() {
+            NTDataTreeNode root = new NTDataTreeNode(this.FileName);
+            root.NodeType = NTDataTreeNode.NodeTypeEnum.DataRoot;
+            foreach (OCCBase occ in Collectors) {
+                NTDataTreeNode occNode = occ.TreeData;
+                //occNode.NodeType = NTDataTreeNode.NodeTypeEnum.ObjectCollector;
+                //occNode.Text = occ.CollectionName;
+                root.Nodes.Add(occ.TreeData);
+                }
+            return root;
+            }
+
+        public Type[] GetLoadedPluginTypes() {
+            List<Type>
+                    retVal = new List<Type>();
+
+            foreach (Assembly ass in PluginEngine.LoadedAssemblies()) {
+                foreach (Type typ in ass.GetTypes()) {
+                    if (typ.IsSubclassOf(typeof(OCCBase))) {
+                        retVal.Add(typ);
+                        }
+                    if (typ.IsSubclassOf(typeof(ObjectClassBase))) {
+                        retVal.Add(typ);
+                        }
+                    }
+                }
+
+            //retVal.AddRange(ass.GetTypes().Where(t=>t is OCCBase));
+            return retVal.ToArray();
+            }
+
+        [Browsable(false)]
+        public T[] GetObjects<T>() {
+            List<T>
+                retVal = new List<T>();
+
+            foreach (OCCBase oc in i_OCCPlugins) {
+                if (typeof(T) == oc.CollectionType)
+                    foreach (Object obj in oc.Objects) {
+                        if (obj is T) {
+                            retVal.Add((T)obj);
+                            }
+                        }
+                }
+
+            return retVal.ToArray();
+            }
+        //todo: need to combine getnodes, programmer will have to figure out how to change the data to a visable tree
+        /// <summary>
+        /// Gets tree-nodes without assigning menus
+        /// </summary>
+        /// <param name="treeObject">Tree node that all nodes will be added to</param>
+        public void getTreeNodes(NTDataTreeNode treeObject) {
+            treeObject.Nodes.Clear();
+            //treeObject.Clear();
+
+            List<OCTreeNodeBase>
+                i_TreeNodePlugins = new List<OCTreeNodeBase>(PluginEngine.GetTreePlugIns());
+
+            //private List<OCCBase>
+            //i_OCCPlugins = new List<OCCBase>( PluginEngine.GetOCCPlugIns() );
+
+            //todo COMPLEETED query the collectors for each tree node to get what can be displayed so were not just fumbling around trying to figure it out one at a time over and ovr again
+
+            foreach (OCTreeNodeBase treeNodePlug in i_TreeNodePlugins) {
+                foreach (OCCBase occ in Collectors.Where(c => treeNodePlug.CanDisplay(c.CollectionType))) {
+                    //if ( treeNodePlug.CanDisplay( occ.CollectionType ) )
+                    treeNodePlug.AttachOCC(occ);
+                    }
+
+                //treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu);
+
+                //populate the node with collectors tree-nodes or object nodes
+                treeObject.Nodes.Add(treeNodePlug.MainBranch());
+                }
+
+            //todo finally add orphan nodes here
+            int
+                currentCount = orphanCollector.Count;
+
+            orphanTree.AttachOCC(orphanCollector);
+            //orphanTree.SetMenus(i_OrphanRootMenu, i_OrphansMenu);
+
+            treeObject.Nodes.Add(orphanTree.MainBranch());
+
+            //todo need to add the orphan list to an update method
+            //if the orphans branch has less than 1 item don't show it
+            //todo make it an option to show empty orphan branch
+            //if(orphanNodes.Count()<= 0)orphanNodes.?
+            }
+
+        public bool IDCodeIsUnique(string IDCode) {
+            bool retVal = false;
+
+            List<String>
+                loadedIDs = new List<string>();
+
+            loadedIDs.AddRange(IDs);
+
+            if (loadedIDs.Contains(IDCode))
+                retVal = true;
+
+            return retVal;
+            }
+
+        public void LinkData() {
+            try {
+                orphanCollector.Clear();
+
+                //List<OCCBase>
+                //    occs = new List<OCCBase>( LoadedCollectors() );
+                if (Updating != null)
+                    Updating(new UpdaterEventArgs(this.AllData.Length + 1));
+
+                int current = 0;
+
+                for (Byte i = 0; i <= PluginEngine.MAX_OBJECT_LAYER; i++) {
+                    foreach (OCCBase occ in Collectors.Where(ol => ol.objectLayer == i)) {
+                        foreach (ObjectClassBase obj in occ.Objects) {
+                            current++;
+
+                            if (Update != null)
+                                Update(new UpdateProgressEventArgs(String.Format("Linking Object {0}", obj.Name), "Linking", obj.Name, current, AllData.Length + 1));
+
+                            obj.Link(this);
+                            }
+                        }
+                    }
+
+                Updated?.Invoke();
+
+                //if ( Updated != null )
+
+                //    Updated();
+
+                //i_Orphans.Sort();
+                } catch { throw; }
             }
 
         public void Load() {
@@ -1255,6 +1439,86 @@ namespace NTAF.Core {
             throw new NotImplementedException("Feature not yet activated");
             }
 
+        /// <summary>
+        /// locks the file if a password has been set
+        /// </summary>
+        /// <exception cref="Exception">standard plain exception thrown</exception>
+        public void LockFile() {
+            if (filePassword == "")
+                throw new NullPasswordException("No Password Set");
+
+            fileLock = true;
+
+            if (LockStatusChange != null)
+                LockStatusChange();
+
+
+
+            }
+
+        public void PurgeFile() {
+
+            List<ObjectClassBase> purgeList = new List<ObjectClassBase>();
+
+            foreach (ObjectClassBase ObjRef in orphanCollector) {
+                Boolean ObjRefHasRef = false;
+                foreach (OCCBase occ in Collectors) {
+                    if (ObjRefHasRef) break;
+                    //todo query with linq
+                    foreach (ObjectClassBase obj in occ)
+                        if ((ObjRefHasRef = obj.CheckForReferences(ObjRef)))
+                            break;
+                    }
+                if (!ObjRefHasRef) {
+                    purgeList.Add(ObjRef);
+                    }
+                }
+
+            foreach (ObjectClassBase Obj in purgeList)
+                RemoveFromOrphanList(Obj);
+
+            }
+
+        //todo try and create a warning system when loading if a collection is missing non-required plug-ins like the tree node or at least one editor
+        public SerializableVersion[] RequiredPlugins() {
+            //get {
+            List<SerializableVersion>
+                retVal = new List<SerializableVersion>();
+
+            List<Type>
+                requiredTypes = new List<Type>();
+
+            foreach (OCCBase occ in this.Collectors) {
+                if (occ.Count >= 1) {
+                    foreach (ObjectClassBase oc in PluginEngine.GetObjectClasses()) {
+                        if (oc.CollectionType == occ.CollectionType) {
+                            requiredTypes.Add(oc.GetType());
+                            break;
+                            }
+                        }
+
+                    requiredTypes.Add(occ.GetType());
+                    }
+                }
+
+            foreach (Type typ in requiredTypes) {
+                List<object>
+                       attributes = new List<object>(typ.GetCustomAttributes(typeof(ObjectClassPlugIn), true));
+
+                if (attributes.Count >= 1)
+                    foreach (ObjectClassPlugIn ocpi in attributes)
+                        retVal.Add(ocpi.version);
+
+                attributes = new List<object>(typ.GetCustomAttributes(typeof(OCCPlugIn), true));
+
+                if (attributes.Count >= 1)
+                    foreach (OCCPlugIn occpi in attributes)
+                        retVal.Add(occpi.version);
+                }
+
+            return retVal.ToArray();
+            }
+
         public void Save() {
             //throw new NotImplementedException();
             try {
@@ -1289,6 +1553,256 @@ namespace NTAF.Core {
                 } catch { throw; }
             }
 
+        public override string ToString() {
+            return base.ToString();
+            }
+
+        /// <summary>
+        /// will unlock this file if passed password matched stored password
+        /// </summary>
+        /// <param name="cleartypePassword">un-encrypted password string used to lock the file</param>
+        public void UnLockFile(string cleartypePassword) {
+            //todo
+            //check that passwords match if not throw error otherwise unlock the file for editing
+            if (CheckPassword(cleartypePassword)) {
+                fileLock = false;
+                if (LockStatusChange != null)
+                    LockStatusChange();
+                } else
+                throw new InvalidPasswordException("Password incorrect");
+            }
+
+        /// <summary>
+        /// Adds the orphaned object to the orphaned list if it doesn't exist
+        /// </summary>
+        /// <param name="orphanedObjRef">Object that was orphaned</param>
+        /// <returns>the object that was passed in but returns it from the linked orphan list</returns>
+        internal ObjectClassBase updateOrphaning(ObjectClassBase orphanedObjRef) {
+            //find out if obj exists in orphaned list
+            if (!orphanCollector.Exists(orphanedObjRef)) {
+                //doesn't exist make sure it has no owner info
+                if (orphanedObjRef is IOwner)
+                    ((IOwner)orphanedObjRef).myOwner = null;
+                //add to the list
+                AddOrphan(orphanedObjRef);
+                }
+
+            //find and return object by its id
+            return null;//NTData.FindObjectClassBaseObjectByID( orphanedObjects.ToArray(), orphanedObjRef.ID );
+            }
+
+        private bool CheckForReferences(ObjectClassBase Item) {
+            byte objLayer = 0;
+
+            //figure out the objects level
+            OCCBase colector = Collectors.Where(c => c.CollectionType == Item.CollectionType).First();
+            objLayer = colector.objectLayer;
+
+            foreach (OCCBase occ in Collectors.Where(c => c.objectLayer > colector.objectLayer))
+                foreach (ObjectClassBase obj in occ)
+                    if (obj.CheckForReferences(Item))
+                        return true;
+
+            return false;
+            }
+
+        Boolean checkForRequiredPlugins(SerializableVersion[] requiredPlugins, out String[] MessageList) {
+            List<SerializableVersion>
+                loadedPlugs = new List<SerializableVersion>(LoadedPlugins);
+
+            List<String>
+                msgList = new List<string>();
+
+            Boolean
+                retval = true,
+                currentTest = true;
+
+            foreach (SerializableVersion reqPlugin in requiredPlugins) {
+                currentTest = loadedPlugs.Contains(reqPlugin);
+                if (!currentTest) {//check if its a version issue
+                    foreach (SerializableVersion ldplug in loadedPlugs) {
+                        if (ldplug.Name == reqPlugin.Name && ldplug.Type == reqPlugin.Type) {//the plugin is available
+                            if (reqPlugin > ldplug) {//required version is newer than the installed version
+                                currentTest = false;
+                                msgList.Add(String.Format("Required plugin {0} is newer than installed version,\nFound version {1}\nRequired version {2}",
+                                                            String.Format("{1}:{0}", reqPlugin.Name, reqPlugin.Type),
+                                                            ldplug.Version(),
+                                                            reqPlugin.Version()));
+                                } else
+                                currentTest = true;
+                            }
+                        }
+                    if (!currentTest)//still not found
+                        msgList.Add(String.Format("The plugin {0} could not be found and is required to load this file",
+                                                    reqPlugin.ToString()));
+
+                    if (!currentTest && retval)
+                        retval = false;
+                    }
+                }
+            MessageList = msgList.ToArray();
+            return retval;
+            }
+        private void MoveToOrphanList(ObjectClassBase Item, OCCBase OCC) {
+            //find the proper insertion point and put the now orphaned object in the list
+            //if (orphanCollector.Count > 0) {
+            //    for (int i = 0; i <= orphanCollector.Count - 1; i++) {
+            //        if (Item.Name.CompareTo(orphanCollector[i].Name) < 0) {
+            //            orphanCollector. Insert(i, Item); break;
+            //        }
+            //    }
+            //    if (!orphanCollector.Exists(Item))
+            //        orphanCollector.AddObject(Item);
+            //}
+            //else {
+            orphanCollector.AddObject(Item);
+            //}
+
+            if (OCC != null)
+                OCC.DropObject(Item);
+
+            if (EventOrphansChanged != null)
+                EventOrphansChanged(new ItemChangedArgs(orphanCollector.FindIndex(Item), Item, ArgAction.Add));
+            }
+
+        void NTDataFile_EventMyDataChanged() {
+            //todo throw new NotImplementedException();
+            }
+
+        private bool ReadObject(out Object objectToRead, string path, Type T) {
+            FileStream  //Create a file stream object
+                FS = new FileStream(path, FileMode.Open);
+
+            XmlSerializer //Create the object that will decode the XML File
+                SER = new XmlSerializer(T);
+
+            XmlReader
+                XMLR = new XmlTextReader(FS);
+
+            try {
+                objectToRead = SER.Deserialize(XMLR);
+                } catch (Exception) {
+                objectToRead = null;
+                return false;
+                } finally {
+                FS.Close();
+
+                }
+            return true;
+            }
+
+        private bool ReadObject(out Object objectToRead, Stream stream, Type T) {
+            //FileStream  //Create a file stream object
+            //    FS = new FileStream( path, FileMode.Open );
+
+            stream.Position = 0;
+
+            XmlSerializer //Create the object that will decode the XML File
+                SER = new XmlSerializer(T);
+
+            XmlReader
+                XMLR = new XmlTextReader(stream);
+
+            try {
+                objectToRead = SER.Deserialize(XMLR);
+                } catch (Exception) {
+                objectToRead = null;
+                return false;
+                }
+            return true;
+            }
+
+        private bool ReadObject(out Object[] objectToRead, Stream stream, Type T) {
+            //FileStream  //Create a file stream object
+            //    FS = new FileStream( path, FileMode.Open );
+
+            stream.Position = 0;
+
+            XmlSerializer //Create the object that will decode the XML File
+                SER = new XmlSerializer(T);
+
+            XmlReader
+                XMLR = new XmlTextReader(stream);
+
+            try {
+                objectToRead = (Object[])SER.Deserialize(XMLR);
+                } catch (Exception) {
+                objectToRead = null;
+                return false;
+                }
+
+            return true;
+            }
+
+        private bool ReadObject(out Object[] objectToRead, string path, Type T) {
+            FileStream  //Create a file stream object
+                FS = new FileStream(path, FileMode.Open);
+
+            XmlSerializer //Create the object that will decode the XML File
+                SER = new XmlSerializer(T);
+
+            XmlReader
+                XMLR = new XmlTextReader(FS);
+
+            try {
+                objectToRead = (Object[])SER.Deserialize(XMLR);
+                } catch (Exception) {
+                objectToRead = null;
+                return false;
+                } finally {
+                FS.Close();
+
+                }
+            return true;
+            }
+
+        private bool ReadObject2(out Object[] objectToRead, string path, Type T) {
+            FileStream  //Create a file stream object
+                FS = new FileStream(path, FileMode.Open);
+
+            Type[] loadedTypes = GetLoadedPluginTypes();
+
+            XmlSerializer //Create the object that will decode the XML File
+                SER = new XmlSerializer(T, loadedTypes);
+
+            XmlReader
+                XMLR = new XmlTextReader(FS);
+
+            try {
+                objectToRead = (Object[])SER.Deserialize(XMLR);
+                } catch (Exception) {
+                objectToRead = null;
+                return false;
+                } finally {
+                FS.Close();
+
+                }
+            return true;
+            }
+
+        private void RemoveFromOrphanList(ObjectClassBase Item) {
+            int index = orphanCollector.FindIndex(Item);
+
+            orphanCollector.DropObject(Item);
+
+            if (EventOrphansChanged != null)
+                EventOrphansChanged(new ItemChangedArgs(index, Item, ArgAction.Remove));
+            }
+
+        private void ReplaceReferences(ObjectClassBase toEdit, ObjectClassBase NewValues) {
+            byte objLayer = 0;
+
+            //figure out the objects level
+            foreach (OCCBase colector in Collectors)
+                if (colector.CollectionType == toEdit.CollectionType)
+                    objLayer = colector.objectLayer;
+
+            for (int i = objLayer + 1; i <= PluginEngine.MAX_OBJECT_LAYER; ++i)
+                foreach (OCCBase occ in Collectors)
+                    if (occ.objectLayer == i)
+                        foreach (ObjectClassBase obj in occ)
+                            obj.ReplaceReferences(toEdit, NewValues);
+            }
         private void SaveFile() {
             String
                 tmpFolder = System.IO.Path.GetTempPath() + "NewTerra";
@@ -1380,232 +1894,6 @@ namespace NTAF.Core {
 
             this.DataChanged = false;
             }
-
-        private bool ReadObject(out Object objectToRead, string path, Type T) {
-            FileStream  //Create a file stream object
-                FS = new FileStream(path, FileMode.Open);
-
-            XmlSerializer //Create the object that will decode the XML File
-                SER = new XmlSerializer(T);
-
-            XmlReader
-                XMLR = new XmlTextReader(FS);
-
-            try {
-                objectToRead = SER.Deserialize(XMLR);
-                } catch (Exception) {
-                objectToRead = null;
-                return false;
-                } finally {
-                FS.Close();
-
-                }
-            return true;
-            }
-
-        public void ExportToCSV(String path) {
-            StreamWriter sw = new StreamWriter(new FileStream(path + FileNameNoExt + ".csv", FileMode.Create));
-            sw.WriteLine("This file can be loaded an any good spread sheet program as table data. when loading be sure to split the data via the pipe '|' found above the '\\' key");
-            try {
-                bool printHeader = true;
-
-                foreach (ObjectClassBase objectClass in PluginEngine.GetObjectClasses()) {
-                    sw.WriteLine("Table:" + objectClass.CollectionName);
-                    foreach (ObjectClassBase obj in this.AllData) {
-                        if (obj.CollectionType == ((ObjectClassBase)objectClass).CollectionType) {
-
-                            DataMember[] dataMembers = obj.getDataMembers();
-
-                            String line = "";
-
-                            if (printHeader) {
-
-                                foreach (DataMember dataMember in dataMembers)
-                                    line += String.Format("{0}|", dataMember.Field);
-                                line = line.TrimEnd(new[] { ' ', ',' });
-                                sw.WriteLine(line);
-
-                                line = "";
-
-                                printHeader = false;
-                                }
-
-                            try {
-
-                                foreach (DataMember dataMember in dataMembers)
-                                    line += String.Format("{0}|", dataMember.Data);
-                                line = line.TrimEnd(new[] { ' ', ',' });
-                                sw.WriteLine(line);
-
-                                } catch (Exception ex) {
-                                throw new Exception("Object out put error", ex);
-                                }
-                            }
-
-                        }
-                    sw.WriteLine("");
-                    printHeader = true;
-
-                    }
-                } catch (Exception ex) {
-                throw new NTFileExecption(Path.GetFileName(path), "Could not export data", ex);
-                } finally {
-                sw.Close();
-                }
-            }
-
-        public void ExportToTXT(String path) {
-            StreamWriter sw = new StreamWriter(new FileStream(path + FileNameNoExt + ".txt", FileMode.Create));
-
-            try {
-                foreach (Object obj in this.AllData) {
-                    try {
-                        if (!(obj is ObjectClassBase))
-                            throw new Exception(); //todo make this better
-
-                        ObjectClassBase
-                            IObj = (ObjectClassBase)obj;
-
-                        DataMember[] dataMembers = IObj.getDataMembers();
-
-                        sw.WriteLine(IObj.CollectionName);
-
-                        foreach (DataMember dataMember in dataMembers)
-                            sw.WriteLine(String.Format("{0}:{1}", dataMember.Field, dataMember.Data));
-
-                        sw.WriteLine("============================================================");
-
-                        } catch (Exception ex) {
-                        throw new Exception("Object out put error", ex);
-                        }
-                    }
-                } catch (Exception ex) {
-                throw new NTFileExecption(Path.GetFileName(path), "Could not export data", ex);
-                } finally {
-                sw.Close();
-                }
-            }
-
-        public void ExportToXML(String path) {
-            String
-                tmpFolder = path + FileNameNoExt;
-
-           if (!Directory.Exists(tmpFolder))
-                Directory.CreateDirectory(tmpFolder);
-            else
-                if (Directory.GetDirectories(tmpFolder).Length != 0 || Directory.GetFiles(tmpFolder).Length != 0) {
-                Directory.Delete(tmpFolder, true);
-                Directory.CreateDirectory(tmpFolder);
-                }
-
-            try {
-                WriteObject(this, tmpFolder + "\\" + FileName.Split('.')[0]);
-
-                WriteObject(RequiredPlugins(), tmpFolder + "\\Requirements");
-
-                foreach (Object obj in this.AllData) {
-                    try {
-                        if (!(obj is ObjectClassBase))
-                            throw new Exception(); //todo make this better
-
-                        ObjectClassBase
-                            IObj = (ObjectClassBase)obj;
-
-                        String
-                            tmpFile = tmpFolder + "\\" + IObj.CollectionName + "\\" + IObj.Name;
-
-                        WriteObject(IObj, tmpFile);// + "!" + IObj.CollectionName);
-
-                        } catch (Exception ex) { }
-
-                    }
-                } catch (Exception ex) { }
-            }
-
-        public void ExportToXMLSingle(String path) {
-            String
-                tmpFolder = path + FileNameNoExt;
-
-            //if (!Directory.Exists(tmpFolder))
-            //    Directory.CreateDirectory(tmpFolder);
-            //else
-            //     if (Directory.GetDirectories(tmpFolder).Length != 0 || Directory.GetFiles(tmpFolder).Length != 0) {
-            //    Directory.Delete(tmpFolder, true);
-            //    Directory.CreateDirectory(tmpFolder);
-            //    }
-
-            try {
-                NTDataFileExt fileout = new NTDataFileExt { InternalFile = this };
-                WriteObject2(fileout, tmpFolder);
-
-                } catch (Exception ex) { }
-            }
-
-        private bool ReadObject(out Object objectToRead, Stream stream, Type T) {
-            //FileStream  //Create a file stream object
-            //    FS = new FileStream( path, FileMode.Open );
-
-            stream.Position = 0;
-
-            XmlSerializer //Create the object that will decode the XML File
-                SER = new XmlSerializer(T);
-
-            XmlReader
-                XMLR = new XmlTextReader(stream);
-
-            try {
-                objectToRead = SER.Deserialize(XMLR);
-                } catch (Exception) {
-                objectToRead = null;
-                return false;
-                }
-            return true;
-            }
-
-        private bool ReadObject(out Object[] objectToRead, Stream stream, Type T) {
-            //FileStream  //Create a file stream object
-            //    FS = new FileStream( path, FileMode.Open );
-
-            stream.Position = 0;
-
-            XmlSerializer //Create the object that will decode the XML File
-                SER = new XmlSerializer(T);
-
-            XmlReader
-                XMLR = new XmlTextReader(stream);
-
-            try {
-                objectToRead = (Object[])SER.Deserialize(XMLR);
-                } catch (Exception) {
-                objectToRead = null;
-                return false;
-                }
-
-            return true;
-            }
-
-        private bool ReadObject(out Object[] objectToRead, string path, Type T) {
-            FileStream  //Create a file stream object
-                FS = new FileStream(path, FileMode.Open);
-
-            XmlSerializer //Create the object that will decode the XML File
-                SER = new XmlSerializer(T);
-
-            XmlReader
-                XMLR = new XmlTextReader(FS);
-
-            try {
-                objectToRead = (Object[])SER.Deserialize(XMLR);
-                } catch (Exception) {
-                objectToRead = null;
-                return false;
-                } finally {
-                FS.Close();
-
-                }
-            return true;
-            }
-
         private String WriteObject(Object objToWrite, string path) {
             //throw new NotImplementedException();
             path += ".xml";
@@ -1662,76 +1950,7 @@ namespace NTAF.Core {
                 }
             }
 
-        #region TreeNode Generation Methods
-        //todo: need to combine getnodes, programmer will have to figure out how to change the data to a visable tree
-
-        public NTDataTreeNode GetDataTree() {
-            NTDataTreeNode root = new NTDataTreeNode(this.FileName);
-            root.NodeType = NTDataTreeNode.NodeTypeEnum.DataRoot;
-            foreach (OCCBase occ in Collectors) {
-                NTDataTreeNode occNode = occ.TreeData;
-                //occNode.NodeType = NTDataTreeNode.NodeTypeEnum.ObjectCollector;
-                //occNode.Text = occ.CollectionName;
-                root.Nodes.Add(occ.TreeData);
-                }
-            return root;
-            }
-
-        /// <summary>
-        /// Gets data in a tree form
-        /// </summary>
-        /// <param name="tree">Tree control node collection</param>
-        public void getDataTree(NTDataTreeNode tree) {
-
-            NTDataTreeNode rootNode = new NTDataTreeNode(this.FileName);
-
-            getTreeNodes(rootNode);
-
-            tree.Nodes.Add(rootNode);
-            }
-
-        /// <summary>
-        /// Gets tree-nodes without assigning menus
-        /// </summary>
-        /// <param name="treeObject">Tree node that all nodes will be added to</param>
-        public void getTreeNodes(NTDataTreeNode treeObject) {
-            treeObject.Nodes.Clear();
-            //treeObject.Clear();
-
-            List<OCTreeNodeBase>
-                i_TreeNodePlugins = new List<OCTreeNodeBase>(PluginEngine.GetTreePlugIns());
-
-            //private List<OCCBase>
-            //i_OCCPlugins = new List<OCCBase>( PluginEngine.GetOCCPlugIns() );
-
-            //todo COMPLEETED query the collectors for each tree node to get what can be displayed so were not just fumbling around trying to figure it out one at a time over and ovr again
-
-            foreach (OCTreeNodeBase treeNodePlug in i_TreeNodePlugins) {
-                foreach (OCCBase occ in Collectors.Where(c => treeNodePlug.CanDisplay(c.CollectionType))) {
-                    //if ( treeNodePlug.CanDisplay( occ.CollectionType ) )
-                    treeNodePlug.AttachOCC(occ);
-                    }
-
-                //treeNodePlug.SetMenus(i_RootMenu, i_NodeMenu);
-
-                //populate the node with collectors tree-nodes or object nodes
-                treeObject.Nodes.Add(treeNodePlug.MainBranch());
-                }
-
-            //todo finally add orphan nodes here
-            int
-                currentCount = orphanCollector.Count;
-
-            orphanTree.AttachOCC(orphanCollector);
-            //orphanTree.SetMenus(i_OrphanRootMenu, i_OrphansMenu);
-
-            treeObject.Nodes.Add(orphanTree.MainBranch());
-
-            //todo need to add the orphan list to an update method
-            //if the orphans branch has less than 1 item don't show it
-            //todo make it an option to show empty orphan branch
-            //if(orphanNodes.Count()<= 0)orphanNodes.?
-            }
+        #endregion Methods
 
         //private OrphanNode[] PopulateNodeOrphans(int InCount, out int OutCount) {
         //    List<OrphanNode>
@@ -1767,202 +1986,48 @@ namespace NTAF.Core {
         //    OutCount = InCount;
         //    return retVal.ToArray();
         //}
-        #endregion TreeNode Generation Methods
 
         //public void getDisplayData(ListViewGroupCollection groupCollection) { }
-
-        public void PurgeFile() {
-
-            List<ObjectClassBase> purgeList = new List<ObjectClassBase>();
-
-            foreach (ObjectClassBase ObjRef in orphanCollector) {
-                Boolean ObjRefHasRef = false;
-                foreach (OCCBase occ in Collectors) {
-                    if (ObjRefHasRef) break;
-                    //todo query with linq
-                    foreach (ObjectClassBase obj in occ)
-                        if ((ObjRefHasRef = obj.CheckForReferences(ObjRef)))
-                            break;
-                    }
-                if (!ObjRefHasRef) {
-                    purgeList.Add(ObjRef);
-                    }
-                }
-
-            foreach (ObjectClassBase Obj in purgeList)
-                RemoveFromOrphanList(Obj);
-
-            }
-        #endregion
-
         /* some code in this section was found on the internet and modified to suit
          * http://simpcode.blogspot.com/2008/07/c-get-unique-key-using-guid-hash-code.html
          * original creator Weizh at Saturday, July 12, 2008 
          */
-        public string GenerateIDCode() {
-            //this is what is called no matter what prams are supplied
-            string guidResult = string.Empty;
-
-            do {
-                guidResult = IDPreFix;// "";
-                while (guidResult.Length < 12) {
-                    // Get the GUID.
-                    guidResult += Guid.NewGuid().ToString().GetHashCode().ToString("X");
-                    }
-
-                if (IDPreFix.Length != 4)
-                    throw new ArgumentException("dataSetID is not valid, it must be exactly 4 characters long");
-
-                } while (IDCodeIsUnique(guidResult.Substring(0, 12)));
-
-            // Return the first length bytes.
-            return guidResult.Substring(0, 12);
-            }
-
-        public bool IDCodeIsUnique(string IDCode) {
-            bool retVal = false;
-
-            List<String>
-                loadedIDs = new List<string>();
-
-            loadedIDs.AddRange(IDs);
-
-            if (loadedIDs.Contains(IDCode))
-                retVal = true;
-
-            return retVal;
-            }
-
-        #region IUpdateProgress Members
-
-        public event NTEventHandler<UpdaterEventArgs> Updating;
-
-        public event NTEventHandler<UpdateProgressEventArgs> Update;
-
-        public event NTEventHandler Updated;
-
-        #endregion
-
-        #region ILink Members
-
-        public void LinkData() {
-            try {
-                orphanCollector.Clear();
-
-                //List<OCCBase>
-                //    occs = new List<OCCBase>( LoadedCollectors() );
-                if (Updating != null)
-                    Updating(new UpdaterEventArgs(this.AllData.Length + 1));
-
-                int current = 0;
-
-                for (Byte i = 0; i <= PluginEngine.MAX_OBJECT_LAYER; i++) {
-                    foreach (OCCBase occ in Collectors.Where(ol => ol.objectLayer == i)) {
-                        foreach (ObjectClassBase obj in occ.Objects) {
-                            current++;
-
-                            if (Update != null)
-                                Update(new UpdateProgressEventArgs(String.Format("Linking Object {0}", obj.Name), "Linking", obj.Name, current, AllData.Length + 1));
-
-                            obj.Link(this);
-                            }
-                        }
-                    }
-
-                Updated?.Invoke();
-
-                //if ( Updated != null )
-
-                //    Updated();
-
-                //i_Orphans.Sort();
-                } catch { throw; }
-            }
-
-        public object FindObject(string ID) {
-            Object
-                retVal = null;
-
-            //null check
-            if (ID == "")
-                return retVal;
-
-            foreach (OCCBase occ in Collectors) {
-                try {
-                    retVal = occ[ID, SearchField.ID];
-                    if (retVal != null)
-                        break;
-                    } catch (Exception ex) {
-                        Debug.Print(ex.Message);
-                    }
-                }
-            //object could not be found
-            //search the orphan list
-            if (retVal == null) {
-                try {
-                    retVal = orphanCollector[ID, SearchField.ID];
-                    } catch { }
-                }
-            return retVal;
-            }
-
-        public object FindObject(ObjectClassBase obj) {
-            Object
-                retVal = null;
-
-            //null check
-            if (obj == null)
-                return retVal;
-            //todo use LINQ to return just what you want instead of constantly iterating over the data
-
-            foreach (OCCBase occ in Collectors.Where(c => obj.GetType() == c.CollectionType)) {
-                try {
-                    retVal = occ[obj];
-                    if (retVal != null)
-                        break;
-                    } catch (InvalidParameter) { } catch (Exception ex) {
-                    throw new Exception(
-                        String.Format(
-                            "An error occurred while linking objects" + Environment.NewLine +
-                            (obj is IOwner ?
-                                "The object {0} in file {1} caused the error" :
-                                "The object {0} caused the error in an {1} file"),
-                            obj.Name,
-                            (obj is IOwner ? ((IOwner)obj).myOwner : "untraceable")
-                            ),
-                        ex);
-                    }
-                }
-            //object could not be found
-            if (retVal == null) {
-                //search the orphan list make sure its not being added twice
-                if (!orphanCollector.Exists(obj)) {
-                    //doesn't exist add it
-                    MoveToOrphanList(obj, null);
-                    //i_Orphans.Add( obj );
-                    }
-
-                //retrieve the orphan from the orphan list
-                retVal = orphanCollector[obj];
-                }
-
-            return retVal;
-            }
-
-        #endregion
         }
 
     [Serializable()]
     public class NTDataFileExt {
+
+        #region Constructors
+
         public NTDataFileExt() { }
 
-        public NTDataFile InternalFile { get; set; }
-        
+        #endregion Constructors
+
+        #region Properties
+
         [XmlElement(), Browsable(false)]
         public OCCBase[] Collectors {
             get { return InternalFile.Collectors; }
             set { }
             }
+
+        [XmlIgnore()]
+        public NTDataFile InternalFile { get; set; }
+
+        [XmlElement()]
+        public string Author { get; set; }
+
+        [XmlElement()]
+        public string AuthorEmail { get; set; }
+
+        [XmlElement()]
+        public string AuthorWebsite { get; set; }
+
+        [XmlElement()]
+        public string Description { get; set; }
+        
+        
+        #endregion Properties
         }
     }
 

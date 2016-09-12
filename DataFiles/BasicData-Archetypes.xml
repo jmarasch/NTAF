@@ -1,0 +1,11 @@
+﻿<ArchetypeCollector>
+  <Objects>
+    <anyType d3p1:type="Archetype" ID="BSDS175F654B" Name="Green" BaseType="Green" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="Archetype" ID="BSDS372AACE7" Name="Heavy" BaseType="Heavy" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="Archetype" ID="BSDS2CDC0E34" Name="Leader" BaseType="Leader" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="Archetype" ID="BSDS159919F9" Name="Member" BaseType="Member" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="Archetype" ID="BSDS2549C0A4" Name="Psychic" BaseType="Psychic" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="Archetype" ID="BSDS6EBD1680" Name="Special" BaseType="Special" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="Archetype" ID="BSDS8FDAC4BB" Name="Vet" BaseType="Vet" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+  </Objects>
+</ArchetypeCollector>

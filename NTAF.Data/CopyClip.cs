@@ -31,7 +31,7 @@ namespace NTAF.Core {
                 ClipData = UTF8ByteArrayToString( memoryStream.ToArray() );
 
                 Clipboard.Clear();
-
+                
                 Clipboard.SetText( ClipData );
             }
 

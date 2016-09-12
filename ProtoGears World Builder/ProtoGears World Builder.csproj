@@ -78,6 +78,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="InputWindows\InputPasswordWindow.xaml.cs">
+      <DependentUpon>InputPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InputWindows\InputStringWindow.xaml.cs">
+      <DependentUpon>InputStringWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoadedPlugins.xaml.cs">
       <DependentUpon>LoadedPlugins.xaml</DependentUpon>
     </Compile>
@@ -97,6 +103,14 @@
     </Compile>
     <Compile Include="TreeViewItemExtention.cs" />
     <Compile Include="WPFWindowHelper.cs" />
+    <Page Include="InputWindows\InputPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputWindows\InputStringWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoadedPlugins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -288,6 +302,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\RibbonIcons\File-Question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Question.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

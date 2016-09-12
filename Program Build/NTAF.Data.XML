@@ -31,10 +31,14 @@
             stored encrypted password
             </summary>
         </member>
-        <member name="P:NTAF.Core.NTDataFile.FullFileName">
+        <member name="P:NTAF.Core.NTDataFile.FileDir">
             <summary>
-            Gets or sets the full path to the file
-            "C:\blah\blah\blah.NTD"
+            Gets the full path to the file but doesn't include the file name
+            </summary>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.FileLocked">
+            <summary>
+            Returns true of the file is locked
             </summary>
         </member>
         <member name="P:NTAF.Core.NTDataFile.FileName">
@@ -47,9 +51,17 @@
             Gets the file name with no path or file extension
             </summary>
         </member>
-        <member name="P:NTAF.Core.NTDataFile.FileDir">
+        <member name="P:NTAF.Core.NTDataFile.FilePassword">
             <summary>
-            Gets the full path to the file but doesn't include the file name
+            Sets the file password if the file is not currently locked
+            or takes a clear type string, encrypts it and stores it in the file
+            </summary>
+            <exception cref="T:NTAF.Core.FileLockedException">FileLockedException - if the file is locked</exception>
+        </member>
+        <member name="P:NTAF.Core.NTDataFile.FullFileName">
+            <summary>
+            Gets or sets the full path to the file
+            "C:\blah\blah\blah.NTD"
             </summary>
         </member>
         <member name="P:NTAF.Core.NTDataFile.IDPreFix">
@@ -58,30 +70,6 @@
             Note:strings longer than 4 chars are cut off after the 4th so\n
             "ABCDE" will turn in to "ABCD"
             </summary>
-        </member>
-        <member name="P:NTAF.Core.NTDataFile.FileLocked">
-            <summary>
-            Returns true of the file is locked
-            </summary>
-        </member>
-        <member name="P:NTAF.Core.NTDataFile.FilePassword">
-            <summary>
-            Sets the file password if the file is not currently locked
-            or takes a clear type string, encrypts it and stores it in the file
-            </summary>
-            <exception cref="T:NTAF.Core.FileLockedException">FileLockedException - if the file is locked</exception>
-        </member>
-        <member name="M:NTAF.Core.NTDataFile.LockFile">
-            <summary>
-            locks the file if a password has been set
-            </summary>
-            <exception cref="T:System.Exception">standard plain exception thrown</exception>
-        </member>
-        <member name="M:NTAF.Core.NTDataFile.UnLockFile(System.String)">
-            <summary>
-            will unlock this file if passed password matched stored password
-            </summary>
-            <param name="cleartypePassword">un-encrypted password string used to lock the file</param>
         </member>
         <member name="M:NTAF.Core.NTDataFile.Drop(NTAF.PlugInFramework.ObjectClassBase)">
             <summary>
@@ -95,13 +83,6 @@
             </summary>
             <param name="OrphanedObject"></param>
         </member>
-        <member name="M:NTAF.Core.NTDataFile.updateOrphaning(NTAF.PlugInFramework.ObjectClassBase)">
-            <summary>
-            Adds the orphaned object to the orphaned list if it doesn't exist
-            </summary>
-            <param name="orphanedObjRef">Object that was orphaned</param>
-            <returns>the object that was passed in but returns it from the linked orphan list</returns>
-        </member>
         <member name="M:NTAF.Core.NTDataFile.getDataTree(NTAF.PlugInFramework.NTDataTreeNode)">
             <summary>
             Gets data in a tree form
@@ -113,6 +94,25 @@
             Gets tree-nodes without assigning menus
             </summary>
             <param name="treeObject">Tree node that all nodes will be added to</param>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.LockFile">
+            <summary>
+            locks the file if a password has been set
+            </summary>
+            <exception cref="T:System.Exception">standard plain exception thrown</exception>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.UnLockFile(System.String)">
+            <summary>
+            will unlock this file if passed password matched stored password
+            </summary>
+            <param name="cleartypePassword">un-encrypted password string used to lock the file</param>
+        </member>
+        <member name="M:NTAF.Core.NTDataFile.updateOrphaning(NTAF.PlugInFramework.ObjectClassBase)">
+            <summary>
+            Adds the orphaned object to the orphaned list if it doesn't exist
+            </summary>
+            <param name="orphanedObjRef">Object that was orphaned</param>
+            <returns>the object that was passed in but returns it from the linked orphan list</returns>
         </member>
         <member name="T:NTAF.Data.Properties.Resources">
             <summary>

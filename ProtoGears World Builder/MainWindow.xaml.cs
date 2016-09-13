@@ -650,6 +650,42 @@ namespace ProtoGears_World_Builder {
             DataFile.FilePassword = newPassBox.Answer;
             }
 
+        private void btnCopySelected(object sender, RoutedEventArgs e) {
+            TreeViewItemExtention node = (TreeViewItemExtention) SelectedNode;
+            switch (node.NodeType) {
+                case TreeViewItemExtention.NodeTypeEnum.DataRoot:
+                    DataFile.CopyFileToClipboard();
+                    break;
+                case TreeViewItemExtention.NodeTypeEnum.ObjectCollector:
+                    DataFile.CopyCollectorToClipboard(node.Header.ToString());
+                    break;
+                case TreeViewItemExtention.NodeTypeEnum.Object:
+                    DataFile.CopyObjecctToClipboard(node.Tag.ToString());
+                    break;
+                case TreeViewItemExtention.NodeTypeEnum.Other:
+                    break;
+                default:
+                    break;
+                }
+            //CopyClip.CopyToClipboard()
+            }
+
+        private void ObjectViewer_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+
+            }
+
+        private void ObjectViewer_PropertyEditingFinished(object sender, RoutedEventArgs e) {
+
+            }
+
+        private void ObjectViewer_PropertyEditingStarted(object sender, RoutedEventArgs e) {
+
+            }
+
+        private void ObjectViewer_PropertyValueChanged(object sender, System.Windows.Controls.WpfPropertyGrid.PropertyValueChangedEventArgs e) {
+
+            }
+
         private bool CheckForSave() {
             if (DataFile != null) {
                 if (DataFile.DataChanged) {

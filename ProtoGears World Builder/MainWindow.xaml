@@ -163,6 +163,9 @@
                         <Fluent:Button x:Name="btnExportCSV" Header="CSV" Size="Middle"
                                        Click="btnExportFile_Click"/>
                     </Fluent:SplitButton>
+                    <Fluent:Button x:Name="buttonCopyFile" Header="Copy" Size="Large" Icon="Images\RibbonIcons\Clipboard-01.png" LargeIcon="Images\RibbonIcons\Clipboard-01.png"
+                                   Click="btnCopySelected"/>
+                    <Fluent:Button x:Name="buttonPasteFile" Header="Paste" Size="Large" Icon="Images\RibbonIcons\Clipboard Paste-01.png" LargeIcon="Images\RibbonIcons\Clipboard Paste-01.png"/>
                     <Fluent:Button x:Name="buttonPurge" Header="Purge" Size="Large" Icon="Images\RibbonIcons\Document-Purge.png" LargeIcon="Images\RibbonIcons\Document-Purge.png"
                                    Click="btnPurge_Click"/>
                     <Fluent:Button x:Name="buttonLockFile" Header="Lock" Size="Large" Icon="Images\RibbonIcons\database-Locked.png" LargeIcon="Images\RibbonIcons\database-Locked.png"
@@ -185,7 +188,8 @@
                         <Fluent:Button x:Name="buttonPrintGroupPreview" Header="Preview" Size="Middle" Icon="Images\RibbonIcons\Document Preview-01.png" LargeIcon="Images\RibbonIcons\Document Preview-01.png"/>
                         <Fluent:Button x:Name="buttonPrintGroupSetup" Header="Setup" Size="Middle" Icon="Images\RibbonIcons\print-Settings-icon.png" LargeIcon="Images\RibbonIcons\print-Settings-icon.png"/>
                     </Fluent:SplitButton>
-                    <Fluent:Button x:Name="buttonCopyGroup" Header="Copy" Size="Large" Icon="Images\RibbonIcons\Clipboard-01.png" LargeIcon="Images\RibbonIcons\Clipboard-01.png"/>
+                    <Fluent:Button x:Name="buttonCopyGroup" Header="Copy" Size="Large" Icon="Images\RibbonIcons\Clipboard-01.png" LargeIcon="Images\RibbonIcons\Clipboard-01.png"
+                                   Click="btnCopySelected"/>
                     <Fluent:Button x:Name="buttonPasteGroup" Header="Paste" Size="Large" Icon="Images\RibbonIcons\Clipboard Paste-01.png" LargeIcon="Images\RibbonIcons\Clipboard Paste-01.png"/>
                     <Fluent:SplitButton x:Name="buttonExportGroup" Header="Export" Size="Large" Icon="Images\RibbonIcons\File Export.png" LargeIcon="Images\RibbonIcons\File Export.png"
                                         Click="btnExportFile_Click">
@@ -203,7 +207,8 @@
                         <Fluent:Button x:Name="buttonPrintObjectPreview" Header="Preview" Size="Middle" Icon="Images\RibbonIcons\Document Preview-01.png" LargeIcon="Images\RibbonIcons\Document Preview-01.png"/>
                         <Fluent:Button x:Name="buttonPrintObjectSetup" Header="Setup" Size="Middle" Icon="Images\RibbonIcons\print-Settings-icon.png" LargeIcon="Images\RibbonIcons\print-Settings-icon.png"/>
                     </Fluent:SplitButton>
-                    <Fluent:Button x:Name="buttonCopyObject" Header="Copy" Size="Large" Icon="Images\RibbonIcons\Clipboard-01.png" LargeIcon="Images\RibbonIcons\Clipboard-01.png"/>
+                    <Fluent:Button x:Name="buttonCopyObject" Header="Copy" Size="Large" Icon="Images\RibbonIcons\Clipboard-01.png" LargeIcon="Images\RibbonIcons\Clipboard-01.png"
+                                   Click="btnCopySelected"/>
                     <Fluent:Button x:Name="buttonPasteObject" Header="Paste" Size="Large" Icon="Images\RibbonIcons\Clipboard Paste-01.png" LargeIcon="Images\RibbonIcons\Clipboard Paste-01.png"/>
                     <Fluent:SplitButton x:Name="buttonExportObject" Header="Export" Size="Large" Icon="Images\RibbonIcons\File Export.png" LargeIcon="Images\RibbonIcons\File Export.png">
                         <Fluent:Button x:Name="btnExportTEXTObject" Header="TXT" Size="Middle"/>
@@ -237,7 +242,7 @@
                     <RowDefinition Height="40"  MinHeight="35"/>
                 </Grid.RowDefinitions>
                 <ComboBox x:Name="DataItemSelector" Grid.Row="0" SelectionChanged="DataItemSelector_SelectionChanged" />
-                <pg:PropertyGrid x:Name="ObjectViewer" Grid.Row="1" ShowReadOnlyProperties="True" ShowAttachedProperties="True">
+                <pg:PropertyGrid x:Name="ObjectViewer" Grid.Row="1" ShowReadOnlyProperties="True" ShowAttachedProperties="True" PropertyChanged="ObjectViewer_PropertyChanged" PropertyEditingFinished="ObjectViewer_PropertyEditingFinished" PropertyEditingStarted="ObjectViewer_PropertyEditingStarted" PropertyValueChanged="ObjectViewer_PropertyValueChanged">
                     <pg:PropertyGrid.Layout>
                         <pg:TabbedLayout>
                             <pg:AlphabeticalLayout pg:TabbedLayout.Header="Alphabetical"/>

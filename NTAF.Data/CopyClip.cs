@@ -10,33 +10,33 @@ using NTAF.PlugInFramework;
 
 namespace NTAF.Core {
     public static class CopyClip {
-        public static void CopyToClipboard( INTId obj ) {
+        public static void CopyToClipboard(object obj) {
             try {
                 String ClipData = "Error occurred while copying data to clip board";
 
-                MemoryStream memoryStream = new MemoryStream();
+                if ((obj is OCCBase) || (obj is ObjectClassBase) || (obj is NTDataFileExt)) {
+                    MemoryStream memoryStream = new MemoryStream();
 
-                XmlSerializer xs = new XmlSerializer( obj.GetType() );
+                    XmlSerializer xs = new XmlSerializer(obj.GetType(), PluginEngine.GetLoadedPluginTypes());
 
-                XmlTextWriter xmlTextWriter = new XmlTextWriterFormattedNoDeclaration( memoryStream ); // new XmlTextWriter( memoryStream, Encoding.UTF8 );
+                    XmlTextWriter xmlTextWriter = new XmlTextWriterFormattedNoDeclaration(memoryStream); // new XmlTextWriter( memoryStream, Encoding.UTF8 );
 
-                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                    XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
 
-                ns.Add( "", "" );
+                    ns.Add("", "");
 
-                xs.Serialize( xmlTextWriter, obj, ns );
+                    xs.Serialize(xmlTextWriter, obj, ns);
 
-                memoryStream = ( MemoryStream )xmlTextWriter.BaseStream;
+                    memoryStream = (MemoryStream)xmlTextWriter.BaseStream;
 
-                ClipData = UTF8ByteArrayToString( memoryStream.ToArray() );
+                    ClipData = UTF8ByteArrayToString(memoryStream.ToArray());
+                    }
 
                 Clipboard.Clear();
-                
-                Clipboard.SetText( ClipData );
-            }
 
-            catch { throw; }
-        }
+                Clipboard.SetText(ClipData);
+                } catch { throw; }
+            }
 
         public static void CopyFromClipboard(Object file){// NTDataFile file ) {
             try {

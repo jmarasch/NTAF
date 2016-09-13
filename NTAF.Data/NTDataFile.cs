@@ -768,6 +768,30 @@ namespace NTAF.Core {
             return retVal;
             }
 
+        public void CopyCollectorToClipboard(string collectorName) {
+            OCCBase collector = Collectors.First(c => c.CollectionName == collectorName);
+            if (collector == null) throw new Exception("COuld not find selected collector in data file");
+            CopyClip.CopyToClipboard(collector);
+            }
+
+        public void CopyObjecctToClipboard(string objID) {
+            ObjectClassBase obj = AllData.First(o=>o.ID == objID);
+            if (obj == null) throw new Exception("Could not find selected object in data file");
+            CopyClip.CopyToClipboard(obj);
+            }
+
+        public void CopyFileToClipboard() {
+            NTDataFileExt fileout = new NTDataFileExt {
+                InternalFile = this,
+                Author = this.Author,
+                AuthorEmail = this.AuthorEmail,
+                AuthorWebsite = this.AuthorWebsite,
+                Description = this.Description
+                };
+            
+            CopyClip.CopyToClipboard(fileout);
+            }
+
         public string GenerateIDCode() {
             //this is what is called no matter what prams are supplied
             string guidResult = string.Empty;
@@ -840,24 +864,24 @@ namespace NTAF.Core {
             return root;
             }
 
-        public Type[] GetLoadedPluginTypes() {
-            List<Type>
-                    retVal = new List<Type>();
+        //public Type[] GetLoadedPluginTypes() {
+        //    List<Type>
+        //            retVal = new List<Type>();
 
-            foreach (Assembly ass in PluginEngine.LoadedAssemblies()) {
-                foreach (Type typ in ass.GetTypes()) {
-                    if (typ.IsSubclassOf(typeof(OCCBase))) {
-                        retVal.Add(typ);
-                        }
-                    if (typ.IsSubclassOf(typeof(ObjectClassBase))) {
-                        retVal.Add(typ);
-                        }
-                    }
-                }
+        //    foreach (Assembly ass in PluginEngine.LoadedAssemblies()) {
+        //        foreach (Type typ in ass.GetTypes()) {
+        //            if (typ.IsSubclassOf(typeof(OCCBase))) {
+        //                retVal.Add(typ);
+        //                }
+        //            if (typ.IsSubclassOf(typeof(ObjectClassBase))) {
+        //                retVal.Add(typ);
+        //                }
+        //            }
+        //        }
 
-            //retVal.AddRange(ass.GetTypes().Where(t=>t is OCCBase));
-            return retVal.ToArray();
-            }
+        //    //retVal.AddRange(ass.GetTypes().Where(t=>t is OCCBase));
+        //    return retVal.ToArray();
+        //    }
 
         [Browsable(false)]
         public T[] GetObjects<T>() {
@@ -1760,7 +1784,7 @@ namespace NTAF.Core {
             FileStream  //Create a file stream object
                 FS = new FileStream(path, FileMode.Open);
 
-            Type[] loadedTypes = GetLoadedPluginTypes();
+            Type[] loadedTypes = PluginEngine.GetLoadedPluginTypes();
 
             XmlSerializer //Create the object that will decode the XML File
                 SER = new XmlSerializer(T, loadedTypes);
@@ -1930,7 +1954,7 @@ namespace NTAF.Core {
             FileStream
                 FS = new FileStream(path, FileMode.Create);
 
-            Type[] loadedTypes = GetLoadedPluginTypes();
+            Type[] loadedTypes = PluginEngine.GetLoadedPluginTypes();
 
             try {
                 XmlSerializer

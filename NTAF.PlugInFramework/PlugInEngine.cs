@@ -301,5 +301,23 @@ namespace NTAF.PlugInFramework {
                 }
             }
         }
-    }
+        public static Type[] GetLoadedPluginTypes() {
+            List<Type>
+                    retVal = new List<Type>();
+
+            foreach (Assembly ass in LoadedAssemblies()) {
+                foreach (Type typ in ass.GetTypes()) {
+                    if (typ.IsSubclassOf(typeof(OCCBase))) {
+                        retVal.Add(typ);
+                        }
+                    if (typ.IsSubclassOf(typeof(ObjectClassBase))) {
+                        retVal.Add(typ);
+                        }
+                    }
+                }
+
+            //retVal.AddRange(ass.GetTypes().Where(t=>t is OCCBase));
+            return retVal.ToArray();
+            }
+        }
 }
